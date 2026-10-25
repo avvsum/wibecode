@@ -8,6 +8,9 @@
     Choice("music", "Музыка", lambda: [("auto", "Авто, по настроению"), (None, "Без музыки")]
            + [(t, Path(t).stem) for t in api.user_music()], browse="Аудио (*.mp3 *.wav *.m4a *.ogg)")
 
+Текстовая настройка (как адрес и ключ API нейросети): добавьте Field в FIELDS и параметр с тем же
+именем в RenderWorker.__init__ — окно нарисует поле ввода и запомнит введённое до следующего запуска.
+
 Новый дополнительный результат (как YouTube-название и теги): заведите в RenderWorker сигнал
 Signal(str, bool) — текст и «удалось ли» — и добавьте Extra с его именем в EXTRAS. Окно само
 покажет карточку под сценарием, с кнопкой «Копировать», если удалось.
@@ -33,9 +36,29 @@ class Choice:
 
 
 @dataclass(frozen=True)
+class Field:
+    key: str  # имя параметра RenderWorker
+    label: str
+    placeholder: str = ""
+    hint: str = ""
+    secret: bool = False  # ввод скрыт точками, как пароль
+
+
+@dataclass(frozen=True)
 class Extra:
     signal: str  # имя сигнала RenderWorker с аргументами (text: str, ok: bool)
     title: str
+
+
+# Нейросеть для сценария: любой OpenAI-совместимый API, модель выбирается автоматически.
+FIELDS = (
+    Field(
+        "llm_base_url", "Адрес API нейросети", "https://api.openai.com/v1",
+        hint="Любой OpenAI-совместимый API: OpenAI, OpenRouter, DeepSeek, локальный Ollama. "
+             "Модель выбирается автоматически",
+    ),
+    Field("llm_api_key", "Ключ API", "sk-…", hint="Хранится только на этом компьютере", secret=True),
+)
 
 
 def music_options() -> list:

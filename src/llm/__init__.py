@@ -7,12 +7,12 @@ Voice-over (ElevenLabs text-to-speech) lives in src.llm.tts.
 
 from src.llm import tts
 from src.llm.client import (
-    AnthropicClient,
-    DeepSeekClient,
     FakeLLMClient,
     LLMClient,
     LLMError,
+    OpenAICompatibleClient,
     SpecGenerationError,
+    connect,
     default_client,
     generate_metadata,
     generate_spec,
@@ -20,14 +20,14 @@ from src.llm.client import (
 from src.llm.metadata import MetadataError, VideoMetadata
 
 __all__ = [
-    "AnthropicClient",
-    "DeepSeekClient",
     "FakeLLMClient",
     "LLMClient",
     "LLMError",
     "MetadataError",
+    "OpenAICompatibleClient",
     "SpecGenerationError",
     "VideoMetadata",
+    "connect",
     "default_client",
     "generate_metadata",
     "generate_spec",

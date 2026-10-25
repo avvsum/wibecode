@@ -35,6 +35,7 @@ class RenderWorker(QObject):
     def __init__(
         self, user_text: str, out_path: str, render_mode: str | None = None, voice: str | None = None,
         music: str | None = None, *, environment: str = "studio", cast: str = "classic",
+        llm_base_url: str = "", llm_api_key: str = "",
     ):
         super().__init__()
         self._user_text = user_text
@@ -44,6 +45,9 @@ class RenderWorker(QObject):
         self._environment = environment
         self._cast = cast
         self._music = music  # "auto" (настроение от модели), путь к своему треку или None
+        self._llm_base_url = llm_base_url  # адрес OpenAI-совместимого API; пусто — из переменной окружения
+        self._llm_api_key = llm_api_key
+        self._client = None  # один клиент на запуск: модель выбирается один раз
         self._cancel_requested = False
 
     def cancel(self) -> None:
@@ -57,7 +61,7 @@ class RenderWorker(QObject):
     def _emit_metadata(self, raw: str) -> None:
         """Название, описание и теги для YouTube; без них видео всё равно рендерится."""
         try:
-            meta = llm.generate_metadata(self._user_text, raw)
+            meta = llm.generate_metadata(self._user_text, raw, client=self._client)
         except (llm.LLMError, llm.SpecGenerationError) as e:
             self.metadata.emit(f"Не удалось подготовить название, описание и теги: {e}", False)
         else:
@@ -68,9 +72,10 @@ class RenderWorker(QObject):
     def run(self) -> None:
         try:
             self.progress.emit("Генерация сцен…")
+            self._client = llm.connect(self._llm_base_url, self._llm_api_key)
             raw = llm.generate_spec(with_mode_hint(
                 self._user_text, self._render_mode, self._environment, self._cast
-            ))
+            ), client=self._client)
             spec = api.parse_spec(raw)
             if self._render_mode and spec.render_mode != self._render_mode:  # JSON не переписываем
                 self.failed.emit(

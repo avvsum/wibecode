@@ -10,7 +10,7 @@ from src.ui import worker
 def run_selection(monkeypatch, returned):
     requests, rendered, finished, failures = [], [], [], []
 
-    def generate_spec(text):
+    def generate_spec(text, client=None):
         requests.append(text)
         return json.dumps(returned)
 
@@ -18,6 +18,7 @@ def run_selection(monkeypatch, returned):
         rendered.append((spec.environment, spec.cast))
         return out_path
 
+    monkeypatch.setattr(worker.llm, "connect", lambda base_url, api_key: None)
     monkeypatch.setattr(worker.llm, "generate_spec", generate_spec)
     monkeypatch.setattr(worker.api, "render_video", render_video)
     monkeypatch.setattr(worker.RenderWorker, "_emit_metadata", lambda self, raw: None)

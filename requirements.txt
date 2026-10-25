@@ -3,8 +3,6 @@ PySide6>=6.6,<7
 Pillow>=10.2,<13
 pytest>=8,<10
 PyInstaller>=6,<7
-# SDK used by role C (feature/llm-client).
-anthropic<1
 # YouTube publishing (src/publish).
 google-api-python-client>=2.100,<3
 google-auth-oauthlib>=1.2,<2

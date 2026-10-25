@@ -20,23 +20,26 @@
 """
 import os
 
-from PySide6.QtCore import Qt, QTimer, QUrl, Signal, Slot
+from pathlib import Path
+
+from PySide6.QtCore import QSettings, Qt, QTimer, QUrl, Signal, Slot
 from PySide6.QtGui import QGuiApplication, QKeySequence, QShortcut
 from PySide6.QtMultimedia import QAudioOutput, QMediaPlayer
 from PySide6.QtWidgets import (
-    QComboBox, QFileDialog, QFrame, QHBoxLayout, QLabel, QMainWindow, QPlainTextEdit, QProgressBar,
+    QComboBox, QFileDialog, QFrame, QHBoxLayout, QLabel, QLineEdit, QMainWindow, QPlainTextEdit, QProgressBar,
     QPushButton, QScrollArea, QStyle, QStyleOptionButton, QStylePainter, QVBoxLayout, QWidget,
 )
 
-from src.ui.features import CHOICES
+from src.ui.features import CHOICES, FIELDS
 from src.ui.widgets import (
     ModeSwitch, PreviewFrame, SceneTimeline, ScriptList, StatusPill, fmt_time, mark_icon, media_icon, scene_at,
 )
 
 MAX_CHARS = 2000
+SETTINGS_ENV = "WIBECODE_SETTINGS"  # другой файл настроек окна (тесты)
 _BROWSE = "__browse__"  # служебное значение пункта «Свой файл…»
 MODE_NOTES = {
-    "auto": "2D или 3D Claude выберет по описанию. Напишите «3D», чтобы снять студию с героями.",
+    "auto": "2D или 3D нейросеть выберет по описанию. Напишите «3D», чтобы снять студию с героями.",
     "2d": "1080 × 1920, 60 кадров/с. Готово за секунды.",
     "3d": "1080 × 1920, 30 кадров/с. Рендер занимает несколько минут.",
 }
@@ -48,6 +51,10 @@ def advanced_label(choices: list, expanded: bool) -> str:
     return f"{text}  {'▾' if expanded else '▸'}"
 
 
+def settings() -> QSettings:
+    """Поля features.FIELDS между запусками: ~/.shortsstudio/settings.ini."""
+    path = os.environ.get(SETTINGS_ENV) or str(Path.home() / ".shortsstudio" / "settings.ini")
+    return QSettings(path, QSettings.Format.IniFormat)
 class _AdvancedButton(QPushButton):
     def display_text(self) -> str:
         """Сокращает видимую подпись, сохраняя стрелку и полный доступный текст кнопки."""
@@ -195,6 +202,21 @@ class ShellWindow(QMainWindow):
         adv.setContentsMargins(0, 12, 0, 0)
         adv.setSpacing(0)
 
+        self._fields = {}  # поля из features.FIELDS: адрес и ключ API нейросети
+        stored = settings()
+        for field in FIELDS:
+            adv.addWidget(_label(field.label, "label"))
+            adv.addSpacing(8)
+            edit = QLineEdit(str(stored.value(field.key, "") or ""))
+            edit.setPlaceholderText(field.placeholder)
+            edit.setAccessibleName(field.label)
+            edit.setToolTip(field.hint)
+            if field.secret:
+                edit.setEchoMode(QLineEdit.EchoMode.Password)
+            adv.addWidget(edit)
+            adv.addSpacing(20)
+            self._fields[field.key] = edit
+
         adv.addWidget(_label("Режим", "label"))
         adv.addSpacing(8)
         self.mode = ModeSwitch()
@@ -231,6 +253,8 @@ class ShellWindow(QMainWindow):
         self._sync_choices()
         col.addWidget(self.advanced)
         self.advanced_button.toggled.connect(self._update_advanced)
+        # Без адреса или ключа API ролик не создать: при первом запуске поля сразу на виду.
+        self.advanced_button.setChecked(any(not edit.text().strip() for edit in self._fields.values()))
         self._update_advanced()
         col.addSpacing(24)
 
@@ -475,6 +499,16 @@ class ShellWindow(QMainWindow):
         return {key: box.currentData() for key, box in self._choices.items()
                 if not self._choice_modes[key] or self._choice_modes[key] == self.mode.value()}
 
+    def field_values(self) -> dict:
+        """Поля features.FIELDS (адрес и ключ API): уходят в воркер вместе с options()."""
+        return {key: edit.text().strip() for key, edit in self._fields.items()}
+
+    def _save_fields(self) -> None:
+        stored = settings()
+        for key, edit in self._fields.items():
+            stored.setValue(key, edit.text().strip())
+        stored.sync()
+
     def _sync_choices(self) -> None:
         for key, row in self._choice_rows.items():
             row.setVisible(not self._choice_modes[key] or self._choice_modes[key] == self.mode.value())
@@ -497,7 +531,7 @@ class ShellWindow(QMainWindow):
     def _set_busy(self, busy: bool) -> None:
         self.input.setReadOnly(busy)
         self.mode.setEnabled(not busy)
-        for box in self._choices.values():
+        for box in (*self._choices.values(), *self._fields.values()):
             box.setEnabled(not busy)
         self.create_button.setEnabled(not busy and bool(self.input.toPlainText().strip()))
         self.cancel_button.setVisible(busy)
@@ -625,7 +659,8 @@ class ShellWindow(QMainWindow):
     def _request_render(self) -> None:
         text = self.input.toPlainText().strip()
         if text and self.create_button.isEnabled():
-            self.render_requested.emit(text, self.mode.value(), self.options())
+            self._save_fields()
+            self.render_requested.emit(text, self.mode.value(), self.options() | self.field_values())
 
     def _request_cancel(self) -> None:
         if self.cancel_button.isVisible() and self.cancel_button.isEnabled():

@@ -6,7 +6,8 @@ import pytest
 
 from src import api
 from src.llm import FakeLLMClient, LLMError, SpecGenerationError, generate_spec
-from src.llm.client import AnthropicClient, strip_fences
+from src.llm import client as llm_client
+from src.llm.client import OpenAICompatibleClient, rank_models, strip_fences
 from src.llm.prompt import EXAMPLE_3D_SPEC, EXAMPLE_SPEC, SYSTEM_PROMPT
 
 USER_TEXT = (
@@ -88,10 +89,146 @@ def test_markdown_fences_are_stripped():
     assert strip_fences("  {\"a\": 1}  ") == '{"a": 1}'
 
 
-def test_missing_api_key_is_clear_error(monkeypatch):
-    monkeypatch.delenv("ANTHROPIC_API_KEY", raising=False)
-    with pytest.raises(LLMError, match="ANTHROPIC_API_KEY"):
-        AnthropicClient()
+def test_missing_base_url_or_key_is_clear_error():
+    with pytest.raises(LLMError, match="адрес API"):
+        OpenAICompatibleClient("", "key")
+    with pytest.raises(LLMError, match="ключ API"):
+        OpenAICompatibleClient("https://api.example.com/v1", "")
+
+
+def test_settings_fall_back_to_environment(monkeypatch):
+    monkeypatch.setenv("WIBECODE_LLM_BASE_URL", "api.example.com/v1/chat/completions")
+    monkeypatch.setenv("WIBECODE_LLM_API_KEY", "key")
+    assert OpenAICompatibleClient()._base == "https://api.example.com/v1"
+
+
+def test_deepseek_key_alone_still_works(monkeypatch):
+    monkeypatch.setenv("DEEPSEEK_API_KEY", "ds-key")
+    client = OpenAICompatibleClient()
+    assert client._base == "https://api.deepseek.com" and client._key == "ds-key"
+
+
+def test_rank_models_prefers_full_size_then_params_then_newest():
+    models = [
+        {"id": "text-embedding-3-large", "created": 9},
+        {"id": "gpt-x-mini", "created": 8},
+        {"id": "whisper-1", "created": 9},
+        {"id": "gpt-x", "created": 5},
+        {"id": "gpt-y", "created": 7},
+        {"id": "meta/llama-3-8b-instruct"},
+        {"id": "meta/llama-3-70b-instruct"},
+    ]
+    assert rank_models(models) == [
+        "meta/llama-3-70b-instruct", "meta/llama-3-8b-instruct", "gpt-y", "gpt-x", "gpt-x-mini",
+    ]
+
+
+class _Response:
+    def __init__(self, payload):
+        self._body = json.dumps(payload).encode()
+
+    def __enter__(self):
+        return self
+
+    def __exit__(self, *exc):
+        return False
+
+    def read(self):
+        return self._body
+
+
+def fake_api(monkeypatch, routes):
+    """routes: (method, url) -> payload or (status, error payload); records requests."""
+    import io
+    import urllib.error
+
+    seen = []
+
+    def urlopen(request, timeout):
+        body = json.loads(request.data) if request.data else None
+        seen.append((request.get_method(), request.full_url, body, request.get_header("Authorization")))
+        answer = routes(request.get_method(), request.full_url, body)
+        if isinstance(answer, tuple):
+            status, payload = answer
+            raise urllib.error.HTTPError(
+                request.full_url, status, "error", {}, io.BytesIO(json.dumps(payload).encode())
+            )
+        return _Response(answer)
+
+    monkeypatch.setattr(llm_client.urllib.request, "urlopen", urlopen)
+    return seen
+
+
+def reply(text, finish="stop"):
+    return {"choices": [{"message": {"role": "assistant", "content": text}, "finish_reason": finish}]}
+
+
+def test_client_picks_model_once_and_sends_system_prompt(monkeypatch):
+    def routes(method, url, body):
+        if url.endswith("/models"):
+            return {"data": [{"id": "small-mini"}, {"id": "big", "created": 2}, {"id": "embed-1"}]}
+        return reply(VALID)
+
+    seen = fake_api(monkeypatch, routes)
+    client = OpenAICompatibleClient("https://api.example.com/v1/", "secret")
+    assert generate_spec(USER_TEXT, client=client, check=contract_check) == VALID
+    client.complete("sys", [{"role": "user", "content": "ещё"}])
+
+    assert [(m, u) for m, u, _, _ in seen] == [
+        ("GET", "https://api.example.com/v1/models"),
+        ("POST", "https://api.example.com/v1/chat/completions"),
+        ("POST", "https://api.example.com/v1/chat/completions"),
+    ]
+    body = seen[1][2]
+    assert body["model"] == "big" and client.model == "big"
+    assert body["messages"][0] == {"role": "system", "content": SYSTEM_PROMPT}
+    assert body["messages"][1] == {"role": "user", "content": USER_TEXT}
+    assert seen[1][3] == "Bearer secret"
+
+
+def test_base_url_without_v1_and_rejected_model_fall_back(monkeypatch):
+    def routes(method, url, body):
+        if url == "https://api.example.com/models":
+            return 404, {"error": {"message": "not found"}}
+        if url == "https://api.example.com/v1/models":
+            return {"data": [{"id": "chat-b", "created": 1}, {"id": "chat-a", "created": 2}]}
+        if body["model"] == "chat-a":
+            return 404, {"error": {"message": "The model chat-a does not exist"}}
+        return reply("ответ")
+
+    seen = fake_api(monkeypatch, routes)
+    client = OpenAICompatibleClient("https://api.example.com", "k")
+    assert client.complete("sys", [{"role": "user", "content": "x"}]) == "ответ"
+    assert client.model == "chat-b"
+    assert len(seen) == 4
+
+
+@pytest.mark.parametrize("status, words", [(401, "Неверный ключ"), (402, "балансе"), (429, "лимит"), (500, r"\(500\): упало")])
+def test_api_errors_are_readable(monkeypatch, status, words):
+    def routes(method, url, body):
+        if url.endswith("/models"):
+            return {"data": [{"id": "m"}]}
+        return status, {"error": {"message": "упало"}}
+
+    fake_api(monkeypatch, routes)
+    with pytest.raises(LLMError, match=words):
+        OpenAICompatibleClient("https://api.example.com/v1", "k").complete("s", [])
+
+
+def test_refusal_and_unreachable_host(monkeypatch):
+    def routes(method, url, body):
+        return {"data": [{"id": "m"}]} if url.endswith("/models") else reply("", "content_filter")
+
+    fake_api(monkeypatch, routes)
+    with pytest.raises(LLMError, match="отказалась"):
+        OpenAICompatibleClient("https://api.example.com/v1", "k").complete("s", [])
+
+    def unreachable(request, timeout):
+        raise llm_client.urllib.error.URLError("no route")
+
+    monkeypatch.setattr(llm_client.urllib.request, "urlopen", unreachable)
+    with pytest.raises(LLMError, match="Нет соединения с https://api.example.com/v1"):
+        OpenAICompatibleClient("https://api.example.com/v1", "k").complete("s", [])
 
 
 def test_system_prompt_demands_json_and_shows_contract():

@@ -21,6 +21,7 @@ def qapp():
 def window(qapp, monkeypatch):
     monkeypatch.setattr(features.api, "user_music", lambda: [])
     window = shell.ShellWindow()
+    window.advanced_button.setChecked(False)  # свёрнуто, как после ввода адреса и ключа API
     yield window
     window.close()
 
@@ -88,6 +89,7 @@ def test_voice_music_and_kaykit_reach_the_same_request(window):
     window._request_render()
     assert requests == [("Короткая история", "3d", {
         "voice": "elevenlabs", "music": None, "environment": "forest", "cast": "ranger_knight",
+        "llm_base_url": "", "llm_api_key": "",
     })]
 
 

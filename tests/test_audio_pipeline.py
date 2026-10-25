@@ -90,7 +90,8 @@ def test_kaykit_voice_then_music_preserves_video_and_both_audio_sources(tmp_path
 def prepare_worker(monkeypatch, tmp_path, music="auto"):
     events, finished, failures = [], [], []
     output = tmp_path / "готовый.mp4"
-    monkeypatch.setattr(worker.llm, "generate_spec", lambda text: json.dumps(dialogue()))
+    monkeypatch.setattr(worker.llm, "connect", lambda base_url, api_key: None)
+    monkeypatch.setattr(worker.llm, "generate_spec", lambda text, client=None: json.dumps(dialogue()))
     monkeypatch.setattr(worker.RenderWorker, "_emit_metadata", lambda self, raw: None)
 
     def render(spec, path, *, on_progress=None):

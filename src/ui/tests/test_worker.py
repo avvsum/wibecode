@@ -35,7 +35,7 @@ def test_metadata_is_emitted_before_the_video(monkeypatch):
 
 
 def test_metadata_failure_does_not_stop_the_render(monkeypatch):
-    def unavailable(user_text, spec_json):
+    def unavailable(user_text, spec_json, client=None):
         raise stubs.LLMError("Нет соединения с API, проверьте интернет.")
 
     events, rendered = run_worker(monkeypatch, unavailable)
