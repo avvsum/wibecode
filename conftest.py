@@ -13,7 +13,8 @@ def offline(monkeypatch, tmp_path):
     monkeypatch.setattr(socket.socket, "connect", blocked)
     monkeypatch.setattr(socket.socket, "connect_ex", blocked)
     monkeypatch.setattr(socket, "create_connection", blocked)
-    for variable in ("OPENAI_API_KEY", "ANTHROPIC_API_KEY", "ELEVENLABS_API_KEY"):
+    for variable in ("OPENAI_API_KEY", "ANTHROPIC_API_KEY", "DEEPSEEK_API_KEY", "WIBECODE_LLM",
+                     "ELEVENLABS_API_KEY"):
         monkeypatch.delenv(variable, raising=False)
     # Tracks imported in tests must not land in the developer's real music folder.
     monkeypatch.setenv("WIBECODE_MUSIC_DIR", str(tmp_path / "user-music"))
