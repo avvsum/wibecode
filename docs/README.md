@@ -5,15 +5,15 @@ LLM возвращает JSON; кадры строит движок. Сетев�
 
 ## Состояние интеграции
 
-В `main` включены код C и каркас D с контрактом/зависимостями (PR #2).
-Backend A опубликован в `claude/adoring-edison-xsppsp`, коммит `594174d`.
-Проверка 25.10.2026 на Python 3.11 в изолированной копии C + A + весь D:
-**40 passed**, включая старые JSON без render_mode и реальные MP4 на 3/30 секунд.
-Шесть тестов C сохраняются и также входят в полный прогон; сеть блокируется.
+В `main` включены backend A (PR #6), LLM C с render_mode (PR #7) и каркас D.
+Проверка 25.10.2026 на Python 3.11.16: main `b12c1864` + head PR #7 `5094e1df`
++ tests/scripts D `3dbe3486`: **60 passed**, включая старые JSON без render_mode
+и реальные MP4 на 3/30 секунд. Сеть в тестах блокируется.
+Merge PR #7: `784ee16e`; отдельное демо PR #6: 1080x1920, 30/1 fps, 30.000000 с.
 
 Тесты D опубликованы отдельно: PR #3 (схема/режимы) и #4 (LLM/MP4/скрипты).
-До включения A в main они остаются draft: без API A подготовка тестов падает,
-skip/xfail не используются. UI B ещё не опубликован, поэтому сборка не проверена.
+После включения A они могут пройти проверку и выйти из draft; skip/xfail
+не используются. UI B ещё не опубликован, поэтому сборка не проверена.
 В CODEOWNERS для зоны D указан `w5sk`; реальные логины A/B/C ещё нужно заполнить.
 
 ## Подготовка (PowerShell, из корня репозитория)
@@ -38,6 +38,13 @@ Linux/macOS: используйте `python3.11` и `.venv/bin/python` вмес�
 валидируется, но `render_video` пока бросает `NotImplementedError`. Иные значения,
 включая `"4d"` и `null`, приводят к `SpecError`. Точный контракт — в AGENTS.md.
 Сообщение для командного чата: [TEAM_UPDATE_RENDER_MODE.md](TEAM_UPDATE_RENDER_MODE.md).
+
+Лев согласовал расширение `say` только для `"3d"`: обязательны `who`
+(`"robot"`/`"girl"`), `shot` (`"wide"`/`"medium"`/`"close"`), непустой `text`,
+`start`, `end`. Обычные text/image/chart сохраняются в обоих режимах и могут
+чередоваться с say. A экспортирует списки `SAY_WHO`/`SAY_SHOTS` для prompt C.
+Это целевой контракт; в main после PR #7 say и 3D-движок ещё не реализованы.
+Режим UI передаётся в user_text до generate_spec; готовый JSON не переписывается.
 
 - A экспортирует `SpecError`, `parse_spec(raw: str) -> Spec`,
   `render_video(spec: Spec, out_path: str) -> str` из `src.api`.
@@ -96,10 +103,25 @@ PyInstaller создаёт `dist/ShortsStudio/ShortsStudio.exe` на Windows. П
 папку `dist/ShortsStudio`; FFmpeg/ffprobe должны быть в PATH на целевой машине.
 Сборка выполняется на целевой ОС, не является кросс-компиляцией.
 Ключи и .env в сборку не добавляются. Запуск собранного UI проверяется после реализации B.
-Blender/moderngl ещё не выбраны, дополнительных 3D-зависимостей сейчас нет.
-После выбора движка D фиксирует зависимости и измеряет размер всей папки сборки
-в байтах и MiB. Проверка размера заблокирована отсутствующим UI B;
-успешной сборки приложения пока нет.
+Для 3D выбран внешний Blender с движком Workbench. Blender устанавливается
+отдельно от requirements.txt и папки приложения; пакет bpy через pip не нужен.
+Добавьте Blender в PATH и проверьте `blender --version`. Backend A запускает
+его в фоне через `blender -b -P <script>`; параметры описаны в
+[Blender Manual](https://docs.blender.org/manual/en/4.2/advanced/command_line/arguments.html).
+Версия Blender и проверенные системные зависимости будут зафиксированы вместе
+с backend A; наличие бинарника само по себе не подтверждает готовность 3D.
+
+После готовности A/B D запускает сборку, проверяет запуск приложения и измеряет
+именно всю папку dist/ShortsStudio, отдельно от внешних Blender/FFmpeg:
+
+```powershell
+$bundleBytes = (Get-ChildItem -LiteralPath dist/ShortsStudio -File -Recurse |
+    Measure-Object -Property Length -Sum).Sum
+[pscustomobject]@{ Bytes = $bundleBytes; MiB = $bundleBytes / 1MB }
+```
+
+В отчёте указываются байты и MiB (1 MiB = 1048576 байт). Сейчас сборка и её размер
+не проверены: UI B и 3D-backend A ещё не интегрированы.
 
 ## Работа с Git
 
