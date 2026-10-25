@@ -348,6 +348,12 @@ class ShellWindow(QMainWindow):
         self.progress.setRange(0, 0)
         self.preview.show_working("Пишем сценарий…")
 
+    @Slot(str)
+    def set_stage(self, text: str) -> None:
+        """Текст текущего этапа; кадры и блокировка настроек остаются у своих обработчиков."""
+        self.stage.setText(text)
+        self.preview.show_working(text)
+
     def set_rendering(self, done: int, total: int, scenes=None, duration=None) -> None:
         self._set_busy(True)
         if scenes is not None and scenes != self._scenes:
