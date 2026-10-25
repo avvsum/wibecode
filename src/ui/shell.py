@@ -2,13 +2,15 @@
 
 Окно ничего не генерирует само. Наружу оно отдаёт сигналы, внутрь принимает состояния:
 
-    window.render_requested(text, mode, options)  # «Создать ролик»; options — выбор из features.CHOICES
+    window.render_requested(text, mode, options)  # «Создать ролик»; mode: "auto" | "2d" | "3d",
+                                                  # options — выбор из features.CHOICES
     window.cancel_requested()             # нажали «Отмена» или Esc
     window.reveal_requested(path)         # нажали «Показать в папке»
     window.publish_requested(path)        # нажали «Опубликовать на YouTube»
     window.about_to_close()               # окно закрывается: остановить рендер
 
     window.set_generating()                       # LLM пишет сценарий
+    window.set_render_mode(mode)                  # режим готового сценария (в «Авто» — выбор модели)
     window.set_rendering(done, total, scenes=..., duration=...)  # кадры из on_progress
     window.set_done(video_path, scenes, duration)  # готово; video_path=None — постер из сцен
     window.set_cancelled() / window.set_error(text) / window.set_idle()
@@ -34,9 +36,16 @@ from src.ui.widgets import (
 MAX_CHARS = 2000
 _BROWSE = "__browse__"  # служебное значение пункта «Свой файл…»
 MODE_NOTES = {
+    "auto": "2D или 3D Claude выберет по описанию. Напишите «3D», чтобы снять студию с героями.",
     "2d": "1080 × 1920, 60 кадров/с. Готово за секунды.",
     "3d": "1080 × 1920, 30 кадров/с. Рендер занимает несколько минут.",
 }
+
+
+def advanced_label(choices: list, expanded: bool) -> str:
+    """Текст кнопки «Дополнительно»: выбранное видно, даже когда блок свёрнут."""
+    text = "Дополнительно" + (f": {', '.join(choices)}" if choices else "")
+    return f"{text}  {'▾' if expanded else '▸'}"
 
 
 def _label(text: str, role: str) -> QLabel:
@@ -103,6 +112,7 @@ class ShellWindow(QMainWindow):
         self.setMinimumSize(1024, 680)
         self._scenes, self._duration, self._video_path = [], 0.0, None
         self._position = 0.0
+        self._render_mode = None  # режим готового сценария; в «Авто» его выбирает модель
 
         root = QWidget(objectName="Frame")
         layout = QHBoxLayout(root)
@@ -151,22 +161,35 @@ class ShellWindow(QMainWindow):
         self.counter = _label(f"0 / {MAX_CHARS}", "muted")
         helper.addWidget(self.counter)
         col.addLayout(helper)
-        col.addSpacing(24)
+        col.addSpacing(16)
 
-        col.addWidget(_label("Режим", "label"))
-        col.addSpacing(8)
+        # Ролик делается по одному описанию. Режим и настройки из features.CHOICES лежат
+        # в свёрнутом блоке «Дополнительно»; выбранное там видно на самой кнопке.
+        self.advanced_button = QPushButton(objectName="Quiet")
+        self.advanced_button.setCheckable(True)
+        self.advanced_button.setStyleSheet("text-align: left; padding-left: 0;")
+        self.advanced_button.setCursor(Qt.CursorShape.PointingHandCursor)
+        col.addWidget(self.advanced_button)
+        self.advanced = QWidget()
+        adv = QVBoxLayout(self.advanced)
+        adv.setContentsMargins(0, 12, 0, 0)
+        adv.setSpacing(0)
+
+        adv.addWidget(_label("Режим", "label"))
+        adv.addSpacing(8)
         self.mode = ModeSwitch()
         self.mode.changed.connect(self._on_mode_changed)
-        col.addWidget(self.mode)
-        col.addSpacing(8)
-        self.mode_note = _label(MODE_NOTES["2d"], "muted")
-        col.addWidget(self.mode_note)
+        adv.addWidget(self.mode)
+        adv.addSpacing(8)
+        self.mode_note = _label(MODE_NOTES["auto"], "muted")
+        self.mode_note.setWordWrap(True)
+        adv.addWidget(self.mode_note)
 
         self._choices = {}  # настройки из features.CHOICES рисуются сами
         for choice in CHOICES:
-            col.addSpacing(20)
-            col.addWidget(_label(choice.label, "label"))
-            col.addSpacing(8)
+            adv.addSpacing(20)
+            adv.addWidget(_label(choice.label, "label"))
+            adv.addSpacing(8)
             box = QComboBox()
             box.setAccessibleName(choice.label)
             box.setToolTip(choice.hint)
@@ -175,8 +198,12 @@ class ShellWindow(QMainWindow):
             if choice.browse:
                 box.addItem("Свой файл…", _BROWSE)
                 box.activated.connect(lambda index, b=box, c=choice: self._browse(b, c, index))
-            col.addWidget(box)
+            box.currentIndexChanged.connect(self._update_advanced)
+            adv.addWidget(box)
             self._choices[choice.key] = box
+        col.addWidget(self.advanced)
+        self.advanced_button.toggled.connect(self._update_advanced)
+        self._update_advanced()
         col.addSpacing(24)
 
         self.progress_box = QWidget()
@@ -314,6 +341,7 @@ class ShellWindow(QMainWindow):
         self._set_busy(True)
         self._show_notice("")
         self.pill.set_state("working", "Генерация")
+        self._render_mode = None
         self._clear_result()
         self.stage.setText("Пишем сценарий")
         self.stage_detail.setText("")
@@ -470,7 +498,8 @@ class ShellWindow(QMainWindow):
         noun = "сцена" if count % 10 == 1 and count % 100 != 11 else (
             "сцены" if 2 <= count % 10 <= 4 and not 12 <= count % 100 <= 14 else "сцен")
         self.script_meta.setText(f"{count} {noun} · {fmt_time(self._duration)}" if count else "")
-        fps = "30" if any(s.get("type") == "say" for s in self._scenes) or self.mode.value() == "3d" else "60"
+        mode = self._render_mode or self.mode.value()
+        fps = "30" if any(s.get("type") == "say" for s in self._scenes) or mode == "3d" else "60"
         self.format_label.setText(f"1080 × 1920 · {fps} кадров/с" if count else "")
         self._position = 0.0
         self._update_time()
@@ -532,8 +561,21 @@ class ShellWindow(QMainWindow):
         if not self.cancel_button.isVisible():
             self.create_button.setEnabled(bool(text.strip()))
 
+    def set_render_mode(self, mode: str) -> None:
+        """Режим готового сценария: в «Авто» его выбрала модель, от него зависят кадры/с."""
+        self._render_mode = mode
+
     def _on_mode_changed(self, mode: str) -> None:
         self.mode_note.setText(MODE_NOTES[mode])
+        self._update_advanced()
+
+    def _update_advanced(self, *_) -> None:
+        expanded = self.advanced_button.isChecked()
+        self.advanced.setVisible(expanded)
+        mode = self.mode.value()
+        chosen = [title for value, title, _ in ModeSwitch.MODES if value == mode and value != "auto"]
+        chosen += [box.currentText() for box in self._choices.values() if box.currentIndex() > 0]
+        self.advanced_button.setText(advanced_label(chosen, expanded))
 
     def _request_render(self) -> None:
         text = self.input.toPlainText().strip()

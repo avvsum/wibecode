@@ -7,12 +7,15 @@ from src.ui.backend import api, llm
 
 
 def with_mode_hint(
-    user_text: str, render_mode: str, environment: str = "studio", cast: str = "classic"
+    user_text: str, render_mode: str | None, environment: str = "studio", cast: str = "classic"
 ) -> str:
     """Дописывает выбранный в окне режим подсказкой для LLM.
 
     По AGENTS.md режим передаётся в user_text до generate_spec; в готовом JSON его не подменяем.
+    None — «Авто»: подсказок нет, режим, окружение и персонажей модель выбирает по описанию.
     """
+    if render_mode is None:
+        return user_text
     hint = f'{user_text}\n\nrender_mode: "{render_mode}"'
     if render_mode == "3d":
         hint += f'\nenvironment: "{environment}"\ncast: "{cast}"'
@@ -30,13 +33,13 @@ class RenderWorker(QObject):
     cancelled = Signal()
 
     def __init__(
-        self, user_text: str, out_path: str, render_mode: str = "2d", voice: str | None = None,
+        self, user_text: str, out_path: str, render_mode: str | None = None, voice: str | None = None,
         music: str | None = None, *, environment: str = "studio", cast: str = "classic",
     ):
         super().__init__()
         self._user_text = user_text
         self._out_path = out_path
-        self._render_mode = render_mode
+        self._render_mode = render_mode  # "2d", "3d" или None — режим выбирает модель
         self._voice = voice  # провайдер озвучки: "elevenlabs", "chatterbox" или None
         self._music = music  # "auto" (настроение от модели), путь к своему треку или None
         self._environment = environment
@@ -70,7 +73,7 @@ class RenderWorker(QObject):
             ))
             spec = api.parse_spec(raw)
             self.spec_ready.emit(spec)
-            if spec.render_mode != self._render_mode:  # JSON не переписываем, только отказ
+            if self._render_mode and spec.render_mode != self._render_mode:  # JSON не переписываем
                 self.failed.emit(
                     f"Модель вернула сценарий для режима {spec.render_mode.upper()}, "
                     f"а выбран {self._render_mode.upper()}. Попробуйте ещё раз или "

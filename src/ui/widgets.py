@@ -88,10 +88,17 @@ class Mark(QWidget):
 
 
 class ModeSwitch(QWidget):
-    """Сегментированный переключатель режима: две плитки на сером треке, выбранная — белая."""
+    """Сегментированный переключатель режима: плитки на сером треке, выбранная — белая.
+
+    Первая плитка — по умолчанию: «Авто», режим выбирает модель по описанию.
+    """
 
     changed = Signal(str)
-    MODES = (("2d", "2D", "Текст, картинки, графики"), ("3d", "3D", "Студия и персонажи"))
+    MODES = (
+        ("auto", "Авто", "По описанию"),
+        ("2d", "2D", "Графики"),
+        ("3d", "3D", "Студия, герои"),
+    )
 
     def __init__(self, parent=None):
         super().__init__(parent)
@@ -118,16 +125,18 @@ class ModeSwitch(QWidget):
 
     def _segment(self, i: int) -> QRectF:
         inner = QRectF(self.rect()).adjusted(3, 3, -3, -3)
-        w = inner.width() / 2
+        w = inner.width() / len(self.MODES)
         return QRectF(inner.left() + i * w, inner.top(), w, inner.height())
 
     def mousePressEvent(self, event) -> None:
         if self.isEnabled():
-            self.set_value(self.MODES[0 if event.position().x() < self.width() / 2 else 1][0])
+            i = int(event.position().x() * len(self.MODES) / max(self.width(), 1))
+            self.set_value(self.MODES[min(max(i, 0), len(self.MODES) - 1)][0])
 
     def keyPressEvent(self, event) -> None:
-        if event.key() in (Qt.Key.Key_Left, Qt.Key.Key_Right, Qt.Key.Key_Space):
-            self.set_value(self.MODES[1 - self._index][0])
+        step = {Qt.Key.Key_Left: -1, Qt.Key.Key_Right: 1, Qt.Key.Key_Space: 1}.get(event.key())
+        if step:
+            self.set_value(self.MODES[(self._index + step) % len(self.MODES)][0])
         else:
             super().keyPressEvent(event)
 
@@ -323,7 +332,7 @@ class ScriptList(QWidget):
         col.addWidget(lead)
         for tip in ("Длительность: от 5 до 60 секунд.",
                     "Цифры из описания станут графиком.",
-                    "Для персонажей и реплик выберите 3D."):
+                    "Для персонажей и реплик попросите 3D в описании."):
             label = QLabel(tip)
             label.setWordWrap(True)
             label.setProperty("role", "muted")
