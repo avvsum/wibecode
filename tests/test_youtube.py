@@ -52,11 +52,13 @@ def video(tmp_path):
 def test_upload_sends_metadata_and_reports_progress(video):
     service = _Service([(_Status(400, 1000), None), (_Status(1000, 1000), None), (None, {"id": "abc123"})])
     calls = []
-    url = youtube.upload(str(video), "Рост продаж\nподробности", "описание", on_progress=lambda s, t: calls.append((s, t)), service=service)
+    url = youtube.upload(str(video), "Рост продаж\nподробности", "описание", tags=("продажи", "итоги года"),
+                         on_progress=lambda s, t: calls.append((s, t)), service=service)
     assert url == "https://youtube.com/shorts/abc123"
     body = service.calls[0]["body"]
     assert body["snippet"]["title"] == "Рост продаж"
     assert body["snippet"]["description"] == "описание"
+    assert body["snippet"]["tags"] == ["продажи", "итоги года"]
     assert body["status"]["privacyStatus"] == "private"
     assert service.calls[0]["part"] == "snippet,status"
     assert calls == [(400, 1000), (999, 1000), (1000, 1000)]

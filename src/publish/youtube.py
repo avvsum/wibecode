@@ -107,6 +107,7 @@ def upload(
     description: str = "",
     privacy: str = "private",
     *,
+    tags=(),
     on_progress: Optional[UploadProgress] = None,
     service=None,
 ) -> str:
@@ -136,6 +137,7 @@ def upload(
             "snippet": {
                 "title": make_title(title),
                 "description": description[:DESCRIPTION_MAX],
+                "tags": [str(t) for t in tags],
                 "categoryId": "22",  # People & Blogs
             },
             "status": {"privacyStatus": privacy, "selfDeclaredMadeForKids": False},

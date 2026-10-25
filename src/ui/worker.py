@@ -18,6 +18,7 @@ class RenderWorker(QObject):
     progress = Signal(str)
     frames = Signal(int, int)  # done, total из on_progress; total == 0 — неизвестно
     metadata = Signal(str, bool)  # текст для YouTube (или причина неудачи), удалось ли
+    metadata_ready = Signal(object)  # VideoMetadata для кнопки публикации
     finished = Signal(str)  # путь к готовому MP4
     failed = Signal(str)
     cancelled = Signal()
@@ -46,6 +47,7 @@ class RenderWorker(QObject):
             self.metadata.emit(f"Не удалось подготовить название, описание и теги: {e}", False)
         else:
             self.metadata.emit(meta.as_text(), True)
+            self.metadata_ready.emit(meta)
 
     @Slot()
     def run(self) -> None:
@@ -93,3 +95,32 @@ class RenderWorker(QObject):
             self.failed.emit(f"Неожиданная ошибка: {e}")
         else:
             self.finished.emit(path)
+
+
+class PublishWorker(QObject):
+    """Загрузка готового MP4 на YouTube в отдельном QThread."""
+
+    uploaded = Signal(int, int)  # отправлено байт, всего байт
+    finished = Signal(str)  # ссылка на ролик
+    failed = Signal(str)
+
+    def __init__(self, video_path: str, title: str, description: str, tags=()):
+        super().__init__()
+        self._video_path = video_path
+        self._title = title
+        self._description = description
+        self._tags = list(tags)
+
+    @Slot()
+    def run(self) -> None:
+        from src.publish import PublishError, upload  # библиотеки Google нужны только здесь
+
+        try:
+            url = upload(self._video_path, self._title, self._description, tags=self._tags,
+                         on_progress=self.uploaded.emit)
+        except PublishError as e:
+            self.failed.emit(str(e))
+        except Exception as e:  # окно не должно падать из-за сети или Google
+            self.failed.emit(f"Неожиданная ошибка публикации: {e}")
+        else:
+            self.finished.emit(url)

@@ -22,7 +22,7 @@ def main(argv=None):
                 "src/core/renderer.py", "src/core/render3d/blender_scene.py",
                 "src/llm/client.py", "src/llm/prompt.py")
     missing = [name for name in required if not (ROOT / name).is_file()]
-    for module in ("PyInstaller", "PySide6", "pydantic", "PIL"):
+    for module in ("PyInstaller", "PySide6", "pydantic", "PIL", "googleapiclient", "google_auth_oauthlib"):
         if importlib.util.find_spec(module) is None:
             missing.append(f"пакет {module}")
     if missing:
@@ -42,7 +42,15 @@ def main(argv=None):
                # keep it out of the bundle; Chatterbox works when running from source.
                "--exclude-module", "chatterbox", "--exclude-module", "torch",
                str(ROOT / "src" / "ui" / "main.py")]
-    return subprocess.run(command, cwd=ROOT, check=False).returncode
+    code = subprocess.run(command, cwd=ROOT, check=False).returncode
+    if code == 0:
+        # The googleapiclient hook bundles ~600 API descriptions (~120 MB); the app needs
+        # only YouTube for publishing.
+        docs = ROOT / "dist" / "ShortsStudio" / "_internal" / "googleapiclient" / "discovery_cache" / "documents"
+        for doc in docs.glob("*.json"):
+            if doc.name != "youtube.v3.json":
+                doc.unlink()
+    return code
 
 
 if __name__ == "__main__":
