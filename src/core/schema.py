@@ -10,10 +10,15 @@ RenderMode = Literal["2d", "3d"]
 SceneType = Literal["text", "image", "chart", "say"]
 SayWho = Literal["robot", "girl"]
 SayShot = Literal["wide", "medium", "close"]
+# Post-processing look of the whole video, picked by the LLM (see core/styles.py).
+Style = Literal[
+    "none", "cinematic", "vivid", "bw", "sepia", "pixel", "retro", "warm", "cold", "dreamy"
+]
 
 SCENE_TYPES: tuple[str, ...] = SceneType.__args__
 SAY_WHO: tuple[str, ...] = SayWho.__args__
 SAY_SHOTS: tuple[str, ...] = SayShot.__args__
+STYLES: tuple[str, ...] = Style.__args__
 
 
 class SpecError(ValueError):
@@ -67,6 +72,7 @@ class Spec(BaseModel):
 
     duration: FiniteFloat = Field(gt=0)
     render_mode: RenderMode = "2d"
+    style: Style = "none"
     scenes: list[Scene] = Field(min_length=1)
 
     @model_validator(mode="after")
@@ -110,7 +116,7 @@ _MESSAGES = {
     "union_tag_not_found": lambda ctx: f"не указан type ({_choices(SCENE_TYPES)})",
 }
 
-_LITERAL_FIELDS = {"render_mode": RenderMode, "who": SayWho, "shot": SayShot}
+_LITERAL_FIELDS = {"render_mode": RenderMode, "who": SayWho, "shot": SayShot, "style": Style}
 
 
 def _location(loc: tuple) -> str:

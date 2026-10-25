@@ -73,6 +73,15 @@ Python 3.11, FFmpeg (external binary), PySide6, pydantic, pytest, PyInstaller.
   user_text до generate_spec, не подменяя режим готового JSON.
 Decided: JSON, а не свободный код от LLM. Open: цвета, шрифты, анимации (выбирай сам).
 
+### style: постобработка (согласовано владельцем репозитория)
+- Необязательное поле верхнего уровня Spec: "none" (по умолчанию), "cinematic", "vivid",
+  "bw", "sepia", "pixel", "retro", "warm", "cold", "dreamy". Другое значение -> SpecError.
+- Выбирает LLM: стиль из запроса пользователя, иначе сама под тему и настроение.
+  Пользователь в UI стиль не выбирает. Список экспортируется как api.STYLES.
+- A: src/core/styles.py — фильтры FFmpeg; 2D и 3D применяют стиль в том же проходе
+  сборки, размер 1080x1920, fps и длительность не меняются.
+- Озвучка выравнивается по громкости до -14 LUFS (уровень YouTube).
+
 ### Озвучка (ElevenLabs, Chatterbox)
 - Контракт JSON не меняется. Озвучиваются text (голос диктора) и say (голос по who).
 - C: src/llm/tts.py — synthesize_spec(spec, out_dir, client) -> list[VoiceClip(path, start, end)];

@@ -4,11 +4,12 @@ from __future__ import annotations
 
 from src.core import renderer, schema, voiceover
 from src.core.renderer import ProgressCallback, RenderCancelled, RenderError, ToolNotFoundError
-from src.core.schema import SAY_SHOTS, SAY_WHO, Spec, SpecError
+from src.core.schema import SAY_SHOTS, SAY_WHO, STYLES, Spec, SpecError
 
 __all__ = [
     "SAY_SHOTS",
     "SAY_WHO",
+    "STYLES",
     "ProgressCallback",
     "RenderCancelled",
     "RenderError",

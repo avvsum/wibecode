@@ -14,6 +14,7 @@ from typing import Callable, Optional, Protocol
 from PIL import Image, ImageDraw, ImageFont, ImageOps
 
 from src.core.schema import ChartScene, ImageScene, Spec, TextScene
+from src.core.styles import style_chain
 
 WIDTH, HEIGHT = 1080, 1920
 FPS = 60  # 2D output; the 3D backend renders at 30 fps
@@ -234,7 +235,9 @@ class FFmpegRenderer:
                     chain += f",fade=t=in:d={FADE},fade=t=out:st={seconds - FADE:.6f}:d={FADE}"
                 filters.append(f"{chain}[v{i}]")
             inputs = "".join(f"[v{i}]" for i in range(len(segments)))
-            filters.append(f"{inputs}concat=n={len(segments)}:v=1:a=0[out]")
+            filters.append(f"{inputs}concat=n={len(segments)}:v=1:a=0[cat]")
+            styled = style_chain(spec.style, "cat", "out")
+            filters.append(styled or "[cat]null[out]")
             cmd += [
                 "-filter_complex", ";".join(filters), "-map", "[out]",
                 "-r", str(FPS), "-c:v", "libx264", "-preset", "veryfast", "-pix_fmt", "yuv420p",

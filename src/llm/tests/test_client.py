@@ -166,3 +166,11 @@ def test_say_without_3d_triggers_fix_up():
     assert api.parse_spec(raw).render_mode == "3d"
     assert len(fake.calls) == 2
     assert str(rejected.value) in fake.calls[1][-1]["content"]
+
+
+def test_system_prompt_lets_model_pick_style():
+    assert '"style"' in SYSTEM_PROMPT
+    for style in api.STYLES:
+        assert f'"{style}"' in SYSTEM_PROMPT or f"{style} —" in SYSTEM_PROMPT
+    assert api.parse_spec(EXAMPLE_SPEC).style == "vivid"
+    assert api.parse_spec(EXAMPLE_3D_SPEC).style == "cinematic"
