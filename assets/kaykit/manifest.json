@@ -1,0 +1,4757 @@
+{
+  "format": 1,
+  "retrieved": "2026-10-25",
+  "author": "Kay Lousberg",
+  "license": "CC0-1.0",
+  "packs": [
+    {
+      "id": "adventurers",
+      "author": "Kay Lousberg",
+      "license": "CC0-1.0",
+      "source": "https://kaylousberg.itch.io/kaykit-adventurers",
+      "archive_sha256": "abe48f4763fba0896bab486ee9e6d08ca6b5b3884b9601f235c8847ae94dc479",
+      "archive_name": "KayKit_Adventurers_2.0_FREE",
+      "retrieved": "2026-10-25",
+      "license_file": "adventurers/LICENSE.txt",
+      "models": [
+        "adventurers/Animations/gltf/Rig_Medium/Rig_Medium_General.glb",
+        "adventurers/Animations/gltf/Rig_Medium/Rig_Medium_MovementBasic.glb",
+        "adventurers/arrow_bow.gltf",
+        "adventurers/arrow_bow_bundle.gltf",
+        "adventurers/arrow_crossbow.gltf",
+        "adventurers/arrow_crossbow_bundle.gltf",
+        "adventurers/axe_1handed.gltf",
+        "adventurers/axe_2handed.gltf",
+        "adventurers/bow.gltf",
+        "adventurers/bow_withString.gltf",
+        "adventurers/Characters/gltf/Barbarian.glb",
+        "adventurers/Characters/gltf/Knight.glb",
+        "adventurers/Characters/gltf/Mage.glb",
+        "adventurers/Characters/gltf/Ranger.glb",
+        "adventurers/Characters/gltf/Rogue.glb",
+        "adventurers/Characters/gltf/Rogue_Hooded.glb",
+        "adventurers/crossbow_1handed.gltf",
+        "adventurers/crossbow_2handed.gltf",
+        "adventurers/dagger.gltf",
+        "adventurers/mug_empty.gltf",
+        "adventurers/mug_full.gltf",
+        "adventurers/quiver.gltf",
+        "adventurers/shield_badge.gltf",
+        "adventurers/shield_badge_color.gltf",
+        "adventurers/shield_round.gltf",
+        "adventurers/shield_round_barbarian.gltf",
+        "adventurers/shield_round_color.gltf",
+        "adventurers/shield_spikes.gltf",
+        "adventurers/shield_spikes_color.gltf",
+        "adventurers/shield_square.gltf",
+        "adventurers/shield_square_color.gltf",
+        "adventurers/smokebomb.gltf",
+        "adventurers/spellbook_closed.gltf",
+        "adventurers/spellbook_open.gltf",
+        "adventurers/staff.gltf",
+        "adventurers/sword_1handed.gltf",
+        "adventurers/sword_2handed.gltf",
+        "adventurers/sword_2handed_color.gltf",
+        "adventurers/wand.gltf"
+      ],
+      "files": [
+        {
+          "path": "adventurers/Animations/gltf/Rig_Medium/Rig_Medium_General.glb",
+          "bytes": 828240,
+          "sha256": "5f725c0f745f36078c7238968cd5c04843cbc6260689eb6e7f5e2bbd7ffdd7ad"
+        },
+        {
+          "path": "adventurers/Animations/gltf/Rig_Medium/Rig_Medium_MovementBasic.glb",
+          "bytes": 689624,
+          "sha256": "11422afd50abf7e8c92ea107e2e0bc94abd38023d6d15f55ad580347efbfa29e"
+        },
+        {
+          "path": "adventurers/arrow_bow.bin",
+          "bytes": 2648,
+          "sha256": "9ec104be838c841eb79baf314c54ba6f7cc97505b75978607e0228f1769a1d0b"
+        },
+        {
+          "path": "adventurers/arrow_bow.gltf",
+          "bytes": 3055,
+          "sha256": "db8d6c4bcf7f6119703565220770241a4d98047f22dcd011e66557cb7df795c1"
+        },
+        {
+          "path": "adventurers/arrow_bow_bundle.bin",
+          "bytes": 15344,
+          "sha256": "a2b181785297befb8b9e4a48141fdc627162aa3ceaf35f363a33998ed6cdab45"
+        },
+        {
+          "path": "adventurers/arrow_bow_bundle.gltf",
+          "bytes": 3084,
+          "sha256": "bdff6b1f573110f1704d4e33201600bba6140c7d750f928ebf6037feb1c16b24"
+        },
+        {
+          "path": "adventurers/arrow_crossbow.bin",
+          "bytes": 2648,
+          "sha256": "6d3fcc2bc36760e40789c7f86534ef6cc17710f76954f10db8513bdbf9fd030d"
+        },
+        {
+          "path": "adventurers/arrow_crossbow.gltf",
+          "bytes": 3071,
+          "sha256": "c409839e791bce9801614434e4b27dec80bc880d478de8fe9fee6b0c1fdb8efc"
+        },
+        {
+          "path": "adventurers/arrow_crossbow_bundle.bin",
+          "bytes": 15344,
+          "sha256": "6dd13360be3e748bd30e2fb26a20e233905f323f09371f8f38580edc9833e088"
+        },
+        {
+          "path": "adventurers/arrow_crossbow_bundle.gltf",
+          "bytes": 3097,
+          "sha256": "e247770b53fcf0a93b7f83f3542633fcf072e7666bf2b06507685d183b66a4b7"
+        },
+        {
+          "path": "adventurers/axe_1handed.bin",
+          "bytes": 12524,
+          "sha256": "909561b9e5774d2ab0dcb1cbe66e1c0ea116b6eef5fcb4780ed56fe834b07f58"
+        },
+        {
+          "path": "adventurers/axe_1handed.gltf",
+          "bytes": 3080,
+          "sha256": "43796b063aa9501cc79cf11e801b98ce0c218022dea850e7b6b33387dd4b89da"
+        },
+        {
+          "path": "adventurers/axe_2handed.bin",
+          "bytes": 21960,
+          "sha256": "23a4c27d4e700159217033c84fcca1ab81c52ba1a3d557581a07543d4edc68b0"
+        },
+        {
+          "path": "adventurers/axe_2handed.gltf",
+          "bytes": 3078,
+          "sha256": "8fb5b782848f66a3a7170f4c5da723e1441671938d7434ecc3dd417cebaf4fff"
+        },
+        {
+          "path": "adventurers/barbarian_texture.png",
+          "bytes": 14424,
+          "sha256": "f11434d3e5e4df929dacd2c69d15734effb82babf8176a80bb040d2007f5f882"
+        },
+        {
+          "path": "adventurers/bow.bin",
+          "bytes": 18344,
+          "sha256": "12fb8170469444907c00c16149fc9f1679074795a2e0f29cffa7391ac8202c36"
+        },
+        {
+          "path": "adventurers/bow.gltf",
+          "bytes": 3048,
+          "sha256": "de978d50afcc66ba30edb42e8d040bf932ae7308942b1b4e1400d252ccb8e1fb"
+        },
+        {
+          "path": "adventurers/bow_withString.bin",
+          "bytes": 49016,
+          "sha256": "2ae583e6089eddf48f78ddffe1decd4b05f9d9ce47360a113d44856946d78d5a"
+        },
+        {
+          "path": "adventurers/bow_withString.gltf",
+          "bytes": 4326,
+          "sha256": "c55e025638cfbdac33e117a83abac8d01b8d7056a0f7514c72daf937512de932"
+        },
+        {
+          "path": "adventurers/Characters/gltf/Barbarian.glb",
+          "bytes": 386648,
+          "sha256": "d37824a1d6e8e8af57ef9ae4a87e9271c3986210fbc432fb44670749a577ccac"
+        },
+        {
+          "path": "adventurers/Characters/gltf/barbarian_texture.png",
+          "bytes": 14424,
+          "sha256": "f11434d3e5e4df929dacd2c69d15734effb82babf8176a80bb040d2007f5f882"
+        },
+        {
+          "path": "adventurers/Characters/gltf/Knight.glb",
+          "bytes": 341688,
+          "sha256": "e484370733824a0740683e7f6040aae0d20e5efd4107dde1175d6a2ad7e2f199"
+        },
+        {
+          "path": "adventurers/Characters/gltf/knight_texture.png",
+          "bytes": 12914,
+          "sha256": "028db4d1cd8b3471e6ba21686515abd4e36ae582f8b314b71ad2ab1fb5453b12"
+        },
+        {
+          "path": "adventurers/Characters/gltf/Mage.glb",
+          "bytes": 352472,
+          "sha256": "1f7d891bde50b879c70965f155b7b765b166dc3f8518e5abb86c0002f191a26e"
+        },
+        {
+          "path": "adventurers/Characters/gltf/mage_texture.png",
+          "bytes": 14740,
+          "sha256": "9ef9672e93b231fc4e0e19238edfae3be22513aaf634df1898f45842ce6e4b5f"
+        },
+        {
+          "path": "adventurers/Characters/gltf/Ranger.glb",
+          "bytes": 484712,
+          "sha256": "3a0b0166b9d61d58dcaaa739c3cc0538be46e00d2928dd5cb513d9a41770d2e9"
+        },
+        {
+          "path": "adventurers/Characters/gltf/ranger_texture.png",
+          "bytes": 13248,
+          "sha256": "639cd0ba5106fbdf65370b52b9290091d3bd92fe267693abc8dc474471bb800f"
+        },
+        {
+          "path": "adventurers/Characters/gltf/Rogue.glb",
+          "bytes": 409188,
+          "sha256": "cae5d9b2f08d53f7b4ab2617d9f42f021c546eb10920455fdcd82a110867fae4"
+        },
+        {
+          "path": "adventurers/Characters/gltf/Rogue_Hooded.glb",
+          "bytes": 381432,
+          "sha256": "e8f3233c6db190506fbef3ad855683e6cb8bd7350de637d923e14a08aef088dc"
+        },
+        {
+          "path": "adventurers/Characters/gltf/rogue_texture.png",
+          "bytes": 15026,
+          "sha256": "2e2fc741e20e7e2c85b176c8143b49b769bca0d2ed1a1cfc1807a758a0e4d3e1"
+        },
+        {
+          "path": "adventurers/crossbow_1handed.bin",
+          "bytes": 25200,
+          "sha256": "2b7106437c1d44b393cbf03a6bfd2634d5bf267ec122922b7e00d60b13a7fa74"
+        },
+        {
+          "path": "adventurers/crossbow_1handed.gltf",
+          "bytes": 3083,
+          "sha256": "27622db91dbc2d8deaf89636462cc66291f902c22cc4a5a30411ebde4dd6a2cd"
+        },
+        {
+          "path": "adventurers/crossbow_2handed.bin",
+          "bytes": 34896,
+          "sha256": "1f00b2cddc144e3274f971c6f386069789f596292b0241522fd87466d0cb0b95"
+        },
+        {
+          "path": "adventurers/crossbow_2handed.gltf",
+          "bytes": 3083,
+          "sha256": "accce97dcde54ddb83b6512f616b7a5f5892aad28a7405b518116ec864725a81"
+        },
+        {
+          "path": "adventurers/dagger.bin",
+          "bytes": 7656,
+          "sha256": "da7857e41d902cdd39e894563a544719901a9af55053f2b96b21019ed6717677"
+        },
+        {
+          "path": "adventurers/dagger.gltf",
+          "bytes": 3051,
+          "sha256": "db324dd13443d48b736fe4dba5e24090f4b476dd8d9ee53cf7c6718f00c47e1a"
+        },
+        {
+          "path": "adventurers/knight_texture.png",
+          "bytes": 12914,
+          "sha256": "028db4d1cd8b3471e6ba21686515abd4e36ae582f8b314b71ad2ab1fb5453b12"
+        },
+        {
+          "path": "adventurers/LICENSE.txt",
+          "bytes": 1554,
+          "sha256": "d4adc31660d1db22eb60eba648e01db41577548f6fa1a3576cb4a6283dae0a58"
+        },
+        {
+          "path": "adventurers/mage_texture.png",
+          "bytes": 14740,
+          "sha256": "9ef9672e93b231fc4e0e19238edfae3be22513aaf634df1898f45842ce6e4b5f"
+        },
+        {
+          "path": "adventurers/mug_empty.bin",
+          "bytes": 14644,
+          "sha256": "1c0e4868e64347f1016046c0904544fc23cf495a87a63ab6b014758a2e19a957"
+        },
+        {
+          "path": "adventurers/mug_empty.gltf",
+          "bytes": 3075,
+          "sha256": "7d4331bf03be5944efcd58833c65f0bc0c8aa1344e60263fdc701ca68523b294"
+        },
+        {
+          "path": "adventurers/mug_full.bin",
+          "bytes": 15772,
+          "sha256": "7b32bfdb51cad1bdf147d2c4539c01a4c6a8abc8af16d0911dacc798abad0cb0"
+        },
+        {
+          "path": "adventurers/mug_full.gltf",
+          "bytes": 3072,
+          "sha256": "2b5c1b1c8905c7d595517ff3253e31dfd3edac70ff77180bf9dcf27a0da6168b"
+        },
+        {
+          "path": "adventurers/quiver.bin",
+          "bytes": 13884,
+          "sha256": "2091b19054c9b97d5ebd71329ed78068ae9825a0aedf18ae8b6302f6cec97969"
+        },
+        {
+          "path": "adventurers/quiver.gltf",
+          "bytes": 3053,
+          "sha256": "543c2abf89eee3bf8a3e1a4d066fd47e105c65b318c3f48e0dbc20dfb027dcf4"
+        },
+        {
+          "path": "adventurers/ranger_texture.png",
+          "bytes": 13248,
+          "sha256": "639cd0ba5106fbdf65370b52b9290091d3bd92fe267693abc8dc474471bb800f"
+        },
+        {
+          "path": "adventurers/rogue_texture.png",
+          "bytes": 15026,
+          "sha256": "2e2fc741e20e7e2c85b176c8143b49b769bca0d2ed1a1cfc1807a758a0e4d3e1"
+        },
+        {
+          "path": "adventurers/shield_badge.bin",
+          "bytes": 10628,
+          "sha256": "3c0f04767c839868df1f852cb335848c3ba7d94da3078e4c7f8a422f2369560c"
+        },
+        {
+          "path": "adventurers/shield_badge.gltf",
+          "bytes": 3072,
+          "sha256": "0c506e4a76c5ef50f7908f5d8c1242315fb3d2f8b6281ff10909cf11785a5ae5"
+        },
+        {
+          "path": "adventurers/shield_badge_color.bin",
+          "bytes": 10500,
+          "sha256": "54ed559b5b44b1d3fa0af1abb2d97bc72793788148bb9c2af40b5e037904adc1"
+        },
+        {
+          "path": "adventurers/shield_badge_color.gltf",
+          "bytes": 3090,
+          "sha256": "b59019f054055c5c1356a8c75a93a064f334180183112ab374526000ea6c9f2a"
+        },
+        {
+          "path": "adventurers/shield_round.bin",
+          "bytes": 12008,
+          "sha256": "42da365328fc8804f44cd3db6becc8bc98729f11862b63e51b42820559d6e1e0"
+        },
+        {
+          "path": "adventurers/shield_round.gltf",
+          "bytes": 3075,
+          "sha256": "dd052a109d5a003fa7ebe4641c31e89a5189ad8d606ee8fc969d05e2d99dab38"
+        },
+        {
+          "path": "adventurers/shield_round_barbarian.bin",
+          "bytes": 11752,
+          "sha256": "4e948103979c35a8b4cfae14bd875b484ae23da2dc2bfe98207ad8b69a640fef"
+        },
+        {
+          "path": "adventurers/shield_round_barbarian.gltf",
+          "bytes": 3114,
+          "sha256": "eebdae322d2611854c4fa6befb29d9a32e0367c495b817212f8431f02ab46a1e"
+        },
+        {
+          "path": "adventurers/shield_round_color.bin",
+          "bytes": 11752,
+          "sha256": "0e689cf61e686a108fb5a08229007e429669ed22b9458aad4c096825755a7c62"
+        },
+        {
+          "path": "adventurers/shield_round_color.gltf",
+          "bytes": 3093,
+          "sha256": "491b2cc1f36bbc0b38fa41f81b2ca10160b9ae6526ea3ced0109708ac7d9d750"
+        },
+        {
+          "path": "adventurers/shield_spikes.bin",
+          "bytes": 21464,
+          "sha256": "de615f1d5bd01a6562a91d0f41960e50c4e35712388b38af4e549832b0677e0c"
+        },
+        {
+          "path": "adventurers/shield_spikes.gltf",
+          "bytes": 3076,
+          "sha256": "5f89b2e927fc6a5d4308e829e9c931e3c095ea70ad759cfdfe6005ac4e33814d"
+        },
+        {
+          "path": "adventurers/shield_spikes_color.bin",
+          "bytes": 21464,
+          "sha256": "0ce0dc3e7a3723b0530e46190cd0f13b14ce712d142f9da4979656d6f4390eea"
+        },
+        {
+          "path": "adventurers/shield_spikes_color.gltf",
+          "bytes": 3094,
+          "sha256": "6cf480cbba5dccd7d930b36b8ff80e63ba9ced4d834d7bb1ce6c3ba46736b8b2"
+        },
+        {
+          "path": "adventurers/shield_square.bin",
+          "bytes": 10724,
+          "sha256": "8698b59caab1efe9ab924bd82c555e9582ad5c7d0d23c9c40efa4047d2a9e2fe"
+        },
+        {
+          "path": "adventurers/shield_square.gltf",
+          "bytes": 3074,
+          "sha256": "7d70e034e5af0cde3a6e8b2cc53da46af01f6981c79917ad0c6501a7f5c87d16"
+        },
+        {
+          "path": "adventurers/shield_square_color.bin",
+          "bytes": 10724,
+          "sha256": "d7a44110e1e0e3d53522a644a7b24cb510a845d4f369bc847decfce7329b4a61"
+        },
+        {
+          "path": "adventurers/shield_square_color.gltf",
+          "bytes": 3092,
+          "sha256": "93fdc2c3b16fe39bcce37961e287cd17101721a98ddbd2bd94cac8bcda85826b"
+        },
+        {
+          "path": "adventurers/smokebomb.bin",
+          "bytes": 11460,
+          "sha256": "a06d5a433da93bd583536c3f1a636859ad75e5e594a82f33372c0b503e4245c7"
+        },
+        {
+          "path": "adventurers/smokebomb.gltf",
+          "bytes": 3062,
+          "sha256": "a962c42961a6b929f338646d112fc3a3f21cc90bf5b0288fdd0cd3209f4999a1"
+        },
+        {
+          "path": "adventurers/SOURCE.json",
+          "bytes": 291,
+          "sha256": "5696f2b717dfcf48a7d3765b67a645bbaf04ae4b89d688fcdedd4a68f28de150"
+        },
+        {
+          "path": "adventurers/spellbook_closed.bin",
+          "bytes": 14520,
+          "sha256": "4cf311c021d81fd418b8eed01dec8f8af743d8f74dd81722f7c5f42f3ba89633"
+        },
+        {
+          "path": "adventurers/spellbook_closed.gltf",
+          "bytes": 3081,
+          "sha256": "8a9f1798d2e0f8a14cb7ed8880dc82af43f1b277b31bbecd5ae1b8ffb93b865a"
+        },
+        {
+          "path": "adventurers/spellbook_open.bin",
+          "bytes": 15128,
+          "sha256": "888e45aff64aba1bea6ef3abfad27024b2697f7adbab319c089bc70c077c4a5b"
+        },
+        {
+          "path": "adventurers/spellbook_open.gltf",
+          "bytes": 3072,
+          "sha256": "7f09fb14db28de6fcc323706ab0add72ed1d6824e33164c3fa21d50c1a8aa4c2"
+        },
+        {
+          "path": "adventurers/staff.bin",
+          "bytes": 18576,
+          "sha256": "578911e8317bfceb428f801ea2701c8ab4e06cce70beeeaaf965ee9a7186ca62"
+        },
+        {
+          "path": "adventurers/staff.gltf",
+          "bytes": 3046,
+          "sha256": "25646537632555f2a4e5ae90320bce251bbc5af541e8897960ad4514122110b9"
+        },
+        {
+          "path": "adventurers/sword_1handed.bin",
+          "bytes": 13256,
+          "sha256": "c8acdc21adf19257e66b78e86d37855474a0a9fda796c39b39d6d08a5ca34bd5"
+        },
+        {
+          "path": "adventurers/sword_1handed.gltf",
+          "bytes": 3075,
+          "sha256": "2a6074d46c3e337f84f0295d0ea862b116fec7d816db8d027d75a464311228b6"
+        },
+        {
+          "path": "adventurers/sword_2handed.bin",
+          "bytes": 19912,
+          "sha256": "4e8100535e482ed9e2cdd5b32b1e3dc301dcff92f472bb9f6047d1021f4433b1"
+        },
+        {
+          "path": "adventurers/sword_2handed.gltf",
+          "bytes": 3076,
+          "sha256": "42ffb9b49e928763fe21fd928675402ebccd3750ccd89bcec8d186e12c6fdccd"
+        },
+        {
+          "path": "adventurers/sword_2handed_color.bin",
+          "bytes": 19880,
+          "sha256": "415643871da87a21062c541c7f77fde15636f6f65baf6fbc03c63aa5873872e0"
+        },
+        {
+          "path": "adventurers/sword_2handed_color.gltf",
+          "bytes": 3094,
+          "sha256": "3ba61390f950b12824d7d626cff32393a831e6655bf985e47ff716b39cff15f7"
+        },
+        {
+          "path": "adventurers/wand.bin",
+          "bytes": 5956,
+          "sha256": "abdecfe3fa864286eb91a9befd5c455770a5443dc01fa22052c634702d0e698a"
+        },
+        {
+          "path": "adventurers/wand.gltf",
+          "bytes": 3042,
+          "sha256": "6392f619655a0869a5255dc9702e50027c72c19de6b17b3eecec1492bfd2a800"
+        }
+      ]
+    },
+    {
+      "id": "animations",
+      "author": "Kay Lousberg",
+      "license": "CC0-1.0",
+      "source": "https://kaylousberg.itch.io/kaykit-character-animations",
+      "archive_sha256": "65882f31f905ad2e953819648a59287cdeab8f623908d5ef701971d3758be20f",
+      "archive_name": "KayKit_Character_Animations_1.1",
+      "retrieved": "2026-10-25",
+      "license_file": "animations/LICENSE.txt",
+      "models": [
+        "animations/Animations/gltf/Rig_Large/Rig_Large_CombatMelee.glb",
+        "animations/Animations/gltf/Rig_Large/Rig_Large_General.glb",
+        "animations/Animations/gltf/Rig_Large/Rig_Large_MovementAdvanced.glb",
+        "animations/Animations/gltf/Rig_Large/Rig_Large_MovementBasic.glb",
+        "animations/Animations/gltf/Rig_Large/Rig_Large_Simulation.glb",
+        "animations/Animations/gltf/Rig_Large/Rig_Large_Special.glb",
+        "animations/Animations/gltf/Rig_Medium/Rig_Medium_CombatMelee.glb",
+        "animations/Animations/gltf/Rig_Medium/Rig_Medium_CombatRanged.glb",
+        "animations/Animations/gltf/Rig_Medium/Rig_Medium_General.glb",
+        "animations/Animations/gltf/Rig_Medium/Rig_Medium_MovementAdvanced.glb",
+        "animations/Animations/gltf/Rig_Medium/Rig_Medium_MovementBasic.glb",
+        "animations/Animations/gltf/Rig_Medium/Rig_Medium_Simulation.glb",
+        "animations/Animations/gltf/Rig_Medium/Rig_Medium_Special.glb",
+        "animations/Animations/gltf/Rig_Medium/Rig_Medium_Tools.glb",
+        "animations/Mannequin/Mannequin_Large.glb",
+        "animations/Mannequin/Mannequin_Medium.glb"
+      ],
+      "files": [
+        {
+          "path": "animations/Animations/gltf/Rig_Large/Rig_Large_CombatMelee.glb",
+          "bytes": 1025388,
+          "sha256": "485dcde864e015f76901b0832d9dceadecfa3fc1f9fa31df2423a6af9ec66ad8"
+        },
+        {
+          "path": "animations/Animations/gltf/Rig_Large/Rig_Large_General.glb",
+          "bytes": 700336,
+          "sha256": "ec263b40704d996692033fc716fc0fcaa11a5089393845fe27877e5f773b2f3e"
+        },
+        {
+          "path": "animations/Animations/gltf/Rig_Large/Rig_Large_MovementAdvanced.glb",
+          "bytes": 601624,
+          "sha256": "fe5161d66734d3123eed22d9196fd0e627025f5bb52e25d96c3158046993caaf"
+        },
+        {
+          "path": "animations/Animations/gltf/Rig_Large/Rig_Large_MovementBasic.glb",
+          "bytes": 584676,
+          "sha256": "2798a62b6f2a1f0f73b8481468fc0aeb7dd3118ceeb1be7db2fc947b7a1221ad"
+        },
+        {
+          "path": "animations/Animations/gltf/Rig_Large/Rig_Large_Simulation.glb",
+          "bytes": 589952,
+          "sha256": "fd25a4521cc8cd31f5345848a652590523f7eacec643d6dc6924dbeb444e617c"
+        },
+        {
+          "path": "animations/Animations/gltf/Rig_Large/Rig_Large_Special.glb",
+          "bytes": 575264,
+          "sha256": "7d7254b1e98145f73173b006d0b0a8b1a4c03a2ea22580568bd7aee359d763c2"
+        },
+        {
+          "path": "animations/Animations/gltf/Rig_Medium/Rig_Medium_CombatMelee.glb",
+          "bytes": 999416,
+          "sha256": "c55e6ec1c79e83ae21d46fe1cd921c1b64be8b9a524a24517e51c6ba99231459"
+        },
+        {
+          "path": "animations/Animations/gltf/Rig_Medium/Rig_Medium_CombatRanged.glb",
+          "bytes": 1014852,
+          "sha256": "7fef1fc0e7b0feafd34b8e12d23f514c8c1f9d068047a691b854b56f1774dff5"
+        },
+        {
+          "path": "animations/Animations/gltf/Rig_Medium/Rig_Medium_General.glb",
+          "bytes": 828240,
+          "sha256": "5f725c0f745f36078c7238968cd5c04843cbc6260689eb6e7f5e2bbd7ffdd7ad"
+        },
+        {
+          "path": "animations/Animations/gltf/Rig_Medium/Rig_Medium_MovementAdvanced.glb",
+          "bytes": 719628,
+          "sha256": "8b2317cf81e3f24149e4b791c27e1932bebd46cd378ed962e7d27d642fad8c56"
+        },
+        {
+          "path": "animations/Animations/gltf/Rig_Medium/Rig_Medium_MovementBasic.glb",
+          "bytes": 689624,
+          "sha256": "11422afd50abf7e8c92ea107e2e0bc94abd38023d6d15f55ad580347efbfa29e"
+        },
+        {
+          "path": "animations/Animations/gltf/Rig_Medium/Rig_Medium_Simulation.glb",
+          "bytes": 855904,
+          "sha256": "ab6ffeed40c8281dd0ce0506534eadf7385151f1c266643a10fa2a0f0a7ba3b1"
+        },
+        {
+          "path": "animations/Animations/gltf/Rig_Medium/Rig_Medium_Special.glb",
+          "bytes": 924308,
+          "sha256": "74047dd2178fbed388656051664158e921b7bfc613abb119860aeb7b646bd640"
+        },
+        {
+          "path": "animations/Animations/gltf/Rig_Medium/Rig_Medium_Tools.glb",
+          "bytes": 1461204,
+          "sha256": "e3b62dc122c5073373376a846e354137add2088ddcce8731c389fc5c20734aad"
+        },
+        {
+          "path": "animations/LICENSE.txt",
+          "bytes": 1548,
+          "sha256": "373b159044d1a886ed15f57ca5a7673ba14e2623c460283452705f2056912ed9"
+        },
+        {
+          "path": "animations/Mannequin/Mannequin_Large.glb",
+          "bytes": 541784,
+          "sha256": "21a55e38b9d989dc243a7dd2bbf3c21766695925b875c33da9423e6a07e8528a"
+        },
+        {
+          "path": "animations/Mannequin/Mannequin_Medium.glb",
+          "bytes": 420044,
+          "sha256": "368a4c0733280bc810c004b81f31408f43c00e307cf914061e80f192ba25685b"
+        },
+        {
+          "path": "animations/SOURCE.json",
+          "bytes": 304,
+          "sha256": "4d0859f7121280d64dff401cc179fbde1109937a331df12238deacfdc0b1957a"
+        }
+      ]
+    },
+    {
+      "id": "city",
+      "author": "Kay Lousberg",
+      "license": "CC0-1.0",
+      "source": "https://github.com/KayKit-Game-Assets/KayKit-City-Builder-Bits-1.0",
+      "revision": "63976910ca04d16f0fc531b9c614244be8128713",
+      "license_file": "city/LICENSE.txt",
+      "models": [
+        "city/base.gltf",
+        "city/bench.gltf",
+        "city/box_A.gltf",
+        "city/box_B.gltf",
+        "city/building_A.gltf",
+        "city/building_A_withoutBase.gltf",
+        "city/building_B.gltf",
+        "city/building_B_withoutBase.gltf",
+        "city/building_C.gltf",
+        "city/building_C_withoutBase.gltf",
+        "city/building_D.gltf",
+        "city/building_D_withoutBase.gltf",
+        "city/building_E.gltf",
+        "city/building_E_withoutBase.gltf",
+        "city/building_F.gltf",
+        "city/building_F_withoutBase.gltf",
+        "city/building_G.gltf",
+        "city/building_G_withoutBase.gltf",
+        "city/building_H.gltf",
+        "city/building_H_withoutBase.gltf",
+        "city/bush.gltf",
+        "city/car_hatchback.gltf",
+        "city/car_police.gltf",
+        "city/car_sedan.gltf",
+        "city/car_stationwagon.gltf",
+        "city/car_taxi.gltf",
+        "city/dumpster.gltf",
+        "city/firehydrant.gltf",
+        "city/road_corner.gltf",
+        "city/road_corner_curved.gltf",
+        "city/road_junction.gltf",
+        "city/road_straight.gltf",
+        "city/road_straight_crossing.gltf",
+        "city/road_tsplit.gltf",
+        "city/streetlight.gltf",
+        "city/trafficlight_A.gltf",
+        "city/trafficlight_B.gltf",
+        "city/trafficlight_C.gltf",
+        "city/trash_A.gltf",
+        "city/trash_B.gltf",
+        "city/watertower.gltf"
+      ],
+      "files": [
+        {
+          "path": "city/base.bin",
+          "bytes": 3432,
+          "sha256": "2b00ed6bb88a18e91fc80ec037cca4a20fba9fdeb21f8f781fc3a7f8be919f8a"
+        },
+        {
+          "path": "city/base.gltf",
+          "bytes": 2953,
+          "sha256": "ac49eb9d300587172c416f73c7fd709403dc34f432f02ab3e3c9590adc63c21c"
+        },
+        {
+          "path": "city/bench.bin",
+          "bytes": 2824,
+          "sha256": "53ac9734110353b244bc409b32e1d4a41d94a86f3aa26884c40a6692dab0f81e"
+        },
+        {
+          "path": "city/bench.gltf",
+          "bytes": 3024,
+          "sha256": "f3b731470c30ed21d7e03f15d28f1937b3e4881efcca57a48e4c82ae582e51e1"
+        },
+        {
+          "path": "city/box_A.bin",
+          "bytes": 2240,
+          "sha256": "7d73d90c735ad860f176cc55607e20ca4939c7c9de059b7db127c980f3b5bcec"
+        },
+        {
+          "path": "city/box_A.gltf",
+          "bytes": 3044,
+          "sha256": "fe1fa867aa6aa2933bbe3d232c8dcedffc68d484019f71544ce191e2c8ddc16c"
+        },
+        {
+          "path": "city/box_B.bin",
+          "bytes": 1336,
+          "sha256": "07ea7050e806330c8fb7e7d821fc8c7960e4ff2a375f26a4916185c8889faaf8"
+        },
+        {
+          "path": "city/box_B.gltf",
+          "bytes": 3044,
+          "sha256": "6ad0554fedbc3ad3079cac62668455912bbe59be3b796de3356f2cc4e726e690"
+        },
+        {
+          "path": "city/building_A.bin",
+          "bytes": 49512,
+          "sha256": "29feccd24aa7b996e7a5dbeca2e5c724bfbeaa7eebad02e6fb012a92eebb1a33"
+        },
+        {
+          "path": "city/building_A.gltf",
+          "bytes": 2980,
+          "sha256": "d9d21afb847de1c67a643cc34738f0b71d71f6a8926e8fa7f248bb6a434a22ba"
+        },
+        {
+          "path": "city/building_A_withoutBase.bin",
+          "bytes": 28820,
+          "sha256": "a0446a10d14c50267c3fa6be98104e8467171b57f288448a5d740e91666d5056"
+        },
+        {
+          "path": "city/building_A_withoutBase.gltf",
+          "bytes": 3083,
+          "sha256": "37389d47e4ddec9175c40d41a48e2c1d16a1c44146833ec73fef2710e0b6876e"
+        },
+        {
+          "path": "city/building_B.bin",
+          "bytes": 65468,
+          "sha256": "310c032929c5988dd0ae5d9c15c4ea0d0e69bcbd60d87237cdd56e859639375e"
+        },
+        {
+          "path": "city/building_B.gltf",
+          "bytes": 2980,
+          "sha256": "d026df95a16e31d1d50827375db7978099af35eefbb255bf6674855d303fb390"
+        },
+        {
+          "path": "city/building_B_withoutBase.bin",
+          "bytes": 38844,
+          "sha256": "1fca25dd4b645058d55b069bbddc41fda2eea543a762237ed054f15bccbee34a"
+        },
+        {
+          "path": "city/building_B_withoutBase.gltf",
+          "bytes": 3089,
+          "sha256": "69b1e3d91479c8fe3134e385fef567603cecd2423a032f2a11b9f2deb7046458"
+        },
+        {
+          "path": "city/building_C.bin",
+          "bytes": 61512,
+          "sha256": "77c6e813fc59631d7866614508220f47800533cda767f55680d393eddd46705d"
+        },
+        {
+          "path": "city/building_C.gltf",
+          "bytes": 2979,
+          "sha256": "d2477afdb8a68507ab862ede37f47a2a7b74df369290bc57712239214c6ae2c8"
+        },
+        {
+          "path": "city/building_C_withoutBase.bin",
+          "bytes": 43548,
+          "sha256": "56ab30ffadc34b91a4ec6a8cc26bb644bb1c516b25afa8fa1eac4a3968dead2b"
+        },
+        {
+          "path": "city/building_C_withoutBase.gltf",
+          "bytes": 3089,
+          "sha256": "f059362f96617268b7eff7a1f65f853288a79e21316e5793bbc23a0a2e937671"
+        },
+        {
+          "path": "city/building_D.bin",
+          "bytes": 69812,
+          "sha256": "b8d7091ba017d99f25a2eb75cc1eb8c10a58945c22f7cf8416f72c13d11a30c1"
+        },
+        {
+          "path": "city/building_D.gltf",
+          "bytes": 2996,
+          "sha256": "1484455bd37ce136e1defb1639f68cf82b7b00f977856b1d9483de9c02760ba3"
+        },
+        {
+          "path": "city/building_D_withoutBase.bin",
+          "bytes": 55680,
+          "sha256": "6342dbff9ee312838372b094bb65ae1d36c2382e95c1c49470e579e5eeac77d2"
+        },
+        {
+          "path": "city/building_D_withoutBase.gltf",
+          "bytes": 3090,
+          "sha256": "40c07bd5026825a8cf95bf202b702fdb4858ae8a4f2236aa41a9db7a4fdd19ca"
+        },
+        {
+          "path": "city/building_E.bin",
+          "bytes": 84840,
+          "sha256": "1280f8b64d68e5602472c08a76489a5b7fe7415795642b1e4fcc15bc003061e7"
+        },
+        {
+          "path": "city/building_E.gltf",
+          "bytes": 3014,
+          "sha256": "42905f3038030e27126da1454aaf1e1bff1ad66de34d9c94a9599c709ae5e97d"
+        },
+        {
+          "path": "city/building_E_withoutBase.bin",
+          "bytes": 62084,
+          "sha256": "6403701c0185eeb53b60f76b359e99c47634c3240cd3e51f92aeeb472e7d341c"
+        },
+        {
+          "path": "city/building_E_withoutBase.gltf",
+          "bytes": 3090,
+          "sha256": "0b2ab5f634eaf0d45ccf5fe585b4a9269f1b8e5b9ab34a412bafca046087e609"
+        },
+        {
+          "path": "city/building_F.bin",
+          "bytes": 84272,
+          "sha256": "fc3c72d718b0339b3158f43ed31ece6ecae0ca9592925362a22425e2bc6eaf43"
+        },
+        {
+          "path": "city/building_F.gltf",
+          "bytes": 3014,
+          "sha256": "cebfc6df11af7caf712a3f3e0d2c033554355ff7bf7a8b332eb21ebdaaba2aa1"
+        },
+        {
+          "path": "city/building_F_withoutBase.bin",
+          "bytes": 71192,
+          "sha256": "1bed0be4aae8523a76c669c2a85794e16a64709b14ac03d10da03be721027c7f"
+        },
+        {
+          "path": "city/building_F_withoutBase.gltf",
+          "bytes": 3090,
+          "sha256": "7fe97913eb97fe868b440ac4f13ca60f4d36262624526bbcafcef94566016343"
+        },
+        {
+          "path": "city/building_G.bin",
+          "bytes": 103708,
+          "sha256": "06f0ec0113c748687b757c8c85bd45a8d0c3adf3c2201c8a990e93b3231e91d5"
+        },
+        {
+          "path": "city/building_G.gltf",
+          "bytes": 3016,
+          "sha256": "314dad28b2ef5fdd370534ded457e0381410fe8051687517552b8f1ac43fac11"
+        },
+        {
+          "path": "city/building_G_withoutBase.bin",
+          "bytes": 68880,
+          "sha256": "34112472a38f23489211829312a8e9e994ca772ee814c5295e39c62b2d4ca376"
+        },
+        {
+          "path": "city/building_G_withoutBase.gltf",
+          "bytes": 3090,
+          "sha256": "2a2dc998168a01bd34390d6fbb2a273e191c8b6e3258f4f3df09a37465ebf0e1"
+        },
+        {
+          "path": "city/building_H.bin",
+          "bytes": 118064,
+          "sha256": "fbee968ad467c244087d0694febfcbb32300f803ac56e434e485f6ce47577e29"
+        },
+        {
+          "path": "city/building_H.gltf",
+          "bytes": 3016,
+          "sha256": "319d8392ba3b1662ca8506cfda7dbecc694a7d60268e20a136cdeecbe472d6d2"
+        },
+        {
+          "path": "city/building_H_withoutBase.bin",
+          "bytes": 86880,
+          "sha256": "310a8c61e9d0f29a0547a57c3aa1f3890c67cab554c5bd9cd5e0768f3c8499b7"
+        },
+        {
+          "path": "city/building_H_withoutBase.gltf",
+          "bytes": 3089,
+          "sha256": "51d6e3ecb8d12703163c806193787bff9c034931733ca7cd497568c1d62f1793"
+        },
+        {
+          "path": "city/bush.bin",
+          "bytes": 3056,
+          "sha256": "6b00a80ec23cdd55dd1398d648b51f1cf7eb4263cea61d3bf1dc24cc7c171b3e"
+        },
+        {
+          "path": "city/bush.gltf",
+          "bytes": 3022,
+          "sha256": "b1de478b23e6bcfd08d6c070440582195839f66dfd3afc123118fb6298483183"
+        },
+        {
+          "path": "city/car_hatchback.bin",
+          "bytes": 53564,
+          "sha256": "e7756d8a44553ef75091bb4baa41388bcb1a1b44388008a3e670d05cb12f4c5f"
+        },
+        {
+          "path": "city/car_hatchback.gltf",
+          "bytes": 10952,
+          "sha256": "e38be3dbdfbc95b0e794fc5c8164b2ff658b2dc5049b51d38179d16a9432b4f3"
+        },
+        {
+          "path": "city/car_police.bin",
+          "bytes": 62168,
+          "sha256": "07bf3160554753cb6365e85c1c99dd9bf9ca4e8ffabeab5f15ff03ac18640d87"
+        },
+        {
+          "path": "city/car_police.gltf",
+          "bytes": 10937,
+          "sha256": "c6f1f85c2a8f56ec0abb76deac13486d42399c6d23868e5e524a090fce652d12"
+        },
+        {
+          "path": "city/car_sedan.bin",
+          "bytes": 55332,
+          "sha256": "1d69e7f098a5456a8c6891c4fd718ad1c71397045c8931817550a8801f00338d"
+        },
+        {
+          "path": "city/car_sedan.gltf",
+          "bytes": 10928,
+          "sha256": "96c9d38e682bc2c77470af09d1a7450208559ca652bf2cf6fd2bc20b8646ef59"
+        },
+        {
+          "path": "city/car_stationwagon.bin",
+          "bytes": 56172,
+          "sha256": "46d28202e738f62ba6aae5caae5d56852334ca53ac0628d88d03a5e5e3042c4b"
+        },
+        {
+          "path": "city/car_stationwagon.gltf",
+          "bytes": 10970,
+          "sha256": "49f7e2bdb70183214a3e8d8576e420ebb69520b21db81dddfc6a04e1ed8994fd"
+        },
+        {
+          "path": "city/car_taxi.bin",
+          "bytes": 58704,
+          "sha256": "28abb85c4eb0d38be9b4b0beebe0a55038565b1f9545fea65f59cb56672c1d11"
+        },
+        {
+          "path": "city/car_taxi.gltf",
+          "bytes": 10924,
+          "sha256": "781b3265473dab6f7e054f06c23abeba9b811516b19b61a7a88b0aa8d33e1323"
+        },
+        {
+          "path": "city/citybits_texture.png",
+          "bytes": 19885,
+          "sha256": "6d2d9a5a13bce32209cd8c04572ab170504d68f34b1519165c9b0c41871e235b"
+        },
+        {
+          "path": "city/dumpster.bin",
+          "bytes": 8180,
+          "sha256": "389a04cddf27b9514226597627fb0f217499432be1a26c6b43e6f2bfdb652fd2"
+        },
+        {
+          "path": "city/dumpster.gltf",
+          "bytes": 3033,
+          "sha256": "56353a02aa70f61ea0f94f5806c66f489b2949b64db0611b5ccf2b500c815cb9"
+        },
+        {
+          "path": "city/firehydrant.bin",
+          "bytes": 8056,
+          "sha256": "02cab93bf6af8c16da083c6ac92dcc5997bed24dabc1e746ee780e623b07b3de"
+        },
+        {
+          "path": "city/firehydrant.gltf",
+          "bytes": 3067,
+          "sha256": "0a3f9fb95e8b4805602ad26050ee552408553682b41f3e54981a69dfa92a7f3b"
+        },
+        {
+          "path": "city/LICENSE.txt",
+          "bytes": 828,
+          "sha256": "b076d86beec660e1550e00796ca24a8b70d7b2187d79954b2e29722b666dce93"
+        },
+        {
+          "path": "city/road_corner.bin",
+          "bytes": 7408,
+          "sha256": "357bfda56820b66292a6fa53e3bb506625da604c2ada9667971f045f563cc015"
+        },
+        {
+          "path": "city/road_corner.gltf",
+          "bytes": 2971,
+          "sha256": "592dadb7a6e81e2c5c2415d5e3872eaccece0c71ff1e34bb3ced06ceed4ce149"
+        },
+        {
+          "path": "city/road_corner_curved.bin",
+          "bytes": 7976,
+          "sha256": "5a89cc3e2cd8728512f52b0c1d1f643b2f8a5fecaedba6390f2b4f9b9d3ac453"
+        },
+        {
+          "path": "city/road_corner_curved.gltf",
+          "bytes": 2986,
+          "sha256": "92a3a77292b6f2cc75accd7b0340d98805377925cd0c9593661bcbf541913e88"
+        },
+        {
+          "path": "city/road_junction.bin",
+          "bytes": 9724,
+          "sha256": "deb16c15a1b4fb49b48a468c93ddee8a7afc64cd0e41616fff29d9ad3d063eac"
+        },
+        {
+          "path": "city/road_junction.gltf",
+          "bytes": 2992,
+          "sha256": "28ea556cf76cf3efd38b62c3610a338bca46ff8e25c336406821c85cf58b7c6b"
+        },
+        {
+          "path": "city/road_straight.bin",
+          "bytes": 3676,
+          "sha256": "6509b3509565e250de74a19728b9dd1e1351d40c8a50f4d18a1c6b3edb0bd068"
+        },
+        {
+          "path": "city/road_straight.gltf",
+          "bytes": 2974,
+          "sha256": "35c74b311a04e5682dfc7fc823867aa53de1cc19b86fa801730496ee69b52e68"
+        },
+        {
+          "path": "city/road_straight_crossing.bin",
+          "bytes": 4096,
+          "sha256": "2c9ffb1dcab28737a24af1b747a8fb233cb55e460724d517e2dc29cef80ca01b"
+        },
+        {
+          "path": "city/road_straight_crossing.gltf",
+          "bytes": 2992,
+          "sha256": "7df128514884a9356404fa3b42b10816a6dec8a211bc22233372cdbb7e1e71a9"
+        },
+        {
+          "path": "city/road_tsplit.bin",
+          "bytes": 7548,
+          "sha256": "4856ecd193740c544b8ff15bc7d0fc320a5cd83a1817eda7c69f35f75cb56f83"
+        },
+        {
+          "path": "city/road_tsplit.gltf",
+          "bytes": 2971,
+          "sha256": "dcdf1facedbd82419b9d0533f327bcf0b66ad74ced86c63d5151244a9cec812f"
+        },
+        {
+          "path": "city/SOURCE.json",
+          "bytes": 201,
+          "sha256": "dddb4fc08c091fc4a3d6acbf02602a66afebb47b2da9795de6426926603ed141"
+        },
+        {
+          "path": "city/streetlight.bin",
+          "bytes": 7136,
+          "sha256": "2e95833194e4cccbf00a413187cc54ede953c047f88b7cc7b1bef1a1d0aea9a1"
+        },
+        {
+          "path": "city/streetlight.gltf",
+          "bytes": 3067,
+          "sha256": "4399e9023844319e0f74311779a2c0ebecacec16f5dfd8123b6141a3af903c6a"
+        },
+        {
+          "path": "city/trafficlight_A.bin",
+          "bytes": 30664,
+          "sha256": "8d41a66bbf788f5fd78fce0841ca9741c39314e0d2ad701e5161bb09bd4e8c79"
+        },
+        {
+          "path": "city/trafficlight_A.gltf",
+          "bytes": 3079,
+          "sha256": "4a22f6fc11fcafd61b2272e675a20437d3c69003ae63002980a903a215941b15"
+        },
+        {
+          "path": "city/trafficlight_B.bin",
+          "bytes": 35592,
+          "sha256": "e0a20f34caeb0812fa2a6df9e02c1a539e4e514b688029bde28f7d9977165bd4"
+        },
+        {
+          "path": "city/trafficlight_B.gltf",
+          "bytes": 3078,
+          "sha256": "a7b9369e3cad7b58a0914a885a14d477c402295fc7d89b26280b4f77b742e28b"
+        },
+        {
+          "path": "city/trafficlight_C.bin",
+          "bytes": 24136,
+          "sha256": "0be9badcc8096be76e7ff892a4ae19806189ed87bb0ea79df75f55a8e3efcb32"
+        },
+        {
+          "path": "city/trafficlight_C.gltf",
+          "bytes": 3074,
+          "sha256": "1453697f533323bcf661d59842850a3054ac0bee3d3e7cd8e1ea5e2d627de226"
+        },
+        {
+          "path": "city/trash_A.bin",
+          "bytes": 620,
+          "sha256": "3fbaf543d240f71ea70bc2052461c93e9398ca36372c1d401dcc304b2788935d"
+        },
+        {
+          "path": "city/trash_A.gltf",
+          "bytes": 3029,
+          "sha256": "dcd3a27821a9d8a781a40a393e167d51c1cdb743edf95edc59236fe32238b464"
+        },
+        {
+          "path": "city/trash_B.bin",
+          "bytes": 620,
+          "sha256": "2663a8ed7fddb7768457c2fddbe31e201140a756446dec4ad5b705485ac5be7e"
+        },
+        {
+          "path": "city/trash_B.gltf",
+          "bytes": 3033,
+          "sha256": "6b549af074a24a1d2dd916af53d33d71d251b9e7e004de67294da02d336754e3"
+        },
+        {
+          "path": "city/watertower.bin",
+          "bytes": 8268,
+          "sha256": "384bc04add6c6fb56202e16688e375e4ad22739d46f37cd427e81087ffc192f6"
+        },
+        {
+          "path": "city/watertower.gltf",
+          "bytes": 3065,
+          "sha256": "55ae59f2a21ad38c64312a4c00d6808dc486bf4a8e8a8c969bc9e26cdc84d8f3"
+        }
+      ]
+    },
+    {
+      "id": "dungeon",
+      "author": "Kay Lousberg",
+      "license": "CC0-1.0",
+      "source": "https://github.com/KayKit-Game-Assets/KayKit-Dungeon-Remastered-1.0",
+      "revision": "b0ca9bd96a8072ab36a3a5464f00ed1e06a16d07",
+      "license_file": "dungeon/LICENSE.txt",
+      "models": [
+        "dungeon/banner_blue.gltf.glb",
+        "dungeon/banner_brown.gltf.glb",
+        "dungeon/banner_green.gltf.glb",
+        "dungeon/banner_patternA_blue.gltf.glb",
+        "dungeon/banner_patternA_brown.gltf.glb",
+        "dungeon/banner_patternA_green.gltf.glb",
+        "dungeon/banner_patternA_red.gltf.glb",
+        "dungeon/banner_patternA_white.gltf.glb",
+        "dungeon/banner_patternA_yellow.gltf.glb",
+        "dungeon/banner_patternB_blue.gltf.glb",
+        "dungeon/banner_patternB_brown.gltf.glb",
+        "dungeon/banner_patternB_green.gltf.glb",
+        "dungeon/banner_patternB_red.gltf.glb",
+        "dungeon/banner_patternB_white.gltf.glb",
+        "dungeon/banner_patternB_yellow.gltf.glb",
+        "dungeon/banner_patternC_blue.gltf.glb",
+        "dungeon/banner_patternC_brown.gltf.glb",
+        "dungeon/banner_patternC_green.gltf.glb",
+        "dungeon/banner_patternC_red.gltf.glb",
+        "dungeon/banner_patternC_white.gltf.glb",
+        "dungeon/banner_patternC_yellow.gltf.glb",
+        "dungeon/banner_red.gltf.glb",
+        "dungeon/banner_shield_blue.gltf.glb",
+        "dungeon/banner_shield_brown.gltf.glb",
+        "dungeon/banner_shield_green.gltf.glb",
+        "dungeon/banner_shield_red.gltf.glb",
+        "dungeon/banner_shield_white.gltf.glb",
+        "dungeon/banner_shield_yellow.gltf.glb",
+        "dungeon/banner_thin_blue.gltf.glb",
+        "dungeon/banner_thin_brown.gltf.glb",
+        "dungeon/banner_thin_green.gltf.glb",
+        "dungeon/banner_thin_red.gltf.glb",
+        "dungeon/banner_thin_white.gltf.glb",
+        "dungeon/banner_thin_yellow.gltf.glb",
+        "dungeon/banner_triple_blue.gltf.glb",
+        "dungeon/banner_triple_brown.gltf.glb",
+        "dungeon/banner_triple_green.gltf.glb",
+        "dungeon/banner_triple_red.gltf.glb",
+        "dungeon/banner_triple_white.gltf.glb",
+        "dungeon/banner_triple_yellow.gltf.glb",
+        "dungeon/banner_white.gltf.glb",
+        "dungeon/banner_yellow.gltf.glb",
+        "dungeon/barrel_large.gltf.glb",
+        "dungeon/barrel_large_decorated.gltf.glb",
+        "dungeon/barrel_small.gltf.glb",
+        "dungeon/barrel_small_stack.gltf.glb",
+        "dungeon/barrier.gltf.glb",
+        "dungeon/barrier_colum_half.gltf.glb",
+        "dungeon/barrier_column.gltf.glb",
+        "dungeon/barrier_corner.gltf.glb",
+        "dungeon/barrier_half.gltf.glb",
+        "dungeon/bed_decorated.gltf.glb",
+        "dungeon/bed_floor.gltf.glb",
+        "dungeon/bed_frame.gltf.glb",
+        "dungeon/bottle_A_brown.gltf.glb",
+        "dungeon/bottle_A_green.gltf.glb",
+        "dungeon/bottle_A_labeled_brown.gltf.glb",
+        "dungeon/bottle_A_labeled_green.gltf.glb",
+        "dungeon/bottle_B_brown.gltf.glb",
+        "dungeon/bottle_B_green.gltf.glb",
+        "dungeon/bottle_C_brown.gltf.glb",
+        "dungeon/bottle_C_green.gltf.glb",
+        "dungeon/box_large.gltf.glb",
+        "dungeon/box_small.gltf.glb",
+        "dungeon/box_small_decorated.gltf.glb",
+        "dungeon/box_stacked.gltf.glb",
+        "dungeon/candle.gltf.glb",
+        "dungeon/candle_lit.gltf.glb",
+        "dungeon/candle_melted.gltf.glb",
+        "dungeon/candle_thin.gltf.glb",
+        "dungeon/candle_thin_lit.gltf.glb",
+        "dungeon/candle_triple.gltf.glb",
+        "dungeon/chair.gltf.glb",
+        "dungeon/chest.glb",
+        "dungeon/chest_gold.glb",
+        "dungeon/coin.gltf.glb",
+        "dungeon/coin_stack_large.gltf.glb",
+        "dungeon/coin_stack_medium.gltf.glb",
+        "dungeon/coin_stack_small.gltf.glb",
+        "dungeon/column.gltf.glb",
+        "dungeon/crates_stacked.gltf.glb",
+        "dungeon/floor_dirt_large.gltf.glb",
+        "dungeon/floor_dirt_large_rocky.gltf.glb",
+        "dungeon/floor_dirt_small_A.gltf.glb",
+        "dungeon/floor_dirt_small_B.gltf.glb",
+        "dungeon/floor_dirt_small_C.gltf.glb",
+        "dungeon/floor_dirt_small_corner.gltf.glb",
+        "dungeon/floor_dirt_small_D.gltf.glb",
+        "dungeon/floor_dirt_small_weeds.gltf.glb",
+        "dungeon/floor_foundation_allsides.gltf.glb",
+        "dungeon/floor_foundation_corner.gltf.glb",
+        "dungeon/floor_foundation_diagonal_corner.gltf.glb",
+        "dungeon/floor_foundation_front.gltf.glb",
+        "dungeon/floor_foundation_front_and_back.gltf.glb",
+        "dungeon/floor_foundation_front_and_sides.gltf.glb",
+        "dungeon/floor_tile_big_grate.gltf.glb",
+        "dungeon/floor_tile_big_grate_open.gltf.glb",
+        "dungeon/floor_tile_big_spikes.glb",
+        "dungeon/floor_tile_extralarge_grates.gltf.glb",
+        "dungeon/floor_tile_extralarge_grates_open.gltf.glb",
+        "dungeon/floor_tile_grate.gltf.glb",
+        "dungeon/floor_tile_grate_open.gltf.glb",
+        "dungeon/floor_tile_large.gltf.glb",
+        "dungeon/floor_tile_large_rocks.gltf.glb",
+        "dungeon/floor_tile_small.gltf.glb",
+        "dungeon/floor_tile_small_broken_A.gltf.glb",
+        "dungeon/floor_tile_small_broken_B.gltf.glb",
+        "dungeon/floor_tile_small_corner.gltf.glb",
+        "dungeon/floor_tile_small_decorated.gltf.glb",
+        "dungeon/floor_tile_small_weeds_A.gltf.glb",
+        "dungeon/floor_tile_small_weeds_B.gltf.glb",
+        "dungeon/floor_wood_large.gltf.glb",
+        "dungeon/floor_wood_large_dark.gltf.glb",
+        "dungeon/floor_wood_small.gltf.glb",
+        "dungeon/floor_wood_small_dark.gltf.glb",
+        "dungeon/keg.gltf.glb",
+        "dungeon/keg_decorated.gltf.glb",
+        "dungeon/key.gltf.glb",
+        "dungeon/keyring.gltf.glb",
+        "dungeon/keyring_hanging.gltf.glb",
+        "dungeon/pillar.gltf.glb",
+        "dungeon/pillar_decorated.gltf.glb",
+        "dungeon/plate.gltf.glb",
+        "dungeon/plate_food_A.gltf.glb",
+        "dungeon/plate_food_B.gltf.glb",
+        "dungeon/plate_small.gltf.glb",
+        "dungeon/plate_stack.gltf.glb",
+        "dungeon/rubble_half.gltf.glb",
+        "dungeon/rubble_large.gltf.glb",
+        "dungeon/shelf_large.gltf.glb",
+        "dungeon/shelf_small.gltf.glb",
+        "dungeon/shelf_small_candles.gltf.glb",
+        "dungeon/shelves.gltf.glb",
+        "dungeon/stairs.gltf.glb",
+        "dungeon/stairs_narrow.gltf.glb",
+        "dungeon/stairs_wall_left.gltf.glb",
+        "dungeon/stairs_wall_right.gltf.glb",
+        "dungeon/stairs_walled.gltf.glb",
+        "dungeon/stairs_wide.gltf.glb",
+        "dungeon/stairs_wood.gltf.glb",
+        "dungeon/stairs_wood_decorated.gltf.glb",
+        "dungeon/stool.gltf.glb",
+        "dungeon/sword_shield.gltf.glb",
+        "dungeon/sword_shield_broken.gltf.glb",
+        "dungeon/sword_shield_gold.gltf.glb",
+        "dungeon/table_long.gltf.glb",
+        "dungeon/table_long_broken.gltf.glb",
+        "dungeon/table_long_decorated_A.gltf.glb",
+        "dungeon/table_long_decorated_C.gltf.glb",
+        "dungeon/table_long_tablecloth.gltf.glb",
+        "dungeon/table_long_tablecloth_decorated_A.gltf.glb",
+        "dungeon/table_medium.gltf.glb",
+        "dungeon/table_medium_broken.gltf.glb",
+        "dungeon/table_medium_decorated_A.gltf.glb",
+        "dungeon/table_medium_tablecloth.gltf.glb",
+        "dungeon/table_medium_tablecloth_decorated_B.gltf.glb",
+        "dungeon/table_small.gltf.glb",
+        "dungeon/table_small_decorated_A.gltf.glb",
+        "dungeon/table_small_decorated_B.gltf.glb",
+        "dungeon/torch.gltf.glb",
+        "dungeon/torch_lit.gltf.glb",
+        "dungeon/torch_mounted.gltf.glb",
+        "dungeon/trunk_large_A.gltf.glb",
+        "dungeon/trunk_large_B.gltf.glb",
+        "dungeon/trunk_large_C.gltf.glb",
+        "dungeon/trunk_medium_A.gltf.glb",
+        "dungeon/trunk_medium_B.gltf.glb",
+        "dungeon/trunk_medium_C.gltf.glb",
+        "dungeon/trunk_small_A.gltf.glb",
+        "dungeon/trunk_small_B.gltf.glb",
+        "dungeon/trunk_small_C.gltf.glb",
+        "dungeon/wall.gltf.glb",
+        "dungeon/wall_arched.gltf.glb",
+        "dungeon/wall_archedwindow_gated.gltf.glb",
+        "dungeon/wall_archedwindow_gated_scaffold.gltf.glb",
+        "dungeon/wall_archedwindow_open.gltf.glb",
+        "dungeon/wall_broken.gltf.glb",
+        "dungeon/wall_corner.gltf.glb",
+        "dungeon/wall_corner_gated.gltf.glb",
+        "dungeon/wall_corner_scaffold.gltf.glb",
+        "dungeon/wall_corner_small.gltf.glb",
+        "dungeon/wall_cracked.gltf.glb",
+        "dungeon/wall_crossing.gltf.glb",
+        "dungeon/wall_doorway.glb",
+        "dungeon/wall_doorway_scaffold.glb",
+        "dungeon/wall_doorway_sides.gltf.glb",
+        "dungeon/wall_doorway_Tsplit.gltf.glb",
+        "dungeon/wall_endcap.gltf.glb",
+        "dungeon/wall_gated.gltf.glb",
+        "dungeon/wall_half.gltf.glb",
+        "dungeon/wall_half_endcap.gltf.glb",
+        "dungeon/wall_half_endcap_sloped.gltf.glb",
+        "dungeon/wall_open_scaffold.gltf.glb",
+        "dungeon/wall_pillar.gltf.glb",
+        "dungeon/wall_scaffold.gltf.glb",
+        "dungeon/wall_shelves.gltf.glb",
+        "dungeon/wall_sloped.gltf.glb",
+        "dungeon/wall_Tsplit.gltf.glb",
+        "dungeon/wall_Tsplit_sloped.gltf.glb",
+        "dungeon/wall_window_closed.gltf.glb",
+        "dungeon/wall_window_closed_scaffold.gltf.glb",
+        "dungeon/wall_window_open.gltf.glb",
+        "dungeon/wall_window_open_scaffold.gltf.glb"
+      ],
+      "files": [
+        {
+          "path": "dungeon/banner_blue.gltf.glb",
+          "bytes": 24216,
+          "sha256": "219995a647a17a506770f998b2194e882e3c078753cebe37e608e2b65ed14d5a"
+        },
+        {
+          "path": "dungeon/banner_brown.gltf.glb",
+          "bytes": 24216,
+          "sha256": "6816034529fdd13cad2be29d04f07e16d811baca80a8dd0da0cb588bb2f002fb"
+        },
+        {
+          "path": "dungeon/banner_green.gltf.glb",
+          "bytes": 24216,
+          "sha256": "afe5f8742a7877c233d63573a18186ebda191e74c56fe856bc7699454a655c01"
+        },
+        {
+          "path": "dungeon/banner_patternA_blue.gltf.glb",
+          "bytes": 25164,
+          "sha256": "041c272b889fad4ae82d1b73817fe988759cb16129183a86fe5560e123eab75d"
+        },
+        {
+          "path": "dungeon/banner_patternA_brown.gltf.glb",
+          "bytes": 25168,
+          "sha256": "b490fcf566eaec5a44e6de5c11b270edb0e27f7867add51786af112665fcbb7d"
+        },
+        {
+          "path": "dungeon/banner_patternA_green.gltf.glb",
+          "bytes": 25168,
+          "sha256": "cad4bf2a5f99466e19eb8e81b3e28c1eb4992f2fc62cfc0948f823d8d3e6b50d"
+        },
+        {
+          "path": "dungeon/banner_patternA_red.gltf.glb",
+          "bytes": 25164,
+          "sha256": "64243b0a8110bbc6e5a02f5c0acbe447dc7ea65319123319c402dd26486dad25"
+        },
+        {
+          "path": "dungeon/banner_patternA_white.gltf.glb",
+          "bytes": 25168,
+          "sha256": "454033751167233238f9f3f86180d9dc0c1664ef2a09cf1a0316600c59973b12"
+        },
+        {
+          "path": "dungeon/banner_patternA_yellow.gltf.glb",
+          "bytes": 25168,
+          "sha256": "d7453be77a67a5ef5c5d6fc4b7caa04b71e5683f61f620881f4935421a40e5c8"
+        },
+        {
+          "path": "dungeon/banner_patternB_blue.gltf.glb",
+          "bytes": 24224,
+          "sha256": "a86be2d4bc01207ab694b614a9bb9e358ed498467a8e8bcd695c838be0f4f88a"
+        },
+        {
+          "path": "dungeon/banner_patternB_brown.gltf.glb",
+          "bytes": 24228,
+          "sha256": "b25ff242f83d84398465697e7ec6854bdc4e2328845c0bb87af5592417f7ffd6"
+        },
+        {
+          "path": "dungeon/banner_patternB_green.gltf.glb",
+          "bytes": 24228,
+          "sha256": "dd15fdabf9898c607f9264d6a29a050756d7cc1dda30435786151ee19a0dcbd3"
+        },
+        {
+          "path": "dungeon/banner_patternB_red.gltf.glb",
+          "bytes": 24224,
+          "sha256": "d54d454c079a52ac88175c7c9e2c56b753a7e885b4b3873e93e47d3f01c3e4d2"
+        },
+        {
+          "path": "dungeon/banner_patternB_white.gltf.glb",
+          "bytes": 24228,
+          "sha256": "ecb5623fb4e5e9a016dbb416066844f670a091dfde3cb6b329cfd4036b5e3fc8"
+        },
+        {
+          "path": "dungeon/banner_patternB_yellow.gltf.glb",
+          "bytes": 24228,
+          "sha256": "733cda437b13d6fb17d3b1e0b846d9bff5cdafdb72a9ad7bedde39ea93dc4000"
+        },
+        {
+          "path": "dungeon/banner_patternC_blue.gltf.glb",
+          "bytes": 24224,
+          "sha256": "708e80ab01f2135a902d83c8b275eb2301220f288ea3b2d0ee652252e23d2306"
+        },
+        {
+          "path": "dungeon/banner_patternC_brown.gltf.glb",
+          "bytes": 24228,
+          "sha256": "6a1b7a2e33d25924a5b78e43deafc86de0aa340dce69361ca22a3296f6551cd3"
+        },
+        {
+          "path": "dungeon/banner_patternC_green.gltf.glb",
+          "bytes": 24228,
+          "sha256": "f5ee50979c1c855359c4e8a7da5c78ccc935b07f1031c74ffd6575d2548ddf36"
+        },
+        {
+          "path": "dungeon/banner_patternC_red.gltf.glb",
+          "bytes": 24224,
+          "sha256": "ee729f974b6c37c4e0844e2ee6782447dfe3b2b800022ac9407b81a3ac7503de"
+        },
+        {
+          "path": "dungeon/banner_patternC_white.gltf.glb",
+          "bytes": 24228,
+          "sha256": "db19b1b52c3ae53b1002dc0207cc1a7343838b8663ccd3c2323553bef0b1170c"
+        },
+        {
+          "path": "dungeon/banner_patternC_yellow.gltf.glb",
+          "bytes": 24228,
+          "sha256": "84c480eb8f6075f6ecc612afaf00abbd04da0bc77936849e41ce6976024827dc"
+        },
+        {
+          "path": "dungeon/banner_red.gltf.glb",
+          "bytes": 24216,
+          "sha256": "c69c6eaffc834d6dcc7d19f8fd87145af4323265755588bf5bde85d71e0e3ff3"
+        },
+        {
+          "path": "dungeon/banner_shield_blue.gltf.glb",
+          "bytes": 55104,
+          "sha256": "27fc58e296e15ce180f212be6998677ab191b5055d194d2b062c95ce8c7acef7"
+        },
+        {
+          "path": "dungeon/banner_shield_brown.gltf.glb",
+          "bytes": 55104,
+          "sha256": "ae99b5de6be19de25dbbd88444361820aa25b07084a4785cd8271130983eb81a"
+        },
+        {
+          "path": "dungeon/banner_shield_green.gltf.glb",
+          "bytes": 55104,
+          "sha256": "6d6363e9dc4ee70a666b7d7cb51bfc1d2cdfaf159d756dd3d3cf7e9ce50d5165"
+        },
+        {
+          "path": "dungeon/banner_shield_red.gltf.glb",
+          "bytes": 55104,
+          "sha256": "d332133c940fa9dc6bea1668f2f8f2c07b5dce5db23b865ade5d035c8dc8e949"
+        },
+        {
+          "path": "dungeon/banner_shield_white.gltf.glb",
+          "bytes": 55104,
+          "sha256": "4725c1bdf14676848a119e5c735452c310f4def897b0a63cce1e9961f67a7196"
+        },
+        {
+          "path": "dungeon/banner_shield_yellow.gltf.glb",
+          "bytes": 55104,
+          "sha256": "fd66956f2934e2082d78e19fb6d33d5ca898f372eef27a5c7f77d82eda7e3a0a"
+        },
+        {
+          "path": "dungeon/banner_thin_blue.gltf.glb",
+          "bytes": 23084,
+          "sha256": "e22a1381c5832a6cc3019c2b62d5406cee8a470b4bd2e53110e29231fcd18637"
+        },
+        {
+          "path": "dungeon/banner_thin_brown.gltf.glb",
+          "bytes": 23084,
+          "sha256": "b3706a8606ae595cfce78a85923251a998e3262f340c2c666e7b20e38e68e4fe"
+        },
+        {
+          "path": "dungeon/banner_thin_green.gltf.glb",
+          "bytes": 23084,
+          "sha256": "ed8b70ac9ddb68edcabd619725fa17dd556dc84e7a3929727cb99e5a993a3935"
+        },
+        {
+          "path": "dungeon/banner_thin_red.gltf.glb",
+          "bytes": 23080,
+          "sha256": "1a96a91574f6ef233dc11286eb66f9f9502ef3c52a425199109f1469d1fb310a"
+        },
+        {
+          "path": "dungeon/banner_thin_white.gltf.glb",
+          "bytes": 23084,
+          "sha256": "4fe473d9a70121007595f09f41844ba93e98ef902746aeebc855ff4530655039"
+        },
+        {
+          "path": "dungeon/banner_thin_yellow.gltf.glb",
+          "bytes": 23084,
+          "sha256": "0ea08b5b279e186d2f1e088c3a5f600273afa8af12beea016a4e8dd4d450b842"
+        },
+        {
+          "path": "dungeon/banner_triple_blue.gltf.glb",
+          "bytes": 36232,
+          "sha256": "58e9a9625c99b199e7ae3f387e1594915a4d6091b0e93da0d0b2ac18aeb691bc"
+        },
+        {
+          "path": "dungeon/banner_triple_brown.gltf.glb",
+          "bytes": 36232,
+          "sha256": "f730632e9bda0ed986bd5a91beb0982ab09e484d212da6d693e48bdf9f4e0dce"
+        },
+        {
+          "path": "dungeon/banner_triple_green.gltf.glb",
+          "bytes": 36232,
+          "sha256": "bf26044f82b3e7394cc9e65d708238c5f41d3d85807c79e7843ade17bfb15208"
+        },
+        {
+          "path": "dungeon/banner_triple_red.gltf.glb",
+          "bytes": 36232,
+          "sha256": "39a41d11c12ec80629d322107de803a6bc21a4da94b7d4ba5183ee863a877f7e"
+        },
+        {
+          "path": "dungeon/banner_triple_white.gltf.glb",
+          "bytes": 36232,
+          "sha256": "20d15eb69062aa730cc85c18f4e46ced729f5e0697bbaa67e6c000aa795bd023"
+        },
+        {
+          "path": "dungeon/banner_triple_yellow.gltf.glb",
+          "bytes": 36236,
+          "sha256": "cdc8eab3dc0446cb76c8023a398a78e3d67791df3dbb592c64236bba8c063e11"
+        },
+        {
+          "path": "dungeon/banner_white.gltf.glb",
+          "bytes": 24216,
+          "sha256": "832a4db9e6f08209fc4841eec94de8f75adfd7ae259128bf797ce2f137c8169a"
+        },
+        {
+          "path": "dungeon/banner_yellow.gltf.glb",
+          "bytes": 24220,
+          "sha256": "ec1ad80ad34be1b98c9a324ec58a17d188234789606e4bf1cf2fd06e28e3faaa"
+        },
+        {
+          "path": "dungeon/barrel_large.gltf.glb",
+          "bytes": 44292,
+          "sha256": "9fae6a79056241baf253fe9272dc7a7ddb174e1caf153eb5013c58a596722148"
+        },
+        {
+          "path": "dungeon/barrel_large_decorated.gltf.glb",
+          "bytes": 73628,
+          "sha256": "d3ad760d5005500a8755e5a816e574dd7e4227c5bb038685a3cb0ab2ad8bb6cb"
+        },
+        {
+          "path": "dungeon/barrel_small.gltf.glb",
+          "bytes": 32060,
+          "sha256": "f46d0c421e46080aff079286ce9459a22da25e1b4f3489a04243f17617175212"
+        },
+        {
+          "path": "dungeon/barrel_small_stack.gltf.glb",
+          "bytes": 98092,
+          "sha256": "c23dc73a11c5a57ed33cb8a9df99f2b2793517341c5d62c6e50b0150652e8e99"
+        },
+        {
+          "path": "dungeon/barrier.gltf.glb",
+          "bytes": 23292,
+          "sha256": "2c6a1b89de1c87778c7ae9afc17fa9eabc4aa4148f3b8748f062b5c8ec7f6c00"
+        },
+        {
+          "path": "dungeon/barrier_colum_half.gltf.glb",
+          "bytes": 23196,
+          "sha256": "d3d10b059026738acae27feb4385609370a72bfef7a5f4eb2e3304c750b67a7d"
+        },
+        {
+          "path": "dungeon/barrier_column.gltf.glb",
+          "bytes": 24856,
+          "sha256": "aa65dd217a0a1e4d208800023ca93bd6ee6311db20c368142c34861541e914ba"
+        },
+        {
+          "path": "dungeon/barrier_corner.gltf.glb",
+          "bytes": 26116,
+          "sha256": "b78a21661f4acd0d76176cf0dc11fcfc3f5bd8a2de72d251f1551497aa78598c"
+        },
+        {
+          "path": "dungeon/barrier_half.gltf.glb",
+          "bytes": 19948,
+          "sha256": "cc4c5641e641c54bc1e7ca7851f9b2d82080ff8f3d0cc334d59e6f1f38245236"
+        },
+        {
+          "path": "dungeon/bed_decorated.gltf.glb",
+          "bytes": 94688,
+          "sha256": "253e40b87607ac3646c0b3ecf6d252a198e175dd7cd89fd47fec64a7dcb545c4"
+        },
+        {
+          "path": "dungeon/bed_floor.gltf.glb",
+          "bytes": 25496,
+          "sha256": "85540803ba0ba9666470d54e3033dcdb36815be12bca77f2166b850a46e3adab"
+        },
+        {
+          "path": "dungeon/bed_frame.gltf.glb",
+          "bytes": 30688,
+          "sha256": "37a9c963005b9db56df45518ed1d47bb37c8441f1207cf9079b0651458906d43"
+        },
+        {
+          "path": "dungeon/bottle_A_brown.gltf.glb",
+          "bytes": 26140,
+          "sha256": "14180809d494fdd48fd3771e02c36a076e8e729b5efb3bea18e1e157d1c11874"
+        },
+        {
+          "path": "dungeon/bottle_A_green.gltf.glb",
+          "bytes": 26460,
+          "sha256": "32759c64c6e8fe5634753134748f4b759b698aafb1245b8ed9fe62afe390faa5"
+        },
+        {
+          "path": "dungeon/bottle_A_labeled_brown.gltf.glb",
+          "bytes": 26276,
+          "sha256": "ba3c6fa3b50b26b7acbbc5112248a8e31a3b9dc64ec51c8e150852dfd7d2b24c"
+        },
+        {
+          "path": "dungeon/bottle_A_labeled_green.gltf.glb",
+          "bytes": 26596,
+          "sha256": "48cd6a367b14d305e78f575ac2d16a524bf9d371282cf7efb3270071a7ef02fd"
+        },
+        {
+          "path": "dungeon/bottle_B_brown.gltf.glb",
+          "bytes": 26140,
+          "sha256": "930b73e80da06d0c7deb03067029472e6208705bd84375a1dc45893c8914a8dc"
+        },
+        {
+          "path": "dungeon/bottle_B_green.gltf.glb",
+          "bytes": 26460,
+          "sha256": "dd509e40346972ca15dd77c89ebf50f582346acf7587f2a40bae48c6704ca8af"
+        },
+        {
+          "path": "dungeon/bottle_C_brown.gltf.glb",
+          "bytes": 26140,
+          "sha256": "5b68d7b4eaee5af15aea7fd02a09f196a6a88d94af3140767cd718571d1c7183"
+        },
+        {
+          "path": "dungeon/bottle_C_green.gltf.glb",
+          "bytes": 26460,
+          "sha256": "f5a58323b1ea2443d52e6bfb28a8e33326f573dd975fe8d9f9f59a45ab8eff00"
+        },
+        {
+          "path": "dungeon/box_large.gltf.glb",
+          "bytes": 28740,
+          "sha256": "6dacda267f04769f8ebbb7e991885785054923ea3d5eb19e833768a911d5b661"
+        },
+        {
+          "path": "dungeon/box_small.gltf.glb",
+          "bytes": 28692,
+          "sha256": "3052015d7cd670c170742317fd9c728e5643221450857abbae9eefe6dbc66092"
+        },
+        {
+          "path": "dungeon/box_small_decorated.gltf.glb",
+          "bytes": 72748,
+          "sha256": "b147bca5c2841f2d0bc8d85a4ed17b83862911ef6749b5fbeca2e962b0ff0843"
+        },
+        {
+          "path": "dungeon/box_stacked.gltf.glb",
+          "bytes": 146968,
+          "sha256": "c9035de1145d1cee058941abc4bc9ea7b039c98e94c56712cb5e9626a3d18017"
+        },
+        {
+          "path": "dungeon/candle.gltf.glb",
+          "bytes": 20784,
+          "sha256": "0c1dfc1e792ed64193a166f4c39ed301f00277703041063daa847c3d4526b9bb"
+        },
+        {
+          "path": "dungeon/candle_lit.gltf.glb",
+          "bytes": 22648,
+          "sha256": "a884f27540b8b91e3d47914453cbf2c4d48f4ca8504ace9960a8d9b4e79a6c48"
+        },
+        {
+          "path": "dungeon/candle_melted.gltf.glb",
+          "bytes": 20788,
+          "sha256": "96654d7824c13594f933cd6aed87f5b3bcc5f2fcc4cd90ae0ce736cfec64ef4e"
+        },
+        {
+          "path": "dungeon/candle_thin.gltf.glb",
+          "bytes": 20788,
+          "sha256": "76a3f0c92e9e0990229e480aceba0cb33865f9ae874f2bae5404445ceba9a8e5"
+        },
+        {
+          "path": "dungeon/candle_thin_lit.gltf.glb",
+          "bytes": 22652,
+          "sha256": "51fc37946dd39d2291db45aee87fa8c890946b234036f0a32beb17cb2120cac9"
+        },
+        {
+          "path": "dungeon/candle_triple.gltf.glb",
+          "bytes": 28240,
+          "sha256": "3536f0a55df50c728ec9c369c4a6a81c913b33a507ac4a192d418d28fd6677c2"
+        },
+        {
+          "path": "dungeon/chair.gltf.glb",
+          "bytes": 36252,
+          "sha256": "5f133281686d398304c0a458c4d407dd483eeea8aba67220b585ceb89366efa2"
+        },
+        {
+          "path": "dungeon/chest.glb",
+          "bytes": 81412,
+          "sha256": "f72fd2201cd42ad399928a0b7bcc34d5b0e6d0624aeaf824fef81852109955f8"
+        },
+        {
+          "path": "dungeon/chest_gold.glb",
+          "bytes": 140140,
+          "sha256": "04708d5f88ed59d361c8a6cec1efe8b7028dbc641dfae0a1467f272e14a94b6e"
+        },
+        {
+          "path": "dungeon/coin.gltf.glb",
+          "bytes": 21776,
+          "sha256": "97d3abdd239d8fa365b14957f7bf45c892aad9d211b3c3b47b4b2311bf947297"
+        },
+        {
+          "path": "dungeon/coin_stack_large.gltf.glb",
+          "bytes": 101076,
+          "sha256": "1a64011dc0d6754bc95d932744ad7717132c538206976a0262293bd4ba31627e"
+        },
+        {
+          "path": "dungeon/coin_stack_medium.gltf.glb",
+          "bytes": 63996,
+          "sha256": "a6b3f67cf395820c75fafb09337009be7faf1d6a9de93a3f77cfc04c565374b2"
+        },
+        {
+          "path": "dungeon/coin_stack_small.gltf.glb",
+          "bytes": 38404,
+          "sha256": "b7395adb0c3f8d392f42f483d667af672232a25de4e0cdb23c58fca8bab1dd8f"
+        },
+        {
+          "path": "dungeon/column.gltf.glb",
+          "bytes": 20260,
+          "sha256": "761adf0fcc1a86ab1c42740b7a8ad340d73982f94257e7892b2c7998f98c304e"
+        },
+        {
+          "path": "dungeon/crates_stacked.gltf.glb",
+          "bytes": 103704,
+          "sha256": "43182b077ead9b033804300ef453b7402bdc979f00cfce2d7f0c91dcf6bb5d3c"
+        },
+        {
+          "path": "dungeon/floor_dirt_large.gltf.glb",
+          "bytes": 24620,
+          "sha256": "48cc8018237fbdca3f7fccef95c93ef32e877d8fc59f481b9369fed71fec895b"
+        },
+        {
+          "path": "dungeon/floor_dirt_large_rocky.gltf.glb",
+          "bytes": 30216,
+          "sha256": "f83d503c0ab16aaaa48b4e1680a2aaf7f975a63e376b6dc8e48032c702521d8f"
+        },
+        {
+          "path": "dungeon/floor_dirt_small_A.gltf.glb",
+          "bytes": 20460,
+          "sha256": "b5be9118f0b66b8e429569c7095d5be003c526f6f61ebe8061dcaf4b67b37f00"
+        },
+        {
+          "path": "dungeon/floor_dirt_small_B.gltf.glb",
+          "bytes": 19536,
+          "sha256": "d1bb865686cfc0e96e4949eca6cd0235a00267a8a8cdf09b1c390e1df836c789"
+        },
+        {
+          "path": "dungeon/floor_dirt_small_C.gltf.glb",
+          "bytes": 19484,
+          "sha256": "f2b54702111a5f7e9d9dd808849f7f15c713b885c7fb405503835179acfafc7f"
+        },
+        {
+          "path": "dungeon/floor_dirt_small_corner.gltf.glb",
+          "bytes": 20752,
+          "sha256": "0e14444fd83c1c622c87ab033676638d10b7cbbbc26af49da9cfe1873bb93a9b"
+        },
+        {
+          "path": "dungeon/floor_dirt_small_D.gltf.glb",
+          "bytes": 18476,
+          "sha256": "bb2a50fbb828c09d425b0abc55517d59b4c79550a82f3bd340d323e0e925bf54"
+        },
+        {
+          "path": "dungeon/floor_dirt_small_weeds.gltf.glb",
+          "bytes": 41224,
+          "sha256": "cbee93076f46232eac8ab07f5c10e8b733941d8615e524b9ee34c1758ba3e1d4"
+        },
+        {
+          "path": "dungeon/floor_foundation_allsides.gltf.glb",
+          "bytes": 44944,
+          "sha256": "5b167b3f5fbc0d8a61c5681d028590e78f27f15ff3da3e171ba9c898ed051408"
+        },
+        {
+          "path": "dungeon/floor_foundation_corner.gltf.glb",
+          "bytes": 31996,
+          "sha256": "30eea50f41b2859b0dd5707e5ff0dd039ce81ad9f42824dae40f958f8336cbf4"
+        },
+        {
+          "path": "dungeon/floor_foundation_diagonal_corner.gltf.glb",
+          "bytes": 25024,
+          "sha256": "5b9d59c64d8b80272bdd7a59056ac4f6217455b1a7c79b0a93a5f63a568c2e11"
+        },
+        {
+          "path": "dungeon/floor_foundation_front.gltf.glb",
+          "bytes": 25516,
+          "sha256": "06e985c0fb17d4ffa69c2a057aef362d304df30f5711a32c3960e5d2fd56eed1"
+        },
+        {
+          "path": "dungeon/floor_foundation_front_and_back.gltf.glb",
+          "bytes": 32004,
+          "sha256": "ee3d2bc07fe46ebd7e41a35c1c09608959e0fe888a0d317d19f7f3390e9bd478"
+        },
+        {
+          "path": "dungeon/floor_foundation_front_and_sides.gltf.glb",
+          "bytes": 38480,
+          "sha256": "8a1bf932d7e5c317c87ae6262c6cc8540f41dcdb163cfee525bc77669d72b1b1"
+        },
+        {
+          "path": "dungeon/floor_tile_big_grate.gltf.glb",
+          "bytes": 36296,
+          "sha256": "6c393b10cb00ad69177f58d1b30af05f3c7f350bc331508529ef6323ff9efae3"
+        },
+        {
+          "path": "dungeon/floor_tile_big_grate_open.gltf.glb",
+          "bytes": 35740,
+          "sha256": "96d1e7a6b519ebe614e66342e0e43b3689017c339f586c5e783d9edf7631e7df"
+        },
+        {
+          "path": "dungeon/floor_tile_big_spikes.glb",
+          "bytes": 80644,
+          "sha256": "7a4e94decf860b64456a45cc1c2d7bb26f0b3ca75824ccf2c4d0addee088d9ad"
+        },
+        {
+          "path": "dungeon/floor_tile_extralarge_grates.gltf.glb",
+          "bytes": 66408,
+          "sha256": "a80a67e26133b3e06fb479fc2bb6efa136f1d67aadacbd93ef2c2d1238f75dec"
+        },
+        {
+          "path": "dungeon/floor_tile_extralarge_grates_open.gltf.glb",
+          "bytes": 65852,
+          "sha256": "290b96cf681822ad7479895ee08b75b1a6a5e30c2a709fdec63e98abab7c17dc"
+        },
+        {
+          "path": "dungeon/floor_tile_grate.gltf.glb",
+          "bytes": 26700,
+          "sha256": "d39a8c32aa995458eb758ebc9bebe140e81c56a9e5bf52e0f85bf6df0eb7dce0"
+        },
+        {
+          "path": "dungeon/floor_tile_grate_open.gltf.glb",
+          "bytes": 26564,
+          "sha256": "3f717d847f906c67cb23790e43274dd4e13b04863eefabd28014247f1aed2fec"
+        },
+        {
+          "path": "dungeon/floor_tile_large.gltf.glb",
+          "bytes": 28100,
+          "sha256": "5b6bbbc683f6729d094732056f157a928435de97ec3cf94c341c7465907fe17b"
+        },
+        {
+          "path": "dungeon/floor_tile_large_rocks.gltf.glb",
+          "bytes": 38384,
+          "sha256": "fb06b1e9ca7a5d14f6757119490c4b3c077a30e31ef580da6925b6657f14c14d"
+        },
+        {
+          "path": "dungeon/floor_tile_small.gltf.glb",
+          "bytes": 20740,
+          "sha256": "645f02c82d1fa15e3e1daa7892b70c8a9d44f44d0e520d76ae6afd08633c5b34"
+        },
+        {
+          "path": "dungeon/floor_tile_small_broken_A.gltf.glb",
+          "bytes": 22132,
+          "sha256": "d1acc3407f941623b3b01ec9a1751c36a5ca82bb14721fc8f28e5559317edad4"
+        },
+        {
+          "path": "dungeon/floor_tile_small_broken_B.gltf.glb",
+          "bytes": 21608,
+          "sha256": "0ef8ee472371df027f7035726f913335f3d82df531004329f3c8bce77fcce1d5"
+        },
+        {
+          "path": "dungeon/floor_tile_small_corner.gltf.glb",
+          "bytes": 18868,
+          "sha256": "f88d027a88652e7c510fa8428380d88779cbbcdb377d1e9f12855dcbdbee38d6"
+        },
+        {
+          "path": "dungeon/floor_tile_small_decorated.gltf.glb",
+          "bytes": 40812,
+          "sha256": "4dd8a74dc00c2272957938f1612c730e06bfddca7a9d9cdc6f316594d4a0f3cf"
+        },
+        {
+          "path": "dungeon/floor_tile_small_weeds_A.gltf.glb",
+          "bytes": 44020,
+          "sha256": "95fcb7701819428da04318aafbd9410b994217424d1453844ba3e6f1f91a28f3"
+        },
+        {
+          "path": "dungeon/floor_tile_small_weeds_B.gltf.glb",
+          "bytes": 42368,
+          "sha256": "cfbe329aeea2faf66295be40a8e4fbb9a59870849ee7318b3b52d12899622f69"
+        },
+        {
+          "path": "dungeon/floor_wood_large.gltf.glb",
+          "bytes": 35612,
+          "sha256": "d22eb1c1fb6ab434e8c9599ecb2cd00c2e34a713783603ba7a3e2cbb1611709d"
+        },
+        {
+          "path": "dungeon/floor_wood_large_dark.gltf.glb",
+          "bytes": 35616,
+          "sha256": "be6a700b4d089d79da7d45ce80451cadced9a61763b6b0e49c4023488a75e3f5"
+        },
+        {
+          "path": "dungeon/floor_wood_small.gltf.glb",
+          "bytes": 22156,
+          "sha256": "9e11192df05527eb112128cc06515be4a3a350b765ce974666c7b1c37715aa63"
+        },
+        {
+          "path": "dungeon/floor_wood_small_dark.gltf.glb",
+          "bytes": 22160,
+          "sha256": "81eceb7289c6f4717458a2ed7b32e8ee353fdccdca138ff996a4e0dd98e1f12b"
+        },
+        {
+          "path": "dungeon/keg.gltf.glb",
+          "bytes": 59912,
+          "sha256": "cc620e27439ab8dbbf93b1c4bd94d1d634798757c0314b2c9f12bb445afd0f51"
+        },
+        {
+          "path": "dungeon/keg_decorated.gltf.glb",
+          "bytes": 142052,
+          "sha256": "02a31f44f66de39375510cd1ef35c5d19cee4cf910d78f38bc5f89093a6a2670"
+        },
+        {
+          "path": "dungeon/key.gltf.glb",
+          "bytes": 24432,
+          "sha256": "e9ea072e6e5f8b1f049677f62144d9ae1dcc1cfd2252aec54b42bec29d518dff"
+        },
+        {
+          "path": "dungeon/keyring.gltf.glb",
+          "bytes": 49100,
+          "sha256": "0313e8cf5a13000d15e0d37d8656b501c63ac7d44b0c46ee30c36a6c1bbe0481"
+        },
+        {
+          "path": "dungeon/keyring_hanging.gltf.glb",
+          "bytes": 49108,
+          "sha256": "6edaf6494c7d0cae9178356fb4e2c11b2af2390933cc083203c5d9c287023364"
+        },
+        {
+          "path": "dungeon/LICENSE.txt",
+          "bytes": 829,
+          "sha256": "c5f17abf619731f57f6bbff450f6484214605c13aa96bb75bbcfc70930941ff7"
+        },
+        {
+          "path": "dungeon/pillar.gltf.glb",
+          "bytes": 25552,
+          "sha256": "e31da496461921475384c62ce761cd23924892bd6f32aeea68bd913545caee33"
+        },
+        {
+          "path": "dungeon/pillar_decorated.gltf.glb",
+          "bytes": 62460,
+          "sha256": "eecf7d454a1b6767a113e2490cb1536134abea0b57329a50cf2250d3ed8e2f65"
+        },
+        {
+          "path": "dungeon/plate.gltf.glb",
+          "bytes": 22884,
+          "sha256": "c4c0e52b75a8f283e724f9e7695870f8fad7b608e0f67c90db0c1781406d3f38"
+        },
+        {
+          "path": "dungeon/plate_food_A.gltf.glb",
+          "bytes": 41236,
+          "sha256": "4549db448834c615e753f65327d01b8f55b9d20d915e004c8a0da123cb76e86e"
+        },
+        {
+          "path": "dungeon/plate_food_B.gltf.glb",
+          "bytes": 31980,
+          "sha256": "b3ca88e56eeab02e969c38a25bb7dedb34989a401afb7aee44a408f37937701c"
+        },
+        {
+          "path": "dungeon/plate_small.gltf.glb",
+          "bytes": 22892,
+          "sha256": "4c76a077618c02f87dcd8b8a53c708983ac5cdbe7082a8d61dc4085db27a0181"
+        },
+        {
+          "path": "dungeon/plate_stack.gltf.glb",
+          "bytes": 35728,
+          "sha256": "bd872e234a18896f6e9634e9509efc5bf59fdd1b6cf6e36d74530e8239024387"
+        },
+        {
+          "path": "dungeon/rubble_half.gltf.glb",
+          "bytes": 38836,
+          "sha256": "7514ccbda643c13d5a782579e4f01ee6402eec5519590d3f048d396cdaedec24"
+        },
+        {
+          "path": "dungeon/rubble_large.gltf.glb",
+          "bytes": 60196,
+          "sha256": "0292da1b5788a5a52b616d5d27d3270c676a5fbf9e921b6dd3dc30364d355b54"
+        },
+        {
+          "path": "dungeon/shelf_large.gltf.glb",
+          "bytes": 22012,
+          "sha256": "886feece503686307dd041c986b1ea6f1fd63792c7e4217eb16f95904e6a9767"
+        },
+        {
+          "path": "dungeon/shelf_small.gltf.glb",
+          "bytes": 20932,
+          "sha256": "270615f38648d2ab9d5d67e390a97929a07d6df81b7a7e131c8d73a6d2767078"
+        },
+        {
+          "path": "dungeon/shelf_small_candles.gltf.glb",
+          "bytes": 30036,
+          "sha256": "d6f6a809c1e4635b143fd3c6e790331aa049d625abd390429c1e5887f77cbb96"
+        },
+        {
+          "path": "dungeon/shelves.gltf.glb",
+          "bytes": 26996,
+          "sha256": "8df148ae0f4909512295302491f2b40dc3ae84d072f2cacdfd929c7848d7062e"
+        },
+        {
+          "path": "dungeon/SOURCE.json",
+          "bytes": 202,
+          "sha256": "cb1e3aa64841c93121251ae876c61b6c3a75b1ed2d629f733d998d8d4130b68f"
+        },
+        {
+          "path": "dungeon/stairs.gltf.glb",
+          "bytes": 43368,
+          "sha256": "5ba16e5d919aaa8958435c4b73c1f8a94c98febeacf716faa1359f24e6b27d70"
+        },
+        {
+          "path": "dungeon/stairs_narrow.gltf.glb",
+          "bytes": 43372,
+          "sha256": "eded1b8c0347216ef82a9bf56f680bb2063fd6ff56e06b3516a380b1ccb622a8"
+        },
+        {
+          "path": "dungeon/stairs_wall_left.gltf.glb",
+          "bytes": 57640,
+          "sha256": "19abdf58225d5219337c3fbb4be95111babee30f91634ccd3197ad8856c28a24"
+        },
+        {
+          "path": "dungeon/stairs_wall_right.gltf.glb",
+          "bytes": 57704,
+          "sha256": "3bab03b9b17622fe8d56b962685b28b747807d028a5db9bdc066d7358f3b484b"
+        },
+        {
+          "path": "dungeon/stairs_walled.gltf.glb",
+          "bytes": 72072,
+          "sha256": "1ebdaebab2d79cfb717ebfc4ccf889c0a5a391d7f847281d849f5171b8bce658"
+        },
+        {
+          "path": "dungeon/stairs_wide.gltf.glb",
+          "bytes": 43372,
+          "sha256": "f3301f11a6bb6d9e64fbe625fbc2f0b61ba4f7e1de1ceba348d53c93325d4754"
+        },
+        {
+          "path": "dungeon/stairs_wood.gltf.glb",
+          "bytes": 34632,
+          "sha256": "3b2cf5c08aec60ea7b217e1c499885d803419dc39a2968e8da0da5e725adb140"
+        },
+        {
+          "path": "dungeon/stairs_wood_decorated.gltf.glb",
+          "bytes": 171080,
+          "sha256": "41c86378edb2951add637d9beb52cb97b6d5adf6c02e59ed3aa5a89cef1228d9"
+        },
+        {
+          "path": "dungeon/stool.gltf.glb",
+          "bytes": 28528,
+          "sha256": "f9170499ea599e6283d35be600150d2171d9a7af1ae0e8a1ccbe98ef29b71d8e"
+        },
+        {
+          "path": "dungeon/sword_shield.gltf.glb",
+          "bytes": 47764,
+          "sha256": "4dc33b156a166b2c47cf3ac0344f9462946e952ee8c12945bbe6aedddf63af72"
+        },
+        {
+          "path": "dungeon/sword_shield_broken.gltf.glb",
+          "bytes": 39980,
+          "sha256": "5a056d05102aaa0fb91e7a9f0e88775f90bba5397309c9da5e3c51c2238c85f8"
+        },
+        {
+          "path": "dungeon/sword_shield_gold.gltf.glb",
+          "bytes": 47768,
+          "sha256": "7b7dd709bd6a24e9e2913da2ebc1fd64ca318e22fbef66f0e8cf14b79adae9aa"
+        },
+        {
+          "path": "dungeon/table_long.gltf.glb",
+          "bytes": 35128,
+          "sha256": "83996a7a544a257630510b61eadebb8842e4313ca3c774b35774cad9b6f949c8"
+        },
+        {
+          "path": "dungeon/table_long_broken.gltf.glb",
+          "bytes": 55192,
+          "sha256": "956c9a916acd537eb2f488050eaa1e88f0c163e328528e472b29dd5801790d76"
+        },
+        {
+          "path": "dungeon/table_long_decorated_A.gltf.glb",
+          "bytes": 120792,
+          "sha256": "47564d874e79f04212c05487d88ac8cbe9bb50b1865a8eeb1178bcb711aa444d"
+        },
+        {
+          "path": "dungeon/table_long_decorated_C.gltf.glb",
+          "bytes": 231608,
+          "sha256": "bc67bce5b700ef2be4008349856f11d5d494807d20b68e079650db646af0b26b"
+        },
+        {
+          "path": "dungeon/table_long_tablecloth.gltf.glb",
+          "bytes": 38400,
+          "sha256": "d8fcb3f2d1d7a6d95d5150cbe257fd3c65da0a8a44ea43fa60982d1a8c065cd3"
+        },
+        {
+          "path": "dungeon/table_long_tablecloth_decorated_A.gltf.glb",
+          "bytes": 124064,
+          "sha256": "43becc5ada637e494e617e5abdb13f15b53054d3581679162e3098d8fc0d5376"
+        },
+        {
+          "path": "dungeon/table_medium.gltf.glb",
+          "bytes": 33832,
+          "sha256": "9686a202ea2f825062dfab02d89cded25d7acc07847b88c1e39f0e09e085872a"
+        },
+        {
+          "path": "dungeon/table_medium_broken.gltf.glb",
+          "bytes": 35184,
+          "sha256": "fcf67e154506c8b4aaeb39f4a288c49351d2630fb19b86d73836dc0c1a54837f"
+        },
+        {
+          "path": "dungeon/table_medium_decorated_A.gltf.glb",
+          "bytes": 82588,
+          "sha256": "dc5beae322011acbce5c3dccb3c5cbaffae9757ad67d6ab0cf574c11b7ce014c"
+        },
+        {
+          "path": "dungeon/table_medium_tablecloth.gltf.glb",
+          "bytes": 35160,
+          "sha256": "8beb36b54c407c6d34b8025a053fa0fc8100b0a0ad4eaa448859c3bc9c6d34ec"
+        },
+        {
+          "path": "dungeon/table_medium_tablecloth_decorated_B.gltf.glb",
+          "bytes": 83916,
+          "sha256": "5f8d91096f1748a5f5991b7dacfa90ad205219616cb25312d2640b12f3e521e4"
+        },
+        {
+          "path": "dungeon/table_small.gltf.glb",
+          "bytes": 29908,
+          "sha256": "92e644e5251b5f003762948c55ca0aa86e7b1a945ab7c843e2a5ce218ae7940c"
+        },
+        {
+          "path": "dungeon/table_small_decorated_A.gltf.glb",
+          "bytes": 67672,
+          "sha256": "8b079b22cc25ae79241ab29f94d3118d0214eadfa2c5711da88852ffdd554223"
+        },
+        {
+          "path": "dungeon/table_small_decorated_B.gltf.glb",
+          "bytes": 105068,
+          "sha256": "7ef39cdd7a04fb30279415a7fb62e98e6d4fdce1256d5857b81cbc3c56dce63e"
+        },
+        {
+          "path": "dungeon/torch.gltf.glb",
+          "bytes": 29380,
+          "sha256": "608089ae00c5d5b51adbe702a689677b3fef0b29641030a44401188ce108a316"
+        },
+        {
+          "path": "dungeon/torch_lit.gltf.glb",
+          "bytes": 31244,
+          "sha256": "45fcfeb3b129722019d42aef0acae8f6c5f8f6dbdf5d3346ceea1f084b69b396"
+        },
+        {
+          "path": "dungeon/torch_mounted.gltf.glb",
+          "bytes": 33220,
+          "sha256": "a617c159e02932db48ca81ec46f1f100acc8904fb6ece43e919d2f93c13950e9"
+        },
+        {
+          "path": "dungeon/trunk_large_A.gltf.glb",
+          "bytes": 30180,
+          "sha256": "fb915dc521a92708dfe548922cfb09af23392a83a356e65c837cfbc406f237a9"
+        },
+        {
+          "path": "dungeon/trunk_large_B.gltf.glb",
+          "bytes": 30180,
+          "sha256": "a17bd58b49ced3cc2f84f4790fc8a4431b1a67335b0596c35baced8043104ced"
+        },
+        {
+          "path": "dungeon/trunk_large_C.gltf.glb",
+          "bytes": 30180,
+          "sha256": "31e9eab566e64a13c1f56c19ef886b1f9027f5ba80096e7a3934eabfa0cba367"
+        },
+        {
+          "path": "dungeon/trunk_medium_A.gltf.glb",
+          "bytes": 26420,
+          "sha256": "a2da1198744578ade2560ccadd79201fa996a820832c520241747dce9167bbaf"
+        },
+        {
+          "path": "dungeon/trunk_medium_B.gltf.glb",
+          "bytes": 26420,
+          "sha256": "4d0da78c351495995aa5192df7f64c37a486f4fdd23b59f2f173a97f720def57"
+        },
+        {
+          "path": "dungeon/trunk_medium_C.gltf.glb",
+          "bytes": 26420,
+          "sha256": "0de29c00c448699613dd8aa043fd06d7e0571fac9c744342f9e251be7056e3e7"
+        },
+        {
+          "path": "dungeon/trunk_small_A.gltf.glb",
+          "bytes": 30184,
+          "sha256": "de40320413c5503c8139eedbb0c773d967c0d27aede51848a479cc6001c29140"
+        },
+        {
+          "path": "dungeon/trunk_small_B.gltf.glb",
+          "bytes": 30184,
+          "sha256": "ec2df6aa8cba65abe325c807d26c19c4e187252023d088b3bbac034816f56265"
+        },
+        {
+          "path": "dungeon/trunk_small_C.gltf.glb",
+          "bytes": 30184,
+          "sha256": "70b420c69fdbb34efb67f2e192afb3d138e79dfbce15424efbe890831d96ce2c"
+        },
+        {
+          "path": "dungeon/wall.gltf.glb",
+          "bytes": 53132,
+          "sha256": "f2f343a7bdf2d45947e3f354494e16095a923485e05637e3804e3b81ce11d921"
+        },
+        {
+          "path": "dungeon/wall_arched.gltf.glb",
+          "bytes": 69124,
+          "sha256": "916a7d81b8d6ebddb069440a0f9ecb14c9c2a1e5cd7769acf2218d630bd56cb8"
+        },
+        {
+          "path": "dungeon/wall_archedwindow_gated.gltf.glb",
+          "bytes": 64752,
+          "sha256": "4edf28602a00b2666a9044322eeae170fe1dd606dfae7846ecda357f1b9eb266"
+        },
+        {
+          "path": "dungeon/wall_archedwindow_gated_scaffold.gltf.glb",
+          "bytes": 60988,
+          "sha256": "789a1dad5b3a0a88e06b30ad5c4573625ce46ea25bcede171a36f7d8bb6c387b"
+        },
+        {
+          "path": "dungeon/wall_archedwindow_open.gltf.glb",
+          "bytes": 58028,
+          "sha256": "8c75cb77edc51c94b91c5625828391fb56c70bf31e2235cf5abf718eae0d842a"
+        },
+        {
+          "path": "dungeon/wall_broken.gltf.glb",
+          "bytes": 69276,
+          "sha256": "ee7598ef2b88aaeb7b61e46d5f1da1a059de3860b080b38b7a507ca2f461302c"
+        },
+        {
+          "path": "dungeon/wall_corner.gltf.glb",
+          "bytes": 49212,
+          "sha256": "3c8cbcbf3abf78c9dc49f440b152340ef681fee9cccf9ca6ed27b6670a34eb81"
+        },
+        {
+          "path": "dungeon/wall_corner_gated.gltf.glb",
+          "bytes": 51132,
+          "sha256": "289cd2fb7a23c4fecdfe7832d505f33b168dc6114c106a2945ea7b5d2e1318bc"
+        },
+        {
+          "path": "dungeon/wall_corner_scaffold.gltf.glb",
+          "bytes": 54200,
+          "sha256": "f22cbfb585b70c86c7a894cb76834a4ead8b8d51b05f012fef9481348577a275"
+        },
+        {
+          "path": "dungeon/wall_corner_small.gltf.glb",
+          "bytes": 33640,
+          "sha256": "6bcdc78db453a397cdb08a23e5b731be85e3f98767014f0266e240eb9bcafcc2"
+        },
+        {
+          "path": "dungeon/wall_cracked.gltf.glb",
+          "bytes": 138396,
+          "sha256": "344fb9a709a51b7f04131fded75a5ad38e829d74fcf1784d848f3df0703f804c"
+        },
+        {
+          "path": "dungeon/wall_crossing.gltf.glb",
+          "bytes": 66856,
+          "sha256": "ec4d4efc6dccc2ac74c26977797df4f50926329e67dfb7a56bce7bc2466695ab"
+        },
+        {
+          "path": "dungeon/wall_doorway.glb",
+          "bytes": 100596,
+          "sha256": "2be5369a2d1d1d8795150b2156d8343b3e37620d78de256cb03276c54ea70c97"
+        },
+        {
+          "path": "dungeon/wall_doorway_scaffold.glb",
+          "bytes": 109416,
+          "sha256": "0fb7b7c22561f7c4e4a6585488e38d2a5a2811befaad3548f3e24ac6358f379a"
+        },
+        {
+          "path": "dungeon/wall_doorway_sides.gltf.glb",
+          "bytes": 97364,
+          "sha256": "f4afefbedb7efc5bf5638a61b9ba1ed6be7badddf4f82603c81a7597f01e4a13"
+        },
+        {
+          "path": "dungeon/wall_doorway_Tsplit.gltf.glb",
+          "bytes": 93124,
+          "sha256": "3b4b06994a42ef8eb4dd510d31745e1f449b0ba1675f89ea913bf89dde87c6cc"
+        },
+        {
+          "path": "dungeon/wall_endcap.gltf.glb",
+          "bytes": 33708,
+          "sha256": "e9d0fee6895f402d4777f7aa92455b56b5bd506877a654a8027a67a185010e23"
+        },
+        {
+          "path": "dungeon/wall_gated.gltf.glb",
+          "bytes": 46364,
+          "sha256": "68e766c2b4eb05c4bf2c0fcd908ea5dc5192dda56cfdd5d56b7cbf446063220c"
+        },
+        {
+          "path": "dungeon/wall_half.gltf.glb",
+          "bytes": 36840,
+          "sha256": "9e65c438f55d96cbcd554489bf2dec236feb575a8192c709d3bf6886599339a8"
+        },
+        {
+          "path": "dungeon/wall_half_endcap.gltf.glb",
+          "bytes": 36724,
+          "sha256": "069744023318847ea7beb1e7af8111d5c7465f2d2d4cc080a8e805156e9c90d4"
+        },
+        {
+          "path": "dungeon/wall_half_endcap_sloped.gltf.glb",
+          "bytes": 33368,
+          "sha256": "4767600ac8aa3ae0792fb115e1a2d90fb8f09d65db554dfda2953324d38e1e65"
+        },
+        {
+          "path": "dungeon/wall_open_scaffold.gltf.glb",
+          "bytes": 29908,
+          "sha256": "1f0b0e2312984d213ab3eb558095587684af101c57aa30e112a65f4e98040b6f"
+        },
+        {
+          "path": "dungeon/wall_pillar.gltf.glb",
+          "bytes": 55156,
+          "sha256": "f85030386f9f183bbc03a0817a1967a40758f24828295ed2a1c88d4c004eb5eb"
+        },
+        {
+          "path": "dungeon/wall_scaffold.gltf.glb",
+          "bytes": 59436,
+          "sha256": "9a241ac982f2d6f63dc2eb3ec28fcb97291abf682336fb479a40d225f163663f"
+        },
+        {
+          "path": "dungeon/wall_shelves.gltf.glb",
+          "bytes": 122244,
+          "sha256": "8c794dfbc320af9f18c9d04d555fb1e8dce3c4cb4c2b4de01ddd2b95d1f85e9c"
+        },
+        {
+          "path": "dungeon/wall_sloped.gltf.glb",
+          "bytes": 35964,
+          "sha256": "4aa19fdb27d301abaa05d7e7c2433d9b51ac01499611aeb8691eee5f3efe40e0"
+        },
+        {
+          "path": "dungeon/wall_Tsplit.gltf.glb",
+          "bytes": 60080,
+          "sha256": "a93b661ce2ebeff9aa349d727922cee2107c64b0ab69a02326ce1b5cb8e65d44"
+        },
+        {
+          "path": "dungeon/wall_Tsplit_sloped.gltf.glb",
+          "bytes": 57224,
+          "sha256": "0893b08b1d360c64d523d55192a347a2070eba7a13f20e2b2fc353def9e41aee"
+        },
+        {
+          "path": "dungeon/wall_window_closed.gltf.glb",
+          "bytes": 61460,
+          "sha256": "c20ce2a7db1430810774caeb337b8d3d94af936ca0fea5be8b063a28695686e5"
+        },
+        {
+          "path": "dungeon/wall_window_closed_scaffold.gltf.glb",
+          "bytes": 66508,
+          "sha256": "12a9a3fa65b41a4717a78a3a7333310bf5fce71881fe0814faabeccccbeec527"
+        },
+        {
+          "path": "dungeon/wall_window_open.gltf.glb",
+          "bytes": 57256,
+          "sha256": "7cb4804e55bd90a4c61198b6b9c557ccb87c485b13dfad4b184c9b6d8632438f"
+        },
+        {
+          "path": "dungeon/wall_window_open_scaffold.gltf.glb",
+          "bytes": 62308,
+          "sha256": "980fe3450713d3f586862c135a231e236b0b27a11e4b84b3395bb8e1a87d171b"
+        }
+      ]
+    },
+    {
+      "id": "forest",
+      "author": "Kay Lousberg",
+      "license": "CC0-1.0",
+      "source": "https://kaylousberg.itch.io/kaykit-forest",
+      "archive_sha256": "2ee83e63bb7695f2d884ec27ddf6fce020789a452e7d5c5b0bbdfc4f6ea1fc8c",
+      "archive_name": "KayKit_Forest_Nature_Pack_1.0_FREE",
+      "retrieved": "2026-10-25",
+      "license_file": "forest/LICENSE.txt",
+      "models": [
+        "forest/Bush_1_A_Color1.gltf",
+        "forest/Bush_1_B_Color1.gltf",
+        "forest/Bush_1_C_Color1.gltf",
+        "forest/Bush_1_D_Color1.gltf",
+        "forest/Bush_1_E_Color1.gltf",
+        "forest/Bush_1_F_Color1.gltf",
+        "forest/Bush_1_G_Color1.gltf",
+        "forest/Bush_2_A_Color1.gltf",
+        "forest/Bush_2_B_Color1.gltf",
+        "forest/Bush_2_C_Color1.gltf",
+        "forest/Bush_2_D_Color1.gltf",
+        "forest/Bush_2_E_Color1.gltf",
+        "forest/Bush_2_F_Color1.gltf",
+        "forest/Bush_3_A_Color1.gltf",
+        "forest/Bush_3_B_Color1.gltf",
+        "forest/Bush_3_C_Color1.gltf",
+        "forest/Bush_4_A_Color1.gltf",
+        "forest/Bush_4_B_Color1.gltf",
+        "forest/Bush_4_C_Color1.gltf",
+        "forest/Bush_4_D_Color1.gltf",
+        "forest/Bush_4_E_Color1.gltf",
+        "forest/Bush_4_F_Color1.gltf",
+        "forest/Grass_1_A_Color1.gltf",
+        "forest/Grass_1_A_Singlesided_Color1.gltf",
+        "forest/Grass_1_B_Color1.gltf",
+        "forest/Grass_1_B_Singlesided_Color1.gltf",
+        "forest/Grass_1_C_Color1.gltf",
+        "forest/Grass_1_C_Singlesided_Color1.gltf",
+        "forest/Grass_1_D_Color1.gltf",
+        "forest/Grass_1_D_Singlesided_Color1.gltf",
+        "forest/Grass_1_Mesh.gltf",
+        "forest/Grass_1_SingleSided_Mesh.gltf",
+        "forest/Grass_2_A_Color1.gltf",
+        "forest/Grass_2_A_Singlesided_Color1.gltf",
+        "forest/Grass_2_B_Color1.gltf",
+        "forest/Grass_2_B_Singlesided_Color1.gltf",
+        "forest/Grass_2_C_Color1.gltf",
+        "forest/Grass_2_C_Singlesided_Color1.gltf",
+        "forest/Grass_2_D_Color1.gltf",
+        "forest/Grass_2_D_Singlesided_Color1.gltf",
+        "forest/Grass_2_Mesh.gltf",
+        "forest/Grass_2_SingleSided_Mesh.gltf",
+        "forest/Rock_1_A_Color1.gltf",
+        "forest/Rock_1_B_Color1.gltf",
+        "forest/Rock_1_C_Color1.gltf",
+        "forest/Rock_1_D_Color1.gltf",
+        "forest/Rock_1_E_Color1.gltf",
+        "forest/Rock_1_F_Color1.gltf",
+        "forest/Rock_1_G_Color1.gltf",
+        "forest/Rock_1_H_Color1.gltf",
+        "forest/Rock_1_I_Color1.gltf",
+        "forest/Rock_1_J_Color1.gltf",
+        "forest/Rock_1_K_Color1.gltf",
+        "forest/Rock_1_L_Color1.gltf",
+        "forest/Rock_1_M_Color1.gltf",
+        "forest/Rock_1_N_Color1.gltf",
+        "forest/Rock_1_O_Color1.gltf",
+        "forest/Rock_1_P_Color1.gltf",
+        "forest/Rock_1_Q_Color1.gltf",
+        "forest/Rock_2_A_Color1.gltf",
+        "forest/Rock_2_B_Color1.gltf",
+        "forest/Rock_2_C_Color1.gltf",
+        "forest/Rock_2_D_Color1.gltf",
+        "forest/Rock_2_E_Color1.gltf",
+        "forest/Rock_2_F_Color1.gltf",
+        "forest/Rock_2_G_Color1.gltf",
+        "forest/Rock_2_H_Color1.gltf",
+        "forest/Rock_3_A_Color1.gltf",
+        "forest/Rock_3_B_Color1.gltf",
+        "forest/Rock_3_C_Color1.gltf",
+        "forest/Rock_3_D_Color1.gltf",
+        "forest/Rock_3_E_Color1.gltf",
+        "forest/Rock_3_F_Color1.gltf",
+        "forest/Rock_3_G_Color1.gltf",
+        "forest/Rock_3_H_Color1.gltf",
+        "forest/Rock_3_I_Color1.gltf",
+        "forest/Rock_3_J_Color1.gltf",
+        "forest/Rock_3_K_Color1.gltf",
+        "forest/Rock_3_L_Color1.gltf",
+        "forest/Rock_3_M_Color1.gltf",
+        "forest/Rock_3_N_Color1.gltf",
+        "forest/Rock_3_O_Color1.gltf",
+        "forest/Rock_3_P_Color1.gltf",
+        "forest/Rock_3_Q_Color1.gltf",
+        "forest/Rock_3_R_Color1.gltf",
+        "forest/Tree_1_A_Color1.gltf",
+        "forest/Tree_1_B_Color1.gltf",
+        "forest/Tree_1_C_Color1.gltf",
+        "forest/Tree_2_A_Color1.gltf",
+        "forest/Tree_2_B_Color1.gltf",
+        "forest/Tree_2_C_Color1.gltf",
+        "forest/Tree_2_D_Color1.gltf",
+        "forest/Tree_2_E_Color1.gltf",
+        "forest/Tree_3_A_Color1.gltf",
+        "forest/Tree_3_B_Color1.gltf",
+        "forest/Tree_3_C_Color1.gltf",
+        "forest/Tree_4_A_Color1.gltf",
+        "forest/Tree_4_B_Color1.gltf",
+        "forest/Tree_4_C_Color1.gltf",
+        "forest/Tree_Bare_1_A_Color1.gltf",
+        "forest/Tree_Bare_1_B_Color1.gltf",
+        "forest/Tree_Bare_1_C_Color1.gltf",
+        "forest/Tree_Bare_2_A_Color1.gltf",
+        "forest/Tree_Bare_2_B_Color1.gltf",
+        "forest/Tree_Bare_2_C_Color1.gltf"
+      ],
+      "files": [
+        {
+          "path": "forest/Bush_1_A_Color1.bin",
+          "bytes": 2352,
+          "sha256": "66ba041776959c19849954c9d2393528783461ca6dd11ebe1c1f6b9026b63c0c"
+        },
+        {
+          "path": "forest/Bush_1_A_Color1.gltf",
+          "bytes": 3054,
+          "sha256": "bc6cf33dbed296a181d8afbd82ffe1c44ee5e57cb095f9efdf4b63e93c165b70"
+        },
+        {
+          "path": "forest/Bush_1_B_Color1.bin",
+          "bytes": 4656,
+          "sha256": "9ff9a26a0d1c7e468727c0ad2503bee8462e971e71366739a18ac0a38c3648f0"
+        },
+        {
+          "path": "forest/Bush_1_B_Color1.gltf",
+          "bytes": 3061,
+          "sha256": "523f15a4a27759251ba6c3d666d6b651804ed7a5a0db8615454110651081d774"
+        },
+        {
+          "path": "forest/Bush_1_C_Color1.bin",
+          "bytes": 4656,
+          "sha256": "513ae2e9ef7f19eecfbde317c469610193950756b17eecbb348b38c036bcb9d2"
+        },
+        {
+          "path": "forest/Bush_1_C_Color1.gltf",
+          "bytes": 3056,
+          "sha256": "b67ad1166a944eab3d1c88a3255216784848fca45a3a0d1eef6e56c05f4474e7"
+        },
+        {
+          "path": "forest/Bush_1_D_Color1.bin",
+          "bytes": 4656,
+          "sha256": "18fe83c4b2bcf63390541bcce81922012a94085b1edf22f1b2e31e4cc0d8f13a"
+        },
+        {
+          "path": "forest/Bush_1_D_Color1.gltf",
+          "bytes": 3058,
+          "sha256": "6778d25fa7184280066f8bef50cc352e214ab784b510a33aa04d239f62159a26"
+        },
+        {
+          "path": "forest/Bush_1_E_Color1.bin",
+          "bytes": 16368,
+          "sha256": "f1dd47b3b1f33df677766d1d036feb9d3e91e80cf487cdf41b674b05741a9413"
+        },
+        {
+          "path": "forest/Bush_1_E_Color1.gltf",
+          "bytes": 3063,
+          "sha256": "cfe17afe69486867ffc6dac72fd86712c4dd5f0bcd710fe365dd8fe3a18c51fd"
+        },
+        {
+          "path": "forest/Bush_1_F_Color1.bin",
+          "bytes": 16320,
+          "sha256": "fde9448c422b232cbd859700fd76bcbb8da0c5d943648efefc20efff27f0aeda"
+        },
+        {
+          "path": "forest/Bush_1_F_Color1.gltf",
+          "bytes": 3062,
+          "sha256": "dbbbb5bf67e76492ad8caeee35e487dbaae4a33ad649d01899b6edcb28a3aba8"
+        },
+        {
+          "path": "forest/Bush_1_G_Color1.bin",
+          "bytes": 27984,
+          "sha256": "0d92a1b580872bd8df4159bec725f0cf0881c7c56e6f2cf74ba7c212034cef69"
+        },
+        {
+          "path": "forest/Bush_1_G_Color1.gltf",
+          "bytes": 3061,
+          "sha256": "4979a6a515beb25a0a5e1987fccc6f47ac5d15baf7148a8fb63a3f10a17074be"
+        },
+        {
+          "path": "forest/Bush_2_A_Color1.bin",
+          "bytes": 1032,
+          "sha256": "156a986b87b097725a1c675ea20eeaf3f788014742dbf4b8f0fd2c69f27cad98"
+        },
+        {
+          "path": "forest/Bush_2_A_Color1.gltf",
+          "bytes": 3050,
+          "sha256": "c41284ba3191bdda026380527edf9fb0dcf03b5dd26c8779ed056edb6526c444"
+        },
+        {
+          "path": "forest/Bush_2_B_Color1.bin",
+          "bytes": 2440,
+          "sha256": "b0f7b67b91b9696946e5ae616abbe139811d0949049876ed43a5a4f69b970aa0"
+        },
+        {
+          "path": "forest/Bush_2_B_Color1.gltf",
+          "bytes": 3057,
+          "sha256": "a56841ace35231c41b81f3038f5bd180fd0c6ffbd8bc0ab3070bd31e99e58aad"
+        },
+        {
+          "path": "forest/Bush_2_C_Color1.bin",
+          "bytes": 2440,
+          "sha256": "1b796e64b2a988daf322f09d67830cd70446e700ba69c62e63945f8a60d57983"
+        },
+        {
+          "path": "forest/Bush_2_C_Color1.gltf",
+          "bytes": 3053,
+          "sha256": "d6544824738f219cbecdf4e31b3832bcea89fd5b4a21bd22a8f28b087628e67c"
+        },
+        {
+          "path": "forest/Bush_2_D_Color1.bin",
+          "bytes": 4504,
+          "sha256": "91638fe4a07c3ed1fca925e6f94a92707ffd5ee28f06f6d5c1c6dbb1c5c5c2f5"
+        },
+        {
+          "path": "forest/Bush_2_D_Color1.gltf",
+          "bytes": 3060,
+          "sha256": "5554f4f1e2f12797a373141a12890e56c5c2cce653611d2a6a2591346c5d2758"
+        },
+        {
+          "path": "forest/Bush_2_E_Color1.bin",
+          "bytes": 10792,
+          "sha256": "a2b39dff1b5896e3c6e6e9776cb83276b2b69fd2e649c0b6145e0acd4c67a34e"
+        },
+        {
+          "path": "forest/Bush_2_E_Color1.gltf",
+          "bytes": 3064,
+          "sha256": "cac6ebda50aefa5e3fe54a456dd0a6a05d8e2eabd7a7447f1a24a4ecd474f7f2"
+        },
+        {
+          "path": "forest/Bush_2_F_Color1.bin",
+          "bytes": 8352,
+          "sha256": "91f641083c48a6660a2d30e73448597ee9d11426c3f3063af283dd66bd312178"
+        },
+        {
+          "path": "forest/Bush_2_F_Color1.gltf",
+          "bytes": 3040,
+          "sha256": "6337258963e1f97007950e81315350fc4be8ac4d5bcc4f142fc67e851a4f977e"
+        },
+        {
+          "path": "forest/Bush_3_A_Color1.bin",
+          "bytes": 5248,
+          "sha256": "7f4893327535d30c255da52eac62d1feb2b5688ed9b4f79a48787acdd0cfa6fe"
+        },
+        {
+          "path": "forest/Bush_3_A_Color1.gltf",
+          "bytes": 3059,
+          "sha256": "c1806cb5331a53bbd57a57fa678dce6484ac45e8b609caf4c619d3dae0fcd7b8"
+        },
+        {
+          "path": "forest/Bush_3_B_Color1.bin",
+          "bytes": 6752,
+          "sha256": "4d2ad0322d702b69b41842766790f3f367fb78529ad5934140cfefbdba795131"
+        },
+        {
+          "path": "forest/Bush_3_B_Color1.gltf",
+          "bytes": 3060,
+          "sha256": "76fa503c91e86a2689e6fd630ff201d7eb285f7f28da70542c34d65a1cd5f59f"
+        },
+        {
+          "path": "forest/Bush_3_C_Color1.bin",
+          "bytes": 7552,
+          "sha256": "35bf6f924385486024949effbc8c08422cb84ef93873e05996944713d216e07a"
+        },
+        {
+          "path": "forest/Bush_3_C_Color1.gltf",
+          "bytes": 3060,
+          "sha256": "213548d4e6dd7d9cb4e225136a545c477e91530f421fdabcc919a8d50922a09c"
+        },
+        {
+          "path": "forest/Bush_4_A_Color1.bin",
+          "bytes": 1032,
+          "sha256": "e6716cb3d232d0f24f719ef9edf61fb1218e570f3767228c4dc155eaf7e2f56f"
+        },
+        {
+          "path": "forest/Bush_4_A_Color1.gltf",
+          "bytes": 3049,
+          "sha256": "56b56b9187350ad1222a4bd61112ed3c2a839a49ad876ca6e01ef17b426f3d02"
+        },
+        {
+          "path": "forest/Bush_4_B_Color1.bin",
+          "bytes": 1032,
+          "sha256": "f961082141ccac163560a209a6b7c9fbe7251d47d603f72d55e559d48f9e5acd"
+        },
+        {
+          "path": "forest/Bush_4_B_Color1.gltf",
+          "bytes": 3054,
+          "sha256": "e5e67884c2746f229586d5e342a4e603c6345800ea54afff847aab2bdc16f03b"
+        },
+        {
+          "path": "forest/Bush_4_C_Color1.bin",
+          "bytes": 2568,
+          "sha256": "cd7d1c4b753dafeb6c51a04d4d196c5b8170e5bc28303d1406f42e277d0d9931"
+        },
+        {
+          "path": "forest/Bush_4_C_Color1.gltf",
+          "bytes": 3052,
+          "sha256": "7423fd4cc074944e6ed6d2db2fbdceb12eb417c79ee48cd1645ab95e5e1897f0"
+        },
+        {
+          "path": "forest/Bush_4_D_Color1.bin",
+          "bytes": 3096,
+          "sha256": "6f591e7b1ca0dcf6d1ee868162f7018c7d6b0958d7c4f3fc8629cc38be7d4e66"
+        },
+        {
+          "path": "forest/Bush_4_D_Color1.gltf",
+          "bytes": 3053,
+          "sha256": "4c5d0727c6907ad3120bce7d81a297fe52153d9a24ca5a57edea38eb405478c4"
+        },
+        {
+          "path": "forest/Bush_4_E_Color1.bin",
+          "bytes": 6696,
+          "sha256": "0db64df18782e6481e895eb5407825e347fb16abb84d92cb6252c644d59bffa5"
+        },
+        {
+          "path": "forest/Bush_4_E_Color1.gltf",
+          "bytes": 3058,
+          "sha256": "add6e1ebbd19cd36a1e042320be0d7498d45e13417c2d62673057573ee9adfd0"
+        },
+        {
+          "path": "forest/Bush_4_F_Color1.bin",
+          "bytes": 6696,
+          "sha256": "a485d19d0c015f7d4c1d75fe1cd1f00a4c7078c03ad6fbb578cb179155787a35"
+        },
+        {
+          "path": "forest/Bush_4_F_Color1.gltf",
+          "bytes": 3060,
+          "sha256": "775fc0c91ee6aee712d607093a1f4aa4a932432dfdddd9e06c8b37c8b06cb2b1"
+        },
+        {
+          "path": "forest/forest_texture.png",
+          "bytes": 48679,
+          "sha256": "406c01e0ac1d3368fc7b26ff5fb0d3335ba5e48bd19a703540ed92ee3971ea39"
+        },
+        {
+          "path": "forest/Grass_1_A_Color1.bin",
+          "bytes": 2056,
+          "sha256": "d293510be3ca4a6062dc305c22a143ba134fc49af65aaba064cc8f8d868d6c6e"
+        },
+        {
+          "path": "forest/Grass_1_A_Color1.gltf",
+          "bytes": 3058,
+          "sha256": "58686904164d636e8731544fbb6911bf1ebc068841fe6c127f0c509b1449212b"
+        },
+        {
+          "path": "forest/Grass_1_A_Singlesided_Color1.bin",
+          "bytes": 660,
+          "sha256": "06b6bab266b192ad1659748fc938e1db29dfb7d775ba556f4b5132816ae60954"
+        },
+        {
+          "path": "forest/Grass_1_A_Singlesided_Color1.gltf",
+          "bytes": 3088,
+          "sha256": "8adcb284e5b7de6b363fd13866c23b6e96c9a3a461aefecc0d5cfd67136cd3ff"
+        },
+        {
+          "path": "forest/Grass_1_B_Color1.bin",
+          "bytes": 6168,
+          "sha256": "217a485ca9f647a77e8cadb79972b2a4e04757547f05aab7b3dfb70ccf02eb1a"
+        },
+        {
+          "path": "forest/Grass_1_B_Color1.gltf",
+          "bytes": 3064,
+          "sha256": "a11d2572b48595f1b05b560e347be83e08aa4189a19686ea211c9207d343be1d"
+        },
+        {
+          "path": "forest/Grass_1_B_Singlesided_Color1.bin",
+          "bytes": 1980,
+          "sha256": "7d920f1f9d52f1be708946b64d3cab8804884e22a36998e9ae72e42d76e21b3e"
+        },
+        {
+          "path": "forest/Grass_1_B_Singlesided_Color1.gltf",
+          "bytes": 3095,
+          "sha256": "b3f2a1e6a10b1b4b5e726cdaa52841bbb5e169aec1ce3dcab4e88e1054ab165c"
+        },
+        {
+          "path": "forest/Grass_1_C_Color1.bin",
+          "bytes": 18504,
+          "sha256": "ad2163a749bf75785f441eac9af6aa444eff591960ad5277c0433551628dbac3"
+        },
+        {
+          "path": "forest/Grass_1_C_Color1.gltf",
+          "bytes": 3067,
+          "sha256": "449d1a5cc0e808eccdad297bd45d4c86439ceb97703c66db940f36879d242dd1"
+        },
+        {
+          "path": "forest/Grass_1_C_Singlesided_Color1.bin",
+          "bytes": 5940,
+          "sha256": "7c49d179dc7e0a9255cae78f660276a9571c5998efd20308f74943248866cbd0"
+        },
+        {
+          "path": "forest/Grass_1_C_Singlesided_Color1.gltf",
+          "bytes": 3099,
+          "sha256": "e9ffe1739d4a89855313e91be0fa79d60eb66c8030392e0761b4a1be6ad3c5a0"
+        },
+        {
+          "path": "forest/Grass_1_D_Color1.bin",
+          "bytes": 24672,
+          "sha256": "bdbb905d1333227aae787294b14e3e89895e451bb9fcd02eac7a7a66f9241a0d"
+        },
+        {
+          "path": "forest/Grass_1_D_Color1.gltf",
+          "bytes": 3066,
+          "sha256": "a661f646f59852becd6ec7d3a16501a1d264d5d3d1732d247038357cbff248ba"
+        },
+        {
+          "path": "forest/Grass_1_D_Singlesided_Color1.bin",
+          "bytes": 7920,
+          "sha256": "7bbab65d798efa91bd3f0c26b93a4cad03f89aca794f8b92a47b79710ce47489"
+        },
+        {
+          "path": "forest/Grass_1_D_Singlesided_Color1.gltf",
+          "bytes": 3099,
+          "sha256": "762c03b93b46265a916ba358b7eec97939989157dbfc4d5987ce502289d631f4"
+        },
+        {
+          "path": "forest/Grass_1_Mesh.bin",
+          "bytes": 2056,
+          "sha256": "93d1fdfd8083037af192afeed5ebacaaa708718f5716d394ad21253717742105"
+        },
+        {
+          "path": "forest/Grass_1_Mesh.gltf",
+          "bytes": 2327,
+          "sha256": "5997cd7c7be0f6a31dd296af655feda0fef6841d7a1327398d39ca8a3ebb3d6c"
+        },
+        {
+          "path": "forest/Grass_1_SingleSided_Mesh.bin",
+          "bytes": 660,
+          "sha256": "fef56f6fce74391d4f8c76990f561aedd6ab1789b36f6e6fd6702376a0a947bb"
+        },
+        {
+          "path": "forest/Grass_1_SingleSided_Mesh.gltf",
+          "bytes": 2357,
+          "sha256": "ca23d90eb3aa3360bd9bc4545c83bb04079552a7edb4b143fd32b355bfd9ac1d"
+        },
+        {
+          "path": "forest/Grass_2_A_Color1.bin",
+          "bytes": 2056,
+          "sha256": "07fc84eda0b374b3fd4afed280452f0be21f75c0e53fbf6778d3997c09832a64"
+        },
+        {
+          "path": "forest/Grass_2_A_Color1.gltf",
+          "bytes": 3056,
+          "sha256": "fa822543a17721c40b3386557ed37af6c44fd6d4ce6b4fc16f9187d69cde8fe1"
+        },
+        {
+          "path": "forest/Grass_2_A_Singlesided_Color1.bin",
+          "bytes": 660,
+          "sha256": "86bc91d2ebf144bbf983f0d8e6ef9012a3a1ddb4226c846e9d36b03080823369"
+        },
+        {
+          "path": "forest/Grass_2_A_Singlesided_Color1.gltf",
+          "bytes": 3088,
+          "sha256": "d2865c0e5bbfe9a3bae9ac7ff880f065ca130a0331562448bc2fbe86888496c3"
+        },
+        {
+          "path": "forest/Grass_2_B_Color1.bin",
+          "bytes": 6168,
+          "sha256": "8a8a00efc28a7ea1fa735579b72c55ee6d0de7cea4672afa82a378dcadc70487"
+        },
+        {
+          "path": "forest/Grass_2_B_Color1.gltf",
+          "bytes": 3064,
+          "sha256": "c95c9aa402330cb1f1950a5c6fa467f9714d5ebeb257731bc4e0567951e08032"
+        },
+        {
+          "path": "forest/Grass_2_B_Singlesided_Color1.bin",
+          "bytes": 1980,
+          "sha256": "4a36d3f50f929f783f8f2e1c9f4baee037a1690dd1ff9eb6ee795adbde2ec329"
+        },
+        {
+          "path": "forest/Grass_2_B_Singlesided_Color1.gltf",
+          "bytes": 3092,
+          "sha256": "bf143734db28770f896781b9baa10f0d9cb8185be61de7b4e78a9da3be159177"
+        },
+        {
+          "path": "forest/Grass_2_C_Color1.bin",
+          "bytes": 24672,
+          "sha256": "99b030029636b0b1ec02a4d39f0120308c22ec87fa7fa8babcfec1a1392b4d4b"
+        },
+        {
+          "path": "forest/Grass_2_C_Color1.gltf",
+          "bytes": 3066,
+          "sha256": "5896b3332cb5ab720747e77cae0d6567387594e3bc80d35bca18c6d38cc4e82e"
+        },
+        {
+          "path": "forest/Grass_2_C_Singlesided_Color1.bin",
+          "bytes": 7920,
+          "sha256": "aae1f23bd6c4807413fe1e76acc141639e764387e15c62f05313aec502901e07"
+        },
+        {
+          "path": "forest/Grass_2_C_Singlesided_Color1.gltf",
+          "bytes": 3101,
+          "sha256": "c6f65d5fa69e05ecaae93f4a8859fd206e8d1383cbbf45ca3a90a096ae9339c7"
+        },
+        {
+          "path": "forest/Grass_2_D_Color1.bin",
+          "bytes": 24672,
+          "sha256": "6094b2b84e46f47695444a16bd81f6537cec7b2935fdb94bd4d1f2ae0ce0e7fc"
+        },
+        {
+          "path": "forest/Grass_2_D_Color1.gltf",
+          "bytes": 3066,
+          "sha256": "4dc6242c70bcdf5e040b9e039679dc518f76d29dc9d770692bf72b3e6b4c1d2f"
+        },
+        {
+          "path": "forest/Grass_2_D_Singlesided_Color1.bin",
+          "bytes": 7920,
+          "sha256": "e635ce01334bdcaaebcad6d240cf7f0e5dd7acee5fd38857dbd7f76b4fd70e00"
+        },
+        {
+          "path": "forest/Grass_2_D_Singlesided_Color1.gltf",
+          "bytes": 3097,
+          "sha256": "b839423efe105cb532887213b62354144e4a17f08cfa9d13fcb13413472e49e1"
+        },
+        {
+          "path": "forest/Grass_2_Mesh.bin",
+          "bytes": 2056,
+          "sha256": "bb2a57945d8285583f009dce3d5f3c8a708f59af4d34fea5b6a545560811094c"
+        },
+        {
+          "path": "forest/Grass_2_Mesh.gltf",
+          "bytes": 2325,
+          "sha256": "80947bb5790b5cec7b9ed98838ca0f16dd4a9b9a0a472901474133aa406952dd"
+        },
+        {
+          "path": "forest/Grass_2_SingleSided_Mesh.bin",
+          "bytes": 660,
+          "sha256": "1d13ca7efcc9889653b5f4d5de5eedc7c13d6226c3f12069c31db2f933e2a5d3"
+        },
+        {
+          "path": "forest/Grass_2_SingleSided_Mesh.gltf",
+          "bytes": 2357,
+          "sha256": "b9343e52cab22f857798ac7f60777bd4487261aad8f112ac96da64833bc98810"
+        },
+        {
+          "path": "forest/LICENSE.txt",
+          "bytes": 1469,
+          "sha256": "987811fa42c7548ad487324531813b0210ee6d1ebd410089e881820630e3be54"
+        },
+        {
+          "path": "forest/Rock_1_A_Color1.bin",
+          "bytes": 2848,
+          "sha256": "1c94027b4b01e479f14c6a0288445f2ec74c4971bd5154095c4ea261ddea5b95"
+        },
+        {
+          "path": "forest/Rock_1_A_Color1.gltf",
+          "bytes": 3032,
+          "sha256": "ca24326b9c24556227c68df64933122f34a972cd38b6e95c53353fefa97dbc80"
+        },
+        {
+          "path": "forest/Rock_1_B_Color1.bin",
+          "bytes": 2784,
+          "sha256": "782cef58cf202c5ed3f121219aa7492c36857f1d00c9bd2bce13c8c6c8147d7e"
+        },
+        {
+          "path": "forest/Rock_1_B_Color1.gltf",
+          "bytes": 3035,
+          "sha256": "749f2de085a5cee1c91c5953cf04cf243d9b61d847e6006cf3d4eeef5a35985a"
+        },
+        {
+          "path": "forest/Rock_1_C_Color1.bin",
+          "bytes": 2912,
+          "sha256": "39a1e7da9638240fbcb7a2b7ca96f692161de11a0af67ed97d96b13701472481"
+        },
+        {
+          "path": "forest/Rock_1_C_Color1.gltf",
+          "bytes": 3032,
+          "sha256": "af4bc788060d4e6d33cec02ce910a3a409a54dd5e8720a9b0371ea635d766895"
+        },
+        {
+          "path": "forest/Rock_1_D_Color1.bin",
+          "bytes": 4792,
+          "sha256": "30a7fc80775c585ce501170caf743c290cd4750b0515352f5e7612f888042c9d"
+        },
+        {
+          "path": "forest/Rock_1_D_Color1.gltf",
+          "bytes": 3039,
+          "sha256": "67df432b840e93475ab0b0d7d2d0473d19928168ee5c9c411a51e2bf7e05584d"
+        },
+        {
+          "path": "forest/Rock_1_E_Color1.bin",
+          "bytes": 4856,
+          "sha256": "74363d2c11430b6d779fa5925ecd68cbae927406d6173a3fb2016e00040e1e06"
+        },
+        {
+          "path": "forest/Rock_1_E_Color1.gltf",
+          "bytes": 3007,
+          "sha256": "f61da3a25bd8098832d1240008928c32b864c81b7f17ee75524310ea73bb8bea"
+        },
+        {
+          "path": "forest/Rock_1_F_Color1.bin",
+          "bytes": 4920,
+          "sha256": "a46b1f381bf72dd01b909e1b1d6bf354459e6fcb3d955abfa4e38709915328e1"
+        },
+        {
+          "path": "forest/Rock_1_F_Color1.gltf",
+          "bytes": 3008,
+          "sha256": "0b1e7362928f7d8b13f3b3cda0714013084b469e7a333c9fe0c6eec75a5156f2"
+        },
+        {
+          "path": "forest/Rock_1_G_Color1.bin",
+          "bytes": 4944,
+          "sha256": "cb61ed6367428900504cb2994021aaa96fe8a9e590d0595aa213f0a0e99aa04d"
+        },
+        {
+          "path": "forest/Rock_1_G_Color1.gltf",
+          "bytes": 3038,
+          "sha256": "7ad950660ccb2ad30f8556b3c8ca0e53a93ae229427c2cd347feedaccb0d5cd4"
+        },
+        {
+          "path": "forest/Rock_1_H_Color1.bin",
+          "bytes": 5104,
+          "sha256": "173ea8caa51a2d49362fbf0aa2bc7397b0bc92d56fc00c0d922de21c0e585fd2"
+        },
+        {
+          "path": "forest/Rock_1_H_Color1.gltf",
+          "bytes": 3039,
+          "sha256": "98b087745f3fd03544ca5c739130185303cf05d18bbb776d7412416f98c24161"
+        },
+        {
+          "path": "forest/Rock_1_I_Color1.bin",
+          "bytes": 4976,
+          "sha256": "6a94e9ff17720d815e745c708c4cfa48f22f442aa356023dec2b9f6d0606d872"
+        },
+        {
+          "path": "forest/Rock_1_I_Color1.gltf",
+          "bytes": 3038,
+          "sha256": "7ddfc8f4009411f0331aac9c165a52cb19bc729deeef16f97668430e0817813c"
+        },
+        {
+          "path": "forest/Rock_1_J_Color1.bin",
+          "bytes": 30808,
+          "sha256": "49cf706f4885deb2a4079f22fe1f3000922229435e7f8af4928ab1d7443c9595"
+        },
+        {
+          "path": "forest/Rock_1_J_Color1.gltf",
+          "bytes": 3046,
+          "sha256": "8821410d8b261346bd18547f41ac7d465f2254007d8fa6fee6ecf43c072979c9"
+        },
+        {
+          "path": "forest/Rock_1_K_Color1.bin",
+          "bytes": 30984,
+          "sha256": "e1a2d4e85398e34cfbc18ef085c916c60d89eb877622133f4874cc58dd59a881"
+        },
+        {
+          "path": "forest/Rock_1_K_Color1.gltf",
+          "bytes": 3060,
+          "sha256": "1e7a18bd9e03a00a25ec15953391f0c65f7822951e752c360e676d09604c6cf6"
+        },
+        {
+          "path": "forest/Rock_1_L_Color1.bin",
+          "bytes": 29300,
+          "sha256": "c7ba0a00b57b538a5ab095a705ca3d13eef2e7eb22c845c3db257e21c937eef1"
+        },
+        {
+          "path": "forest/Rock_1_L_Color1.gltf",
+          "bytes": 3044,
+          "sha256": "407620a460c45a22275d4bbb5c219f5085ff44f811f1b5d6646232e93b2625a4"
+        },
+        {
+          "path": "forest/Rock_1_M_Color1.bin",
+          "bytes": 30176,
+          "sha256": "8fd44261459863bb6ff074a58e608c2c651fdd2c5e53c14d2416246d26c0b904"
+        },
+        {
+          "path": "forest/Rock_1_M_Color1.gltf",
+          "bytes": 3044,
+          "sha256": "e3cc71684110ffbe6a68d173979aeac3e56ae6215e821db1840c2c62ef0c92ad"
+        },
+        {
+          "path": "forest/Rock_1_N_Color1.bin",
+          "bytes": 20596,
+          "sha256": "557c2d16ff3eae50a1e2eea4feb5610c2a0bbfda6ee3c712eb412b00d3c43d9d"
+        },
+        {
+          "path": "forest/Rock_1_N_Color1.gltf",
+          "bytes": 3042,
+          "sha256": "a7b66a3716a41ae0424428cf490cd930e420cd3fb5fd003b2d8254fc172b1b05"
+        },
+        {
+          "path": "forest/Rock_1_O_Color1.bin",
+          "bytes": 12348,
+          "sha256": "41eefd97add129ba44fc5769a64f5e1098fdb23a8efacc2d80a3e88b301e210e"
+        },
+        {
+          "path": "forest/Rock_1_O_Color1.gltf",
+          "bytes": 3037,
+          "sha256": "60e50199f545865b7ef7cec4a3cb99ef71a813b6e2079cd4d1f0f0a626e61964"
+        },
+        {
+          "path": "forest/Rock_1_P_Color1.bin",
+          "bytes": 22784,
+          "sha256": "0b9c46ff16db62561e1c6013a85f7cc7a9764ec845fbac9e89e86e215f134aba"
+        },
+        {
+          "path": "forest/Rock_1_P_Color1.gltf",
+          "bytes": 3042,
+          "sha256": "6de7e9168f3c6b0f568945294078b5a2c31e59bb8361b6d0464de98c55e4cc8f"
+        },
+        {
+          "path": "forest/Rock_1_Q_Color1.bin",
+          "bytes": 30024,
+          "sha256": "0f79ea568c8de7dc347ac3a05fb137ab2d4330924651a691f7938ae32024e8e4"
+        },
+        {
+          "path": "forest/Rock_1_Q_Color1.gltf",
+          "bytes": 3067,
+          "sha256": "108a419dcbd0223cef117d3136c28a0d738e06be9b63783e3e8c9197d219be4c"
+        },
+        {
+          "path": "forest/Rock_2_A_Color1.bin",
+          "bytes": 840,
+          "sha256": "ffee05221dda59936ba6c94112b65bb3c8a38e938fbb219a2808a1590daab050"
+        },
+        {
+          "path": "forest/Rock_2_A_Color1.gltf",
+          "bytes": 3052,
+          "sha256": "bbe5254a4c13be7f4aa017297a9458db441e99234028af378d29207d80be4696"
+        },
+        {
+          "path": "forest/Rock_2_B_Color1.bin",
+          "bytes": 1416,
+          "sha256": "f707450455fd603313ffe97d9ee13f0899432c977971abe50b07cce3ca4ea72d"
+        },
+        {
+          "path": "forest/Rock_2_B_Color1.gltf",
+          "bytes": 3053,
+          "sha256": "0b48492d69655b4cde7678d3582d045147e171f40edf34f28e4ff81db4a1f7ca"
+        },
+        {
+          "path": "forest/Rock_2_C_Color1.bin",
+          "bytes": 3336,
+          "sha256": "6ec3a29d90b0aed5a4a0be8aaad34e50d9171fcec1d0463ff100564feb2c0e9c"
+        },
+        {
+          "path": "forest/Rock_2_C_Color1.gltf",
+          "bytes": 3054,
+          "sha256": "22ef2dedc006b9a5bffaa2b4f8779face5a92c34e2bb813d1e2904fa7c554cbf"
+        },
+        {
+          "path": "forest/Rock_2_D_Color1.bin",
+          "bytes": 3336,
+          "sha256": "0d843a434c63ede6d8b58803b3e4d0c1f0a90a8b2704e70f35f96cb30a411f43"
+        },
+        {
+          "path": "forest/Rock_2_D_Color1.gltf",
+          "bytes": 3055,
+          "sha256": "fd02b9e800720a4923ee2c5c46e23f3c8a4d97d323a21aa86e08758c646367eb"
+        },
+        {
+          "path": "forest/Rock_2_E_Color1.bin",
+          "bytes": 14916,
+          "sha256": "1ba0bd064b93f26b30a06259c4b829bce78ec2c873e312cdf90f0035c71024df"
+        },
+        {
+          "path": "forest/Rock_2_E_Color1.gltf",
+          "bytes": 3062,
+          "sha256": "89158bd76e8ebb3c7d0615bee0c8f5b856c81c80d2710eef4a2c4c8b3231862d"
+        },
+        {
+          "path": "forest/Rock_2_F_Color1.bin",
+          "bytes": 14600,
+          "sha256": "ed8547761a87d2a391e82d93ea69fd446bd758a2bc32f95f3fd97f2169727346"
+        },
+        {
+          "path": "forest/Rock_2_F_Color1.gltf",
+          "bytes": 3059,
+          "sha256": "9cb36f8bcd5ae071901e3b319843a6c33555076e4fb5bf98d8b4b5b99cec73bb"
+        },
+        {
+          "path": "forest/Rock_2_G_Color1.bin",
+          "bytes": 16240,
+          "sha256": "3241845a2ff8d65286557f43b2d8f666593e5b05c72d82ac91e94ce4f7250234"
+        },
+        {
+          "path": "forest/Rock_2_G_Color1.gltf",
+          "bytes": 3062,
+          "sha256": "f0445e44e6203fb634e79fa87152ece252bc295a8952d88378e1b5edde3f01e4"
+        },
+        {
+          "path": "forest/Rock_2_H_Color1.bin",
+          "bytes": 10704,
+          "sha256": "380dd8485a8a47e04601856dc19fd96498e0c8d10d78d8555a2c1186f6fe325d"
+        },
+        {
+          "path": "forest/Rock_2_H_Color1.gltf",
+          "bytes": 3060,
+          "sha256": "3b60e5b844a146ff41a9e31fba2d628018876b1ced246bc2a7dc5e00ea10fbda"
+        },
+        {
+          "path": "forest/Rock_3_A_Color1.bin",
+          "bytes": 4440,
+          "sha256": "8659daf4bc724f414eda02193bc6a48132b595eef7c62009b7c0a3d93a8aa9b2"
+        },
+        {
+          "path": "forest/Rock_3_A_Color1.gltf",
+          "bytes": 3056,
+          "sha256": "65484de298f09f7ed5bcf781d7febde1a2df4f0f76b8a6396591240963152c88"
+        },
+        {
+          "path": "forest/Rock_3_B_Color1.bin",
+          "bytes": 4568,
+          "sha256": "fc36ba2b662b90cd61f9ca6a7ca65dbd6176f2984102433053df7d786b6b707d"
+        },
+        {
+          "path": "forest/Rock_3_B_Color1.gltf",
+          "bytes": 3060,
+          "sha256": "ab3aafc815c562c4b96fc4ca4bb9cd359a8f0fedeb9775caa19cf116f031fe74"
+        },
+        {
+          "path": "forest/Rock_3_C_Color1.bin",
+          "bytes": 4216,
+          "sha256": "830aa5a7a07ef80b5931847b57aa11b6a763a72694b5ad608035d2bd1687d9f7"
+        },
+        {
+          "path": "forest/Rock_3_C_Color1.gltf",
+          "bytes": 3057,
+          "sha256": "b0529fafa4fcdab3123442a4bf348999cac2703009935e98e36ea3c2a0cc01a1"
+        },
+        {
+          "path": "forest/Rock_3_D_Color1.bin",
+          "bytes": 4312,
+          "sha256": "97c7684de27a0ab5107a4ff25f285ac9640a40ec0ed37b9f751c3b3b977126ef"
+        },
+        {
+          "path": "forest/Rock_3_D_Color1.gltf",
+          "bytes": 3057,
+          "sha256": "d2c6c0ed007a643d90241801c7ad0d84e476358d708775348462d03baa717917"
+        },
+        {
+          "path": "forest/Rock_3_E_Color1.bin",
+          "bytes": 4376,
+          "sha256": "187a51798a6ba608f296890fabc2835e4169f97c8fe4f9b0cda65075c11d0cf6"
+        },
+        {
+          "path": "forest/Rock_3_E_Color1.gltf",
+          "bytes": 3055,
+          "sha256": "09d970738392eae90fda589d6ec11c54b7356a5cf1f6b64b2411774635a03138"
+        },
+        {
+          "path": "forest/Rock_3_F_Color1.bin",
+          "bytes": 5208,
+          "sha256": "41398421613d1800d71e546674e41c62cd209f9b3e4a544e19cd03b9b496d8d2"
+        },
+        {
+          "path": "forest/Rock_3_F_Color1.gltf",
+          "bytes": 3056,
+          "sha256": "01682b9c8709fcfb480dd5f7f254a8a9491bae18978f9ae7d2183e5d8752f725"
+        },
+        {
+          "path": "forest/Rock_3_G_Color1.bin",
+          "bytes": 7216,
+          "sha256": "0b22b177f68960faeef0f6a93ecf78449c887440dda7df6c7b4039eb9e20d7e2"
+        },
+        {
+          "path": "forest/Rock_3_G_Color1.gltf",
+          "bytes": 3057,
+          "sha256": "9835ef4541e6b2867678efc280e399481a909f4a11b71a2a46f4a0ae2f093883"
+        },
+        {
+          "path": "forest/Rock_3_H_Color1.bin",
+          "bytes": 6704,
+          "sha256": "cf347e34f8839cf99db7d2cfdb38a07ac823c1bd578107f33b2a46edab26b3a0"
+        },
+        {
+          "path": "forest/Rock_3_H_Color1.gltf",
+          "bytes": 3057,
+          "sha256": "0605b9ccb31940363ebf13b66a562c94de809efd01a7498e8b330a0198171237"
+        },
+        {
+          "path": "forest/Rock_3_I_Color1.bin",
+          "bytes": 6352,
+          "sha256": "5176add3826445aa4ff8bf7cb282554f31af10e9e6ea5ca7923df039beba2e44"
+        },
+        {
+          "path": "forest/Rock_3_I_Color1.gltf",
+          "bytes": 3054,
+          "sha256": "9a9a3c09c0b395968bb79ba344087ec0802b27345eb297699a7000a79d255376"
+        },
+        {
+          "path": "forest/Rock_3_J_Color1.bin",
+          "bytes": 8016,
+          "sha256": "ce6f46fdea833b5ae7d375f64350d834b4e3e360ddf5d19e7ab553b691f8f604"
+        },
+        {
+          "path": "forest/Rock_3_J_Color1.gltf",
+          "bytes": 3055,
+          "sha256": "2716741531cca7bb19eabd9ab91cee8d38df217fb42b88bd1cacea178a8ef588"
+        },
+        {
+          "path": "forest/Rock_3_K_Color1.bin",
+          "bytes": 8016,
+          "sha256": "e6e63fc97ecb6f0c3461ce91187c93f5df3d13fa0c389db4ec87a9f8f5c6928d"
+        },
+        {
+          "path": "forest/Rock_3_K_Color1.gltf",
+          "bytes": 3056,
+          "sha256": "6e8943abb90af159fe80b2e547cf3829bce8265a8a297b333a3580868504c455"
+        },
+        {
+          "path": "forest/Rock_3_L_Color1.bin",
+          "bytes": 6544,
+          "sha256": "6096b3a60cd47de27fe106be08fe2c8a1bf52b654a6804cfe667d95bf784a6b6"
+        },
+        {
+          "path": "forest/Rock_3_L_Color1.gltf",
+          "bytes": 3057,
+          "sha256": "70730da0ccdae298d9673bb0aa2eda9a85a46fab2b1a1979ce85d4e5bb23b492"
+        },
+        {
+          "path": "forest/Rock_3_M_Color1.bin",
+          "bytes": 11296,
+          "sha256": "8a7f420d8ba7394a928f8f5652a298eee9d44dd72fc5cbff3522bb98ba04b95c"
+        },
+        {
+          "path": "forest/Rock_3_M_Color1.gltf",
+          "bytes": 3054,
+          "sha256": "e9d200a5da70cca763ab8e7c608de5175aef34f02c1fcb1c7b7b8f0ba173a153"
+        },
+        {
+          "path": "forest/Rock_3_N_Color1.bin",
+          "bytes": 12256,
+          "sha256": "1ba8e947e50c2c32c72353ceff58e8d5874cf17e52ad6ba903292f5c39bc3f7f"
+        },
+        {
+          "path": "forest/Rock_3_N_Color1.gltf",
+          "bytes": 3059,
+          "sha256": "198d1a30b8643973d45587eef76547c260c15ce3a0093341bb4bcc53bd8c7f4a"
+        },
+        {
+          "path": "forest/Rock_3_O_Color1.bin",
+          "bytes": 12320,
+          "sha256": "9d812f3db93337c6858a8882f0f5f87a0f15293f0f902e1638cc642795fd71b1"
+        },
+        {
+          "path": "forest/Rock_3_O_Color1.gltf",
+          "bytes": 3058,
+          "sha256": "627dc5bce046427c10ac4e0db7a6f6c177439656314b82dfe2ce223fedaec273"
+        },
+        {
+          "path": "forest/Rock_3_P_Color1.bin",
+          "bytes": 10816,
+          "sha256": "c60665161da13e10cb018d8dce93cd583680b3de0807b70afbe577300a9bda94"
+        },
+        {
+          "path": "forest/Rock_3_P_Color1.gltf",
+          "bytes": 3057,
+          "sha256": "e41d115f30f996965e73973ca1cd31b183c6ef961cc371b875e7c5492054ad26"
+        },
+        {
+          "path": "forest/Rock_3_Q_Color1.bin",
+          "bytes": 13312,
+          "sha256": "6d95a4a7130db2bd80141cec1e675136206307a831baa66a3cfdbbf2b47c5c43"
+        },
+        {
+          "path": "forest/Rock_3_Q_Color1.gltf",
+          "bytes": 3058,
+          "sha256": "ebe67979f6cea47730b3498d46972f8a4a7069e5150a631eaeaf90e3559d087f"
+        },
+        {
+          "path": "forest/Rock_3_R_Color1.bin",
+          "bytes": 10272,
+          "sha256": "14acd0e022aebea36f78a6773b944f84094c2b9bc0271bfb8e726078ddde296e"
+        },
+        {
+          "path": "forest/Rock_3_R_Color1.gltf",
+          "bytes": 3055,
+          "sha256": "2bffe23082f6638d43ba5851cbb7f4a70ad1fb6844c0cb9739fb548a84dd5521"
+        },
+        {
+          "path": "forest/SOURCE.json",
+          "bytes": 293,
+          "sha256": "7fc96f48ec6a15db7ce6b10cc561250d74507937cb988f53b4800e35222c9240"
+        },
+        {
+          "path": "forest/Tree_1_A_Color1.bin",
+          "bytes": 17484,
+          "sha256": "76a10ffa74960d730f0895a2599e5d56cc50a553d6624a14422420eb9b083979"
+        },
+        {
+          "path": "forest/Tree_1_A_Color1.gltf",
+          "bytes": 3061,
+          "sha256": "9d972eba9d61fc563cb7c3248f1be057190859ce2554ad2032df27c3d09e06c6"
+        },
+        {
+          "path": "forest/Tree_1_B_Color1.bin",
+          "bytes": 19016,
+          "sha256": "5d4129bdc6f13a24e076f7fa870c6695dc20491f4820c54153fe9d1d90b40522"
+        },
+        {
+          "path": "forest/Tree_1_B_Color1.gltf",
+          "bytes": 3058,
+          "sha256": "03f4773b06adf252ac8ca0a9bfdc77f315c1f4036b6151796f110b4897e586c5"
+        },
+        {
+          "path": "forest/Tree_1_C_Color1.bin",
+          "bytes": 46296,
+          "sha256": "b5d131c607d96b71583e515a48e28c22b1c67831a0290c850aa32c8980480eed"
+        },
+        {
+          "path": "forest/Tree_1_C_Color1.gltf",
+          "bytes": 3064,
+          "sha256": "ffb1e44646cd8dbe9902dd31bf94e64e1a3de5523d1b1f819acdbef09b42d45f"
+        },
+        {
+          "path": "forest/Tree_2_A_Color1.bin",
+          "bytes": 8192,
+          "sha256": "fd413ad809ff30939faf1190194654892066aba94f67ec6f96ce257fa5b34e35"
+        },
+        {
+          "path": "forest/Tree_2_A_Color1.gltf",
+          "bytes": 3057,
+          "sha256": "793570b93cd350b935bc88c766317675890f102d157965d2aca3d8daef5ee49b"
+        },
+        {
+          "path": "forest/Tree_2_B_Color1.bin",
+          "bytes": 11688,
+          "sha256": "90e260b69154a83b1799d68778fb35ddeaaf5f0eb69ac67384c99770ed7bf821"
+        },
+        {
+          "path": "forest/Tree_2_B_Color1.gltf",
+          "bytes": 3059,
+          "sha256": "3094d793c2625c2543c1c8106864426f6c61cfe13b2cff0a2c133aec23065408"
+        },
+        {
+          "path": "forest/Tree_2_C_Color1.bin",
+          "bytes": 15440,
+          "sha256": "4fc63a4762f8aa024e777707522fb7d3e8cd599182b9392e7ac4e70e245286ff"
+        },
+        {
+          "path": "forest/Tree_2_C_Color1.gltf",
+          "bytes": 3060,
+          "sha256": "55a4e60b889a4823b72f1741b78ad6e8d6dd3e3f43b74a19d840ca7c7b4b1f97"
+        },
+        {
+          "path": "forest/Tree_2_D_Color1.bin",
+          "bytes": 32920,
+          "sha256": "d9caf803a9cf09b08a3b33a77d7f42451a82328548fd41fd0c96e0237af57414"
+        },
+        {
+          "path": "forest/Tree_2_D_Color1.gltf",
+          "bytes": 3060,
+          "sha256": "5587568a8bea42e3a0fbdce36f16888a62fdb923b283c49317e10b03c2e4aaec"
+        },
+        {
+          "path": "forest/Tree_2_E_Color1.bin",
+          "bytes": 36016,
+          "sha256": "de47d12dfbfe1074f430540659ab5e258a2d2f1be33ecdab2cef1b362a87506d"
+        },
+        {
+          "path": "forest/Tree_2_E_Color1.gltf",
+          "bytes": 3060,
+          "sha256": "5330b533a759a013ad752be03a8c85a49f304e45d777b1da99522eeb5a1d74a9"
+        },
+        {
+          "path": "forest/Tree_3_A_Color1.bin",
+          "bytes": 29740,
+          "sha256": "ea2f20e847bd3bcf748b9f1cf9932abe45967db8dcacfeafaea1f07e3da6a2e9"
+        },
+        {
+          "path": "forest/Tree_3_A_Color1.gltf",
+          "bytes": 3061,
+          "sha256": "a5140f21978004544844df4c2969625724c2c263e74f798716ea9e115216a230"
+        },
+        {
+          "path": "forest/Tree_3_B_Color1.bin",
+          "bytes": 29288,
+          "sha256": "c7b09e0fd302d2a96b02aaa7a5907f2a364a1e7287ce3cb3287406dae331987b"
+        },
+        {
+          "path": "forest/Tree_3_B_Color1.gltf",
+          "bytes": 3060,
+          "sha256": "13f4ede4272f07308d06da5d6f6ab8ff894e3175ed964de8bc356fa1a1ccf319"
+        },
+        {
+          "path": "forest/Tree_3_C_Color1.bin",
+          "bytes": 71288,
+          "sha256": "4b07b4e42e49ac5753817daa56573f262111c818334fc28169d66f67ab1e0de7"
+        },
+        {
+          "path": "forest/Tree_3_C_Color1.gltf",
+          "bytes": 3066,
+          "sha256": "a1da502f099639153a6fa02c01b61f684f9c674754da71fe6939dc0b92e97b13"
+        },
+        {
+          "path": "forest/Tree_4_A_Color1.bin",
+          "bytes": 12568,
+          "sha256": "eeb22bdc0ece9941865139476afcaf5dadd8285751321770886d1a065b8512d6"
+        },
+        {
+          "path": "forest/Tree_4_A_Color1.gltf",
+          "bytes": 3061,
+          "sha256": "14f8f50af9f9cf8d2bb488cae15613f9e2ed6ce0002d2aa11721a2efc2ba3010"
+        },
+        {
+          "path": "forest/Tree_4_B_Color1.bin",
+          "bytes": 16092,
+          "sha256": "155be76b0ec5d12a246c6b686156a2fa0d8ca086a67ef156633b7df681143d54"
+        },
+        {
+          "path": "forest/Tree_4_B_Color1.gltf",
+          "bytes": 3059,
+          "sha256": "7dad365ccc9e9da3e1cbcdbd5ec16b67f0058a3c76aaa06a1bfaa17c706f1ce5"
+        },
+        {
+          "path": "forest/Tree_4_C_Color1.bin",
+          "bytes": 31140,
+          "sha256": "e1cb6ef336e47ab073aedf0267a81cba500499b9edb0fb514c1b58a3a5d11f4f"
+        },
+        {
+          "path": "forest/Tree_4_C_Color1.gltf",
+          "bytes": 3061,
+          "sha256": "b0ad5efa06e081126366879cca48cf26563ef712899170023c95558b13ef058a"
+        },
+        {
+          "path": "forest/Tree_Bare_1_A_Color1.bin",
+          "bytes": 11736,
+          "sha256": "6967f9187c6d6e5b829a022921115fac8990a693b800cf65bdff181e6b5e20d3"
+        },
+        {
+          "path": "forest/Tree_Bare_1_A_Color1.gltf",
+          "bytes": 3075,
+          "sha256": "f246cae013cb68c80b58d2493accc6b60bd2b6a11f5567879d5ef1b73b44d8db"
+        },
+        {
+          "path": "forest/Tree_Bare_1_B_Color1.bin",
+          "bytes": 11176,
+          "sha256": "e35691c366128c4469b09b75c3a9bb791dc490c86f07d52b51f52dac04497255"
+        },
+        {
+          "path": "forest/Tree_Bare_1_B_Color1.gltf",
+          "bytes": 3074,
+          "sha256": "2f2ce28371025026808141f0765f01fd20ce727c381bf472f40ba63adc501ae8"
+        },
+        {
+          "path": "forest/Tree_Bare_1_C_Color1.bin",
+          "bytes": 35632,
+          "sha256": "34eba3948880b8521e8d0d3d9d6913a96dcb4c87d8b6ad302b1aa7051424fae1"
+        },
+        {
+          "path": "forest/Tree_Bare_1_C_Color1.gltf",
+          "bytes": 3079,
+          "sha256": "eab8a08bf1f5cbd916467bc5a6ae1ec6625f6ee34865a8ee580a656a59f8e5f2"
+        },
+        {
+          "path": "forest/Tree_Bare_2_A_Color1.bin",
+          "bytes": 15000,
+          "sha256": "399090bcbf7e791f588256001fa4a9c3bb7c96332d09eb56281f58e81def9e06"
+        },
+        {
+          "path": "forest/Tree_Bare_2_A_Color1.gltf",
+          "bytes": 3077,
+          "sha256": "426327b23a1e52e6f2e4d5e977794cf92fc4121ea92d9c82ed475ead5b71cb50"
+        },
+        {
+          "path": "forest/Tree_Bare_2_B_Color1.bin",
+          "bytes": 16768,
+          "sha256": "1cb0b499c72cd953c2e78141d931af8af2727a570957b4aaaebc272e2f27268b"
+        },
+        {
+          "path": "forest/Tree_Bare_2_B_Color1.gltf",
+          "bytes": 3077,
+          "sha256": "66ae98cbce3cbf97ebb246d66f4e8c6973328c0afa19635efc975bf899cd217f"
+        },
+        {
+          "path": "forest/Tree_Bare_2_C_Color1.bin",
+          "bytes": 23100,
+          "sha256": "dcce0e6d561de20b140e4869419d6de11d0226115d955fede57f7c1280bb1365"
+        },
+        {
+          "path": "forest/Tree_Bare_2_C_Color1.gltf",
+          "bytes": 3076,
+          "sha256": "d8368002845a42244c30b08a897ec0f47e9b178725e6d86f10fab77443039e4e"
+        }
+      ]
+    },
+    {
+      "id": "furniture",
+      "author": "Kay Lousberg",
+      "license": "CC0-1.0",
+      "source": "https://github.com/KayKit-Game-Assets/KayKit-Furniture-Bits-1.0",
+      "revision": "96d5930a8dbdb363409bbc2d3341718b00e17c9c",
+      "license_file": "furniture/LICENSE.txt",
+      "models": [
+        "furniture/armchair.gltf",
+        "furniture/armchair_pillows.gltf",
+        "furniture/bed_double_A.gltf",
+        "furniture/bed_double_B.gltf",
+        "furniture/bed_single_A.gltf",
+        "furniture/bed_single_B.gltf",
+        "furniture/book_set.gltf",
+        "furniture/book_single.gltf",
+        "furniture/cabinet_medium.gltf",
+        "furniture/cabinet_medium_decorated.gltf",
+        "furniture/cabinet_small.gltf",
+        "furniture/cabinet_small_decorated.gltf",
+        "furniture/cactus_medium_A.gltf",
+        "furniture/cactus_medium_B.gltf",
+        "furniture/cactus_small_A.gltf",
+        "furniture/cactus_small_B.gltf",
+        "furniture/chair_A.gltf",
+        "furniture/chair_A_wood.gltf",
+        "furniture/chair_B.gltf",
+        "furniture/chair_B_wood.gltf",
+        "furniture/chair_C.gltf",
+        "furniture/chair_stool.gltf",
+        "furniture/chair_stool_wood.gltf",
+        "furniture/couch.gltf",
+        "furniture/couch_pillows.gltf",
+        "furniture/lamp_standing.gltf",
+        "furniture/lamp_table.gltf",
+        "furniture/pictureframe_large_A.gltf",
+        "furniture/pictureframe_large_B.gltf",
+        "furniture/pictureframe_medium.gltf",
+        "furniture/pictureframe_small_A.gltf",
+        "furniture/pictureframe_small_B.gltf",
+        "furniture/pictureframe_small_C.gltf",
+        "furniture/pictureframe_standing_A.gltf",
+        "furniture/pictureframe_standing_B.gltf",
+        "furniture/pillow_A.gltf",
+        "furniture/pillow_B.gltf",
+        "furniture/rug_oval_A.gltf",
+        "furniture/rug_oval_B.gltf",
+        "furniture/rug_rectangle_A.gltf",
+        "furniture/rug_rectangle_B.gltf",
+        "furniture/rug_rectangle_stripes_A.gltf",
+        "furniture/rug_rectangle_stripes_B.gltf",
+        "furniture/shelf_A_big.gltf",
+        "furniture/shelf_A_small.gltf",
+        "furniture/shelf_B_large.gltf",
+        "furniture/shelf_B_large_decorated.gltf",
+        "furniture/shelf_B_small.gltf",
+        "furniture/shelf_B_small_decorated.gltf",
+        "furniture/table_low.gltf",
+        "furniture/table_medium.gltf",
+        "furniture/table_medium_long.gltf",
+        "furniture/table_small.gltf"
+      ],
+      "files": [
+        {
+          "path": "furniture/armchair.bin",
+          "bytes": 17312,
+          "sha256": "7e8762add696dc52fe545c3f25d6d25331e70f2fafbdf9ea79de75a75effec2b"
+        },
+        {
+          "path": "furniture/armchair.gltf",
+          "bytes": 3019,
+          "sha256": "5236bd9c4945fb60d5ac4d4b064c0c0c74bcded1c280b474d3899a1d84d68b25"
+        },
+        {
+          "path": "furniture/armchair_pillows.bin",
+          "bytes": 20420,
+          "sha256": "b40556981e1bd4593ccaf7a14593f32e20859c2f2e6022a0ed0d1a278a4194a0"
+        },
+        {
+          "path": "furniture/armchair_pillows.gltf",
+          "bytes": 3036,
+          "sha256": "1344db27a72870fb0a1b43ffcfe12f5f3dd3284f5dcecd10ed593d6e0d940f79"
+        },
+        {
+          "path": "furniture/bed_double_A.bin",
+          "bytes": 24648,
+          "sha256": "0eb1bc50981bdb0c0ff95b30b6783dc5d40fd61497a4a21165d366e301c6e53c"
+        },
+        {
+          "path": "furniture/bed_double_A.gltf",
+          "bytes": 3011,
+          "sha256": "55451127bbeb9734bb88c1a761a6246eaaf89ac33eee2f703d78053719e5c4e5"
+        },
+        {
+          "path": "furniture/bed_double_B.bin",
+          "bytes": 27856,
+          "sha256": "34c2a62639167e346b916fad93823d7a9cf25b4a93b71fd634dfa50c6bbc24ed"
+        },
+        {
+          "path": "furniture/bed_double_B.gltf",
+          "bytes": 3011,
+          "sha256": "f74f5d6d126f4821294cdf0985e7365743d28893098e625f01b58fdb75093cb4"
+        },
+        {
+          "path": "furniture/bed_single_A.bin",
+          "bytes": 22044,
+          "sha256": "fc7631db4540d31cbe76dac3c672bc8836ee302796d14bba428bda84b9237f5b"
+        },
+        {
+          "path": "furniture/bed_single_A.gltf",
+          "bytes": 3009,
+          "sha256": "7b2852bb66bf82cad3e0d03a499b1480879790fa66b645347e3e73761c4fe3f5"
+        },
+        {
+          "path": "furniture/bed_single_B.bin",
+          "bytes": 25348,
+          "sha256": "a1b26c1848d104381b311cae4dbd4b6d574a3d79e6c9fe88087405f3a99bb918"
+        },
+        {
+          "path": "furniture/bed_single_B.gltf",
+          "bytes": 3009,
+          "sha256": "f702283107f35fe400aa55775baa9515cbd9adaf9e2003b3441fd5cbedb9a07c"
+        },
+        {
+          "path": "furniture/book_set.bin",
+          "bytes": 11576,
+          "sha256": "3aa3fcc774b46c7ffe2b1a3109bf006749163bbb392cfca930b34bfba4b67853"
+        },
+        {
+          "path": "furniture/book_set.gltf",
+          "bytes": 3051,
+          "sha256": "437bfaba3f3413a0b825627a1cb905765a191f4708be51838c9b60c8132cbe61"
+        },
+        {
+          "path": "furniture/book_single.bin",
+          "bytes": 3992,
+          "sha256": "0aa0921f471184039e85488a80041a0b4aee6f68589ad53077eea03f4659d66c"
+        },
+        {
+          "path": "furniture/book_single.gltf",
+          "bytes": 3056,
+          "sha256": "7b86695b060681fc6de8ac70fc1f24b870edcaf84bfe4ed98b7e706ae594d464"
+        },
+        {
+          "path": "furniture/cabinet_medium.bin",
+          "bytes": 23304,
+          "sha256": "3fc4bff757a36226ecb9504dd6e9d031a5a6c957cb9cc2bb636f12ab49e877e6"
+        },
+        {
+          "path": "furniture/cabinet_medium.gltf",
+          "bytes": 3000,
+          "sha256": "139419c479c6f8b38ac24e12ce85bf81a199e05067a544db879f7e403446c9dc"
+        },
+        {
+          "path": "furniture/cabinet_medium_decorated.bin",
+          "bytes": 49020,
+          "sha256": "03b4374eeab5d9d9a7cb83a410b00aff243cf8d3f39ea0230ecceeedd93fbe8f"
+        },
+        {
+          "path": "furniture/cabinet_medium_decorated.gltf",
+          "bytes": 3060,
+          "sha256": "144b417f282e689ad4c40e8357c5ab76ad26fe3ca0fd777cca29d59eb6013a81"
+        },
+        {
+          "path": "furniture/cabinet_small.bin",
+          "bytes": 19468,
+          "sha256": "b29dfd659c0b0f7b5a97377e42b52ebcd8245780bcbf024b383f45ec0e59641d"
+        },
+        {
+          "path": "furniture/cabinet_small.gltf",
+          "bytes": 3001,
+          "sha256": "06ce4ee6232ee68e791927e838bb8e77c11391b7de9ba3141374626a910772e5"
+        },
+        {
+          "path": "furniture/cabinet_small_decorated.bin",
+          "bytes": 27552,
+          "sha256": "b123a747dd82f2088e2e823e9a3e42cb581b42878e67ac9060363c7d612e07f2"
+        },
+        {
+          "path": "furniture/cabinet_small_decorated.gltf",
+          "bytes": 3068,
+          "sha256": "3d241df76df2030583c7ebdc292063b5ded40cf9c642e8cfb18b4e0855f3702a"
+        },
+        {
+          "path": "furniture/cactus_medium_A.bin",
+          "bytes": 17536,
+          "sha256": "be9378a1328b82751ac651de9387d7b20db4ffbb5e1c087b0e634a00ebf7cc0f"
+        },
+        {
+          "path": "furniture/cactus_medium_A.gltf",
+          "bytes": 3072,
+          "sha256": "902c48a87bf8e48a2d72055485eaaeae3aefd91224e5af914aeb42fca99759a8"
+        },
+        {
+          "path": "furniture/cactus_medium_B.bin",
+          "bytes": 17536,
+          "sha256": "3b19e4f559ff111ef66f8bfaea3989f31368ca86d4c46212be4ee26d1a56aee4"
+        },
+        {
+          "path": "furniture/cactus_medium_B.gltf",
+          "bytes": 3072,
+          "sha256": "849e6bf20405548890ebff081970f92a39af6e749a3fbb0ecc8f0363748c5e3b"
+        },
+        {
+          "path": "furniture/cactus_small_A.bin",
+          "bytes": 9320,
+          "sha256": "43dae3699635f54fb84199b7a998c1144690c3e54d6c3fc3c045c38aa54f7fdc"
+        },
+        {
+          "path": "furniture/cactus_small_A.gltf",
+          "bytes": 3071,
+          "sha256": "4e2d93fb22b7f6097f3726b1fc513647873428224c01b17abdbe79c01c1e959b"
+        },
+        {
+          "path": "furniture/cactus_small_B.bin",
+          "bytes": 9320,
+          "sha256": "84b85293ba5ede54f1c970531e679bb181c584adb65bf96ad94c52122319edb3"
+        },
+        {
+          "path": "furniture/cactus_small_B.gltf",
+          "bytes": 3071,
+          "sha256": "f3f9555486151b309d682a94dc120d893167bd8f506f61c20264a23c8b54d38d"
+        },
+        {
+          "path": "furniture/chair_A.bin",
+          "bytes": 16504,
+          "sha256": "8db53212634ccc983dc0e9940f2809b3951abe91d0cc8ad040cf74d7100f19a8"
+        },
+        {
+          "path": "furniture/chair_A.gltf",
+          "bytes": 3022,
+          "sha256": "fdc71044f23c89c5cff9093cff18bac295c9b750e73daf3cbd8ee6ca9e930dbb"
+        },
+        {
+          "path": "furniture/chair_A_wood.bin",
+          "bytes": 16504,
+          "sha256": "726ea8962909becf3d925d272928a8e26a1f345fc9f8f165e7424221c69be733"
+        },
+        {
+          "path": "furniture/chair_A_wood.gltf",
+          "bytes": 3032,
+          "sha256": "e17a16127b9a3e44ef8888c9d52fe7ec09a06b348934627816a538720793af8d"
+        },
+        {
+          "path": "furniture/chair_B.bin",
+          "bytes": 18240,
+          "sha256": "1862f8c8392a67e39219e480ba2aafd19e67bbbfe7c6d3b459f082dea041a1fa"
+        },
+        {
+          "path": "furniture/chair_B.gltf",
+          "bytes": 3049,
+          "sha256": "e9cb04ebee4a60a22a26449b46c22efd3c7a022a3bab937ac813ed30f4392855"
+        },
+        {
+          "path": "furniture/chair_B_wood.bin",
+          "bytes": 18240,
+          "sha256": "223864f633ba3c5fb06e239a907b5f379fe0a3ad4f5c5fff2577e97ef0f6250d"
+        },
+        {
+          "path": "furniture/chair_B_wood.gltf",
+          "bytes": 3059,
+          "sha256": "7a19685725e1878f960e0ce724eaffc9a2a5fe36c0496608dd5328aa73290f03"
+        },
+        {
+          "path": "furniture/chair_C.bin",
+          "bytes": 12608,
+          "sha256": "dbcd655953927997f2a4f61676692d053f4eb261b364fe5441276aa4614cfc9d"
+        },
+        {
+          "path": "furniture/chair_C.gltf",
+          "bytes": 3036,
+          "sha256": "fc042915c24c52f96f0571db348a2de275b15c0065c3e561fce37d4dbc81568a"
+        },
+        {
+          "path": "furniture/chair_stool.bin",
+          "bytes": 10832,
+          "sha256": "c99c96e2440a55c6c08ac929493424b221b11482618229fcf8574baa93ab4566"
+        },
+        {
+          "path": "furniture/chair_stool.gltf",
+          "bytes": 3042,
+          "sha256": "6f830305b9afb97f8d77d52a92971ee237d3012db2ca1abbd4abafc2d82f4c46"
+        },
+        {
+          "path": "furniture/chair_stool_wood.bin",
+          "bytes": 10832,
+          "sha256": "59ebde1791f6c46b6f3880cbe5632e44b123466a1bc7d2d2f3008da9a2a492ac"
+        },
+        {
+          "path": "furniture/chair_stool_wood.gltf",
+          "bytes": 3052,
+          "sha256": "b1670bee678ab5920ad8ef3a6fb7c6146054bb7b859798f86aaac96be5765f35"
+        },
+        {
+          "path": "furniture/couch.bin",
+          "bytes": 21416,
+          "sha256": "00f6c9892aa87e2894e049ba47d697307c158c5096eb41bdd44474d5e7ecf5e0"
+        },
+        {
+          "path": "furniture/couch.gltf",
+          "bytes": 3014,
+          "sha256": "1a5b74b3a3368870783743c5ce7baa61f45f71131dca66af80b35fd4ac63c222"
+        },
+        {
+          "path": "furniture/couch_pillows.bin",
+          "bytes": 27632,
+          "sha256": "3157c7ce9717ff69f198f9da0395d7a57e9ab230f2161990f86e21395608cc3e"
+        },
+        {
+          "path": "furniture/couch_pillows.gltf",
+          "bytes": 3030,
+          "sha256": "d3396c15fc460c5db1e2db95b06bb623140c269369f2e9bc38dc4d3b5807011c"
+        },
+        {
+          "path": "furniture/furniturebits_texture.png",
+          "bytes": 15605,
+          "sha256": "de62db37a80d1801c3d9eb674890ae04b04469e0c149481a51fa250562c628dc"
+        },
+        {
+          "path": "furniture/lamp_standing.bin",
+          "bytes": 11648,
+          "sha256": "ee58a9e2776406071c8ac60714f1b4dd7ad83a11848ee24aec77b297c9d535d9"
+        },
+        {
+          "path": "furniture/lamp_standing.gltf",
+          "bytes": 3034,
+          "sha256": "ff42a083e688c94948493c441d4db51c7e0736336525b3eed4f4da75825b88b7"
+        },
+        {
+          "path": "furniture/lamp_table.bin",
+          "bytes": 12816,
+          "sha256": "c3d4cc2fea09cfb3037b9ece861abf6126cae3226858f18de37bd8cf87a06145"
+        },
+        {
+          "path": "furniture/lamp_table.gltf",
+          "bytes": 3029,
+          "sha256": "7cc2e9f24145551bfc919247e74a414bbd40bc2fde1fb9a1ac33e16cb9d0497b"
+        },
+        {
+          "path": "furniture/LICENSE.txt",
+          "bytes": 827,
+          "sha256": "cd675f2adc31eb5fedaedc1072d8ddc27b917f523682f0561837c03dc56393cb"
+        },
+        {
+          "path": "furniture/pictureframe_large_A.bin",
+          "bytes": 3176,
+          "sha256": "85368442c0af0cc12cd32fa512284391905219dd7a88e3360d69a1a25db2262c"
+        },
+        {
+          "path": "furniture/pictureframe_large_A.gltf",
+          "bytes": 3071,
+          "sha256": "b12aadc4e0179aa9c27a18cd31f5a980159188a20d11cc62b9c5a97e4381c59f"
+        },
+        {
+          "path": "furniture/pictureframe_large_B.bin",
+          "bytes": 3176,
+          "sha256": "ff87db23fa7e1b9c7e55c8a25bbb9b5d37f11bf94c36e1d97b104fa8d9b22660"
+        },
+        {
+          "path": "furniture/pictureframe_large_B.gltf",
+          "bytes": 3054,
+          "sha256": "1ee9d4842d9f4626e08ffce88e34293a7a8b11ffdc1cd0340eb934c209a97cdc"
+        },
+        {
+          "path": "furniture/pictureframe_medium.bin",
+          "bytes": 3176,
+          "sha256": "ae120086448ad5f8c8a2e1a360355f9052f4b7848e5b422b00398827b9355e8d"
+        },
+        {
+          "path": "furniture/pictureframe_medium.gltf",
+          "bytes": 3069,
+          "sha256": "768ebf5e81d2d4dfe87276e70b7373ee541592ca409a57067e5e76626a010926"
+        },
+        {
+          "path": "furniture/pictureframe_small_A.bin",
+          "bytes": 3176,
+          "sha256": "e0e7dd8c5fcbc564e19934d9b820942aaa0637c1a7112e714d56db9d90926db6"
+        },
+        {
+          "path": "furniture/pictureframe_small_A.gltf",
+          "bytes": 3073,
+          "sha256": "4482cf85a994f9ba3ef45fe490858e5633ef0f09767f79a8511b826024e1de85"
+        },
+        {
+          "path": "furniture/pictureframe_small_B.bin",
+          "bytes": 3176,
+          "sha256": "08da006ae3bb669f591b742ce25aa9007068282be3cae1fc43525f623ab25fca"
+        },
+        {
+          "path": "furniture/pictureframe_small_B.gltf",
+          "bytes": 3073,
+          "sha256": "b65a9e655be3dbdfa02c0363bf5652461b480f53a584a3749d19e26120435bfa"
+        },
+        {
+          "path": "furniture/pictureframe_small_C.bin",
+          "bytes": 3176,
+          "sha256": "0b4a3ef34939cf0232bf0d01a398095238704385314e02c196e44d38c9322a14"
+        },
+        {
+          "path": "furniture/pictureframe_small_C.gltf",
+          "bytes": 3071,
+          "sha256": "ca88e60a46bfa85e6b22bd318b2d2aac33a247ab0d480ae995fa13157f4d2731"
+        },
+        {
+          "path": "furniture/pictureframe_standing_A.bin",
+          "bytes": 4092,
+          "sha256": "5c1f0b5344fea1938b5058bc6f1f5b402593728a6d0b926e3eb542e1de0807d3"
+        },
+        {
+          "path": "furniture/pictureframe_standing_A.gltf",
+          "bytes": 3050,
+          "sha256": "214ae94eacc35984cfec9185ef05e6c930bea45c974b3cec013e991b841fae1b"
+        },
+        {
+          "path": "furniture/pictureframe_standing_B.bin",
+          "bytes": 4188,
+          "sha256": "e94f9884301a778cee61c3c03b63e7c013a66a1dc32f42f75e25650e9918c203"
+        },
+        {
+          "path": "furniture/pictureframe_standing_B.gltf",
+          "bytes": 3081,
+          "sha256": "93933e6d9b96b8f3718e2dc7be1723e8bf8604f35dd035796a88618f2a33dddc"
+        },
+        {
+          "path": "furniture/pillow_A.bin",
+          "bytes": 2724,
+          "sha256": "9a295dd293a96e518b0388d3cfcbc7c0ce491e46cfe2c5e3affa016b99e8c0ff"
+        },
+        {
+          "path": "furniture/pillow_A.gltf",
+          "bytes": 3029,
+          "sha256": "c24247361c709675257b516dfab950708adf8c086710e8a1fc85e572ea5ebb61"
+        },
+        {
+          "path": "furniture/pillow_B.bin",
+          "bytes": 2724,
+          "sha256": "4cf9482b7fc816e038da3f25a793761b30d60880cb24b4f04ce1aee5f07f9d53"
+        },
+        {
+          "path": "furniture/pillow_B.gltf",
+          "bytes": 3029,
+          "sha256": "cf47391e684e93241ba5f9db6bb1e518700fe3a7a79b7f58c40e38ee62e9e36d"
+        },
+        {
+          "path": "furniture/rug_oval_A.bin",
+          "bytes": 6560,
+          "sha256": "4d55cba0cc3e86c930b320a14a25d2742e8bd214f298bfbf23f73329b0cea32e"
+        },
+        {
+          "path": "furniture/rug_oval_A.gltf",
+          "bytes": 2970,
+          "sha256": "5d49e065dcb89c0585a17c41823b19788c6e41ab2d8dd45299250241911b1231"
+        },
+        {
+          "path": "furniture/rug_oval_B.bin",
+          "bytes": 6560,
+          "sha256": "57804d2de6c6ce964b5e597d288492912d99fc90a311e86ea6e80a6a22087a55"
+        },
+        {
+          "path": "furniture/rug_oval_B.gltf",
+          "bytes": 2970,
+          "sha256": "34e61ec3d96e4af2de6691fa376796469d157f82f91fbc69d69a2e364ce95851"
+        },
+        {
+          "path": "furniture/rug_rectangle_A.bin",
+          "bytes": 1800,
+          "sha256": "10eb71fc2b20b056b6186526d451ee0a560c425495402d7818f4413795aba506"
+        },
+        {
+          "path": "furniture/rug_rectangle_A.gltf",
+          "bytes": 2971,
+          "sha256": "892417306a01eac711c6af97b148fc152d375940ec3660964b36e10ea2a8cfda"
+        },
+        {
+          "path": "furniture/rug_rectangle_B.bin",
+          "bytes": 1800,
+          "sha256": "d60abedef14aed184c9231fc59ff296bd9435b8fe28844804c5aa4515beb3b70"
+        },
+        {
+          "path": "furniture/rug_rectangle_B.gltf",
+          "bytes": 2971,
+          "sha256": "03fba0522315e872a545fe915f111aaaa54d5682329766e98e1fcb6e9a78ba51"
+        },
+        {
+          "path": "furniture/rug_rectangle_stripes_A.bin",
+          "bytes": 2712,
+          "sha256": "4ce28e95c940d486b3bb94e91b79a8ad9633b3628dbd6f07be03a6ec6b3ac579"
+        },
+        {
+          "path": "furniture/rug_rectangle_stripes_A.gltf",
+          "bytes": 2988,
+          "sha256": "daeafdd3efd5c2d3781426d1bb48ac6dc31893dea30abd3e6f2b22ff70890c55"
+        },
+        {
+          "path": "furniture/rug_rectangle_stripes_B.bin",
+          "bytes": 2712,
+          "sha256": "b4fbacb59a9289490f74d059e921efcc6aaef54a3ba3e8f4b927886aed93da5c"
+        },
+        {
+          "path": "furniture/rug_rectangle_stripes_B.gltf",
+          "bytes": 2988,
+          "sha256": "dbad49ace370c37e3821b5f029dd8af0ed0ea6b768180983ca960d5b2565fa85"
+        },
+        {
+          "path": "furniture/shelf_A_big.bin",
+          "bytes": 10104,
+          "sha256": "d133c5a07e63360d69a1363d6a96cc011b4db9e645358824fb8f274b02a59700"
+        },
+        {
+          "path": "furniture/shelf_A_big.gltf",
+          "bytes": 3025,
+          "sha256": "e2f1e24576e603a390f29f5c55c2013389cebaddb0255e1a4808e35ef1279873"
+        },
+        {
+          "path": "furniture/shelf_A_small.bin",
+          "bytes": 10104,
+          "sha256": "4e87b996fe8184cac7d556d0ea854513bd7d04e674d254fb8c7d296320cbdfc0"
+        },
+        {
+          "path": "furniture/shelf_A_small.gltf",
+          "bytes": 3033,
+          "sha256": "198fb7851f987c51c8dba4ea2e22c27345467c1cbef700995699c10298f9edd5"
+        },
+        {
+          "path": "furniture/shelf_B_large.bin",
+          "bytes": 10104,
+          "sha256": "30bbd1a44054d02245bd7388d7143c5f676928d4e293a93f9fd442479afd4840"
+        },
+        {
+          "path": "furniture/shelf_B_large.gltf",
+          "bytes": 3047,
+          "sha256": "438921fdd044014a02f4e77e4b02205222d83cec3632db2eb8dad50173b24d5c"
+        },
+        {
+          "path": "furniture/shelf_B_large_decorated.bin",
+          "bytes": 25772,
+          "sha256": "80b560eac9dd1d2750149f96f4845ead4c734f446088975a5c0a1c259dd50611"
+        },
+        {
+          "path": "furniture/shelf_B_large_decorated.gltf",
+          "bytes": 3069,
+          "sha256": "fc613ad31e07529ad1ec9044a8e7e900821c8636efbd714a3238292326a49fad"
+        },
+        {
+          "path": "furniture/shelf_B_small.bin",
+          "bytes": 10104,
+          "sha256": "7e75cbd1c734a901852c4dc924dc47f9fa75eaed85b19503a6b24218b5efcdb1"
+        },
+        {
+          "path": "furniture/shelf_B_small.gltf",
+          "bytes": 3049,
+          "sha256": "6e6a946ef20fc916247f9ff59b74a3c958edad53c2594356086e7e36fcde5e6e"
+        },
+        {
+          "path": "furniture/shelf_B_small_decorated.bin",
+          "bytes": 23416,
+          "sha256": "de3efcfcdc9572dfb1f82d22f99017d56e0b7c1451ce9bbe12fe1d828f8c677f"
+        },
+        {
+          "path": "furniture/shelf_B_small_decorated.gltf",
+          "bytes": 3071,
+          "sha256": "7a8748dbe6dc428aa45dbef650c7d10bccee41e823c832ecd9a95b870675aa59"
+        },
+        {
+          "path": "furniture/SOURCE.json",
+          "bytes": 198,
+          "sha256": "6e24566c56515eab548a4759d11991c36be514456a4b85c997ee9458875e8334"
+        },
+        {
+          "path": "furniture/table_low.bin",
+          "bytes": 12408,
+          "sha256": "e9f604c5676bfa974d6d1bf45757a11d298ac40e8e7981be29d249936c8339cd"
+        },
+        {
+          "path": "furniture/table_low.gltf",
+          "bytes": 2990,
+          "sha256": "3bf202a3ee70ee95943c26419bd5f540353a16b8b6a0b41449746f85c3319a2a"
+        },
+        {
+          "path": "furniture/table_medium.bin",
+          "bytes": 9328,
+          "sha256": "0e6ba8fd006f673d946979e45487067f4e274be9bbd07816fd371578d2a37518"
+        },
+        {
+          "path": "furniture/table_medium.gltf",
+          "bytes": 2973,
+          "sha256": "fd5e5fe8bbf1d3729b6bd725165d58490e9cbd8dd46ce42314b01f20951a302b"
+        },
+        {
+          "path": "furniture/table_medium_long.bin",
+          "bytes": 9328,
+          "sha256": "b436c4b982a7defac5310f6ca17bf387f24c8c9b843e035c09d23094ace9b788"
+        },
+        {
+          "path": "furniture/table_medium_long.gltf",
+          "bytes": 2987,
+          "sha256": "e3ba8f08ce5964d602cde13ecba2b837f90b3ed22d092e28fa489f3c216e2488"
+        },
+        {
+          "path": "furniture/table_small.bin",
+          "bytes": 9328,
+          "sha256": "e18bad66ad227a4a374fd58fbe6870a73c0f3f3687cb363506e0d77e07964066"
+        },
+        {
+          "path": "furniture/table_small.gltf",
+          "bytes": 2979,
+          "sha256": "6ae46ef60d18cf1fe507fbb2fb20235144af2ac7101f410269a761ac91ae9aee"
+        }
+      ]
+    },
+    {
+      "id": "space",
+      "author": "Kay Lousberg",
+      "license": "CC0-1.0",
+      "source": "https://github.com/KayKit-Game-Assets/KayKit-Space-Base-Bits-1.0",
+      "revision": "6dfbcac9927d06283752c4defd4882cfe0d29666",
+      "license_file": "space/LICENSE.txt",
+      "models": [
+        "space/basemodule_A.gltf",
+        "space/basemodule_B.gltf",
+        "space/basemodule_C.gltf",
+        "space/basemodule_D.gltf",
+        "space/basemodule_E.gltf",
+        "space/basemodule_garage.gltf",
+        "space/cargo_A.gltf",
+        "space/cargo_A_packed.gltf",
+        "space/cargo_A_stacked.gltf",
+        "space/cargo_B.gltf",
+        "space/cargo_B_packed.gltf",
+        "space/cargo_B_stacked.gltf",
+        "space/cargodepot_A.gltf",
+        "space/cargodepot_B.gltf",
+        "space/cargodepot_C.gltf",
+        "space/containers_A.gltf",
+        "space/containers_B.gltf",
+        "space/containers_C.gltf",
+        "space/containers_D.gltf",
+        "space/drill_structure.gltf",
+        "space/lander_A.gltf",
+        "space/lander_B.gltf",
+        "space/lander_base.gltf",
+        "space/landingpad_large.gltf",
+        "space/landingpad_small.gltf",
+        "space/lights.gltf",
+        "space/rock_A.gltf",
+        "space/rock_B.gltf",
+        "space/rocks_A.gltf",
+        "space/rocks_B.gltf",
+        "space/roofmodule_base.gltf",
+        "space/roofmodule_cargo_A.gltf",
+        "space/roofmodule_cargo_B.gltf",
+        "space/roofmodule_cargo_C.gltf",
+        "space/roofmodule_solarpanels.gltf",
+        "space/solarpanel.gltf",
+        "space/spacetruck.gltf",
+        "space/spacetruck_large.gltf",
+        "space/spacetruck_trailer.gltf",
+        "space/structure_low.gltf",
+        "space/structure_tall.gltf",
+        "space/terrain_low.gltf",
+        "space/terrain_low_curved.gltf",
+        "space/terrain_mining.gltf",
+        "space/terrain_slope.gltf",
+        "space/terrain_slope_inner_corner.gltf",
+        "space/terrain_slope_outer_corner.gltf",
+        "space/terrain_tall.gltf",
+        "space/terrain_tall_curved.gltf",
+        "space/tunnel_diagonal_long_A.gltf",
+        "space/tunnel_diagonal_long_B.gltf",
+        "space/tunnel_diagonal_short_A.gltf",
+        "space/tunnel_diagonal_short_B.gltf",
+        "space/tunnel_straight_A.gltf",
+        "space/tunnel_straight_B.gltf",
+        "space/windturbine_low.gltf",
+        "space/windturbine_tall.gltf"
+      ],
+      "files": [
+        {
+          "path": "space/basemodule_A.bin",
+          "bytes": 37052,
+          "sha256": "37c8fbcabe0f1dc30b1054767798c9c7c1caefd02b44027769183ccd30b5ed3d"
+        },
+        {
+          "path": "space/basemodule_A.gltf",
+          "bytes": 3064,
+          "sha256": "d35b464e862ea0cea36733b0e60b0ca645677615bd8393f598ef27fe19c3938e"
+        },
+        {
+          "path": "space/basemodule_B.bin",
+          "bytes": 39752,
+          "sha256": "7281e6eeb82e956b08a5de68f6a742719809d25597454eb136802dc8246adba5"
+        },
+        {
+          "path": "space/basemodule_B.gltf",
+          "bytes": 3078,
+          "sha256": "3bea817d7a2f35f211f47a429e261d46d5d23d6a09f59cc5ef176804d7256c7b"
+        },
+        {
+          "path": "space/basemodule_C.bin",
+          "bytes": 41304,
+          "sha256": "188bbe7cec55a07578350512d4b10377b87ea51d9f1bd4747c0f5c32a1baf2bb"
+        },
+        {
+          "path": "space/basemodule_C.gltf",
+          "bytes": 3028,
+          "sha256": "72b3901e37e6ef38855c1dd6110242bd66b962e9b1640275048ec32c69ef1f70"
+        },
+        {
+          "path": "space/basemodule_D.bin",
+          "bytes": 50632,
+          "sha256": "ce857e5ecb3a28758c58bf6a2a041bdddefcd6d79502aaa21834c0d560e5db70"
+        },
+        {
+          "path": "space/basemodule_D.gltf",
+          "bytes": 3079,
+          "sha256": "0593d967b076c323ac8d2736a1c332f02f7ad2bc8292b3de387417dcd5d00de0"
+        },
+        {
+          "path": "space/basemodule_E.bin",
+          "bytes": 47464,
+          "sha256": "995f7e1e8be046d36ea9c28145468670b35296b9e0b4c4e7c9185b92e5acfb68"
+        },
+        {
+          "path": "space/basemodule_E.gltf",
+          "bytes": 3080,
+          "sha256": "25b65713f5c37dfad44a64551fe2b1832258926135bbec115f2d1f12089cff6a"
+        },
+        {
+          "path": "space/basemodule_garage.bin",
+          "bytes": 49452,
+          "sha256": "e69d529c31358bef7da10da19fe71e2c31a5c945a444d22d246e288e53794e5a"
+        },
+        {
+          "path": "space/basemodule_garage.gltf",
+          "bytes": 5022,
+          "sha256": "1e0bd62b0dc863f89d56d3bba7dc9d2f9118c39a4b12e907c2e6eb95518da95f"
+        },
+        {
+          "path": "space/cargo_A.bin",
+          "bytes": 6912,
+          "sha256": "76a3a6623b639e39be8a02132ab897cf30db037dbe5d8fc07c24acad0db5a9ac"
+        },
+        {
+          "path": "space/cargo_A.gltf",
+          "bytes": 3007,
+          "sha256": "1e502a13961e9f46da9e876f21a2951c8c70d01eca4fa03b0001bb3b3322177a"
+        },
+        {
+          "path": "space/cargo_A_packed.bin",
+          "bytes": 9248,
+          "sha256": "44fcb35f15fc00745175adc3c945a0d6d386ecee8e08685a92c749ddc8c7f732"
+        },
+        {
+          "path": "space/cargo_A_packed.gltf",
+          "bytes": 3069,
+          "sha256": "1aed2167450a444f5b2f5248384e8337ffac900f786248a4163462345dc883da"
+        },
+        {
+          "path": "space/cargo_A_stacked.bin",
+          "bytes": 28528,
+          "sha256": "32712a2ae797c7304e1d9641e5d26c93f1405292eea00c3764de1eba5fead868"
+        },
+        {
+          "path": "space/cargo_A_stacked.gltf",
+          "bytes": 3075,
+          "sha256": "bea2bee3b1f4a9da3735ae0da6ffc1ce481468def3b8d8eb9664f5f308656e1a"
+        },
+        {
+          "path": "space/cargo_B.bin",
+          "bytes": 6912,
+          "sha256": "badf8ae30528c9a75bf46005aef956415c7e90f0d90dc55ec323ec320fa14040"
+        },
+        {
+          "path": "space/cargo_B.gltf",
+          "bytes": 3007,
+          "sha256": "ee7e58f34fac3f5b18322122d09d09d87b0313785cf3918d1b25d3895ff71cf3"
+        },
+        {
+          "path": "space/cargo_B_packed.bin",
+          "bytes": 9248,
+          "sha256": "88351224e397fd9ef2b535f551290b7afe0b89a7a20878291249d5ee178815da"
+        },
+        {
+          "path": "space/cargo_B_packed.gltf",
+          "bytes": 3069,
+          "sha256": "fe8b1851646194da0b7a4dc9cda14f10c5d16285177f448de9e7a241156d648c"
+        },
+        {
+          "path": "space/cargo_B_stacked.bin",
+          "bytes": 28528,
+          "sha256": "a2088df9f54a088cbcc70b5914588fd0854c2cd2b1886c11c55bd697c20ceaf0"
+        },
+        {
+          "path": "space/cargo_B_stacked.gltf",
+          "bytes": 3075,
+          "sha256": "543c5b6777ab6ee41c1090308822fd64a5bb279471cad941cfe7f548a42eed1e"
+        },
+        {
+          "path": "space/cargodepot_A.bin",
+          "bytes": 54216,
+          "sha256": "f76de41c52cd868bb9f7e95a9d771866b2d76f2bc174b0ca33cec5d904d76d02"
+        },
+        {
+          "path": "space/cargodepot_A.gltf",
+          "bytes": 3079,
+          "sha256": "ebed5b7362bfc98e36396edcca6c653a1a51dd8f31ecf7e305f70ab12e7de128"
+        },
+        {
+          "path": "space/cargodepot_B.bin",
+          "bytes": 57060,
+          "sha256": "3e1c124065c8ff0bbc828346be25defa587597ad4f56c1ed15ffa82b0b5cce5f"
+        },
+        {
+          "path": "space/cargodepot_B.gltf",
+          "bytes": 3076,
+          "sha256": "657ab2e1baa6e2e2c72e8bc4fe52d8388b54f7063f7538b78da4faeecfaad29d"
+        },
+        {
+          "path": "space/cargodepot_C.bin",
+          "bytes": 72980,
+          "sha256": "b9cc326e133366ccc05357effda2b49c6efe53e0b5a3362634504b546eff65d8"
+        },
+        {
+          "path": "space/cargodepot_C.gltf",
+          "bytes": 3064,
+          "sha256": "741c4511f53cea9e250ebf12c74293660a6e33dee76d9acd760098ee766a54b4"
+        },
+        {
+          "path": "space/containers_A.bin",
+          "bytes": 14352,
+          "sha256": "0cda4c02879269a6c0471b14b8b3aed5ea7ca9a31f218e472ecc6ef4e7ec5966"
+        },
+        {
+          "path": "space/containers_A.gltf",
+          "bytes": 3031,
+          "sha256": "b6b91a095e780704904a9d4d63bd48b8983482ccdbea6d69a14c420a9d83994d"
+        },
+        {
+          "path": "space/containers_B.bin",
+          "bytes": 14352,
+          "sha256": "6b4967d012463a24e48f85cbadb303af7b1a00d1b2b47dbbd5450b69b1b94527"
+        },
+        {
+          "path": "space/containers_B.gltf",
+          "bytes": 3031,
+          "sha256": "2f2b3658f900d8c16c827d25ed3b82c4dfab5a63a8fb06b9a4defa329469c24e"
+        },
+        {
+          "path": "space/containers_C.bin",
+          "bytes": 14352,
+          "sha256": "ce192f9436f131b26f390cc474302a65d10df14373a99f635a3ba1816f193682"
+        },
+        {
+          "path": "space/containers_C.gltf",
+          "bytes": 3031,
+          "sha256": "44dd2a6195a11fbf6970f62418fd7628c94d87547c866c582311e94fc5ffa343"
+        },
+        {
+          "path": "space/containers_D.bin",
+          "bytes": 14352,
+          "sha256": "d2996c621adaa2e39372a12b624c980f717389f307e949d250f66e2e0a7a9bb6"
+        },
+        {
+          "path": "space/containers_D.gltf",
+          "bytes": 3031,
+          "sha256": "b44923aacaa5257c0908208c1a995cc594933c1b61771d2bfa5846c4f37713ca"
+        },
+        {
+          "path": "space/drill_structure.bin",
+          "bytes": 68212,
+          "sha256": "140dc0e66630ee54f78fd7f923054eba3393fca004abfc15b3c41d12b21946c9"
+        },
+        {
+          "path": "space/drill_structure.gltf",
+          "bytes": 5127,
+          "sha256": "23ab7f68d8bf61dc5b56ab080860f9551fd40edca95442bfb9d3319d183803e6"
+        },
+        {
+          "path": "space/lander_A.bin",
+          "bytes": 81264,
+          "sha256": "951679da262411b504f2fda981b75b34f7a69326cde0ee1f9c14212a986190bc"
+        },
+        {
+          "path": "space/lander_A.gltf",
+          "bytes": 3059,
+          "sha256": "630723b9703f9dbc74cd7d456f83b1173af08837713f6ca6d51bdf358e97a0a6"
+        },
+        {
+          "path": "space/lander_B.bin",
+          "bytes": 71440,
+          "sha256": "745d8df9c75eb55bd7c1688fa92cf53b73931043120d712336d7985b9369e5d8"
+        },
+        {
+          "path": "space/lander_B.gltf",
+          "bytes": 3059,
+          "sha256": "ff5bedc311964269c3020f4fd709f2c32abbd27f02be9513759b05dcb35f56fe"
+        },
+        {
+          "path": "space/lander_base.bin",
+          "bytes": 36692,
+          "sha256": "9d9caa103609644b318848f252ecb92123c5f93ad40a050f74ae7d60b41ce577"
+        },
+        {
+          "path": "space/lander_base.gltf",
+          "bytes": 3079,
+          "sha256": "3c6526d4115ad0c7d3b89a633ac4b0c3b4155ee16e51c6b747db7bfdbe75019c"
+        },
+        {
+          "path": "space/landingpad_large.bin",
+          "bytes": 27476,
+          "sha256": "5f89a75d0e706d4a565c2757efd2026f40275d500302c95f0624365b7e5ca4dd"
+        },
+        {
+          "path": "space/landingpad_large.gltf",
+          "bytes": 3067,
+          "sha256": "bf2c624804fa462cf3cbf464f3f4f9bf0aaae2e2d66280e218802d0c683ead02"
+        },
+        {
+          "path": "space/landingpad_small.bin",
+          "bytes": 26468,
+          "sha256": "f5a293988a8115520192c337865c9daf9f52773cb4fefe7fb86f06a7d4c2eafc"
+        },
+        {
+          "path": "space/landingpad_small.gltf",
+          "bytes": 3083,
+          "sha256": "0b2d3294910e8c23798e2211a701c25a299b174fb7832b053555e42e7a38771b"
+        },
+        {
+          "path": "space/LICENSE.txt",
+          "bytes": 826,
+          "sha256": "e1c732edc054bcc23fcee2409304f03fe0f15c9e5150bfd6a72a0f09d513e93f"
+        },
+        {
+          "path": "space/lights.bin",
+          "bytes": 18264,
+          "sha256": "6edc13b5efa016b8020dda7bdc8f57798fd1608129b14dfeceb30f827aeb631a"
+        },
+        {
+          "path": "space/lights.gltf",
+          "bytes": 3064,
+          "sha256": "029a1d553214b256a8c57e3c04f4799ed8610e37fa8645fbfc3d4ce423fed915"
+        },
+        {
+          "path": "space/rock_A.bin",
+          "bytes": 1716,
+          "sha256": "3ebba6eb5c2b945460bdf7f9b8f707f664c719a88b78e8b8b3a1e4890db27290"
+        },
+        {
+          "path": "space/rock_A.gltf",
+          "bytes": 2987,
+          "sha256": "08cbebe114ca799161eac0d9f0c8c7f7478ccc5dec164a0102368fb0b77e9bb1"
+        },
+        {
+          "path": "space/rock_B.bin",
+          "bytes": 1880,
+          "sha256": "f7bab5b32b1d758724be9d1d0b2b6604840dc9dab392024b85a5c4a53e147f72"
+        },
+        {
+          "path": "space/rock_B.gltf",
+          "bytes": 3032,
+          "sha256": "19219bf496926951ed7c9188e02dfab55233b5b51afb571211747ddd485fc9d3"
+        },
+        {
+          "path": "space/rocks_A.bin",
+          "bytes": 5200,
+          "sha256": "fb76b5ba35e2ee7875f47b57696d6cf52f3f6719aa7796bd8cc19f5a15ec44e7"
+        },
+        {
+          "path": "space/rocks_A.gltf",
+          "bytes": 3038,
+          "sha256": "08ad445724788d6f746dabb663c04e58811a78882d1b2989051f194ce429d06f"
+        },
+        {
+          "path": "space/rocks_B.bin",
+          "bytes": 8736,
+          "sha256": "5ab05abefc2595be9598dab83c4e9bfb02f4682dbc2d21bfe30f3643eb77225a"
+        },
+        {
+          "path": "space/rocks_B.gltf",
+          "bytes": 3059,
+          "sha256": "f38dd2d88419a05ba3118c6eb272346f306448a274e026b9321acf529eae5faa"
+        },
+        {
+          "path": "space/roofmodule_base.bin",
+          "bytes": 3136,
+          "sha256": "8eb6708de7b91ecde59216999d5bcc0baa9294b8f3b517eaf1cfa06ace23b618"
+        },
+        {
+          "path": "space/roofmodule_base.gltf",
+          "bytes": 3068,
+          "sha256": "d0a9c2df819ff1e6ae8da8ff0b3628ad55ed10a0ef0339d7965dfd7e43091585"
+        },
+        {
+          "path": "space/roofmodule_cargo_A.bin",
+          "bytes": 41088,
+          "sha256": "d677640af2b9385ed3d9fb8c33bd4bcc3351acb630262bf13fc9906d99d3cdf2"
+        },
+        {
+          "path": "space/roofmodule_cargo_A.gltf",
+          "bytes": 3088,
+          "sha256": "0c5fba67eba76ba52b099cec80402d490a22c3170fd3f1b2d0890c59c4ce9726"
+        },
+        {
+          "path": "space/roofmodule_cargo_B.bin",
+          "bytes": 40560,
+          "sha256": "98aa6c9ac4dd4f97316e1058e878b70f714c195c2547379f8540b8b45da30d74"
+        },
+        {
+          "path": "space/roofmodule_cargo_B.gltf",
+          "bytes": 3088,
+          "sha256": "846560a850d24584920ba3a148a86aa293426cf320f2607ac386800f4b67c403"
+        },
+        {
+          "path": "space/roofmodule_cargo_C.bin",
+          "bytes": 61572,
+          "sha256": "971c150c2fba8552bd856b31e18288f48d1764bb8d7779648cf7241c56ae5a05"
+        },
+        {
+          "path": "space/roofmodule_cargo_C.gltf",
+          "bytes": 3089,
+          "sha256": "d8e35a713e6a5e50122fc0bff1e40003fe88dabe3c62ae7076cc1a74fce9109a"
+        },
+        {
+          "path": "space/roofmodule_solarpanels.bin",
+          "bytes": 16456,
+          "sha256": "e48e242860b63b02e720736a1b4c4a20898820bf1a336af3171fe9ed75952216"
+        },
+        {
+          "path": "space/roofmodule_solarpanels.gltf",
+          "bytes": 3088,
+          "sha256": "fe28dc153c7f8b402edb788ef70b3f10b0f2132e1d96720c59cde06565b2e35d"
+        },
+        {
+          "path": "space/solarpanel.bin",
+          "bytes": 6660,
+          "sha256": "ebdd5ece824fa0e46c331764590c51297f2799a3bf9d628214cce6930147c270"
+        },
+        {
+          "path": "space/solarpanel.gltf",
+          "bytes": 3066,
+          "sha256": "55ff7bb1e8171b9882547bce0f29a4dd711ed3f097e33c05dab9dd3eceb36c9a"
+        },
+        {
+          "path": "space/SOURCE.json",
+          "bytes": 199,
+          "sha256": "3deae5bf6d56e502435b06dfe0c35c61c9129a3027314dc72a913beccc59fa37"
+        },
+        {
+          "path": "space/spacebits_texture.png",
+          "bytes": 25749,
+          "sha256": "f19fe5ced42f72104a3c2e9f15d591622723695dd461a380691a8a21ebb01ae9"
+        },
+        {
+          "path": "space/spacetruck.bin",
+          "bytes": 49524,
+          "sha256": "b99230dc223a9839be665f908146687b9811249232d41c22bac0736ce7553dd5"
+        },
+        {
+          "path": "space/spacetruck.gltf",
+          "bytes": 10917,
+          "sha256": "4bf9dcd2eb32b547ece2d9323ab86eea6d7b2f44abf30dc936d613b42e2e874b"
+        },
+        {
+          "path": "space/spacetruck_large.bin",
+          "bytes": 67708,
+          "sha256": "4cacc7909e3c752a3cd9902bb86798449c36cde51ecc108bedacc8bd6887d1ed"
+        },
+        {
+          "path": "space/spacetruck_large.gltf",
+          "bytes": 10963,
+          "sha256": "b7dffb0fd40d92efd2def7e6b8093a5b5331c8fea7a276f40aa0282d29729642"
+        },
+        {
+          "path": "space/spacetruck_trailer.bin",
+          "bytes": 32656,
+          "sha256": "469ec96c4bc99d19f8baff359ceeb4da99ab2c5de9bc230ca13d4883f4119382"
+        },
+        {
+          "path": "space/spacetruck_trailer.gltf",
+          "bytes": 10945,
+          "sha256": "402e7f492d496162ec7e6e33c6471b6b6bdbb34f2a4a3d9865185767b66c34b1"
+        },
+        {
+          "path": "space/structure_low.bin",
+          "bytes": 26084,
+          "sha256": "89d8d514e9d5685e7e31bf150f3d9be13a602ce0a624013ba9cf74d4910c7503"
+        },
+        {
+          "path": "space/structure_low.gltf",
+          "bytes": 3038,
+          "sha256": "11b2b4f4afaa4bdb68be35a46390ac498f02b116f3cf62e832f46a796e1d573f"
+        },
+        {
+          "path": "space/structure_tall.bin",
+          "bytes": 41524,
+          "sha256": "1199b0f4abb9491ecadcfb4539d908a84daa4ab1f0beb5ef83ed1123e4a7defb"
+        },
+        {
+          "path": "space/structure_tall.gltf",
+          "bytes": 3062,
+          "sha256": "29e92416379ef83c107d00090ff142cc5a8cddae76defce94cfb1e89bf357ac7"
+        },
+        {
+          "path": "space/terrain_low.bin",
+          "bytes": 840,
+          "sha256": "b50a9a3aa71883d982d2134f67fec85282d94f72856a8c6f87235fb0bcbaeea3"
+        },
+        {
+          "path": "space/terrain_low.gltf",
+          "bytes": 2947,
+          "sha256": "1b9846a156f729da1e66cc186d38393125532f521dc76c6bbadf6fe31f77e598"
+        },
+        {
+          "path": "space/terrain_low_curved.bin",
+          "bytes": 2136,
+          "sha256": "35019280cb245174e5db2761e94eb09f800c439b2f26e630597d37d0d3d30297"
+        },
+        {
+          "path": "space/terrain_low_curved.gltf",
+          "bytes": 2966,
+          "sha256": "d41f15257ca87b87bf179f2358f87abb24de282f6ea76ae8b1783b976935c0a9"
+        },
+        {
+          "path": "space/terrain_mining.bin",
+          "bytes": 4424,
+          "sha256": "2bcb357a01facbd009c2ca736e9f1ccb9783d2a985b80a792cb6b50c46835714"
+        },
+        {
+          "path": "space/terrain_mining.gltf",
+          "bytes": 2979,
+          "sha256": "32a61b860fe1bb6eda5ece94a26f4f78d72b4071d335dc9e256f115b5ea669eb"
+        },
+        {
+          "path": "space/terrain_slope.bin",
+          "bytes": 1448,
+          "sha256": "9254e2e360b1c4a9e9a54167afc4ea32ca59653d792dcc76948de4ef36ca6e18"
+        },
+        {
+          "path": "space/terrain_slope.gltf",
+          "bytes": 2954,
+          "sha256": "216182192aaac8af1a07f3f631b043a7f518d51ec41d08cf8eb820c445622e73"
+        },
+        {
+          "path": "space/terrain_slope_inner_corner.bin",
+          "bytes": 1740,
+          "sha256": "d9dee310fcb3f5b9c88b8602bbe6ac5f2b0d233f23bb42dec82db72dc8452945"
+        },
+        {
+          "path": "space/terrain_slope_inner_corner.gltf",
+          "bytes": 2981,
+          "sha256": "06821257f9e30b69968a9be2666f33b5ea6e267d6a66d20b3aa6098ce0397a72"
+        },
+        {
+          "path": "space/terrain_slope_outer_corner.bin",
+          "bytes": 1740,
+          "sha256": "59dba7d543faf70d79585b94b4ae49dbcfc902e6e9711b1f5c5b8181a5cb64c8"
+        },
+        {
+          "path": "space/terrain_slope_outer_corner.gltf",
+          "bytes": 2981,
+          "sha256": "33d7dc097faf3215940fd57b37f476baf320d2482a30437652b9bf90ed9a5606"
+        },
+        {
+          "path": "space/terrain_tall.bin",
+          "bytes": 840,
+          "sha256": "e2e32ced6e5e45955a15136d8d84744bed0267777da793758c7e44483d16f94f"
+        },
+        {
+          "path": "space/terrain_tall.gltf",
+          "bytes": 2949,
+          "sha256": "879dbfe6ede0cf2ba372ca7f6e62b7f0707d0626c095d4cbdf2e19b42e859095"
+        },
+        {
+          "path": "space/terrain_tall_curved.bin",
+          "bytes": 2136,
+          "sha256": "21a194f6fa76bbe42dd88a7aec4144ef375f6d3a2cb5c88d4eae168beca27ef9"
+        },
+        {
+          "path": "space/terrain_tall_curved.gltf",
+          "bytes": 2968,
+          "sha256": "f0fb326616563bc9088ca2debbc38c4c7f583b5fa6f8a2dc9c524d6601061fe5"
+        },
+        {
+          "path": "space/tunnel_diagonal_long_A.bin",
+          "bytes": 42048,
+          "sha256": "ebf6034b2a37cad4ae06cc8719b45f36a7a382dcb73cd4328ed0ee74f46647d1"
+        },
+        {
+          "path": "space/tunnel_diagonal_long_A.gltf",
+          "bytes": 3094,
+          "sha256": "92a3232818685937195c7dc15b85e98cd1c40849ef6d174a673962ff09bf1ce1"
+        },
+        {
+          "path": "space/tunnel_diagonal_long_B.bin",
+          "bytes": 20136,
+          "sha256": "11041de832434948e0bed0cb38c92892e0b5b46d0f585d31b714ed8a8216e40b"
+        },
+        {
+          "path": "space/tunnel_diagonal_long_B.gltf",
+          "bytes": 3087,
+          "sha256": "878f591087177c5acaf079839546c756ba6d491cb872b7d37c7f82aaac72c17f"
+        },
+        {
+          "path": "space/tunnel_diagonal_short_A.bin",
+          "bytes": 11368,
+          "sha256": "c8278ace0fdffbdd0452a998b49a9f9c5e70d2963a3f8fae9e679e2724ca0bce"
+        },
+        {
+          "path": "space/tunnel_diagonal_short_A.gltf",
+          "bytes": 3095,
+          "sha256": "54e763a65cc5d2bbf0d202c0872d26cb887a201815f6ff6fe5dda7fa839515b6"
+        },
+        {
+          "path": "space/tunnel_diagonal_short_B.bin",
+          "bytes": 11368,
+          "sha256": "74b4ba127e62bdc2258b9ebbca5f9f5589341cb988baad8c052b3e62d1d9f74e"
+        },
+        {
+          "path": "space/tunnel_diagonal_short_B.gltf",
+          "bytes": 3095,
+          "sha256": "d8cce0aab32b9d34f9d21e17617309807d453475acf483a3f6e81abec521494e"
+        },
+        {
+          "path": "space/tunnel_straight_A.bin",
+          "bytes": 38976,
+          "sha256": "632805e794d9f799f52df64ba38fdef32d63278fc29d2013cc9a668409ca7af4"
+        },
+        {
+          "path": "space/tunnel_straight_A.gltf",
+          "bytes": 3053,
+          "sha256": "2605eede590fca98d12679389e089bb08e8ece31338a63886387fd09729a4360"
+        },
+        {
+          "path": "space/tunnel_straight_B.bin",
+          "bytes": 18088,
+          "sha256": "21640c6f10d9661820b910c671701f2a18a4a11841f8e31703c090a30d5e1ba9"
+        },
+        {
+          "path": "space/tunnel_straight_B.gltf",
+          "bytes": 3046,
+          "sha256": "1c638ab710c6f5ddf94f8f25057a3bf6d5d4ef2ccb7a6c6de9c72c9992acde4e"
+        },
+        {
+          "path": "space/windturbine_low.bin",
+          "bytes": 44124,
+          "sha256": "7290b430d03e4cd57b64f20806f8a71d006f334831aad0940559813f93cd38c5"
+        },
+        {
+          "path": "space/windturbine_low.gltf",
+          "bytes": 5160,
+          "sha256": "9bc0489b551010b165b59d3e6f037a6f6c3d92bb7ed971a2a3a9fd662391e4b9"
+        },
+        {
+          "path": "space/windturbine_tall.bin",
+          "bytes": 29904,
+          "sha256": "15e0b6d7a47e6cebe5261605b1563abb29df44b9615ac0d334c71e383d8543ad"
+        },
+        {
+          "path": "space/windturbine_tall.gltf",
+          "bytes": 5168,
+          "sha256": "5dfde3ac3bb695a4938dcdb2546f1ef6148aebb9f82700a20e2eb2d635174f7d"
+        }
+      ]
+    }
+  ]
+}
