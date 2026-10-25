@@ -2,10 +2,11 @@
 
 Повторяют публичный API из AGENTS.md:
     api.parse_spec(raw: str) -> Spec            # raises SpecError
-    api.render_video(spec: Spec, out_path: str) -> str
+    api.render_video(spec: Spec, out_path: str, *, on_progress=None) -> str
     llm.generate_spec(user_text: str) -> str    # raw JSON
 """
 import json
+import os
 import re
 import shutil
 import subprocess
@@ -22,6 +23,26 @@ MODE_HINT = re.compile(r'\s*render_mode: "(\w+)"\s*$')
 
 class SpecError(ValueError):
     """Спецификация не прошла валидацию."""
+
+
+class RenderError(RuntimeError):
+    """Видео не удалось собрать."""
+
+
+class ToolNotFoundError(RenderError, FileNotFoundError):
+    """Нет внешнего инструмента (FFmpeg)."""
+
+
+class RenderCancelled(RenderError):
+    """on_progress вернул False."""
+
+
+class LLMError(Exception):
+    """Провайдер LLM недоступен (нет ключа, сети и т. п.)."""
+
+
+class SpecGenerationError(Exception):
+    """Модель не дала валидный JSON за все попытки."""
 
 
 @dataclass(frozen=True)
@@ -92,13 +113,16 @@ def parse_spec(raw: str) -> Spec:
     return Spec(duration=duration, scenes=ordered, render_mode=render_mode)
 
 
-def render_video(spec: Spec, out_path: str) -> str:
+def render_video(spec: Spec, out_path: str, *, on_progress=None) -> str:
     """Каждая сцена рисуется цветным отрезком своего типа, пустые промежутки чёрным."""
     if spec.render_mode == "3d":
         raise NotImplementedError("3D-рендер пока не реализован")
     ffmpeg = shutil.which("ffmpeg")
     if not ffmpeg:
-        raise RuntimeError("FFmpeg не найден в PATH")
+        raise ToolNotFoundError("FFmpeg не найден: установите его и добавьте в PATH")
+    total = round(spec.duration * FPS)
+    if on_progress is not None and on_progress(0, total) is False:
+        raise RenderCancelled("рендер отменён")
 
     segments, cursor = [], 0
     for scene in spec.scenes:
@@ -113,15 +137,24 @@ def render_video(spec: Spec, out_path: str) -> str:
     for color, length in segments:
         cmd += ["-f", "lavfi", "-i", f"color=c={color}:s={WIDTH}x{HEIGHT}:r={FPS}:d={length}"]
     concat = "".join(f"[{i}:v]" for i in range(len(segments))) + f"concat=n={len(segments)}:v=1:a=0[v]"
+    tmp_path = f"{out_path}.part.mp4"  # как у A: out_path появляется только при успехе
     cmd += ["-filter_complex", concat, "-map", "[v]",
-            "-c:v", "libx264", "-preset", "ultrafast", "-pix_fmt", "yuv420p", "-r", str(FPS), out_path]
+            "-c:v", "libx264", "-preset", "ultrafast", "-pix_fmt", "yuv420p", "-r", str(FPS), tmp_path]
 
     flags = subprocess.CREATE_NO_WINDOW if sys.platform == "win32" else 0
     result = subprocess.run(cmd, capture_output=True, text=True, creationflags=flags)
     if result.returncode != 0:
-        raise RuntimeError(f"FFmpeg завершился с ошибкой: {result.stderr.strip()[-300:]}")
+        if os.path.exists(tmp_path):
+            os.remove(tmp_path)
+        raise RenderError(f"FFmpeg завершился с ошибкой: {result.stderr.strip()[-300:]}")
+    os.replace(tmp_path, out_path)
+    if on_progress is not None:
+        on_progress(total, total)
     return out_path
 
 
-api = SimpleNamespace(Spec=Spec, SpecError=SpecError, parse_spec=parse_spec, render_video=render_video)
-llm = SimpleNamespace(generate_spec=generate_spec)
+api = SimpleNamespace(
+    Spec=Spec, SpecError=SpecError, RenderError=RenderError, ToolNotFoundError=ToolNotFoundError,
+    RenderCancelled=RenderCancelled, parse_spec=parse_spec, render_video=render_video,
+)
+llm = SimpleNamespace(generate_spec=generate_spec, LLMError=LLMError, SpecGenerationError=SpecGenerationError)
