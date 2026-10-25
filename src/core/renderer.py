@@ -33,6 +33,10 @@ class RenderError(RuntimeError):
     """Spec is valid but the video could not be produced (missing file, FFmpeg failure)."""
 
 
+class ToolNotFoundError(RenderError, FileNotFoundError):
+    """A required external program (FFmpeg, Blender) is not installed or not in PATH."""
+
+
 class Renderer(Protocol):
     def render(self, spec: Spec, out_path: str) -> str:
         """Write spec as a video to out_path and return the path."""
@@ -160,12 +164,12 @@ def _segments(spec: Spec) -> list[tuple[Image.Image, int, bool]]:
 def _ffmpeg() -> str:
     exe = shutil.which("ffmpeg")
     if exe is None:
-        raise RenderError("FFmpeg не найден: установите его и добавьте в PATH")
+        raise ToolNotFoundError("FFmpeg не найден: установите его и добавьте в PATH")
     return exe
 
 
 class FFmpegRenderer:
-    """2D renderer: still frames per scene, fades, H.264 MP4 1080x1920 @ 30 fps."""
+    """2D renderer: still frames per scene, fades, H.264 MP4 1080x1920."""
 
     def render(self, spec: Spec, out_path: str) -> str:
         if round(spec.duration * FPS) < 1:
@@ -176,6 +180,9 @@ class FFmpegRenderer:
         segments = _segments(spec)
         out = os.path.abspath(out_path)
         os.makedirs(os.path.dirname(out), exist_ok=True)
+        # Write next to out_path and rename at the end: out_path is either the
+        # finished video or untouched, never a half-written file.
+        part = f"{out}.{os.getpid()}.part"
         with tempfile.TemporaryDirectory(prefix="wibecode_") as tmp:
             cmd = [ffmpeg, "-y", "-v", "error"]
             filters = []
@@ -193,11 +200,16 @@ class FFmpegRenderer:
             cmd += [
                 "-filter_complex", ";".join(filters), "-map", "[out]",
                 "-r", str(FPS), "-c:v", "libx264", "-preset", "veryfast", "-pix_fmt", "yuv420p",
-                "-movflags", "+faststart", out,
+                "-movflags", "+faststart", "-f", "mp4", part,
             ]  # fmt: skip
-            proc = subprocess.run(cmd, capture_output=True, text=True)
-            if proc.returncode != 0:
-                raise RenderError(f"FFmpeg завершился с ошибкой: {proc.stderr.strip()[-500:]}")
+            try:
+                proc = subprocess.run(cmd, capture_output=True, text=True)
+                if proc.returncode != 0:
+                    raise RenderError(f"FFmpeg завершился с ошибкой: {proc.stderr.strip()[-500:]}")
+                os.replace(part, out)
+            finally:
+                if os.path.exists(part):
+                    os.remove(part)
         return out
 
 
