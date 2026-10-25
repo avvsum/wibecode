@@ -1,0 +1,17 @@
+# D: w5sk — доступ на запись проверен. Логины A/B/C ещё нужны.
+/tests/              @w5sk
+/scripts/            @w5sk
+/docs/               @w5sk
+/.github/            @w5sk
+/AGENTS.md           @w5sk
+/CLAUDE.md           @w5sk
+/requirements.txt    @w5sk
+/pytest.ini          @w5sk
+/conftest.py          @w5sk
+/.gitignore          @w5sk
+/.python-version     @w5sk
+# /src/core/          @A_GITHUB_LOGIN
+# /src/api/           @A_GITHUB_LOGIN
+# /src/ui/            @B_GITHUB_LOGIN
+# /assets/            @B_GITHUB_LOGIN
+# /src/llm/           @C_GITHUB_LOGIN

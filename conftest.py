@@ -1,0 +1,17 @@
+"""Shared offline policy, including tests kept inside role-owned packages."""
+
+import socket
+
+import pytest
+
+
+@pytest.fixture(autouse=True)
+def offline(monkeypatch):
+    def blocked(*args, **kwargs):
+        pytest.fail("Тесты не должны обращаться в сеть", pytrace=False)
+
+    monkeypatch.setattr(socket.socket, "connect", blocked)
+    monkeypatch.setattr(socket.socket, "connect_ex", blocked)
+    monkeypatch.setattr(socket, "create_connection", blocked)
+    for variable in ("OPENAI_API_KEY", "ANTHROPIC_API_KEY"):
+        monkeypatch.delenv(variable, raising=False)

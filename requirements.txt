@@ -1,0 +1,8 @@
+pydantic>=2.6,<3
+PySide6>=6.6,<7
+Pillow>=10.2,<13
+matplotlib>=3.8,<4
+pytest>=8,<10
+PyInstaller>=6,<7
+# SDK used by role C (feature/llm-client).
+anthropic<1
