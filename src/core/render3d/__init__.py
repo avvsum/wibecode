@@ -111,11 +111,13 @@ class BlenderRenderer:
             cmd = self._assemble(ffmpeg, spec, segments, lines, frames_dir, tmp, part)
             try:
                 _run_ffmpeg(cmd, os.path.join(tmp, "ffmpeg.txt"), progress, total)
+                # Last report while the video is still a temp file: a cancel or an
+                # error here must leave out_path untouched.
+                _report(on_progress, total, total)
                 os.replace(part, out)
             finally:
                 if os.path.exists(part):
                     os.remove(part)
-        _report(on_progress, total, total)
         return out
 
     @staticmethod

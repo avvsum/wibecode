@@ -242,11 +242,13 @@ class FFmpegRenderer:
             ]  # fmt: skip
             try:
                 _run_ffmpeg(cmd, os.path.join(tmp, "stderr.txt"), on_progress, total)
+                # Last report while the video is still a temp file: a cancel or an
+                # error here must leave out_path untouched.
+                _report(on_progress, total, total)
                 os.replace(part, out)
             finally:
                 if os.path.exists(part):
                     os.remove(part)
-        _report(on_progress, total, total)
         return out
 
 

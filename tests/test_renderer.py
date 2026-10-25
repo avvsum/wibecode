@@ -63,3 +63,26 @@ def test_subframe_video_raises_render_error_before_launching_ffmpeg(api, tmp_pat
         api.render_video(spec, str(output))
     assert str(caught.value).strip()
     assert not output.exists()
+
+
+@pytest.mark.integration
+@pytest.mark.parametrize("outcome", ["cancel", "error"])
+def test_final_progress_veto_keeps_existing_output(api, payload, tmp_path, outcome):
+    payload["scenes"] = [{"type": "text", "text": "x", "start": 0, "end": 1}]
+    payload["duration"] = 1
+    spec = api.parse_spec(json.dumps(payload))
+    output = tmp_path / "keep.mp4"
+    output.write_bytes(b"OLD")
+
+    def on_progress(done, total):
+        if done == total:
+            if outcome == "cancel":
+                return False
+            raise RuntimeError("UI callback failed")
+        return True
+
+    expected = api.RenderCancelled if outcome == "cancel" else RuntimeError
+    with pytest.raises(expected):
+        api.render_video(spec, str(output), on_progress=on_progress)
+    assert output.read_bytes() == b"OLD"
+    assert sorted(p.name for p in tmp_path.iterdir()) == ["keep.mp4"]
