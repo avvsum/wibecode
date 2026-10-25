@@ -72,8 +72,8 @@
         },
         {
           "path": "adventurers/arrow_bow.gltf",
-          "bytes": 3055,
-          "sha256": "db8d6c4bcf7f6119703565220770241a4d98047f22dcd011e66557cb7df795c1"
+          "bytes": 3192,
+          "sha256": "c7445ad749abc88b69a3c82251a862dac3591275fe347e4c2a4182ca0ac50621"
         },
         {
           "path": "adventurers/arrow_bow_bundle.bin",
@@ -82,8 +82,8 @@
         },
         {
           "path": "adventurers/arrow_bow_bundle.gltf",
-          "bytes": 3084,
-          "sha256": "bdff6b1f573110f1704d4e33201600bba6140c7d750f928ebf6037feb1c16b24"
+          "bytes": 3221,
+          "sha256": "50cc718b7b8571e41de2e923d0874d0a98ce629dc514c48e22f5bccb88c5beaf"
         },
         {
           "path": "adventurers/arrow_crossbow.bin",
@@ -92,8 +92,8 @@
         },
         {
           "path": "adventurers/arrow_crossbow.gltf",
-          "bytes": 3071,
-          "sha256": "c409839e791bce9801614434e4b27dec80bc880d478de8fe9fee6b0c1fdb8efc"
+          "bytes": 3208,
+          "sha256": "ff0be1c0e3ecc84b5dc89e23f54be54e717b9f57de26382aaf8a0128de996760"
         },
         {
           "path": "adventurers/arrow_crossbow_bundle.bin",
@@ -102,8 +102,8 @@
         },
         {
           "path": "adventurers/arrow_crossbow_bundle.gltf",
-          "bytes": 3097,
-          "sha256": "e247770b53fcf0a93b7f83f3542633fcf072e7666bf2b06507685d183b66a4b7"
+          "bytes": 3234,
+          "sha256": "2f2714900522c35aa1d2d18425a06f76cf1058656c17b08c9c9777593f49115c"
         },
         {
           "path": "adventurers/axe_1handed.bin",
@@ -112,8 +112,8 @@
         },
         {
           "path": "adventurers/axe_1handed.gltf",
-          "bytes": 3080,
-          "sha256": "43796b063aa9501cc79cf11e801b98ce0c218022dea850e7b6b33387dd4b89da"
+          "bytes": 3217,
+          "sha256": "5ad1a4bad1439edf40ea44983c03e1e6a9fcd62e676146711071da0ab9198ebe"
         },
         {
           "path": "adventurers/axe_2handed.bin",
@@ -122,8 +122,8 @@
         },
         {
           "path": "adventurers/axe_2handed.gltf",
-          "bytes": 3078,
-          "sha256": "8fb5b782848f66a3a7170f4c5da723e1441671938d7434ecc3dd417cebaf4fff"
+          "bytes": 3215,
+          "sha256": "a276f62f787822f6d48d068d4e10b04eebd84b4e87c4e93d2d0805f3c72868f5"
         },
         {
           "path": "adventurers/barbarian_texture.png",
@@ -137,8 +137,8 @@
         },
         {
           "path": "adventurers/bow.gltf",
-          "bytes": 3048,
-          "sha256": "de978d50afcc66ba30edb42e8d040bf932ae7308942b1b4e1400d252ccb8e1fb"
+          "bytes": 3185,
+          "sha256": "10e7e8b65063fdc6f40006391b4fd9f8b815342449f979b17809d7eed4e410fe"
         },
         {
           "path": "adventurers/bow_withString.bin",
@@ -147,8 +147,8 @@
         },
         {
           "path": "adventurers/bow_withString.gltf",
-          "bytes": 4326,
-          "sha256": "c55e025638cfbdac33e117a83abac8d01b8d7056a0f7514c72daf937512de932"
+          "bytes": 4511,
+          "sha256": "120889fb849766390ac9c18bd94364d83ea3ba753f031c0b71cc17da7248a76c"
         },
         {
           "path": "adventurers/Characters/gltf/Barbarian.glb",
@@ -212,8 +212,8 @@
         },
         {
           "path": "adventurers/crossbow_1handed.gltf",
-          "bytes": 3083,
-          "sha256": "27622db91dbc2d8deaf89636462cc66291f902c22cc4a5a30411ebde4dd6a2cd"
+          "bytes": 3220,
+          "sha256": "5548311523f002fd5632ff25dc3ac79bb196632a9d14d3aa455c4bcb15eb3fd9"
         },
         {
           "path": "adventurers/crossbow_2handed.bin",
@@ -222,8 +222,8 @@
         },
         {
           "path": "adventurers/crossbow_2handed.gltf",
-          "bytes": 3083,
-          "sha256": "accce97dcde54ddb83b6512f616b7a5f5892aad28a7405b518116ec864725a81"
+          "bytes": 3220,
+          "sha256": "4b0aa8b1569c8f65a8d8369b276bad484afee83e91d0b36c7a84d720bd9426dc"
         },
         {
           "path": "adventurers/dagger.bin",
@@ -232,8 +232,8 @@
         },
         {
           "path": "adventurers/dagger.gltf",
-          "bytes": 3051,
-          "sha256": "db324dd13443d48b736fe4dba5e24090f4b476dd8d9ee53cf7c6718f00c47e1a"
+          "bytes": 3188,
+          "sha256": "0c9d8f027e63663c3073570ec947036274d2bfd2db9edafb56147c9e44ccfa0f"
         },
         {
           "path": "adventurers/knight_texture.png",
@@ -257,8 +257,8 @@
         },
         {
           "path": "adventurers/mug_empty.gltf",
-          "bytes": 3075,
-          "sha256": "7d4331bf03be5944efcd58833c65f0bc0c8aa1344e60263fdc701ca68523b294"
+          "bytes": 3212,
+          "sha256": "4572065820139cb3d018248a45e844f2cc7029794fc4d7e0eb85771d8799db87"
         },
         {
           "path": "adventurers/mug_full.bin",
@@ -267,8 +267,8 @@
         },
         {
           "path": "adventurers/mug_full.gltf",
-          "bytes": 3072,
-          "sha256": "2b5c1b1c8905c7d595517ff3253e31dfd3edac70ff77180bf9dcf27a0da6168b"
+          "bytes": 3209,
+          "sha256": "541c4695bbdb80319b7123be9d88d1e505e0dda7010f649124cd382380e29946"
         },
         {
           "path": "adventurers/quiver.bin",
@@ -277,8 +277,8 @@
         },
         {
           "path": "adventurers/quiver.gltf",
-          "bytes": 3053,
-          "sha256": "543c2abf89eee3bf8a3e1a4d066fd47e105c65b318c3f48e0dbc20dfb027dcf4"
+          "bytes": 3190,
+          "sha256": "2c88fc5a2d52bfced5428dc2183d82e977a149e8f31dcab26ce7a2da4c92c6e2"
         },
         {
           "path": "adventurers/ranger_texture.png",
@@ -297,8 +297,8 @@
         },
         {
           "path": "adventurers/shield_badge.gltf",
-          "bytes": 3072,
-          "sha256": "0c506e4a76c5ef50f7908f5d8c1242315fb3d2f8b6281ff10909cf11785a5ae5"
+          "bytes": 3209,
+          "sha256": "e9be70c591e5552e168b276d1f08c0807066dd19ea21c4e2aad52039c3a09b25"
         },
         {
           "path": "adventurers/shield_badge_color.bin",
@@ -307,8 +307,8 @@
         },
         {
           "path": "adventurers/shield_badge_color.gltf",
-          "bytes": 3090,
-          "sha256": "b59019f054055c5c1356a8c75a93a064f334180183112ab374526000ea6c9f2a"
+          "bytes": 3227,
+          "sha256": "10faa9ac69a81c5b40ff6b387f49745d8e384a49ac113d8e947d0ee976e57ad3"
         },
         {
           "path": "adventurers/shield_round.bin",
@@ -317,8 +317,8 @@
         },
         {
           "path": "adventurers/shield_round.gltf",
-          "bytes": 3075,
-          "sha256": "dd052a109d5a003fa7ebe4641c31e89a5189ad8d606ee8fc969d05e2d99dab38"
+          "bytes": 3212,
+          "sha256": "1783763fcaac89db3eb6311dad31431b9901be0fb8b7198adc910a94cd4dc68a"
         },
         {
           "path": "adventurers/shield_round_barbarian.bin",
@@ -327,8 +327,8 @@
         },
         {
           "path": "adventurers/shield_round_barbarian.gltf",
-          "bytes": 3114,
-          "sha256": "eebdae322d2611854c4fa6befb29d9a32e0367c495b817212f8431f02ab46a1e"
+          "bytes": 3251,
+          "sha256": "c7e168456ad3b75c3e6d5d13a4c07153adde32ccf7904794b25780edb25d4994"
         },
         {
           "path": "adventurers/shield_round_color.bin",
@@ -337,8 +337,8 @@
         },
         {
           "path": "adventurers/shield_round_color.gltf",
-          "bytes": 3093,
-          "sha256": "491b2cc1f36bbc0b38fa41f81b2ca10160b9ae6526ea3ced0109708ac7d9d750"
+          "bytes": 3230,
+          "sha256": "42edb4ca9b90ed492c711099c6a952a1200e10cc3f68256b09bf7bebe3c4b54d"
         },
         {
           "path": "adventurers/shield_spikes.bin",
@@ -347,8 +347,8 @@
         },
         {
           "path": "adventurers/shield_spikes.gltf",
-          "bytes": 3076,
-          "sha256": "5f89b2e927fc6a5d4308e829e9c931e3c095ea70ad759cfdfe6005ac4e33814d"
+          "bytes": 3213,
+          "sha256": "776f8e7227ad9a9b986357947a42a5193771e31b4a06625ca5b317a9d2462488"
         },
         {
           "path": "adventurers/shield_spikes_color.bin",
@@ -357,8 +357,8 @@
         },
         {
           "path": "adventurers/shield_spikes_color.gltf",
-          "bytes": 3094,
-          "sha256": "6cf480cbba5dccd7d930b36b8ff80e63ba9ced4d834d7bb1ce6c3ba46736b8b2"
+          "bytes": 3231,
+          "sha256": "e18f1c905e27ea7f60782a9e46a721f42f12a3d0f60f14d40acd35a92fca2709"
         },
         {
           "path": "adventurers/shield_square.bin",
@@ -367,8 +367,8 @@
         },
         {
           "path": "adventurers/shield_square.gltf",
-          "bytes": 3074,
-          "sha256": "7d70e034e5af0cde3a6e8b2cc53da46af01f6981c79917ad0c6501a7f5c87d16"
+          "bytes": 3211,
+          "sha256": "3a8ca654e4cb44607332879a28e3dff949c52ac45b14ea8358370a198f57d458"
         },
         {
           "path": "adventurers/shield_square_color.bin",
@@ -377,8 +377,8 @@
         },
         {
           "path": "adventurers/shield_square_color.gltf",
-          "bytes": 3092,
-          "sha256": "93fdc2c3b16fe39bcce37961e287cd17101721a98ddbd2bd94cac8bcda85826b"
+          "bytes": 3229,
+          "sha256": "c689248d65189c248647c879d4ee74bffdc90804685527e253f805337ce3fba8"
         },
         {
           "path": "adventurers/smokebomb.bin",
@@ -387,8 +387,8 @@
         },
         {
           "path": "adventurers/smokebomb.gltf",
-          "bytes": 3062,
-          "sha256": "a962c42961a6b929f338646d112fc3a3f21cc90bf5b0288fdd0cd3209f4999a1"
+          "bytes": 3199,
+          "sha256": "1c8d1919e4132a50cb16f79b8c9b816701e3a485999fdd6f8d5a23e4ffcc015a"
         },
         {
           "path": "adventurers/SOURCE.json",
@@ -402,8 +402,8 @@
         },
         {
           "path": "adventurers/spellbook_closed.gltf",
-          "bytes": 3081,
-          "sha256": "8a9f1798d2e0f8a14cb7ed8880dc82af43f1b277b31bbecd5ae1b8ffb93b865a"
+          "bytes": 3218,
+          "sha256": "bb51d5a78130814fbac6d1181f81e4d9e099160d00c9ce289d286d2276ee6417"
         },
         {
           "path": "adventurers/spellbook_open.bin",
@@ -412,8 +412,8 @@
         },
         {
           "path": "adventurers/spellbook_open.gltf",
-          "bytes": 3072,
-          "sha256": "7f09fb14db28de6fcc323706ab0add72ed1d6824e33164c3fa21d50c1a8aa4c2"
+          "bytes": 3209,
+          "sha256": "64563de84467abea3df7eeab52be2712419aeca39ae0265cd0003eb0a9b9a8ac"
         },
         {
           "path": "adventurers/staff.bin",
@@ -422,8 +422,8 @@
         },
         {
           "path": "adventurers/staff.gltf",
-          "bytes": 3046,
-          "sha256": "25646537632555f2a4e5ae90320bce251bbc5af541e8897960ad4514122110b9"
+          "bytes": 3183,
+          "sha256": "e0dc537f321d86967c33c31fe935d86746ea27cb66f61b054c6dbbd752be77e7"
         },
         {
           "path": "adventurers/sword_1handed.bin",
@@ -432,8 +432,8 @@
         },
         {
           "path": "adventurers/sword_1handed.gltf",
-          "bytes": 3075,
-          "sha256": "2a6074d46c3e337f84f0295d0ea862b116fec7d816db8d027d75a464311228b6"
+          "bytes": 3212,
+          "sha256": "7e54c34bf3132acb16803482d08a8bdc2f41a60d2bea450f0c8c648e0d930d5e"
         },
         {
           "path": "adventurers/sword_2handed.bin",
@@ -442,8 +442,8 @@
         },
         {
           "path": "adventurers/sword_2handed.gltf",
-          "bytes": 3076,
-          "sha256": "42ffb9b49e928763fe21fd928675402ebccd3750ccd89bcec8d186e12c6fdccd"
+          "bytes": 3213,
+          "sha256": "9d09d91397d68f7791ade21f89cc6f2eb8fad3be87c4d46adadb7bd95a81a5d6"
         },
         {
           "path": "adventurers/sword_2handed_color.bin",
@@ -452,8 +452,8 @@
         },
         {
           "path": "adventurers/sword_2handed_color.gltf",
-          "bytes": 3094,
-          "sha256": "3ba61390f950b12824d7d626cff32393a831e6655bf985e47ff716b39cff15f7"
+          "bytes": 3231,
+          "sha256": "2cde01f14ea52cfdbf3068e75c858c05195fb7e92411c8b5566a52b242c2e156"
         },
         {
           "path": "adventurers/wand.bin",
@@ -462,8 +462,8 @@
         },
         {
           "path": "adventurers/wand.gltf",
-          "bytes": 3042,
-          "sha256": "6392f619655a0869a5255dc9702e50027c72c19de6b17b3eecec1492bfd2a800"
+          "bytes": 3179,
+          "sha256": "8c08ffcb260428bbf273e292c86f5a553db1aee3355809c220a55b628441ebb2"
         }
       ]
     },
@@ -645,8 +645,8 @@
         },
         {
           "path": "city/base.gltf",
-          "bytes": 2953,
-          "sha256": "ac49eb9d300587172c416f73c7fd709403dc34f432f02ab3e3c9590adc63c21c"
+          "bytes": 3089,
+          "sha256": "4113125ead15a61bb0df14252e479576d3232b5998702cdc300e30626eb6d35c"
         },
         {
           "path": "city/bench.bin",
@@ -655,8 +655,8 @@
         },
         {
           "path": "city/bench.gltf",
-          "bytes": 3024,
-          "sha256": "f3b731470c30ed21d7e03f15d28f1937b3e4881efcca57a48e4c82ae582e51e1"
+          "bytes": 3160,
+          "sha256": "cfdbe26e6c6bd9382a278ab13e59f332cafc4d75ba7920667c6b28e1510b3600"
         },
         {
           "path": "city/box_A.bin",
@@ -665,8 +665,8 @@
         },
         {
           "path": "city/box_A.gltf",
-          "bytes": 3044,
-          "sha256": "fe1fa867aa6aa2933bbe3d232c8dcedffc68d484019f71544ce191e2c8ddc16c"
+          "bytes": 3180,
+          "sha256": "e6b0dd66366091a2e725472ed7ca58b83db9303d46adcab4c0b83863392ba24e"
         },
         {
           "path": "city/box_B.bin",
@@ -675,8 +675,8 @@
         },
         {
           "path": "city/box_B.gltf",
-          "bytes": 3044,
-          "sha256": "6ad0554fedbc3ad3079cac62668455912bbe59be3b796de3356f2cc4e726e690"
+          "bytes": 3180,
+          "sha256": "ac32725b307a4cb110df748f849c325e899b42c936fb0dffeeb375c06c7ec920"
         },
         {
           "path": "city/building_A.bin",
@@ -685,8 +685,8 @@
         },
         {
           "path": "city/building_A.gltf",
-          "bytes": 2980,
-          "sha256": "d9d21afb847de1c67a643cc34738f0b71d71f6a8926e8fa7f248bb6a434a22ba"
+          "bytes": 3116,
+          "sha256": "ca94a34e3052876fae77ad7354f5d3f595246a848a74a37520599a1c7a58d28d"
         },
         {
           "path": "city/building_A_withoutBase.bin",
@@ -695,8 +695,8 @@
         },
         {
           "path": "city/building_A_withoutBase.gltf",
-          "bytes": 3083,
-          "sha256": "37389d47e4ddec9175c40d41a48e2c1d16a1c44146833ec73fef2710e0b6876e"
+          "bytes": 3219,
+          "sha256": "399707f2c3be54810aba6900971142a845e2e4b6f559f101617ba8bfed3034bc"
         },
         {
           "path": "city/building_B.bin",
@@ -705,8 +705,8 @@
         },
         {
           "path": "city/building_B.gltf",
-          "bytes": 2980,
-          "sha256": "d026df95a16e31d1d50827375db7978099af35eefbb255bf6674855d303fb390"
+          "bytes": 3116,
+          "sha256": "485eba0e0c2c470974566b9eab348ac198c0d2b05b656dd174329f0838fad347"
         },
         {
           "path": "city/building_B_withoutBase.bin",
@@ -715,8 +715,8 @@
         },
         {
           "path": "city/building_B_withoutBase.gltf",
-          "bytes": 3089,
-          "sha256": "69b1e3d91479c8fe3134e385fef567603cecd2423a032f2a11b9f2deb7046458"
+          "bytes": 3225,
+          "sha256": "098bb7c679c815266f9c805658eed3565dd0216b889ba6c3c2060c0fa88f4d00"
         },
         {
           "path": "city/building_C.bin",
@@ -725,8 +725,8 @@
         },
         {
           "path": "city/building_C.gltf",
-          "bytes": 2979,
-          "sha256": "d2477afdb8a68507ab862ede37f47a2a7b74df369290bc57712239214c6ae2c8"
+          "bytes": 3115,
+          "sha256": "221a7d4a4cf5c0563db9590897bd91238e62b6db32d6de60cbdd16620fc2236b"
         },
         {
           "path": "city/building_C_withoutBase.bin",
@@ -735,8 +735,8 @@
         },
         {
           "path": "city/building_C_withoutBase.gltf",
-          "bytes": 3089,
-          "sha256": "f059362f96617268b7eff7a1f65f853288a79e21316e5793bbc23a0a2e937671"
+          "bytes": 3225,
+          "sha256": "68bc785e3f47e329c5623273aff7d4b1905cddad7683d2583eb610e4dcaa02c7"
         },
         {
           "path": "city/building_D.bin",
@@ -745,8 +745,8 @@
         },
         {
           "path": "city/building_D.gltf",
-          "bytes": 2996,
-          "sha256": "1484455bd37ce136e1defb1639f68cf82b7b00f977856b1d9483de9c02760ba3"
+          "bytes": 3132,
+          "sha256": "14a7c97e7aa74444af64250dce5722b9113d9ff15529228b1f8ddc0b97d82a3b"
         },
         {
           "path": "city/building_D_withoutBase.bin",
@@ -755,8 +755,8 @@
         },
         {
           "path": "city/building_D_withoutBase.gltf",
-          "bytes": 3090,
-          "sha256": "40c07bd5026825a8cf95bf202b702fdb4858ae8a4f2236aa41a9db7a4fdd19ca"
+          "bytes": 3226,
+          "sha256": "5ce0fb0074b8ddaa627efee0594a1b695f485bf05715084c9eff76601ad03d9e"
         },
         {
           "path": "city/building_E.bin",
@@ -765,8 +765,8 @@
         },
         {
           "path": "city/building_E.gltf",
-          "bytes": 3014,
-          "sha256": "42905f3038030e27126da1454aaf1e1bff1ad66de34d9c94a9599c709ae5e97d"
+          "bytes": 3150,
+          "sha256": "7d534ae00bb55272113347eca9f00f90d092bd8f1c0c62b114d7df76471ab420"
         },
         {
           "path": "city/building_E_withoutBase.bin",
@@ -775,8 +775,8 @@
         },
         {
           "path": "city/building_E_withoutBase.gltf",
-          "bytes": 3090,
-          "sha256": "0b2ab5f634eaf0d45ccf5fe585b4a9269f1b8e5b9ab34a412bafca046087e609"
+          "bytes": 3226,
+          "sha256": "0368a74856d320aa5769ddc09011ce0e92ea2fd1a116357884ccb4dddf7437fb"
         },
         {
           "path": "city/building_F.bin",
@@ -785,8 +785,8 @@
         },
         {
           "path": "city/building_F.gltf",
-          "bytes": 3014,
-          "sha256": "cebfc6df11af7caf712a3f3e0d2c033554355ff7bf7a8b332eb21ebdaaba2aa1"
+          "bytes": 3150,
+          "sha256": "7b4f920933bfa7fa39e1164e9d4ed5679b3175203e461afd9209518a9ca4bb62"
         },
         {
           "path": "city/building_F_withoutBase.bin",
@@ -795,8 +795,8 @@
         },
         {
           "path": "city/building_F_withoutBase.gltf",
-          "bytes": 3090,
-          "sha256": "7fe97913eb97fe868b440ac4f13ca60f4d36262624526bbcafcef94566016343"
+          "bytes": 3226,
+          "sha256": "0395993da8e2f3d140233ec3e105828a17ca9bfafba608607f7321bfd3002902"
         },
         {
           "path": "city/building_G.bin",
@@ -805,8 +805,8 @@
         },
         {
           "path": "city/building_G.gltf",
-          "bytes": 3016,
-          "sha256": "314dad28b2ef5fdd370534ded457e0381410fe8051687517552b8f1ac43fac11"
+          "bytes": 3152,
+          "sha256": "987830a938374229ae6e5cec9984c14ef3dd110670f2e87ff8530dfadfc9edac"
         },
         {
           "path": "city/building_G_withoutBase.bin",
@@ -815,8 +815,8 @@
         },
         {
           "path": "city/building_G_withoutBase.gltf",
-          "bytes": 3090,
-          "sha256": "2a2dc998168a01bd34390d6fbb2a273e191c8b6e3258f4f3df09a37465ebf0e1"
+          "bytes": 3226,
+          "sha256": "a1cbaac61275ce7ca335f40be897d7c414a0abe66663b05f379c888f17f61ee4"
         },
         {
           "path": "city/building_H.bin",
@@ -825,8 +825,8 @@
         },
         {
           "path": "city/building_H.gltf",
-          "bytes": 3016,
-          "sha256": "319d8392ba3b1662ca8506cfda7dbecc694a7d60268e20a136cdeecbe472d6d2"
+          "bytes": 3152,
+          "sha256": "94315c45b6736e0b13c75807013883f6960a4d91a50e128c2198ad08ba6600fd"
         },
         {
           "path": "city/building_H_withoutBase.bin",
@@ -835,8 +835,8 @@
         },
         {
           "path": "city/building_H_withoutBase.gltf",
-          "bytes": 3089,
-          "sha256": "51d6e3ecb8d12703163c806193787bff9c034931733ca7cd497568c1d62f1793"
+          "bytes": 3225,
+          "sha256": "169797cb33f836860160693f979752e851b007f34aa80a4e804d40938132215b"
         },
         {
           "path": "city/bush.bin",
@@ -845,8 +845,8 @@
         },
         {
           "path": "city/bush.gltf",
-          "bytes": 3022,
-          "sha256": "b1de478b23e6bcfd08d6c070440582195839f66dfd3afc123118fb6298483183"
+          "bytes": 3158,
+          "sha256": "cab55481f600c3a20fecb0ba74f0f1eb06d39d81f50227f8092bde61467cb782"
         },
         {
           "path": "city/car_hatchback.bin",
@@ -855,8 +855,8 @@
         },
         {
           "path": "city/car_hatchback.gltf",
-          "bytes": 10952,
-          "sha256": "e38be3dbdfbc95b0e794fc5c8164b2ff658b2dc5049b51d38179d16a9432b4f3"
+          "bytes": 11394,
+          "sha256": "7f21b781b5e2cb2cd7e9b86ca29e46fd89f1f4a590990472616a280a3be28adf"
         },
         {
           "path": "city/car_police.bin",
@@ -865,8 +865,8 @@
         },
         {
           "path": "city/car_police.gltf",
-          "bytes": 10937,
-          "sha256": "c6f1f85c2a8f56ec0abb76deac13486d42399c6d23868e5e524a090fce652d12"
+          "bytes": 11379,
+          "sha256": "9ab79fe75dbb7eccf0a9f63b7ac1b1166093a251616b3052514c90d5e96c6905"
         },
         {
           "path": "city/car_sedan.bin",
@@ -875,8 +875,8 @@
         },
         {
           "path": "city/car_sedan.gltf",
-          "bytes": 10928,
-          "sha256": "96c9d38e682bc2c77470af09d1a7450208559ca652bf2cf6fd2bc20b8646ef59"
+          "bytes": 11370,
+          "sha256": "cf9c86900ad90ff82447d3c1fcbf318f14cf3d5d63668c02f04df27900d0e498"
         },
         {
           "path": "city/car_stationwagon.bin",
@@ -885,8 +885,8 @@
         },
         {
           "path": "city/car_stationwagon.gltf",
-          "bytes": 10970,
-          "sha256": "49f7e2bdb70183214a3e8d8576e420ebb69520b21db81dddfc6a04e1ed8994fd"
+          "bytes": 11412,
+          "sha256": "33bbf9ab9d700f0be3e03016c4ebf8a46e084ea3a70facf7323b780955fba3c0"
         },
         {
           "path": "city/car_taxi.bin",
@@ -895,8 +895,8 @@
         },
         {
           "path": "city/car_taxi.gltf",
-          "bytes": 10924,
-          "sha256": "781b3265473dab6f7e054f06c23abeba9b811516b19b61a7a88b0aa8d33e1323"
+          "bytes": 11366,
+          "sha256": "89597000523bc8a19557b0ec5cd0a7428afe2cec70171b96e45f8b36d85f477f"
         },
         {
           "path": "city/citybits_texture.png",
@@ -910,8 +910,8 @@
         },
         {
           "path": "city/dumpster.gltf",
-          "bytes": 3033,
-          "sha256": "56353a02aa70f61ea0f94f5806c66f489b2949b64db0611b5ccf2b500c815cb9"
+          "bytes": 3169,
+          "sha256": "13f8f97d3f32017aeb0ef34ef99669eca1f352cde1d19f01305c89259f5249bb"
         },
         {
           "path": "city/firehydrant.bin",
@@ -920,13 +920,13 @@
         },
         {
           "path": "city/firehydrant.gltf",
-          "bytes": 3067,
-          "sha256": "0a3f9fb95e8b4805602ad26050ee552408553682b41f3e54981a69dfa92a7f3b"
+          "bytes": 3203,
+          "sha256": "89c7537c38141aaec3e655d9f561396faaf4add9540164a4b1c77df041da558a"
         },
         {
           "path": "city/LICENSE.txt",
-          "bytes": 828,
-          "sha256": "b076d86beec660e1550e00796ca24a8b70d7b2187d79954b2e29722b666dce93"
+          "bytes": 860,
+          "sha256": "817a116370a4ee798941aec7149ee7873de5a7e8fe515fe64ad57232d59f2415"
         },
         {
           "path": "city/road_corner.bin",
@@ -935,8 +935,8 @@
         },
         {
           "path": "city/road_corner.gltf",
-          "bytes": 2971,
-          "sha256": "592dadb7a6e81e2c5c2415d5e3872eaccece0c71ff1e34bb3ced06ceed4ce149"
+          "bytes": 3107,
+          "sha256": "9227bc5cadb0609ea74f68d832d88fc9fcd6002df87649c07ab05ba33c6aea37"
         },
         {
           "path": "city/road_corner_curved.bin",
@@ -945,8 +945,8 @@
         },
         {
           "path": "city/road_corner_curved.gltf",
-          "bytes": 2986,
-          "sha256": "92a3a77292b6f2cc75accd7b0340d98805377925cd0c9593661bcbf541913e88"
+          "bytes": 3122,
+          "sha256": "30b2db2039009d8a26d10ee0c5f2de45184284ca449d6976ab3be09b66470c6b"
         },
         {
           "path": "city/road_junction.bin",
@@ -955,8 +955,8 @@
         },
         {
           "path": "city/road_junction.gltf",
-          "bytes": 2992,
-          "sha256": "28ea556cf76cf3efd38b62c3610a338bca46ff8e25c336406821c85cf58b7c6b"
+          "bytes": 3128,
+          "sha256": "6080a4ffe10b19873a0909a9ae9810f09c61f0feaecd8b45c157942bed71b06a"
         },
         {
           "path": "city/road_straight.bin",
@@ -965,8 +965,8 @@
         },
         {
           "path": "city/road_straight.gltf",
-          "bytes": 2974,
-          "sha256": "35c74b311a04e5682dfc7fc823867aa53de1cc19b86fa801730496ee69b52e68"
+          "bytes": 3110,
+          "sha256": "0197336e48fc370b904a7c533a037a9f5c7323e582b3001b3d317a99ee3c8f4a"
         },
         {
           "path": "city/road_straight_crossing.bin",
@@ -975,8 +975,8 @@
         },
         {
           "path": "city/road_straight_crossing.gltf",
-          "bytes": 2992,
-          "sha256": "7df128514884a9356404fa3b42b10816a6dec8a211bc22233372cdbb7e1e71a9"
+          "bytes": 3128,
+          "sha256": "20a1b1c7f844346f27bf0e085a377bde1dcb34d24344a3edf9f06e53b2474c25"
         },
         {
           "path": "city/road_tsplit.bin",
@@ -985,8 +985,8 @@
         },
         {
           "path": "city/road_tsplit.gltf",
-          "bytes": 2971,
-          "sha256": "dcdf1facedbd82419b9d0533f327bcf0b66ad74ced86c63d5151244a9cec812f"
+          "bytes": 3107,
+          "sha256": "df5044e10f9ddd39cf6170b0e95fdcf09e757d13da699804ea859db9a256c929"
         },
         {
           "path": "city/SOURCE.json",
@@ -1000,8 +1000,8 @@
         },
         {
           "path": "city/streetlight.gltf",
-          "bytes": 3067,
-          "sha256": "4399e9023844319e0f74311779a2c0ebecacec16f5dfd8123b6141a3af903c6a"
+          "bytes": 3203,
+          "sha256": "75fb11daeebdb53cf7fd80e2d5fec40f469c1be4ce1f3098863f2e7df978654f"
         },
         {
           "path": "city/trafficlight_A.bin",
@@ -1010,8 +1010,8 @@
         },
         {
           "path": "city/trafficlight_A.gltf",
-          "bytes": 3079,
-          "sha256": "4a22f6fc11fcafd61b2272e675a20437d3c69003ae63002980a903a215941b15"
+          "bytes": 3215,
+          "sha256": "504c7c9da941e57a78672df2a70170adae86e8e3ffca954ec0d11617efb6e9ab"
         },
         {
           "path": "city/trafficlight_B.bin",
@@ -1020,8 +1020,8 @@
         },
         {
           "path": "city/trafficlight_B.gltf",
-          "bytes": 3078,
-          "sha256": "a7b9369e3cad7b58a0914a885a14d477c402295fc7d89b26280b4f77b742e28b"
+          "bytes": 3214,
+          "sha256": "2718898f89026fe783e3a0e5837b0efc786d0efe3be639ddb5c4f4f0372bce97"
         },
         {
           "path": "city/trafficlight_C.bin",
@@ -1030,8 +1030,8 @@
         },
         {
           "path": "city/trafficlight_C.gltf",
-          "bytes": 3074,
-          "sha256": "1453697f533323bcf661d59842850a3054ac0bee3d3e7cd8e1ea5e2d627de226"
+          "bytes": 3210,
+          "sha256": "3c1d9eb0b423cb2a7bb19be1016906521e1f0958fc35387bad54d944f5d04f38"
         },
         {
           "path": "city/trash_A.bin",
@@ -1040,8 +1040,8 @@
         },
         {
           "path": "city/trash_A.gltf",
-          "bytes": 3029,
-          "sha256": "dcd3a27821a9d8a781a40a393e167d51c1cdb743edf95edc59236fe32238b464"
+          "bytes": 3165,
+          "sha256": "2a5b4a5ff0d97c87534f48ec718f66ad29630b9901d386c887e94566f1420948"
         },
         {
           "path": "city/trash_B.bin",
@@ -1050,8 +1050,8 @@
         },
         {
           "path": "city/trash_B.gltf",
-          "bytes": 3033,
-          "sha256": "6b549af074a24a1d2dd916af53d33d71d251b9e7e004de67294da02d336754e3"
+          "bytes": 3169,
+          "sha256": "a771e5b73c5ce68eb06b06eb1b6c5e9c4f2382ecc94ea0f90d3a0f0cc59aa1de"
         },
         {
           "path": "city/watertower.bin",
@@ -1060,8 +1060,8 @@
         },
         {
           "path": "city/watertower.gltf",
-          "bytes": 3065,
-          "sha256": "55ae59f2a21ad38c64312a4c00d6808dc486bf4a8e8a8c969bc9e26cdc84d8f3"
+          "bytes": 3201,
+          "sha256": "c0c1d7f035e264893e9d7c742646c8f89a4f6f121aef597075508adff259d799"
         }
       ]
     },
@@ -1880,8 +1880,8 @@
         },
         {
           "path": "dungeon/LICENSE.txt",
-          "bytes": 829,
-          "sha256": "c5f17abf619731f57f6bbff450f6484214605c13aa96bb75bbcfc70930941ff7"
+          "bytes": 861,
+          "sha256": "f7aa969d43469a044fedbfe264e763c92d96cd9ceea125246e85f26d7a616511"
         },
         {
           "path": "dungeon/pillar.gltf.glb",
@@ -2429,8 +2429,8 @@
         },
         {
           "path": "forest/Bush_1_A_Color1.gltf",
-          "bytes": 3054,
-          "sha256": "bc6cf33dbed296a181d8afbd82ffe1c44ee5e57cb095f9efdf4b63e93c165b70"
+          "bytes": 3190,
+          "sha256": "8fd238a250325ef1103a5980d1ea55ce3bc23b9492d8062a924df32c18a62fbd"
         },
         {
           "path": "forest/Bush_1_B_Color1.bin",
@@ -2439,8 +2439,8 @@
         },
         {
           "path": "forest/Bush_1_B_Color1.gltf",
-          "bytes": 3061,
-          "sha256": "523f15a4a27759251ba6c3d666d6b651804ed7a5a0db8615454110651081d774"
+          "bytes": 3197,
+          "sha256": "5f4962c42e9ff073eaa6db6bc3916196aed45ed8f9a7fe9d255b8f49620462b9"
         },
         {
           "path": "forest/Bush_1_C_Color1.bin",
@@ -2449,8 +2449,8 @@
         },
         {
           "path": "forest/Bush_1_C_Color1.gltf",
-          "bytes": 3056,
-          "sha256": "b67ad1166a944eab3d1c88a3255216784848fca45a3a0d1eef6e56c05f4474e7"
+          "bytes": 3192,
+          "sha256": "63006863c9b8c60b349802e19aec83bbc7b4378ac5955edcf9b40446fc39c684"
         },
         {
           "path": "forest/Bush_1_D_Color1.bin",
@@ -2459,8 +2459,8 @@
         },
         {
           "path": "forest/Bush_1_D_Color1.gltf",
-          "bytes": 3058,
-          "sha256": "6778d25fa7184280066f8bef50cc352e214ab784b510a33aa04d239f62159a26"
+          "bytes": 3194,
+          "sha256": "0a486d7c570551888f9e24c006c4e895affa2114574006a58a8658a0cec322b0"
         },
         {
           "path": "forest/Bush_1_E_Color1.bin",
@@ -2469,8 +2469,8 @@
         },
         {
           "path": "forest/Bush_1_E_Color1.gltf",
-          "bytes": 3063,
-          "sha256": "cfe17afe69486867ffc6dac72fd86712c4dd5f0bcd710fe365dd8fe3a18c51fd"
+          "bytes": 3199,
+          "sha256": "598a31934b81ed7161f0c4c51cc7b1c82ee7eb12516c7ed7a780d907d345a469"
         },
         {
           "path": "forest/Bush_1_F_Color1.bin",
@@ -2479,8 +2479,8 @@
         },
         {
           "path": "forest/Bush_1_F_Color1.gltf",
-          "bytes": 3062,
-          "sha256": "dbbbb5bf67e76492ad8caeee35e487dbaae4a33ad649d01899b6edcb28a3aba8"
+          "bytes": 3198,
+          "sha256": "ab07d424fec089c7214c725f61f9a8c56dadf17f0b11a8551cedbd16c708b6a6"
         },
         {
           "path": "forest/Bush_1_G_Color1.bin",
@@ -2489,8 +2489,8 @@
         },
         {
           "path": "forest/Bush_1_G_Color1.gltf",
-          "bytes": 3061,
-          "sha256": "4979a6a515beb25a0a5e1987fccc6f47ac5d15baf7148a8fb63a3f10a17074be"
+          "bytes": 3197,
+          "sha256": "8ec14f8de6dc214ca17701132a5ed218f859939618e13b2217370a5bc83621d2"
         },
         {
           "path": "forest/Bush_2_A_Color1.bin",
@@ -2499,8 +2499,8 @@
         },
         {
           "path": "forest/Bush_2_A_Color1.gltf",
-          "bytes": 3050,
-          "sha256": "c41284ba3191bdda026380527edf9fb0dcf03b5dd26c8779ed056edb6526c444"
+          "bytes": 3186,
+          "sha256": "87cbcbcd19e2aba1db51a899e99bae982f5adb1176cda19843319f15e2f0d0df"
         },
         {
           "path": "forest/Bush_2_B_Color1.bin",
@@ -2509,8 +2509,8 @@
         },
         {
           "path": "forest/Bush_2_B_Color1.gltf",
-          "bytes": 3057,
-          "sha256": "a56841ace35231c41b81f3038f5bd180fd0c6ffbd8bc0ab3070bd31e99e58aad"
+          "bytes": 3193,
+          "sha256": "1d5a842bea3fe0fc6935045c3886e4bd9344800a3a2649d75d7e951389d3b837"
         },
         {
           "path": "forest/Bush_2_C_Color1.bin",
@@ -2519,8 +2519,8 @@
         },
         {
           "path": "forest/Bush_2_C_Color1.gltf",
-          "bytes": 3053,
-          "sha256": "d6544824738f219cbecdf4e31b3832bcea89fd5b4a21bd22a8f28b087628e67c"
+          "bytes": 3189,
+          "sha256": "0623b993c7ee9e6e4e36297a9d614b470414a9eb576f4304f981b095b5262343"
         },
         {
           "path": "forest/Bush_2_D_Color1.bin",
@@ -2529,8 +2529,8 @@
         },
         {
           "path": "forest/Bush_2_D_Color1.gltf",
-          "bytes": 3060,
-          "sha256": "5554f4f1e2f12797a373141a12890e56c5c2cce653611d2a6a2591346c5d2758"
+          "bytes": 3196,
+          "sha256": "1aa6bd680c7475beabfdde0f186777fc7db462e6684679adeb8964b0b06e1f6d"
         },
         {
           "path": "forest/Bush_2_E_Color1.bin",
@@ -2539,8 +2539,8 @@
         },
         {
           "path": "forest/Bush_2_E_Color1.gltf",
-          "bytes": 3064,
-          "sha256": "cac6ebda50aefa5e3fe54a456dd0a6a05d8e2eabd7a7447f1a24a4ecd474f7f2"
+          "bytes": 3200,
+          "sha256": "6b8aa8dbde92c38c59498fc30e148c2132286259dff514b442a44e262c5d80b7"
         },
         {
           "path": "forest/Bush_2_F_Color1.bin",
@@ -2549,8 +2549,8 @@
         },
         {
           "path": "forest/Bush_2_F_Color1.gltf",
-          "bytes": 3040,
-          "sha256": "6337258963e1f97007950e81315350fc4be8ac4d5bcc4f142fc67e851a4f977e"
+          "bytes": 3176,
+          "sha256": "8203a5b3d4f140e8e046adf4bc20c9f9a9ffc02d374cbb23bba9197a689267c7"
         },
         {
           "path": "forest/Bush_3_A_Color1.bin",
@@ -2559,8 +2559,8 @@
         },
         {
           "path": "forest/Bush_3_A_Color1.gltf",
-          "bytes": 3059,
-          "sha256": "c1806cb5331a53bbd57a57fa678dce6484ac45e8b609caf4c619d3dae0fcd7b8"
+          "bytes": 3195,
+          "sha256": "ff1ece8bbee55fd8746607b023e0271e5dad1e0c41780455803168d3e4b5ef55"
         },
         {
           "path": "forest/Bush_3_B_Color1.bin",
@@ -2569,8 +2569,8 @@
         },
         {
           "path": "forest/Bush_3_B_Color1.gltf",
-          "bytes": 3060,
-          "sha256": "76fa503c91e86a2689e6fd630ff201d7eb285f7f28da70542c34d65a1cd5f59f"
+          "bytes": 3196,
+          "sha256": "87b0bd1f0354530724fabcf6f89d68f00dba366a59a72db7166b085caa9bdda1"
         },
         {
           "path": "forest/Bush_3_C_Color1.bin",
@@ -2579,8 +2579,8 @@
         },
         {
           "path": "forest/Bush_3_C_Color1.gltf",
-          "bytes": 3060,
-          "sha256": "213548d4e6dd7d9cb4e225136a545c477e91530f421fdabcc919a8d50922a09c"
+          "bytes": 3196,
+          "sha256": "50e98981174cb14539458a9f8d1cd454c5155da40f5d3788835f8aa0dc251d9b"
         },
         {
           "path": "forest/Bush_4_A_Color1.bin",
@@ -2589,8 +2589,8 @@
         },
         {
           "path": "forest/Bush_4_A_Color1.gltf",
-          "bytes": 3049,
-          "sha256": "56b56b9187350ad1222a4bd61112ed3c2a839a49ad876ca6e01ef17b426f3d02"
+          "bytes": 3185,
+          "sha256": "f895f00c9f1ec1f452d22c2030de12efe53f1e6d619d4588bf442ae052c05958"
         },
         {
           "path": "forest/Bush_4_B_Color1.bin",
@@ -2599,8 +2599,8 @@
         },
         {
           "path": "forest/Bush_4_B_Color1.gltf",
-          "bytes": 3054,
-          "sha256": "e5e67884c2746f229586d5e342a4e603c6345800ea54afff847aab2bdc16f03b"
+          "bytes": 3190,
+          "sha256": "c10106bd112b2f0bc2e3be7f3bd46491486b96c1f76a8884ea3084eebbd00833"
         },
         {
           "path": "forest/Bush_4_C_Color1.bin",
@@ -2609,8 +2609,8 @@
         },
         {
           "path": "forest/Bush_4_C_Color1.gltf",
-          "bytes": 3052,
-          "sha256": "7423fd4cc074944e6ed6d2db2fbdceb12eb417c79ee48cd1645ab95e5e1897f0"
+          "bytes": 3188,
+          "sha256": "4c16e8a45db21d873cbbb1f44b7d81ea1c2f34a0dc8812f5f2ef51d84b4a586e"
         },
         {
           "path": "forest/Bush_4_D_Color1.bin",
@@ -2619,8 +2619,8 @@
         },
         {
           "path": "forest/Bush_4_D_Color1.gltf",
-          "bytes": 3053,
-          "sha256": "4c5d0727c6907ad3120bce7d81a297fe52153d9a24ca5a57edea38eb405478c4"
+          "bytes": 3189,
+          "sha256": "df4577864513e7c374d5f2ce9f234d9663171ed004f1a43c2cbb01eae2987cb2"
         },
         {
           "path": "forest/Bush_4_E_Color1.bin",
@@ -2629,8 +2629,8 @@
         },
         {
           "path": "forest/Bush_4_E_Color1.gltf",
-          "bytes": 3058,
-          "sha256": "add6e1ebbd19cd36a1e042320be0d7498d45e13417c2d62673057573ee9adfd0"
+          "bytes": 3194,
+          "sha256": "202880c3f29a2fcfb992ba78014e53db563ab29266312092912d1250c70c6761"
         },
         {
           "path": "forest/Bush_4_F_Color1.bin",
@@ -2639,8 +2639,8 @@
         },
         {
           "path": "forest/Bush_4_F_Color1.gltf",
-          "bytes": 3060,
-          "sha256": "775fc0c91ee6aee712d607093a1f4aa4a932432dfdddd9e06c8b37c8b06cb2b1"
+          "bytes": 3196,
+          "sha256": "12e625947616f023c09196d7938c21f1539e3590bb4bd8263f58c479f4675ab0"
         },
         {
           "path": "forest/forest_texture.png",
@@ -2654,8 +2654,8 @@
         },
         {
           "path": "forest/Grass_1_A_Color1.gltf",
-          "bytes": 3058,
-          "sha256": "58686904164d636e8731544fbb6911bf1ebc068841fe6c127f0c509b1449212b"
+          "bytes": 3194,
+          "sha256": "d6424c552b6c63e8c470cdab6bb1e36a6c3fef49772903806711d1b405df6cc7"
         },
         {
           "path": "forest/Grass_1_A_Singlesided_Color1.bin",
@@ -2664,8 +2664,8 @@
         },
         {
           "path": "forest/Grass_1_A_Singlesided_Color1.gltf",
-          "bytes": 3088,
-          "sha256": "8adcb284e5b7de6b363fd13866c23b6e96c9a3a461aefecc0d5cfd67136cd3ff"
+          "bytes": 3224,
+          "sha256": "fd5a8e933206d4241cdb2da8d3432e06af7beb75d34bf4034ba0b2ab97ce0799"
         },
         {
           "path": "forest/Grass_1_B_Color1.bin",
@@ -2674,8 +2674,8 @@
         },
         {
           "path": "forest/Grass_1_B_Color1.gltf",
-          "bytes": 3064,
-          "sha256": "a11d2572b48595f1b05b560e347be83e08aa4189a19686ea211c9207d343be1d"
+          "bytes": 3200,
+          "sha256": "7097cb269d8dd6588b9b7521e32058bb10aa11a26c859c49c8e06c185dc10dcd"
         },
         {
           "path": "forest/Grass_1_B_Singlesided_Color1.bin",
@@ -2684,8 +2684,8 @@
         },
         {
           "path": "forest/Grass_1_B_Singlesided_Color1.gltf",
-          "bytes": 3095,
-          "sha256": "b3f2a1e6a10b1b4b5e726cdaa52841bbb5e169aec1ce3dcab4e88e1054ab165c"
+          "bytes": 3231,
+          "sha256": "7aff6a9d18ad6ccb551d23475dc39d9f95e53bf5e81add34126cbc71f2547818"
         },
         {
           "path": "forest/Grass_1_C_Color1.bin",
@@ -2694,8 +2694,8 @@
         },
         {
           "path": "forest/Grass_1_C_Color1.gltf",
-          "bytes": 3067,
-          "sha256": "449d1a5cc0e808eccdad297bd45d4c86439ceb97703c66db940f36879d242dd1"
+          "bytes": 3203,
+          "sha256": "9fb92ebf47b20559099e6eeb71b6f342c82738b08ccdd434e03b435db3be1770"
         },
         {
           "path": "forest/Grass_1_C_Singlesided_Color1.bin",
@@ -2704,8 +2704,8 @@
         },
         {
           "path": "forest/Grass_1_C_Singlesided_Color1.gltf",
-          "bytes": 3099,
-          "sha256": "e9ffe1739d4a89855313e91be0fa79d60eb66c8030392e0761b4a1be6ad3c5a0"
+          "bytes": 3235,
+          "sha256": "74337d342c0ae360d4c29fb2b55a3276867280bc76ce4377f22e83ec824c34a2"
         },
         {
           "path": "forest/Grass_1_D_Color1.bin",
@@ -2714,8 +2714,8 @@
         },
         {
           "path": "forest/Grass_1_D_Color1.gltf",
-          "bytes": 3066,
-          "sha256": "a661f646f59852becd6ec7d3a16501a1d264d5d3d1732d247038357cbff248ba"
+          "bytes": 3202,
+          "sha256": "555db2a3e35f630f2d63d947b1fb33f343d30835270fa10397214ab712dd4eed"
         },
         {
           "path": "forest/Grass_1_D_Singlesided_Color1.bin",
@@ -2724,8 +2724,8 @@
         },
         {
           "path": "forest/Grass_1_D_Singlesided_Color1.gltf",
-          "bytes": 3099,
-          "sha256": "762c03b93b46265a916ba358b7eec97939989157dbfc4d5987ce502289d631f4"
+          "bytes": 3235,
+          "sha256": "71b9fc5069a3399fbcd06ba583d1719360b363aca987857301a0d786c778cd70"
         },
         {
           "path": "forest/Grass_1_Mesh.bin",
@@ -2734,8 +2734,8 @@
         },
         {
           "path": "forest/Grass_1_Mesh.gltf",
-          "bytes": 2327,
-          "sha256": "5997cd7c7be0f6a31dd296af655feda0fef6841d7a1327398d39ca8a3ebb3d6c"
+          "bytes": 2431,
+          "sha256": "9f013b50466c95c1350e57db0db6c2ab12d83d9186a018ced4a381daae377326"
         },
         {
           "path": "forest/Grass_1_SingleSided_Mesh.bin",
@@ -2744,8 +2744,8 @@
         },
         {
           "path": "forest/Grass_1_SingleSided_Mesh.gltf",
-          "bytes": 2357,
-          "sha256": "ca23d90eb3aa3360bd9bc4545c83bb04079552a7edb4b143fd32b355bfd9ac1d"
+          "bytes": 2461,
+          "sha256": "88c321e8b354d2a6f5dedece608a53ae8f1452719ea5758aa57f984ca895ae09"
         },
         {
           "path": "forest/Grass_2_A_Color1.bin",
@@ -2754,8 +2754,8 @@
         },
         {
           "path": "forest/Grass_2_A_Color1.gltf",
-          "bytes": 3056,
-          "sha256": "fa822543a17721c40b3386557ed37af6c44fd6d4ce6b4fc16f9187d69cde8fe1"
+          "bytes": 3192,
+          "sha256": "601cb55fdaabda0c571cfc11e0d1cfbb47a7ed58642b5bf4723c8b423a688175"
         },
         {
           "path": "forest/Grass_2_A_Singlesided_Color1.bin",
@@ -2764,8 +2764,8 @@
         },
         {
           "path": "forest/Grass_2_A_Singlesided_Color1.gltf",
-          "bytes": 3088,
-          "sha256": "d2865c0e5bbfe9a3bae9ac7ff880f065ca130a0331562448bc2fbe86888496c3"
+          "bytes": 3224,
+          "sha256": "1d18a3b0d12f2321098fe44fbbb8734ae38d54e912a58831db250a4b833082c3"
         },
         {
           "path": "forest/Grass_2_B_Color1.bin",
@@ -2774,8 +2774,8 @@
         },
         {
           "path": "forest/Grass_2_B_Color1.gltf",
-          "bytes": 3064,
-          "sha256": "c95c9aa402330cb1f1950a5c6fa467f9714d5ebeb257731bc4e0567951e08032"
+          "bytes": 3200,
+          "sha256": "828a0f84d83ea015e9b3c91d586d1e24ef87fa6f3f8e3ede56e503c3afb2cf73"
         },
         {
           "path": "forest/Grass_2_B_Singlesided_Color1.bin",
@@ -2784,8 +2784,8 @@
         },
         {
           "path": "forest/Grass_2_B_Singlesided_Color1.gltf",
-          "bytes": 3092,
-          "sha256": "bf143734db28770f896781b9baa10f0d9cb8185be61de7b4e78a9da3be159177"
+          "bytes": 3228,
+          "sha256": "cdebdc995be22b7ea403197b89f74bf54d783385d91b986b087f677b57d9546e"
         },
         {
           "path": "forest/Grass_2_C_Color1.bin",
@@ -2794,8 +2794,8 @@
         },
         {
           "path": "forest/Grass_2_C_Color1.gltf",
-          "bytes": 3066,
-          "sha256": "5896b3332cb5ab720747e77cae0d6567387594e3bc80d35bca18c6d38cc4e82e"
+          "bytes": 3202,
+          "sha256": "240bcc2d3b421cac814a37925b5d93be0b0c7b6b0a4d5f2defa6c317c42c8614"
         },
         {
           "path": "forest/Grass_2_C_Singlesided_Color1.bin",
@@ -2804,8 +2804,8 @@
         },
         {
           "path": "forest/Grass_2_C_Singlesided_Color1.gltf",
-          "bytes": 3101,
-          "sha256": "c6f65d5fa69e05ecaae93f4a8859fd206e8d1383cbbf45ca3a90a096ae9339c7"
+          "bytes": 3237,
+          "sha256": "8cafdb647c1039137b5c6f386c86d091d538304ef21e69920aded653121c43be"
         },
         {
           "path": "forest/Grass_2_D_Color1.bin",
@@ -2814,8 +2814,8 @@
         },
         {
           "path": "forest/Grass_2_D_Color1.gltf",
-          "bytes": 3066,
-          "sha256": "4dc6242c70bcdf5e040b9e039679dc518f76d29dc9d770692bf72b3e6b4c1d2f"
+          "bytes": 3202,
+          "sha256": "4c44b6a907ba8aa5b3ed00b3656716f50bc0a976be2f6a199ddaaed9081c0d4c"
         },
         {
           "path": "forest/Grass_2_D_Singlesided_Color1.bin",
@@ -2824,8 +2824,8 @@
         },
         {
           "path": "forest/Grass_2_D_Singlesided_Color1.gltf",
-          "bytes": 3097,
-          "sha256": "b839423efe105cb532887213b62354144e4a17f08cfa9d13fcb13413472e49e1"
+          "bytes": 3233,
+          "sha256": "4a6ab39f944a9b46a23456b6bd490c5880971defb7f914117ab7522f5349ba50"
         },
         {
           "path": "forest/Grass_2_Mesh.bin",
@@ -2834,8 +2834,8 @@
         },
         {
           "path": "forest/Grass_2_Mesh.gltf",
-          "bytes": 2325,
-          "sha256": "80947bb5790b5cec7b9ed98838ca0f16dd4a9b9a0a472901474133aa406952dd"
+          "bytes": 2429,
+          "sha256": "b40d516cf5511507ff746e0e227a3f1ed3385725a255aa1b0a75b0b63bf5a8e7"
         },
         {
           "path": "forest/Grass_2_SingleSided_Mesh.bin",
@@ -2844,8 +2844,8 @@
         },
         {
           "path": "forest/Grass_2_SingleSided_Mesh.gltf",
-          "bytes": 2357,
-          "sha256": "b9343e52cab22f857798ac7f60777bd4487261aad8f112ac96da64833bc98810"
+          "bytes": 2461,
+          "sha256": "4cc8dfaa00c3d8ae7898c60a69d61c39f57dc6690a499ea280ab5272140cbf62"
         },
         {
           "path": "forest/LICENSE.txt",
@@ -2859,8 +2859,8 @@
         },
         {
           "path": "forest/Rock_1_A_Color1.gltf",
-          "bytes": 3032,
-          "sha256": "ca24326b9c24556227c68df64933122f34a972cd38b6e95c53353fefa97dbc80"
+          "bytes": 3168,
+          "sha256": "c086d340ce77846541a14f0580cc4fae41e801ea123fb6cefd328524264eaa54"
         },
         {
           "path": "forest/Rock_1_B_Color1.bin",
@@ -2869,8 +2869,8 @@
         },
         {
           "path": "forest/Rock_1_B_Color1.gltf",
-          "bytes": 3035,
-          "sha256": "749f2de085a5cee1c91c5953cf04cf243d9b61d847e6006cf3d4eeef5a35985a"
+          "bytes": 3171,
+          "sha256": "95999a8866fe67c0e7ab17b675670a7c9b45c7eabdcc031b1f12b743b0a008ae"
         },
         {
           "path": "forest/Rock_1_C_Color1.bin",
@@ -2879,8 +2879,8 @@
         },
         {
           "path": "forest/Rock_1_C_Color1.gltf",
-          "bytes": 3032,
-          "sha256": "af4bc788060d4e6d33cec02ce910a3a409a54dd5e8720a9b0371ea635d766895"
+          "bytes": 3168,
+          "sha256": "1b0294e651b7ec52cdb42c8a8140eb1796dab2c34c7e0005df705ca61e681d1b"
         },
         {
           "path": "forest/Rock_1_D_Color1.bin",
@@ -2889,8 +2889,8 @@
         },
         {
           "path": "forest/Rock_1_D_Color1.gltf",
-          "bytes": 3039,
-          "sha256": "67df432b840e93475ab0b0d7d2d0473d19928168ee5c9c411a51e2bf7e05584d"
+          "bytes": 3175,
+          "sha256": "3c1b51aaaeac3ad82a265481918d0a67866cda960cb4d11ecceec01d8a3b6c14"
         },
         {
           "path": "forest/Rock_1_E_Color1.bin",
@@ -2899,8 +2899,8 @@
         },
         {
           "path": "forest/Rock_1_E_Color1.gltf",
-          "bytes": 3007,
-          "sha256": "f61da3a25bd8098832d1240008928c32b864c81b7f17ee75524310ea73bb8bea"
+          "bytes": 3143,
+          "sha256": "4a0309a814ef80eff99e8637a1bde41a05d75dbfed0fa190930c36d663f451ca"
         },
         {
           "path": "forest/Rock_1_F_Color1.bin",
@@ -2909,8 +2909,8 @@
         },
         {
           "path": "forest/Rock_1_F_Color1.gltf",
-          "bytes": 3008,
-          "sha256": "0b1e7362928f7d8b13f3b3cda0714013084b469e7a333c9fe0c6eec75a5156f2"
+          "bytes": 3144,
+          "sha256": "ac4022ff9cb9555ab30a9df829e50fcf0baabda815f383a46e7fceca5d89793b"
         },
         {
           "path": "forest/Rock_1_G_Color1.bin",
@@ -2919,8 +2919,8 @@
         },
         {
           "path": "forest/Rock_1_G_Color1.gltf",
-          "bytes": 3038,
-          "sha256": "7ad950660ccb2ad30f8556b3c8ca0e53a93ae229427c2cd347feedaccb0d5cd4"
+          "bytes": 3174,
+          "sha256": "5b279f68dbd88d27ca5b770d8e11597ab55f7607fbe8247060f50b546240710f"
         },
         {
           "path": "forest/Rock_1_H_Color1.bin",
@@ -2929,8 +2929,8 @@
         },
         {
           "path": "forest/Rock_1_H_Color1.gltf",
-          "bytes": 3039,
-          "sha256": "98b087745f3fd03544ca5c739130185303cf05d18bbb776d7412416f98c24161"
+          "bytes": 3175,
+          "sha256": "c6999cdb1891af1c9a7d854801a7bfacae5362584c77244a90f6058d45dea26e"
         },
         {
           "path": "forest/Rock_1_I_Color1.bin",
@@ -2939,8 +2939,8 @@
         },
         {
           "path": "forest/Rock_1_I_Color1.gltf",
-          "bytes": 3038,
-          "sha256": "7ddfc8f4009411f0331aac9c165a52cb19bc729deeef16f97668430e0817813c"
+          "bytes": 3174,
+          "sha256": "0b7d9f829a6855ecf4f8aa3938eae095c6aee3f766a6e5fcbcbbf772ad866aa4"
         },
         {
           "path": "forest/Rock_1_J_Color1.bin",
@@ -2949,8 +2949,8 @@
         },
         {
           "path": "forest/Rock_1_J_Color1.gltf",
-          "bytes": 3046,
-          "sha256": "8821410d8b261346bd18547f41ac7d465f2254007d8fa6fee6ecf43c072979c9"
+          "bytes": 3182,
+          "sha256": "6020766d889c9904868ac26fe8a96ef496fc04d4437c9eea7b70e0cc2070c023"
         },
         {
           "path": "forest/Rock_1_K_Color1.bin",
@@ -2959,8 +2959,8 @@
         },
         {
           "path": "forest/Rock_1_K_Color1.gltf",
-          "bytes": 3060,
-          "sha256": "1e7a18bd9e03a00a25ec15953391f0c65f7822951e752c360e676d09604c6cf6"
+          "bytes": 3196,
+          "sha256": "eef2b52192fb67eb0d807a42a8e89105f70f470a60ee25a8037f48f55d06d5e5"
         },
         {
           "path": "forest/Rock_1_L_Color1.bin",
@@ -2969,8 +2969,8 @@
         },
         {
           "path": "forest/Rock_1_L_Color1.gltf",
-          "bytes": 3044,
-          "sha256": "407620a460c45a22275d4bbb5c219f5085ff44f811f1b5d6646232e93b2625a4"
+          "bytes": 3180,
+          "sha256": "3d96df3e90ec927d28803b0aef0fab5efeaded36c071f16c46ff7e5b1601318a"
         },
         {
           "path": "forest/Rock_1_M_Color1.bin",
@@ -2979,8 +2979,8 @@
         },
         {
           "path": "forest/Rock_1_M_Color1.gltf",
-          "bytes": 3044,
-          "sha256": "e3cc71684110ffbe6a68d173979aeac3e56ae6215e821db1840c2c62ef0c92ad"
+          "bytes": 3180,
+          "sha256": "f81563c354a4bea36e37e09d8f450e6860754e27a4a113e4d5ab42431066270a"
         },
         {
           "path": "forest/Rock_1_N_Color1.bin",
@@ -2989,8 +2989,8 @@
         },
         {
           "path": "forest/Rock_1_N_Color1.gltf",
-          "bytes": 3042,
-          "sha256": "a7b66a3716a41ae0424428cf490cd930e420cd3fb5fd003b2d8254fc172b1b05"
+          "bytes": 3178,
+          "sha256": "48a8e23d9aa295adbf20f96fd62ee4c101d49990170a6c381ae169d30d191bf3"
         },
         {
           "path": "forest/Rock_1_O_Color1.bin",
@@ -2999,8 +2999,8 @@
         },
         {
           "path": "forest/Rock_1_O_Color1.gltf",
-          "bytes": 3037,
-          "sha256": "60e50199f545865b7ef7cec4a3cb99ef71a813b6e2079cd4d1f0f0a626e61964"
+          "bytes": 3173,
+          "sha256": "cec366bb36fd1645faa3fcc1d0a048cd96b8f63267199c5621495b2fded18ff2"
         },
         {
           "path": "forest/Rock_1_P_Color1.bin",
@@ -3009,8 +3009,8 @@
         },
         {
           "path": "forest/Rock_1_P_Color1.gltf",
-          "bytes": 3042,
-          "sha256": "6de7e9168f3c6b0f568945294078b5a2c31e59bb8361b6d0464de98c55e4cc8f"
+          "bytes": 3178,
+          "sha256": "3cf0351bef0db39865716b74c76cb5290243916bbfe3b5cd54a123528d6fc292"
         },
         {
           "path": "forest/Rock_1_Q_Color1.bin",
@@ -3019,8 +3019,8 @@
         },
         {
           "path": "forest/Rock_1_Q_Color1.gltf",
-          "bytes": 3067,
-          "sha256": "108a419dcbd0223cef117d3136c28a0d738e06be9b63783e3e8c9197d219be4c"
+          "bytes": 3203,
+          "sha256": "348fff4004400a5607c9981eb1515928151e08c229b34c4c71ed86cf67990db9"
         },
         {
           "path": "forest/Rock_2_A_Color1.bin",
@@ -3029,8 +3029,8 @@
         },
         {
           "path": "forest/Rock_2_A_Color1.gltf",
-          "bytes": 3052,
-          "sha256": "bbe5254a4c13be7f4aa017297a9458db441e99234028af378d29207d80be4696"
+          "bytes": 3188,
+          "sha256": "c4de4f64e7188e7a6f84a5bb4c07170aaebdbb142ff3118e702975171c2cd01f"
         },
         {
           "path": "forest/Rock_2_B_Color1.bin",
@@ -3039,8 +3039,8 @@
         },
         {
           "path": "forest/Rock_2_B_Color1.gltf",
-          "bytes": 3053,
-          "sha256": "0b48492d69655b4cde7678d3582d045147e171f40edf34f28e4ff81db4a1f7ca"
+          "bytes": 3189,
+          "sha256": "ec7a1b0eae1db16b7977a4e28f805780d038c54a2cc909e8c3a1b43b2e8ad5dd"
         },
         {
           "path": "forest/Rock_2_C_Color1.bin",
@@ -3049,8 +3049,8 @@
         },
         {
           "path": "forest/Rock_2_C_Color1.gltf",
-          "bytes": 3054,
-          "sha256": "22ef2dedc006b9a5bffaa2b4f8779face5a92c34e2bb813d1e2904fa7c554cbf"
+          "bytes": 3190,
+          "sha256": "dd02c1e8c4e2ddd4b35815e98c68324df7f2a19dc0ca5fbd701665ba750e1c99"
         },
         {
           "path": "forest/Rock_2_D_Color1.bin",
@@ -3059,8 +3059,8 @@
         },
         {
           "path": "forest/Rock_2_D_Color1.gltf",
-          "bytes": 3055,
-          "sha256": "fd02b9e800720a4923ee2c5c46e23f3c8a4d97d323a21aa86e08758c646367eb"
+          "bytes": 3191,
+          "sha256": "7055b1d2df644ef4d84ad02337b101327ec1693e7e49dd29a53ebf730f4c14ff"
         },
         {
           "path": "forest/Rock_2_E_Color1.bin",
@@ -3069,8 +3069,8 @@
         },
         {
           "path": "forest/Rock_2_E_Color1.gltf",
-          "bytes": 3062,
-          "sha256": "89158bd76e8ebb3c7d0615bee0c8f5b856c81c80d2710eef4a2c4c8b3231862d"
+          "bytes": 3198,
+          "sha256": "6f0f727f2ee6d1c58651e33f2e001dbad718ca6640070d2dcfefe56a053c312a"
         },
         {
           "path": "forest/Rock_2_F_Color1.bin",
@@ -3079,8 +3079,8 @@
         },
         {
           "path": "forest/Rock_2_F_Color1.gltf",
-          "bytes": 3059,
-          "sha256": "9cb36f8bcd5ae071901e3b319843a6c33555076e4fb5bf98d8b4b5b99cec73bb"
+          "bytes": 3195,
+          "sha256": "41499e58925f06df87dc621968770becf6e1e0c53ed6d145fce70d0e40388969"
         },
         {
           "path": "forest/Rock_2_G_Color1.bin",
@@ -3089,8 +3089,8 @@
         },
         {
           "path": "forest/Rock_2_G_Color1.gltf",
-          "bytes": 3062,
-          "sha256": "f0445e44e6203fb634e79fa87152ece252bc295a8952d88378e1b5edde3f01e4"
+          "bytes": 3198,
+          "sha256": "4960348d377f9a8eb65ec0df5e11327188438ac5826711ef549e637c1d3fc6c7"
         },
         {
           "path": "forest/Rock_2_H_Color1.bin",
@@ -3099,8 +3099,8 @@
         },
         {
           "path": "forest/Rock_2_H_Color1.gltf",
-          "bytes": 3060,
-          "sha256": "3b60e5b844a146ff41a9e31fba2d628018876b1ced246bc2a7dc5e00ea10fbda"
+          "bytes": 3196,
+          "sha256": "3291384f1f4b1525fa800985a88997cba2da2a5a65324ac0727f72a691b8f8b0"
         },
         {
           "path": "forest/Rock_3_A_Color1.bin",
@@ -3109,8 +3109,8 @@
         },
         {
           "path": "forest/Rock_3_A_Color1.gltf",
-          "bytes": 3056,
-          "sha256": "65484de298f09f7ed5bcf781d7febde1a2df4f0f76b8a6396591240963152c88"
+          "bytes": 3192,
+          "sha256": "08b0d634ecbd6e2d8f61eac15f83d8fceab262ae0053d6e171f5d6f72454ce26"
         },
         {
           "path": "forest/Rock_3_B_Color1.bin",
@@ -3119,8 +3119,8 @@
         },
         {
           "path": "forest/Rock_3_B_Color1.gltf",
-          "bytes": 3060,
-          "sha256": "ab3aafc815c562c4b96fc4ca4bb9cd359a8f0fedeb9775caa19cf116f031fe74"
+          "bytes": 3196,
+          "sha256": "c500df62d3bc24f221a6f45612de486b559bcd05bfc98d3922bb02dc474f37e4"
         },
         {
           "path": "forest/Rock_3_C_Color1.bin",
@@ -3129,8 +3129,8 @@
         },
         {
           "path": "forest/Rock_3_C_Color1.gltf",
-          "bytes": 3057,
-          "sha256": "b0529fafa4fcdab3123442a4bf348999cac2703009935e98e36ea3c2a0cc01a1"
+          "bytes": 3193,
+          "sha256": "2fec4792993c6b02ebb5239e3ffd4fe547751c49b133ea652ed5437b07bd2126"
         },
         {
           "path": "forest/Rock_3_D_Color1.bin",
@@ -3139,8 +3139,8 @@
         },
         {
           "path": "forest/Rock_3_D_Color1.gltf",
-          "bytes": 3057,
-          "sha256": "d2c6c0ed007a643d90241801c7ad0d84e476358d708775348462d03baa717917"
+          "bytes": 3193,
+          "sha256": "386bdca2921a98160561f787f0efcb4b70148fe2c42029a6c1d185c247e4ab98"
         },
         {
           "path": "forest/Rock_3_E_Color1.bin",
@@ -3149,8 +3149,8 @@
         },
         {
           "path": "forest/Rock_3_E_Color1.gltf",
-          "bytes": 3055,
-          "sha256": "09d970738392eae90fda589d6ec11c54b7356a5cf1f6b64b2411774635a03138"
+          "bytes": 3191,
+          "sha256": "3ea49e4f89bf61c1da7e0f0d9118dfc9fceddb92607e0045364bdc1cbfed9af3"
         },
         {
           "path": "forest/Rock_3_F_Color1.bin",
@@ -3159,8 +3159,8 @@
         },
         {
           "path": "forest/Rock_3_F_Color1.gltf",
-          "bytes": 3056,
-          "sha256": "01682b9c8709fcfb480dd5f7f254a8a9491bae18978f9ae7d2183e5d8752f725"
+          "bytes": 3192,
+          "sha256": "ae8fb7348c94b92ab7bba7d3318e7bb8bc479f4c8482f21c096cf3c05350856e"
         },
         {
           "path": "forest/Rock_3_G_Color1.bin",
@@ -3169,8 +3169,8 @@
         },
         {
           "path": "forest/Rock_3_G_Color1.gltf",
-          "bytes": 3057,
-          "sha256": "9835ef4541e6b2867678efc280e399481a909f4a11b71a2a46f4a0ae2f093883"
+          "bytes": 3193,
+          "sha256": "4436ceccc4c2326fc72b784326db84a800152e7c7f5e0ce82a1256682bde685d"
         },
         {
           "path": "forest/Rock_3_H_Color1.bin",
@@ -3179,8 +3179,8 @@
         },
         {
           "path": "forest/Rock_3_H_Color1.gltf",
-          "bytes": 3057,
-          "sha256": "0605b9ccb31940363ebf13b66a562c94de809efd01a7498e8b330a0198171237"
+          "bytes": 3193,
+          "sha256": "d640dc0c64eed002988eda5bc2235cc023264ede054786ed62f9a67bef24085e"
         },
         {
           "path": "forest/Rock_3_I_Color1.bin",
@@ -3189,8 +3189,8 @@
         },
         {
           "path": "forest/Rock_3_I_Color1.gltf",
-          "bytes": 3054,
-          "sha256": "9a9a3c09c0b395968bb79ba344087ec0802b27345eb297699a7000a79d255376"
+          "bytes": 3190,
+          "sha256": "56f1c688457cc598e7dcfc3d0c37db0d03fd5beec3311d2056f2d8c91fdfd000"
         },
         {
           "path": "forest/Rock_3_J_Color1.bin",
@@ -3199,8 +3199,8 @@
         },
         {
           "path": "forest/Rock_3_J_Color1.gltf",
-          "bytes": 3055,
-          "sha256": "2716741531cca7bb19eabd9ab91cee8d38df217fb42b88bd1cacea178a8ef588"
+          "bytes": 3191,
+          "sha256": "f4f291351790bbda27aaa6a7604707b332cc9e32009dcc28378ab007eaba97ed"
         },
         {
           "path": "forest/Rock_3_K_Color1.bin",
@@ -3209,8 +3209,8 @@
         },
         {
           "path": "forest/Rock_3_K_Color1.gltf",
-          "bytes": 3056,
-          "sha256": "6e8943abb90af159fe80b2e547cf3829bce8265a8a297b333a3580868504c455"
+          "bytes": 3192,
+          "sha256": "e45424e5ee47bf4585a31d44ec42bfaa3131ed740bd5f959943c9943e8d57c5c"
         },
         {
           "path": "forest/Rock_3_L_Color1.bin",
@@ -3219,8 +3219,8 @@
         },
         {
           "path": "forest/Rock_3_L_Color1.gltf",
-          "bytes": 3057,
-          "sha256": "70730da0ccdae298d9673bb0aa2eda9a85a46fab2b1a1979ce85d4e5bb23b492"
+          "bytes": 3193,
+          "sha256": "0a7208f1d93f5797551d17e7f6d273333ad4b66d9c3648bcfe34b91ac86f6a90"
         },
         {
           "path": "forest/Rock_3_M_Color1.bin",
@@ -3229,8 +3229,8 @@
         },
         {
           "path": "forest/Rock_3_M_Color1.gltf",
-          "bytes": 3054,
-          "sha256": "e9d200a5da70cca763ab8e7c608de5175aef34f02c1fcb1c7b7b8f0ba173a153"
+          "bytes": 3190,
+          "sha256": "03f6b59e331517b883e581201f9fa564503bac735edb63eb599e17c43d1f27ae"
         },
         {
           "path": "forest/Rock_3_N_Color1.bin",
@@ -3239,8 +3239,8 @@
         },
         {
           "path": "forest/Rock_3_N_Color1.gltf",
-          "bytes": 3059,
-          "sha256": "198d1a30b8643973d45587eef76547c260c15ce3a0093341bb4bcc53bd8c7f4a"
+          "bytes": 3195,
+          "sha256": "3c4d2f43fa87bbb029e99bf102564265a4a6e9ab061f6194045e393b3b20edb9"
         },
         {
           "path": "forest/Rock_3_O_Color1.bin",
@@ -3249,8 +3249,8 @@
         },
         {
           "path": "forest/Rock_3_O_Color1.gltf",
-          "bytes": 3058,
-          "sha256": "627dc5bce046427c10ac4e0db7a6f6c177439656314b82dfe2ce223fedaec273"
+          "bytes": 3194,
+          "sha256": "d641bbb80f38f22dd056e6869c83f3c33eec57ce09d698ef1aea83a8d91678c2"
         },
         {
           "path": "forest/Rock_3_P_Color1.bin",
@@ -3259,8 +3259,8 @@
         },
         {
           "path": "forest/Rock_3_P_Color1.gltf",
-          "bytes": 3057,
-          "sha256": "e41d115f30f996965e73973ca1cd31b183c6ef961cc371b875e7c5492054ad26"
+          "bytes": 3193,
+          "sha256": "6a17d7fbdd7fd737634d80b2d60d14687954d9e2134d424d3c3807f45dffaa9b"
         },
         {
           "path": "forest/Rock_3_Q_Color1.bin",
@@ -3269,8 +3269,8 @@
         },
         {
           "path": "forest/Rock_3_Q_Color1.gltf",
-          "bytes": 3058,
-          "sha256": "ebe67979f6cea47730b3498d46972f8a4a7069e5150a631eaeaf90e3559d087f"
+          "bytes": 3194,
+          "sha256": "2bdcb6c7ff018956eaaf2077ebb6a1ea8d055c7edd7c7d9906b8f07ec81959da"
         },
         {
           "path": "forest/Rock_3_R_Color1.bin",
@@ -3279,8 +3279,8 @@
         },
         {
           "path": "forest/Rock_3_R_Color1.gltf",
-          "bytes": 3055,
-          "sha256": "2bffe23082f6638d43ba5851cbb7f4a70ad1fb6844c0cb9739fb548a84dd5521"
+          "bytes": 3191,
+          "sha256": "189167c19193204f5697a50f5ef9db3dee2653e1658eae9767a14c1f4e943e29"
         },
         {
           "path": "forest/SOURCE.json",
@@ -3294,8 +3294,8 @@
         },
         {
           "path": "forest/Tree_1_A_Color1.gltf",
-          "bytes": 3061,
-          "sha256": "9d972eba9d61fc563cb7c3248f1be057190859ce2554ad2032df27c3d09e06c6"
+          "bytes": 3197,
+          "sha256": "77f88ad54ca40492d4b6e640fe83c258fc9ec29167f24056b9ac00c7b522f975"
         },
         {
           "path": "forest/Tree_1_B_Color1.bin",
@@ -3304,8 +3304,8 @@
         },
         {
           "path": "forest/Tree_1_B_Color1.gltf",
-          "bytes": 3058,
-          "sha256": "03f4773b06adf252ac8ca0a9bfdc77f315c1f4036b6151796f110b4897e586c5"
+          "bytes": 3194,
+          "sha256": "3ed6031e3fd445ec6447bd868dc26fab4b9b214657085dae482fcec7d44b2851"
         },
         {
           "path": "forest/Tree_1_C_Color1.bin",
@@ -3314,8 +3314,8 @@
         },
         {
           "path": "forest/Tree_1_C_Color1.gltf",
-          "bytes": 3064,
-          "sha256": "ffb1e44646cd8dbe9902dd31bf94e64e1a3de5523d1b1f819acdbef09b42d45f"
+          "bytes": 3200,
+          "sha256": "6ef6a0e14411a4b1717f68c28d0470b0e6e1bdf89346907b2873c4c585e95c4d"
         },
         {
           "path": "forest/Tree_2_A_Color1.bin",
@@ -3324,8 +3324,8 @@
         },
         {
           "path": "forest/Tree_2_A_Color1.gltf",
-          "bytes": 3057,
-          "sha256": "793570b93cd350b935bc88c766317675890f102d157965d2aca3d8daef5ee49b"
+          "bytes": 3193,
+          "sha256": "617ad46bc7948d85841e805d6713d6ac44c70d5be83452f1e6bcbf918dcab578"
         },
         {
           "path": "forest/Tree_2_B_Color1.bin",
@@ -3334,8 +3334,8 @@
         },
         {
           "path": "forest/Tree_2_B_Color1.gltf",
-          "bytes": 3059,
-          "sha256": "3094d793c2625c2543c1c8106864426f6c61cfe13b2cff0a2c133aec23065408"
+          "bytes": 3195,
+          "sha256": "eeef0301d1043fb66e1b49c0ff4481542172c128f423b40a5ee97a9a7b59f391"
         },
         {
           "path": "forest/Tree_2_C_Color1.bin",
@@ -3344,8 +3344,8 @@
         },
         {
           "path": "forest/Tree_2_C_Color1.gltf",
-          "bytes": 3060,
-          "sha256": "55a4e60b889a4823b72f1741b78ad6e8d6dd3e3f43b74a19d840ca7c7b4b1f97"
+          "bytes": 3196,
+          "sha256": "fb1fb35af1f7617de35cfca0a1c5f8352e337e303e3db073ea06be649a6f5a8a"
         },
         {
           "path": "forest/Tree_2_D_Color1.bin",
@@ -3354,8 +3354,8 @@
         },
         {
           "path": "forest/Tree_2_D_Color1.gltf",
-          "bytes": 3060,
-          "sha256": "5587568a8bea42e3a0fbdce36f16888a62fdb923b283c49317e10b03c2e4aaec"
+          "bytes": 3196,
+          "sha256": "a5986c775c34a5411642c19ec1deea0c9f4768d42310a6a0b302793930cf648e"
         },
         {
           "path": "forest/Tree_2_E_Color1.bin",
@@ -3364,8 +3364,8 @@
         },
         {
           "path": "forest/Tree_2_E_Color1.gltf",
-          "bytes": 3060,
-          "sha256": "5330b533a759a013ad752be03a8c85a49f304e45d777b1da99522eeb5a1d74a9"
+          "bytes": 3196,
+          "sha256": "d7f150856d8d18593d48949cc614488be3589702b2467cb2bda05297ada32368"
         },
         {
           "path": "forest/Tree_3_A_Color1.bin",
@@ -3374,8 +3374,8 @@
         },
         {
           "path": "forest/Tree_3_A_Color1.gltf",
-          "bytes": 3061,
-          "sha256": "a5140f21978004544844df4c2969625724c2c263e74f798716ea9e115216a230"
+          "bytes": 3197,
+          "sha256": "432bca050a377c2a263aec1dc1562076417cef62af207c4aefeb5427c8915ea2"
         },
         {
           "path": "forest/Tree_3_B_Color1.bin",
@@ -3384,8 +3384,8 @@
         },
         {
           "path": "forest/Tree_3_B_Color1.gltf",
-          "bytes": 3060,
-          "sha256": "13f4ede4272f07308d06da5d6f6ab8ff894e3175ed964de8bc356fa1a1ccf319"
+          "bytes": 3196,
+          "sha256": "5132b3619afea3e7872c9e80b55f272d1d4fd22e90fbb84d88a29c4fa14954e3"
         },
         {
           "path": "forest/Tree_3_C_Color1.bin",
@@ -3394,8 +3394,8 @@
         },
         {
           "path": "forest/Tree_3_C_Color1.gltf",
-          "bytes": 3066,
-          "sha256": "a1da502f099639153a6fa02c01b61f684f9c674754da71fe6939dc0b92e97b13"
+          "bytes": 3202,
+          "sha256": "e2a24137c55f1266e6c5f72b4492313725581f4b11fc7782614c31b55a5afaec"
         },
         {
           "path": "forest/Tree_4_A_Color1.bin",
@@ -3404,8 +3404,8 @@
         },
         {
           "path": "forest/Tree_4_A_Color1.gltf",
-          "bytes": 3061,
-          "sha256": "14f8f50af9f9cf8d2bb488cae15613f9e2ed6ce0002d2aa11721a2efc2ba3010"
+          "bytes": 3197,
+          "sha256": "5b67437067a2269bea2120871cbe690e240bed3bac57f264d3a6210d585253d0"
         },
         {
           "path": "forest/Tree_4_B_Color1.bin",
@@ -3414,8 +3414,8 @@
         },
         {
           "path": "forest/Tree_4_B_Color1.gltf",
-          "bytes": 3059,
-          "sha256": "7dad365ccc9e9da3e1cbcdbd5ec16b67f0058a3c76aaa06a1bfaa17c706f1ce5"
+          "bytes": 3195,
+          "sha256": "c8e5b94d09e563b1bbf95a9fd573f3d2ffbf297ad7a3044f18295baac1803c97"
         },
         {
           "path": "forest/Tree_4_C_Color1.bin",
@@ -3424,8 +3424,8 @@
         },
         {
           "path": "forest/Tree_4_C_Color1.gltf",
-          "bytes": 3061,
-          "sha256": "b0ad5efa06e081126366879cca48cf26563ef712899170023c95558b13ef058a"
+          "bytes": 3197,
+          "sha256": "5856afb9c13d91e461ce673be087e5dc3627505d09de1f0378252e974b7c5bce"
         },
         {
           "path": "forest/Tree_Bare_1_A_Color1.bin",
@@ -3434,8 +3434,8 @@
         },
         {
           "path": "forest/Tree_Bare_1_A_Color1.gltf",
-          "bytes": 3075,
-          "sha256": "f246cae013cb68c80b58d2493accc6b60bd2b6a11f5567879d5ef1b73b44d8db"
+          "bytes": 3211,
+          "sha256": "a6c2748e813ab34e97299eb35d8526c65b95e99a7e943f4ab236edf79c230e6f"
         },
         {
           "path": "forest/Tree_Bare_1_B_Color1.bin",
@@ -3444,8 +3444,8 @@
         },
         {
           "path": "forest/Tree_Bare_1_B_Color1.gltf",
-          "bytes": 3074,
-          "sha256": "2f2ce28371025026808141f0765f01fd20ce727c381bf472f40ba63adc501ae8"
+          "bytes": 3210,
+          "sha256": "49e66f250681d056aebbe94e52801e4485dec202504f921cb2960a3187b8cd73"
         },
         {
           "path": "forest/Tree_Bare_1_C_Color1.bin",
@@ -3454,8 +3454,8 @@
         },
         {
           "path": "forest/Tree_Bare_1_C_Color1.gltf",
-          "bytes": 3079,
-          "sha256": "eab8a08bf1f5cbd916467bc5a6ae1ec6625f6ee34865a8ee580a656a59f8e5f2"
+          "bytes": 3215,
+          "sha256": "0698df432e7421ae423728f6172019fcc1e7ddf26165f7bb6b30644ceef2e5d3"
         },
         {
           "path": "forest/Tree_Bare_2_A_Color1.bin",
@@ -3464,8 +3464,8 @@
         },
         {
           "path": "forest/Tree_Bare_2_A_Color1.gltf",
-          "bytes": 3077,
-          "sha256": "426327b23a1e52e6f2e4d5e977794cf92fc4121ea92d9c82ed475ead5b71cb50"
+          "bytes": 3213,
+          "sha256": "00b27d3d11c9b463da4e95e1576a0d5d14226ad6631d6fc4307164f1c4e533e4"
         },
         {
           "path": "forest/Tree_Bare_2_B_Color1.bin",
@@ -3474,8 +3474,8 @@
         },
         {
           "path": "forest/Tree_Bare_2_B_Color1.gltf",
-          "bytes": 3077,
-          "sha256": "66ae98cbce3cbf97ebb246d66f4e8c6973328c0afa19635efc975bf899cd217f"
+          "bytes": 3213,
+          "sha256": "87c202ad9192f234af1c8934e61d6e538f1570b19e38386eca24637887fde5b5"
         },
         {
           "path": "forest/Tree_Bare_2_C_Color1.bin",
@@ -3484,8 +3484,8 @@
         },
         {
           "path": "forest/Tree_Bare_2_C_Color1.gltf",
-          "bytes": 3076,
-          "sha256": "d8368002845a42244c30b08a897ec0f47e9b178725e6d86f10fab77443039e4e"
+          "bytes": 3212,
+          "sha256": "c2abe98282b048fbc33542ef0d6383f2d5edf9801a6bdfc60b457bc6e375b107"
         }
       ]
     },
@@ -3559,8 +3559,8 @@
         },
         {
           "path": "furniture/armchair.gltf",
-          "bytes": 3019,
-          "sha256": "5236bd9c4945fb60d5ac4d4b064c0c0c74bcded1c280b474d3899a1d84d68b25"
+          "bytes": 3155,
+          "sha256": "17cf0ab1a4e5a39fda7851f7b069ddad0ae555bace7bc734d7618355013bf955"
         },
         {
           "path": "furniture/armchair_pillows.bin",
@@ -3569,8 +3569,8 @@
         },
         {
           "path": "furniture/armchair_pillows.gltf",
-          "bytes": 3036,
-          "sha256": "1344db27a72870fb0a1b43ffcfe12f5f3dd3284f5dcecd10ed593d6e0d940f79"
+          "bytes": 3172,
+          "sha256": "56bb95580ab60250312cd1ea9fb6f63cf13a81bc775d743f13c26c03f3bc86b2"
         },
         {
           "path": "furniture/bed_double_A.bin",
@@ -3579,8 +3579,8 @@
         },
         {
           "path": "furniture/bed_double_A.gltf",
-          "bytes": 3011,
-          "sha256": "55451127bbeb9734bb88c1a761a6246eaaf89ac33eee2f703d78053719e5c4e5"
+          "bytes": 3147,
+          "sha256": "1b24ba0199b614f4367077c9a9ce69eb918104fb551251e7107f6a30bc8eb87e"
         },
         {
           "path": "furniture/bed_double_B.bin",
@@ -3589,8 +3589,8 @@
         },
         {
           "path": "furniture/bed_double_B.gltf",
-          "bytes": 3011,
-          "sha256": "f74f5d6d126f4821294cdf0985e7365743d28893098e625f01b58fdb75093cb4"
+          "bytes": 3147,
+          "sha256": "01fdc733f7d340e44d0df2065b19e3a4c71338f34e2beb0e45f2ece2b20fbcb1"
         },
         {
           "path": "furniture/bed_single_A.bin",
@@ -3599,8 +3599,8 @@
         },
         {
           "path": "furniture/bed_single_A.gltf",
-          "bytes": 3009,
-          "sha256": "7b2852bb66bf82cad3e0d03a499b1480879790fa66b645347e3e73761c4fe3f5"
+          "bytes": 3145,
+          "sha256": "7ae19cfb1d64293d896eb7126e781b5ce76406b8e51c0646f69b5b4039e41c0f"
         },
         {
           "path": "furniture/bed_single_B.bin",
@@ -3609,8 +3609,8 @@
         },
         {
           "path": "furniture/bed_single_B.gltf",
-          "bytes": 3009,
-          "sha256": "f702283107f35fe400aa55775baa9515cbd9adaf9e2003b3441fd5cbedb9a07c"
+          "bytes": 3145,
+          "sha256": "cb030bd99e290f2740a0d89ab5f4a4aa5d0ff600009412c125610b2a82eb7393"
         },
         {
           "path": "furniture/book_set.bin",
@@ -3619,8 +3619,8 @@
         },
         {
           "path": "furniture/book_set.gltf",
-          "bytes": 3051,
-          "sha256": "437bfaba3f3413a0b825627a1cb905765a191f4708be51838c9b60c8132cbe61"
+          "bytes": 3187,
+          "sha256": "345e5a69dae0e1fe329cf311a2492556f044f2c9d78e8ed3411e50799bb89fc5"
         },
         {
           "path": "furniture/book_single.bin",
@@ -3629,8 +3629,8 @@
         },
         {
           "path": "furniture/book_single.gltf",
-          "bytes": 3056,
-          "sha256": "7b86695b060681fc6de8ac70fc1f24b870edcaf84bfe4ed98b7e706ae594d464"
+          "bytes": 3192,
+          "sha256": "5f52bc90baa649c2b7c164068deb5a35e35cc5d974d3eadee734f7837ad1a2e9"
         },
         {
           "path": "furniture/cabinet_medium.bin",
@@ -3639,8 +3639,8 @@
         },
         {
           "path": "furniture/cabinet_medium.gltf",
-          "bytes": 3000,
-          "sha256": "139419c479c6f8b38ac24e12ce85bf81a199e05067a544db879f7e403446c9dc"
+          "bytes": 3136,
+          "sha256": "c505bf0a8b782994a5140abafddadc75d9708d092bc593e28633fbd351247d9e"
         },
         {
           "path": "furniture/cabinet_medium_decorated.bin",
@@ -3649,8 +3649,8 @@
         },
         {
           "path": "furniture/cabinet_medium_decorated.gltf",
-          "bytes": 3060,
-          "sha256": "144b417f282e689ad4c40e8357c5ab76ad26fe3ca0fd777cca29d59eb6013a81"
+          "bytes": 3196,
+          "sha256": "1f8ac6da583854276c3dda0f60b6f9c5dc46dada7ea699a2c9f709cbdec18174"
         },
         {
           "path": "furniture/cabinet_small.bin",
@@ -3659,8 +3659,8 @@
         },
         {
           "path": "furniture/cabinet_small.gltf",
-          "bytes": 3001,
-          "sha256": "06ce4ee6232ee68e791927e838bb8e77c11391b7de9ba3141374626a910772e5"
+          "bytes": 3137,
+          "sha256": "6c2579a286d12098ca42ab21c881784485540b539f2229a0ca40cf10a8328f8f"
         },
         {
           "path": "furniture/cabinet_small_decorated.bin",
@@ -3669,8 +3669,8 @@
         },
         {
           "path": "furniture/cabinet_small_decorated.gltf",
-          "bytes": 3068,
-          "sha256": "3d241df76df2030583c7ebdc292063b5ded40cf9c642e8cfb18b4e0855f3702a"
+          "bytes": 3204,
+          "sha256": "8d1698f6a66ab90a7cc1a3b1e405eca102b10a9d0d82896969aec96e06817523"
         },
         {
           "path": "furniture/cactus_medium_A.bin",
@@ -3679,8 +3679,8 @@
         },
         {
           "path": "furniture/cactus_medium_A.gltf",
-          "bytes": 3072,
-          "sha256": "902c48a87bf8e48a2d72055485eaaeae3aefd91224e5af914aeb42fca99759a8"
+          "bytes": 3208,
+          "sha256": "4f1be775c981c9053b7ddd151981852b78ffa1a529d7e8f1847700c0cf07eb93"
         },
         {
           "path": "furniture/cactus_medium_B.bin",
@@ -3689,8 +3689,8 @@
         },
         {
           "path": "furniture/cactus_medium_B.gltf",
-          "bytes": 3072,
-          "sha256": "849e6bf20405548890ebff081970f92a39af6e749a3fbb0ecc8f0363748c5e3b"
+          "bytes": 3208,
+          "sha256": "2cae49dafd673637dee72683c37f746228135f0a86b7035970ea3b22cffe3787"
         },
         {
           "path": "furniture/cactus_small_A.bin",
@@ -3699,8 +3699,8 @@
         },
         {
           "path": "furniture/cactus_small_A.gltf",
-          "bytes": 3071,
-          "sha256": "4e2d93fb22b7f6097f3726b1fc513647873428224c01b17abdbe79c01c1e959b"
+          "bytes": 3207,
+          "sha256": "09c78c26db5995224197e089dc7cc350d7a7fcc672b5979d7cc3ef1198222c88"
         },
         {
           "path": "furniture/cactus_small_B.bin",
@@ -3709,8 +3709,8 @@
         },
         {
           "path": "furniture/cactus_small_B.gltf",
-          "bytes": 3071,
-          "sha256": "f3f9555486151b309d682a94dc120d893167bd8f506f61c20264a23c8b54d38d"
+          "bytes": 3207,
+          "sha256": "258c144c4f98b76d1f3273bbf0224349d80f692eca2fb2e3608ee8c72dc39554"
         },
         {
           "path": "furniture/chair_A.bin",
@@ -3719,8 +3719,8 @@
         },
         {
           "path": "furniture/chair_A.gltf",
-          "bytes": 3022,
-          "sha256": "fdc71044f23c89c5cff9093cff18bac295c9b750e73daf3cbd8ee6ca9e930dbb"
+          "bytes": 3158,
+          "sha256": "b352811c5e929e152bf93f1f33ea03711b59a07486460b33b4c7147e9ed69bff"
         },
         {
           "path": "furniture/chair_A_wood.bin",
@@ -3729,8 +3729,8 @@
         },
         {
           "path": "furniture/chair_A_wood.gltf",
-          "bytes": 3032,
-          "sha256": "e17a16127b9a3e44ef8888c9d52fe7ec09a06b348934627816a538720793af8d"
+          "bytes": 3168,
+          "sha256": "367b4bc728a6b5169ea28b549fbe9d3368d00db585ce7c63fc8600e0176485cc"
         },
         {
           "path": "furniture/chair_B.bin",
@@ -3739,8 +3739,8 @@
         },
         {
           "path": "furniture/chair_B.gltf",
-          "bytes": 3049,
-          "sha256": "e9cb04ebee4a60a22a26449b46c22efd3c7a022a3bab937ac813ed30f4392855"
+          "bytes": 3185,
+          "sha256": "48c6c22795cabf7ec37f3b9839ebd02f665210543315fa2162a77798caaab41e"
         },
         {
           "path": "furniture/chair_B_wood.bin",
@@ -3749,8 +3749,8 @@
         },
         {
           "path": "furniture/chair_B_wood.gltf",
-          "bytes": 3059,
-          "sha256": "7a19685725e1878f960e0ce724eaffc9a2a5fe36c0496608dd5328aa73290f03"
+          "bytes": 3195,
+          "sha256": "5ef23a8bd6c5cbd9dff6ccc460c13ac3f632aa84c74eaec0437e29f8d23e73a6"
         },
         {
           "path": "furniture/chair_C.bin",
@@ -3759,8 +3759,8 @@
         },
         {
           "path": "furniture/chair_C.gltf",
-          "bytes": 3036,
-          "sha256": "fc042915c24c52f96f0571db348a2de275b15c0065c3e561fce37d4dbc81568a"
+          "bytes": 3172,
+          "sha256": "76279b958463abfbf3c1404c4c7bf13db25f080e0d53971ee48371221afd6dfb"
         },
         {
           "path": "furniture/chair_stool.bin",
@@ -3769,8 +3769,8 @@
         },
         {
           "path": "furniture/chair_stool.gltf",
-          "bytes": 3042,
-          "sha256": "6f830305b9afb97f8d77d52a92971ee237d3012db2ca1abbd4abafc2d82f4c46"
+          "bytes": 3178,
+          "sha256": "b30740778d716bb7bd6424511b865da640f48e8703160d43171f9dc3d8b834f5"
         },
         {
           "path": "furniture/chair_stool_wood.bin",
@@ -3779,8 +3779,8 @@
         },
         {
           "path": "furniture/chair_stool_wood.gltf",
-          "bytes": 3052,
-          "sha256": "b1670bee678ab5920ad8ef3a6fb7c6146054bb7b859798f86aaac96be5765f35"
+          "bytes": 3188,
+          "sha256": "37286cc650c8c83eabb43ccb13b0f92c236dae354f0a658bf62e547e5a6449e2"
         },
         {
           "path": "furniture/couch.bin",
@@ -3789,8 +3789,8 @@
         },
         {
           "path": "furniture/couch.gltf",
-          "bytes": 3014,
-          "sha256": "1a5b74b3a3368870783743c5ce7baa61f45f71131dca66af80b35fd4ac63c222"
+          "bytes": 3150,
+          "sha256": "7b26821f21411b0602dbb54c7883474abd37de9d1e25f2d189a3f7ccbf43f21e"
         },
         {
           "path": "furniture/couch_pillows.bin",
@@ -3799,8 +3799,8 @@
         },
         {
           "path": "furniture/couch_pillows.gltf",
-          "bytes": 3030,
-          "sha256": "d3396c15fc460c5db1e2db95b06bb623140c269369f2e9bc38dc4d3b5807011c"
+          "bytes": 3166,
+          "sha256": "e078023ad366cbd8cd4ac02cbc19ff89713615644e9c5500fffec1a53f92f585"
         },
         {
           "path": "furniture/furniturebits_texture.png",
@@ -3814,8 +3814,8 @@
         },
         {
           "path": "furniture/lamp_standing.gltf",
-          "bytes": 3034,
-          "sha256": "ff42a083e688c94948493c441d4db51c7e0736336525b3eed4f4da75825b88b7"
+          "bytes": 3170,
+          "sha256": "4711a1bc0e3b6008724ae69bd08e52f104fddca19333db727c5b3a0e4ef31ec1"
         },
         {
           "path": "furniture/lamp_table.bin",
@@ -3824,13 +3824,13 @@
         },
         {
           "path": "furniture/lamp_table.gltf",
-          "bytes": 3029,
-          "sha256": "7cc2e9f24145551bfc919247e74a414bbd40bc2fde1fb9a1ac33e16cb9d0497b"
+          "bytes": 3165,
+          "sha256": "13a0fcfbb7e3d6e7ca542e02ef8f5980fc546e7187023320445a7c9883563780"
         },
         {
           "path": "furniture/LICENSE.txt",
-          "bytes": 827,
-          "sha256": "cd675f2adc31eb5fedaedc1072d8ddc27b917f523682f0561837c03dc56393cb"
+          "bytes": 860,
+          "sha256": "cd8a847d4936a2aa1c97ef632808a8c9b9297ad1b1ac9fa069cf8490ada017af"
         },
         {
           "path": "furniture/pictureframe_large_A.bin",
@@ -3839,8 +3839,8 @@
         },
         {
           "path": "furniture/pictureframe_large_A.gltf",
-          "bytes": 3071,
-          "sha256": "b12aadc4e0179aa9c27a18cd31f5a980159188a20d11cc62b9c5a97e4381c59f"
+          "bytes": 3207,
+          "sha256": "bbe9938412fe3f9c277f1ca851cb22564dcf8c440ef9670696bfde7a68cc78dc"
         },
         {
           "path": "furniture/pictureframe_large_B.bin",
@@ -3849,8 +3849,8 @@
         },
         {
           "path": "furniture/pictureframe_large_B.gltf",
-          "bytes": 3054,
-          "sha256": "1ee9d4842d9f4626e08ffce88e34293a7a8b11ffdc1cd0340eb934c209a97cdc"
+          "bytes": 3190,
+          "sha256": "58c00686c02bc5d37764163d79315ec406c9fb4ede260174410543e44d4e1b22"
         },
         {
           "path": "furniture/pictureframe_medium.bin",
@@ -3859,8 +3859,8 @@
         },
         {
           "path": "furniture/pictureframe_medium.gltf",
-          "bytes": 3069,
-          "sha256": "768ebf5e81d2d4dfe87276e70b7373ee541592ca409a57067e5e76626a010926"
+          "bytes": 3205,
+          "sha256": "9d30de278949619679e4f5c28173edb68655b1913f157946427ff3ccaa655490"
         },
         {
           "path": "furniture/pictureframe_small_A.bin",
@@ -3869,8 +3869,8 @@
         },
         {
           "path": "furniture/pictureframe_small_A.gltf",
-          "bytes": 3073,
-          "sha256": "4482cf85a994f9ba3ef45fe490858e5633ef0f09767f79a8511b826024e1de85"
+          "bytes": 3209,
+          "sha256": "b0e9a821e80d11388cc4bf08a9dcabff0222fb14a3162ecd98b033ea6d9870a2"
         },
         {
           "path": "furniture/pictureframe_small_B.bin",
@@ -3879,8 +3879,8 @@
         },
         {
           "path": "furniture/pictureframe_small_B.gltf",
-          "bytes": 3073,
-          "sha256": "b65a9e655be3dbdfa02c0363bf5652461b480f53a584a3749d19e26120435bfa"
+          "bytes": 3209,
+          "sha256": "417d5075157abb0eda5fb50c1014949eab13dac23426bf46ad2c6afe67ac3fa5"
         },
         {
           "path": "furniture/pictureframe_small_C.bin",
@@ -3889,8 +3889,8 @@
         },
         {
           "path": "furniture/pictureframe_small_C.gltf",
-          "bytes": 3071,
-          "sha256": "ca88e60a46bfa85e6b22bd318b2d2aac33a247ab0d480ae995fa13157f4d2731"
+          "bytes": 3207,
+          "sha256": "5720586fb6478f76fc320f415718afcd94d162d7b120b28b444d2021ac3a2171"
         },
         {
           "path": "furniture/pictureframe_standing_A.bin",
@@ -3899,8 +3899,8 @@
         },
         {
           "path": "furniture/pictureframe_standing_A.gltf",
-          "bytes": 3050,
-          "sha256": "214ae94eacc35984cfec9185ef05e6c930bea45c974b3cec013e991b841fae1b"
+          "bytes": 3186,
+          "sha256": "1bd77347a452202d48c731a21fd974e8b68fd60c1c49ba27f3cd2370b34300bc"
         },
         {
           "path": "furniture/pictureframe_standing_B.bin",
@@ -3909,8 +3909,8 @@
         },
         {
           "path": "furniture/pictureframe_standing_B.gltf",
-          "bytes": 3081,
-          "sha256": "93933e6d9b96b8f3718e2dc7be1723e8bf8604f35dd035796a88618f2a33dddc"
+          "bytes": 3217,
+          "sha256": "b45193555eb4811f5a1df3cd0a74999e6049c27c7f489695801a6229a84f7b41"
         },
         {
           "path": "furniture/pillow_A.bin",
@@ -3919,8 +3919,8 @@
         },
         {
           "path": "furniture/pillow_A.gltf",
-          "bytes": 3029,
-          "sha256": "c24247361c709675257b516dfab950708adf8c086710e8a1fc85e572ea5ebb61"
+          "bytes": 3165,
+          "sha256": "e6c8ec0edda3c413256b0504b9a73b67f3c77f59d8f44e562fa13c5fd7fcb969"
         },
         {
           "path": "furniture/pillow_B.bin",
@@ -3929,8 +3929,8 @@
         },
         {
           "path": "furniture/pillow_B.gltf",
-          "bytes": 3029,
-          "sha256": "cf47391e684e93241ba5f9db6bb1e518700fe3a7a79b7f58c40e38ee62e9e36d"
+          "bytes": 3165,
+          "sha256": "ef1228f2fc48f785e39b16ca8ac2189a1fb90795de5b1dc38e035e99f627d5a0"
         },
         {
           "path": "furniture/rug_oval_A.bin",
@@ -3939,8 +3939,8 @@
         },
         {
           "path": "furniture/rug_oval_A.gltf",
-          "bytes": 2970,
-          "sha256": "5d49e065dcb89c0585a17c41823b19788c6e41ab2d8dd45299250241911b1231"
+          "bytes": 3106,
+          "sha256": "008b5bb698232a7bf25d2ab786758c7c104f777c1c5d3914d7836279c482efba"
         },
         {
           "path": "furniture/rug_oval_B.bin",
@@ -3949,8 +3949,8 @@
         },
         {
           "path": "furniture/rug_oval_B.gltf",
-          "bytes": 2970,
-          "sha256": "34e61ec3d96e4af2de6691fa376796469d157f82f91fbc69d69a2e364ce95851"
+          "bytes": 3106,
+          "sha256": "395df47baec896514fcbdadbc23a8f40aaf8aeea639715c88d95d55fb968fcb4"
         },
         {
           "path": "furniture/rug_rectangle_A.bin",
@@ -3959,8 +3959,8 @@
         },
         {
           "path": "furniture/rug_rectangle_A.gltf",
-          "bytes": 2971,
-          "sha256": "892417306a01eac711c6af97b148fc152d375940ec3660964b36e10ea2a8cfda"
+          "bytes": 3107,
+          "sha256": "6a8ab620fe014d62fc521dc6dd4f6b23db9c7fa67a5b2a15975dd123153b7545"
         },
         {
           "path": "furniture/rug_rectangle_B.bin",
@@ -3969,8 +3969,8 @@
         },
         {
           "path": "furniture/rug_rectangle_B.gltf",
-          "bytes": 2971,
-          "sha256": "03fba0522315e872a545fe915f111aaaa54d5682329766e98e1fcb6e9a78ba51"
+          "bytes": 3107,
+          "sha256": "fdbaafdb5cd9c984d9874be57a1ddd202c7b922f96548c5d691b5adcaba12263"
         },
         {
           "path": "furniture/rug_rectangle_stripes_A.bin",
@@ -3979,8 +3979,8 @@
         },
         {
           "path": "furniture/rug_rectangle_stripes_A.gltf",
-          "bytes": 2988,
-          "sha256": "daeafdd3efd5c2d3781426d1bb48ac6dc31893dea30abd3e6f2b22ff70890c55"
+          "bytes": 3124,
+          "sha256": "eaa3df24a639fa05ce14d6f5f3175a3a512afef84899c381c1dc211626f00a4e"
         },
         {
           "path": "furniture/rug_rectangle_stripes_B.bin",
@@ -3989,8 +3989,8 @@
         },
         {
           "path": "furniture/rug_rectangle_stripes_B.gltf",
-          "bytes": 2988,
-          "sha256": "dbad49ace370c37e3821b5f029dd8af0ed0ea6b768180983ca960d5b2565fa85"
+          "bytes": 3124,
+          "sha256": "cc1b9ec75cb8bfd9356f359a9c46803b89f71ca6353ec90a5ea58d7bf1dcd838"
         },
         {
           "path": "furniture/shelf_A_big.bin",
@@ -3999,8 +3999,8 @@
         },
         {
           "path": "furniture/shelf_A_big.gltf",
-          "bytes": 3025,
-          "sha256": "e2f1e24576e603a390f29f5c55c2013389cebaddb0255e1a4808e35ef1279873"
+          "bytes": 3161,
+          "sha256": "03e23b4c5343f207c4da293fbbec700d4514a10441220e537650c9b36fdf1376"
         },
         {
           "path": "furniture/shelf_A_small.bin",
@@ -4009,8 +4009,8 @@
         },
         {
           "path": "furniture/shelf_A_small.gltf",
-          "bytes": 3033,
-          "sha256": "198fb7851f987c51c8dba4ea2e22c27345467c1cbef700995699c10298f9edd5"
+          "bytes": 3169,
+          "sha256": "1bc19b43c086ded204848ebd8a908e7f6ec2b6cac67b82711f513c037c2e6024"
         },
         {
           "path": "furniture/shelf_B_large.bin",
@@ -4019,8 +4019,8 @@
         },
         {
           "path": "furniture/shelf_B_large.gltf",
-          "bytes": 3047,
-          "sha256": "438921fdd044014a02f4e77e4b02205222d83cec3632db2eb8dad50173b24d5c"
+          "bytes": 3183,
+          "sha256": "f1e4490f0576732c53e87948626b4d2fd8380f8166ffb9e3df8b70fbc032771d"
         },
         {
           "path": "furniture/shelf_B_large_decorated.bin",
@@ -4029,8 +4029,8 @@
         },
         {
           "path": "furniture/shelf_B_large_decorated.gltf",
-          "bytes": 3069,
-          "sha256": "fc613ad31e07529ad1ec9044a8e7e900821c8636efbd714a3238292326a49fad"
+          "bytes": 3205,
+          "sha256": "a0a0e723d1415a0125818a82f3dd107a513dd038d9f15e12ec60b36c62ebe4a1"
         },
         {
           "path": "furniture/shelf_B_small.bin",
@@ -4039,8 +4039,8 @@
         },
         {
           "path": "furniture/shelf_B_small.gltf",
-          "bytes": 3049,
-          "sha256": "6e6a946ef20fc916247f9ff59b74a3c958edad53c2594356086e7e36fcde5e6e"
+          "bytes": 3185,
+          "sha256": "95a5ceea0536040ea7de908ee489528b911c3917d84884473496622c3398d60e"
         },
         {
           "path": "furniture/shelf_B_small_decorated.bin",
@@ -4049,8 +4049,8 @@
         },
         {
           "path": "furniture/shelf_B_small_decorated.gltf",
-          "bytes": 3071,
-          "sha256": "7a8748dbe6dc428aa45dbef650c7d10bccee41e823c832ecd9a95b870675aa59"
+          "bytes": 3207,
+          "sha256": "a63dc19995688b7870a49eb24373b6e1af96c85a0899123d67cbfdc1ff040c13"
         },
         {
           "path": "furniture/SOURCE.json",
@@ -4064,8 +4064,8 @@
         },
         {
           "path": "furniture/table_low.gltf",
-          "bytes": 2990,
-          "sha256": "3bf202a3ee70ee95943c26419bd5f540353a16b8b6a0b41449746f85c3319a2a"
+          "bytes": 3126,
+          "sha256": "fcb78c3ca5276bef9311d0af5daaf7b1b639d159b9557aec05b5c3baa19ec39b"
         },
         {
           "path": "furniture/table_medium.bin",
@@ -4074,8 +4074,8 @@
         },
         {
           "path": "furniture/table_medium.gltf",
-          "bytes": 2973,
-          "sha256": "fd5e5fe8bbf1d3729b6bd725165d58490e9cbd8dd46ce42314b01f20951a302b"
+          "bytes": 3109,
+          "sha256": "0288bd5858e7fe19a31b3aefe67bd460557e95cf83be4e1335621878b3ea71b3"
         },
         {
           "path": "furniture/table_medium_long.bin",
@@ -4084,8 +4084,8 @@
         },
         {
           "path": "furniture/table_medium_long.gltf",
-          "bytes": 2987,
-          "sha256": "e3ba8f08ce5964d602cde13ecba2b837f90b3ed22d092e28fa489f3c216e2488"
+          "bytes": 3123,
+          "sha256": "aec99dcbb1266d1b0842a2a1b24825c4d1d168fd883d12d5adf4d64893f0514d"
         },
         {
           "path": "furniture/table_small.bin",
@@ -4094,8 +4094,8 @@
         },
         {
           "path": "furniture/table_small.gltf",
-          "bytes": 2979,
-          "sha256": "6ae46ef60d18cf1fe507fbb2fb20235144af2ac7101f410269a761ac91ae9aee"
+          "bytes": 3115,
+          "sha256": "c9c262f651408b2285fce3b6743ed5e6bc42030d2d2355c0c5d3d59132306cad"
         }
       ]
     },
@@ -4173,8 +4173,8 @@
         },
         {
           "path": "space/basemodule_A.gltf",
-          "bytes": 3064,
-          "sha256": "d35b464e862ea0cea36733b0e60b0ca645677615bd8393f598ef27fe19c3938e"
+          "bytes": 3200,
+          "sha256": "74757d9dc655a52e5cd2c912c1e589998f2fd4cec7488d062076d97bfc5b41e4"
         },
         {
           "path": "space/basemodule_B.bin",
@@ -4183,8 +4183,8 @@
         },
         {
           "path": "space/basemodule_B.gltf",
-          "bytes": 3078,
-          "sha256": "3bea817d7a2f35f211f47a429e261d46d5d23d6a09f59cc5ef176804d7256c7b"
+          "bytes": 3214,
+          "sha256": "a243bc50efabd1c69daaf1fb04efa241a8f8f8ec6b098a59acbd99b49df1bec5"
         },
         {
           "path": "space/basemodule_C.bin",
@@ -4193,8 +4193,8 @@
         },
         {
           "path": "space/basemodule_C.gltf",
-          "bytes": 3028,
-          "sha256": "72b3901e37e6ef38855c1dd6110242bd66b962e9b1640275048ec32c69ef1f70"
+          "bytes": 3164,
+          "sha256": "614a55983425672cdc18211e788321adda9679c6bfd0071d4347b8814465cbad"
         },
         {
           "path": "space/basemodule_D.bin",
@@ -4203,8 +4203,8 @@
         },
         {
           "path": "space/basemodule_D.gltf",
-          "bytes": 3079,
-          "sha256": "0593d967b076c323ac8d2736a1c332f02f7ad2bc8292b3de387417dcd5d00de0"
+          "bytes": 3215,
+          "sha256": "8523c42085d7b825ee51797080e7091b604bf5705c700e8a9d255049e82f308a"
         },
         {
           "path": "space/basemodule_E.bin",
@@ -4213,8 +4213,8 @@
         },
         {
           "path": "space/basemodule_E.gltf",
-          "bytes": 3080,
-          "sha256": "25b65713f5c37dfad44a64551fe2b1832258926135bbec115f2d1f12089cff6a"
+          "bytes": 3216,
+          "sha256": "2117e4a4ac726b53903e3097c7b4371982e83b894393a452566af06a64fbe220"
         },
         {
           "path": "space/basemodule_garage.bin",
@@ -4223,8 +4223,8 @@
         },
         {
           "path": "space/basemodule_garage.gltf",
-          "bytes": 5022,
-          "sha256": "1e0bd62b0dc863f89d56d3bba7dc9d2f9118c39a4b12e907c2e6eb95518da95f"
+          "bytes": 5237,
+          "sha256": "f082b2f1166c406f953a6c1368e28c4cf04841a0174e25927e6c6ff731c71fa2"
         },
         {
           "path": "space/cargo_A.bin",
@@ -4233,8 +4233,8 @@
         },
         {
           "path": "space/cargo_A.gltf",
-          "bytes": 3007,
-          "sha256": "1e502a13961e9f46da9e876f21a2951c8c70d01eca4fa03b0001bb3b3322177a"
+          "bytes": 3143,
+          "sha256": "0b8140b06f9808ac4800507f2a1dea41a38e98134cfe3b48817f13941d247b23"
         },
         {
           "path": "space/cargo_A_packed.bin",
@@ -4243,8 +4243,8 @@
         },
         {
           "path": "space/cargo_A_packed.gltf",
-          "bytes": 3069,
-          "sha256": "1aed2167450a444f5b2f5248384e8337ffac900f786248a4163462345dc883da"
+          "bytes": 3205,
+          "sha256": "d57500949c1e42e3ed6235cd2ac672b85f0f72a1c799c93fd904924531b09705"
         },
         {
           "path": "space/cargo_A_stacked.bin",
@@ -4253,8 +4253,8 @@
         },
         {
           "path": "space/cargo_A_stacked.gltf",
-          "bytes": 3075,
-          "sha256": "bea2bee3b1f4a9da3735ae0da6ffc1ce481468def3b8d8eb9664f5f308656e1a"
+          "bytes": 3211,
+          "sha256": "686a45a1f5d9eee675e291d1b6daee79590c41a7f314695e72c9b6a56de7c473"
         },
         {
           "path": "space/cargo_B.bin",
@@ -4263,8 +4263,8 @@
         },
         {
           "path": "space/cargo_B.gltf",
-          "bytes": 3007,
-          "sha256": "ee7e58f34fac3f5b18322122d09d09d87b0313785cf3918d1b25d3895ff71cf3"
+          "bytes": 3143,
+          "sha256": "0a151a9650149a8a50368e7303c376cf505e1fdbef0898c57fbafa7d12f84f35"
         },
         {
           "path": "space/cargo_B_packed.bin",
@@ -4273,8 +4273,8 @@
         },
         {
           "path": "space/cargo_B_packed.gltf",
-          "bytes": 3069,
-          "sha256": "fe8b1851646194da0b7a4dc9cda14f10c5d16285177f448de9e7a241156d648c"
+          "bytes": 3205,
+          "sha256": "48f471dcbee0868cf8735804e727531a932a8f0c34c1af8815ceab524bc323b8"
         },
         {
           "path": "space/cargo_B_stacked.bin",
@@ -4283,8 +4283,8 @@
         },
         {
           "path": "space/cargo_B_stacked.gltf",
-          "bytes": 3075,
-          "sha256": "543c5b6777ab6ee41c1090308822fd64a5bb279471cad941cfe7f548a42eed1e"
+          "bytes": 3211,
+          "sha256": "c20452c6308030697918637c238661b81edde92d61bdcc3932cd7761524065ef"
         },
         {
           "path": "space/cargodepot_A.bin",
@@ -4293,8 +4293,8 @@
         },
         {
           "path": "space/cargodepot_A.gltf",
-          "bytes": 3079,
-          "sha256": "ebed5b7362bfc98e36396edcca6c653a1a51dd8f31ecf7e305f70ab12e7de128"
+          "bytes": 3215,
+          "sha256": "cbb4a192b55eea0622b84fbc42373cf0a7439f87cc34e7366375f911b7b52b55"
         },
         {
           "path": "space/cargodepot_B.bin",
@@ -4303,8 +4303,8 @@
         },
         {
           "path": "space/cargodepot_B.gltf",
-          "bytes": 3076,
-          "sha256": "657ab2e1baa6e2e2c72e8bc4fe52d8388b54f7063f7538b78da4faeecfaad29d"
+          "bytes": 3212,
+          "sha256": "d0890a190b6d1a7293648d302e76f3a9db8080ad07bf39da037e7abdc1d26e92"
         },
         {
           "path": "space/cargodepot_C.bin",
@@ -4313,8 +4313,8 @@
         },
         {
           "path": "space/cargodepot_C.gltf",
-          "bytes": 3064,
-          "sha256": "741c4511f53cea9e250ebf12c74293660a6e33dee76d9acd760098ee766a54b4"
+          "bytes": 3200,
+          "sha256": "701015c0e53e86bd23d3b55a63e30cec92da98dcf5c13dac90725818f8cbc9a8"
         },
         {
           "path": "space/containers_A.bin",
@@ -4323,8 +4323,8 @@
         },
         {
           "path": "space/containers_A.gltf",
-          "bytes": 3031,
-          "sha256": "b6b91a095e780704904a9d4d63bd48b8983482ccdbea6d69a14c420a9d83994d"
+          "bytes": 3167,
+          "sha256": "a176f716f27fceb13fee9b136a009ab36fea21c0d3f1a640211ac3d50b9335b3"
         },
         {
           "path": "space/containers_B.bin",
@@ -4333,8 +4333,8 @@
         },
         {
           "path": "space/containers_B.gltf",
-          "bytes": 3031,
-          "sha256": "2f2b3658f900d8c16c827d25ed3b82c4dfab5a63a8fb06b9a4defa329469c24e"
+          "bytes": 3167,
+          "sha256": "bfaf699ca28d01887d2092d4bf09df7fb2e48daaf6593d834e1e56dea6ddca05"
         },
         {
           "path": "space/containers_C.bin",
@@ -4343,8 +4343,8 @@
         },
         {
           "path": "space/containers_C.gltf",
-          "bytes": 3031,
-          "sha256": "44dd2a6195a11fbf6970f62418fd7628c94d87547c866c582311e94fc5ffa343"
+          "bytes": 3167,
+          "sha256": "f78001b119307481b555bd31f1efaf3b9b15383e189a8cab208d5bca509f6ab2"
         },
         {
           "path": "space/containers_D.bin",
@@ -4353,8 +4353,8 @@
         },
         {
           "path": "space/containers_D.gltf",
-          "bytes": 3031,
-          "sha256": "b44923aacaa5257c0908208c1a995cc594933c1b61771d2bfa5846c4f37713ca"
+          "bytes": 3167,
+          "sha256": "c6101542f1290b6988db529f9218f439d7a5e256fd8da104e4ccbe638e09b23a"
         },
         {
           "path": "space/drill_structure.bin",
@@ -4363,8 +4363,8 @@
         },
         {
           "path": "space/drill_structure.gltf",
-          "bytes": 5127,
-          "sha256": "23ab7f68d8bf61dc5b56ab080860f9551fd40edca95442bfb9d3319d183803e6"
+          "bytes": 5347,
+          "sha256": "66c6331891b4148e75069b6ba3154bc3560c909c2a88624df216b0f96a236375"
         },
         {
           "path": "space/lander_A.bin",
@@ -4373,8 +4373,8 @@
         },
         {
           "path": "space/lander_A.gltf",
-          "bytes": 3059,
-          "sha256": "630723b9703f9dbc74cd7d456f83b1173af08837713f6ca6d51bdf358e97a0a6"
+          "bytes": 3195,
+          "sha256": "abd0d23d144f3e4809814183d7e5dab23308a8a7876a4fec8838baceae5a503f"
         },
         {
           "path": "space/lander_B.bin",
@@ -4383,8 +4383,8 @@
         },
         {
           "path": "space/lander_B.gltf",
-          "bytes": 3059,
-          "sha256": "ff5bedc311964269c3020f4fd709f2c32abbd27f02be9513759b05dcb35f56fe"
+          "bytes": 3195,
+          "sha256": "10e0d0b9e09d2c8c86b64fdd0d54a7d99233a9ad8f1f2a55fc6e2be7ed199c97"
         },
         {
           "path": "space/lander_base.bin",
@@ -4393,8 +4393,8 @@
         },
         {
           "path": "space/lander_base.gltf",
-          "bytes": 3079,
-          "sha256": "3c6526d4115ad0c7d3b89a633ac4b0c3b4155ee16e51c6b747db7bfdbe75019c"
+          "bytes": 3215,
+          "sha256": "149e9005ce43811b33b672be41ea07f61e972d76b747083d3b86a0e45dee9cf9"
         },
         {
           "path": "space/landingpad_large.bin",
@@ -4403,8 +4403,8 @@
         },
         {
           "path": "space/landingpad_large.gltf",
-          "bytes": 3067,
-          "sha256": "bf2c624804fa462cf3cbf464f3f4f9bf0aaae2e2d66280e218802d0c683ead02"
+          "bytes": 3203,
+          "sha256": "3149a6188dff7ee0881ac6dcae1bfca64cbe87d847c039d5b4ada0a63aba98c1"
         },
         {
           "path": "space/landingpad_small.bin",
@@ -4413,13 +4413,13 @@
         },
         {
           "path": "space/landingpad_small.gltf",
-          "bytes": 3083,
-          "sha256": "0b2d3294910e8c23798e2211a701c25a299b174fb7832b053555e42e7a38771b"
+          "bytes": 3219,
+          "sha256": "fb5346f2ce5a30bafb6445be8fafa472197835f9b277bd177a081090bf1b97dc"
         },
         {
           "path": "space/LICENSE.txt",
-          "bytes": 826,
-          "sha256": "e1c732edc054bcc23fcee2409304f03fe0f15c9e5150bfd6a72a0f09d513e93f"
+          "bytes": 858,
+          "sha256": "467fccd4e6892ef598ef6566f706cae3a89a307923d446522e3c8252d99b9929"
         },
         {
           "path": "space/lights.bin",
@@ -4428,8 +4428,8 @@
         },
         {
           "path": "space/lights.gltf",
-          "bytes": 3064,
-          "sha256": "029a1d553214b256a8c57e3c04f4799ed8610e37fa8645fbfc3d4ce423fed915"
+          "bytes": 3200,
+          "sha256": "d19ac94ae5e7f6c385023f146ef2fdaec8063d777d5b2e0bfc0aba37d1980b83"
         },
         {
           "path": "space/rock_A.bin",
@@ -4438,8 +4438,8 @@
         },
         {
           "path": "space/rock_A.gltf",
-          "bytes": 2987,
-          "sha256": "08cbebe114ca799161eac0d9f0c8c7f7478ccc5dec164a0102368fb0b77e9bb1"
+          "bytes": 3123,
+          "sha256": "2264871e9c847b5088a5a88c994be3ac42c8f9844efa6cc3ec154f388c1c1c35"
         },
         {
           "path": "space/rock_B.bin",
@@ -4448,8 +4448,8 @@
         },
         {
           "path": "space/rock_B.gltf",
-          "bytes": 3032,
-          "sha256": "19219bf496926951ed7c9188e02dfab55233b5b51afb571211747ddd485fc9d3"
+          "bytes": 3168,
+          "sha256": "43dbac9663f059adf96794a7fae162bd5b30ed2b4398331638c76be023e3aaa1"
         },
         {
           "path": "space/rocks_A.bin",
@@ -4458,8 +4458,8 @@
         },
         {
           "path": "space/rocks_A.gltf",
-          "bytes": 3038,
-          "sha256": "08ad445724788d6f746dabb663c04e58811a78882d1b2989051f194ce429d06f"
+          "bytes": 3174,
+          "sha256": "f7f027a1438c1ff2505962bd65178129d7286c0166d57ffef80b6c652c73e7e4"
         },
         {
           "path": "space/rocks_B.bin",
@@ -4468,8 +4468,8 @@
         },
         {
           "path": "space/rocks_B.gltf",
-          "bytes": 3059,
-          "sha256": "f38dd2d88419a05ba3118c6eb272346f306448a274e026b9321acf529eae5faa"
+          "bytes": 3195,
+          "sha256": "4ee08a93dcc76cdaad60a9511bd70dcb09b79488070b215e29608f1701ddcd7a"
         },
         {
           "path": "space/roofmodule_base.bin",
@@ -4478,8 +4478,8 @@
         },
         {
           "path": "space/roofmodule_base.gltf",
-          "bytes": 3068,
-          "sha256": "d0a9c2df819ff1e6ae8da8ff0b3628ad55ed10a0ef0339d7965dfd7e43091585"
+          "bytes": 3204,
+          "sha256": "7f9dda08e2caf6d9e6d6b9aa2f2257538d44f649c226484d70b28f5584d0c620"
         },
         {
           "path": "space/roofmodule_cargo_A.bin",
@@ -4488,8 +4488,8 @@
         },
         {
           "path": "space/roofmodule_cargo_A.gltf",
-          "bytes": 3088,
-          "sha256": "0c5fba67eba76ba52b099cec80402d490a22c3170fd3f1b2d0890c59c4ce9726"
+          "bytes": 3224,
+          "sha256": "ae91ddca6a72da962a174fe93d1f994ec6797e21f4fa43851158211de2e22f2d"
         },
         {
           "path": "space/roofmodule_cargo_B.bin",
@@ -4498,8 +4498,8 @@
         },
         {
           "path": "space/roofmodule_cargo_B.gltf",
-          "bytes": 3088,
-          "sha256": "846560a850d24584920ba3a148a86aa293426cf320f2607ac386800f4b67c403"
+          "bytes": 3224,
+          "sha256": "fe19a1aa7ae0da79fc53f97576cee0ad5694329aac3fd67cd5632a3b987a85b5"
         },
         {
           "path": "space/roofmodule_cargo_C.bin",
@@ -4508,8 +4508,8 @@
         },
         {
           "path": "space/roofmodule_cargo_C.gltf",
-          "bytes": 3089,
-          "sha256": "d8e35a713e6a5e50122fc0bff1e40003fe88dabe3c62ae7076cc1a74fce9109a"
+          "bytes": 3225,
+          "sha256": "b336dc8638a3eedfd8e9baed7c33655ccfa1b848c260b23024e7c972c3a00e4c"
         },
         {
           "path": "space/roofmodule_solarpanels.bin",
@@ -4518,8 +4518,8 @@
         },
         {
           "path": "space/roofmodule_solarpanels.gltf",
-          "bytes": 3088,
-          "sha256": "fe28dc153c7f8b402edb788ef70b3f10b0f2132e1d96720c59cde06565b2e35d"
+          "bytes": 3224,
+          "sha256": "fa196eea51fce8c614cd4eec33a0e863adb14f33cabdf9f27efb3561d8069c53"
         },
         {
           "path": "space/solarpanel.bin",
@@ -4528,8 +4528,8 @@
         },
         {
           "path": "space/solarpanel.gltf",
-          "bytes": 3066,
-          "sha256": "55ff7bb1e8171b9882547bce0f29a4dd711ed3f097e33c05dab9dd3eceb36c9a"
+          "bytes": 3202,
+          "sha256": "911d1a262f6484fd7f58d2c0361ab584cb4c2347989b77bb23b218d923f97d0c"
         },
         {
           "path": "space/SOURCE.json",
@@ -4548,8 +4548,8 @@
         },
         {
           "path": "space/spacetruck.gltf",
-          "bytes": 10917,
-          "sha256": "4bf9dcd2eb32b547ece2d9323ab86eea6d7b2f44abf30dc936d613b42e2e874b"
+          "bytes": 11359,
+          "sha256": "45b09870abf157bf1fbfb07a529a0588ab435f5fa25e67ea3bb17561ccbbaa6b"
         },
         {
           "path": "space/spacetruck_large.bin",
@@ -4558,8 +4558,8 @@
         },
         {
           "path": "space/spacetruck_large.gltf",
-          "bytes": 10963,
-          "sha256": "b7dffb0fd40d92efd2def7e6b8093a5b5331c8fea7a276f40aa0282d29729642"
+          "bytes": 11405,
+          "sha256": "285b3da85becd448eb117fb71b9032c4b5db57ca7ac52a8790985d2766929d18"
         },
         {
           "path": "space/spacetruck_trailer.bin",
@@ -4568,8 +4568,8 @@
         },
         {
           "path": "space/spacetruck_trailer.gltf",
-          "bytes": 10945,
-          "sha256": "402e7f492d496162ec7e6e33c6471b6b6bdbb34f2a4a3d9865185767b66c34b1"
+          "bytes": 11387,
+          "sha256": "fc4a42b0cae3a66742631fc8c9730545e4c146fc9fd5eecc9006095a841e99c7"
         },
         {
           "path": "space/structure_low.bin",
@@ -4578,8 +4578,8 @@
         },
         {
           "path": "space/structure_low.gltf",
-          "bytes": 3038,
-          "sha256": "11b2b4f4afaa4bdb68be35a46390ac498f02b116f3cf62e832f46a796e1d573f"
+          "bytes": 3174,
+          "sha256": "bd08805f95a5b989ae68a358756e13fd7f07e7d2bf7335c336eafc8c8fb670c7"
         },
         {
           "path": "space/structure_tall.bin",
@@ -4588,8 +4588,8 @@
         },
         {
           "path": "space/structure_tall.gltf",
-          "bytes": 3062,
-          "sha256": "29e92416379ef83c107d00090ff142cc5a8cddae76defce94cfb1e89bf357ac7"
+          "bytes": 3198,
+          "sha256": "3d39ea766d87cfcca4fe7596ed45503240242dbbd4f5da936d97b487756e53ac"
         },
         {
           "path": "space/terrain_low.bin",
@@ -4598,8 +4598,8 @@
         },
         {
           "path": "space/terrain_low.gltf",
-          "bytes": 2947,
-          "sha256": "1b9846a156f729da1e66cc186d38393125532f521dc76c6bbadf6fe31f77e598"
+          "bytes": 3083,
+          "sha256": "1ca3dc62936f5dd35a6d61480fce38e8a03d64c271d9ff673e05b9f1c9c7b885"
         },
         {
           "path": "space/terrain_low_curved.bin",
@@ -4608,8 +4608,8 @@
         },
         {
           "path": "space/terrain_low_curved.gltf",
-          "bytes": 2966,
-          "sha256": "d41f15257ca87b87bf179f2358f87abb24de282f6ea76ae8b1783b976935c0a9"
+          "bytes": 3102,
+          "sha256": "3babce11c4ee144531416e3a0db4918361ea3eb9977068e20448ad95ba5a238c"
         },
         {
           "path": "space/terrain_mining.bin",
@@ -4618,8 +4618,8 @@
         },
         {
           "path": "space/terrain_mining.gltf",
-          "bytes": 2979,
-          "sha256": "32a61b860fe1bb6eda5ece94a26f4f78d72b4071d335dc9e256f115b5ea669eb"
+          "bytes": 3115,
+          "sha256": "21b405c9c4c26d61cee5205f63a07fa8553a27d7f0716e7029635e7e6e1a38f6"
         },
         {
           "path": "space/terrain_slope.bin",
@@ -4628,8 +4628,8 @@
         },
         {
           "path": "space/terrain_slope.gltf",
-          "bytes": 2954,
-          "sha256": "216182192aaac8af1a07f3f631b043a7f518d51ec41d08cf8eb820c445622e73"
+          "bytes": 3090,
+          "sha256": "642b67f9c045e2b61ee25e8bae2ef27138bc44ccbc68ec0ddc1cf36962d0666e"
         },
         {
           "path": "space/terrain_slope_inner_corner.bin",
@@ -4638,8 +4638,8 @@
         },
         {
           "path": "space/terrain_slope_inner_corner.gltf",
-          "bytes": 2981,
-          "sha256": "06821257f9e30b69968a9be2666f33b5ea6e267d6a66d20b3aa6098ce0397a72"
+          "bytes": 3117,
+          "sha256": "d1a27c2dd66bece5951c428e6d30abba5dc82b3d3fa7e00de21390b2a41ad05d"
         },
         {
           "path": "space/terrain_slope_outer_corner.bin",
@@ -4648,8 +4648,8 @@
         },
         {
           "path": "space/terrain_slope_outer_corner.gltf",
-          "bytes": 2981,
-          "sha256": "33d7dc097faf3215940fd57b37f476baf320d2482a30437652b9bf90ed9a5606"
+          "bytes": 3117,
+          "sha256": "a43dc2db61ded7ff5d4b80e84185a536ef1f469884a78a3c805234808911a334"
         },
         {
           "path": "space/terrain_tall.bin",
@@ -4658,8 +4658,8 @@
         },
         {
           "path": "space/terrain_tall.gltf",
-          "bytes": 2949,
-          "sha256": "879dbfe6ede0cf2ba372ca7f6e62b7f0707d0626c095d4cbdf2e19b42e859095"
+          "bytes": 3085,
+          "sha256": "0bf9e7e4ebb589579424788237daea621119881ccad08faa5cc08d672a55c292"
         },
         {
           "path": "space/terrain_tall_curved.bin",
@@ -4668,8 +4668,8 @@
         },
         {
           "path": "space/terrain_tall_curved.gltf",
-          "bytes": 2968,
-          "sha256": "f0fb326616563bc9088ca2debbc38c4c7f583b5fa6f8a2dc9c524d6601061fe5"
+          "bytes": 3104,
+          "sha256": "74ef448b71aa7a6603d709e7b45e81fce58d699414203fe7b1588ab75fd13814"
         },
         {
           "path": "space/tunnel_diagonal_long_A.bin",
@@ -4678,8 +4678,8 @@
         },
         {
           "path": "space/tunnel_diagonal_long_A.gltf",
-          "bytes": 3094,
-          "sha256": "92a3232818685937195c7dc15b85e98cd1c40849ef6d174a673962ff09bf1ce1"
+          "bytes": 3230,
+          "sha256": "5ad81c716a1f89e9450a84e44cb490755dcd325ae13efa88e7505e92c56154a7"
         },
         {
           "path": "space/tunnel_diagonal_long_B.bin",
@@ -4688,8 +4688,8 @@
         },
         {
           "path": "space/tunnel_diagonal_long_B.gltf",
-          "bytes": 3087,
-          "sha256": "878f591087177c5acaf079839546c756ba6d491cb872b7d37c7f82aaac72c17f"
+          "bytes": 3223,
+          "sha256": "462edef7b58b583da8124b4d72a7c7f5f0573c889e5551a79f263c54539c1e09"
         },
         {
           "path": "space/tunnel_diagonal_short_A.bin",
@@ -4698,8 +4698,8 @@
         },
         {
           "path": "space/tunnel_diagonal_short_A.gltf",
-          "bytes": 3095,
-          "sha256": "54e763a65cc5d2bbf0d202c0872d26cb887a201815f6ff6fe5dda7fa839515b6"
+          "bytes": 3231,
+          "sha256": "b62cfc31ec7bb9519fbf6da6680ef83263a4aa85dc5014717fb9cd19b446056f"
         },
         {
           "path": "space/tunnel_diagonal_short_B.bin",
@@ -4708,8 +4708,8 @@
         },
         {
           "path": "space/tunnel_diagonal_short_B.gltf",
-          "bytes": 3095,
-          "sha256": "d8cce0aab32b9d34f9d21e17617309807d453475acf483a3f6e81abec521494e"
+          "bytes": 3231,
+          "sha256": "3e5ff6be44a08ac9803dabe2f991896ec0e634ced4faa67fea2bfa6a332f3d2f"
         },
         {
           "path": "space/tunnel_straight_A.bin",
@@ -4718,8 +4718,8 @@
         },
         {
           "path": "space/tunnel_straight_A.gltf",
-          "bytes": 3053,
-          "sha256": "2605eede590fca98d12679389e089bb08e8ece31338a63886387fd09729a4360"
+          "bytes": 3189,
+          "sha256": "2bb6dff7c7a99e672228a0703d1770a0a27c02c762fd03f22718e621d62cf026"
         },
         {
           "path": "space/tunnel_straight_B.bin",
@@ -4728,8 +4728,8 @@
         },
         {
           "path": "space/tunnel_straight_B.gltf",
-          "bytes": 3046,
-          "sha256": "1c638ab710c6f5ddf94f8f25057a3bf6d5d4ef2ccb7a6c6de9c72c9992acde4e"
+          "bytes": 3182,
+          "sha256": "f5e9b73bbc6932e9e1ffbf52afa077a8d4c9b3f67adbaefec171a7773751cf9c"
         },
         {
           "path": "space/windturbine_low.bin",
@@ -4738,8 +4738,8 @@
         },
         {
           "path": "space/windturbine_low.gltf",
-          "bytes": 5160,
-          "sha256": "9bc0489b551010b165b59d3e6f037a6f6c3d92bb7ed971a2a3a9fd662391e4b9"
+          "bytes": 5380,
+          "sha256": "cb423764eda7f40273416c15f246c7fffbfc8ca9dcbd5197beae638cf6e6448a"
         },
         {
           "path": "space/windturbine_tall.bin",
@@ -4748,8 +4748,8 @@
         },
         {
           "path": "space/windturbine_tall.gltf",
-          "bytes": 5168,
-          "sha256": "5dfde3ac3bb695a4938dcdb2546f1ef6148aebb9f82700a20e2eb2d635174f7d"
+          "bytes": 5388,
+          "sha256": "0d7a48b66a5360e679674863db4d82f5a53e16f11d0bff5d8f8f4321bc398fc6"
         }
       ]
     }
