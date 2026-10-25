@@ -37,6 +37,7 @@ Linux/macOS: `python3.11 -m venv .venv` и `.venv/bin/python` вместо Windo
 | `ANTHROPIC_API_KEY` | ключ Claude для генерации сценария. Не храните его в файлах проекта |
 | `WIBECODE_BLENDER` | путь к `blender`, если его нет в PATH |
 | `ELEVENLABS_API_KEY` | ключ ElevenLabs, если выбрана озвучка ElevenLabs |
+| `WIBECODE_YT_CLIENT_SECRET` | путь к OAuth-клиенту YouTube, если он не в `~/.shortsstudio/client_secret.json` |
 | `ELEVENLABS_VOICE_NARRATOR`, `_ROBOT`, `_GIRL` | необязательно: свои voice ID вместо стандартных |
 | `CHATTERBOX_VOICE_NARRATOR`, `_ROBOT`, `_GIRL` | необязательно: путь к .wav 5–10 с, чей голос клонирует Chatterbox |
 | `CHATTERBOX_LANGUAGE` | необязательно: язык Chatterbox (`ru`, `en`, …); по умолчанию по тексту |
@@ -84,6 +85,33 @@ api.add_voiceover("outputs/video.mp4", clips)             # AAC-дорожка �
 meta = llm.generate_metadata("Ролик про рост продаж", raw)  # title, description, tags
 print(meta.as_text())
 ```
+
+## Публикация на YouTube
+
+После рендера в окне активна кнопка **«Опубликовать на YouTube»**. Ролик загружается
+в фоне с прогрессом, по готовности ссылка `youtube.com/shorts/…` открывается в браузере.
+Вертикальное видео до 3 минут YouTube сам делает Shorts.
+Заголовок — первая строка описания (до 100 символов), описание ролика — весь текст.
+
+Настройка один раз (Google Cloud Console, тот же Google-аккаунт, что у канала):
+
+1. Создать проект и включить **YouTube Data API v3**.
+2. **Google Auth Platform**: создать экран согласия (External), статус **Testing**,
+   в **Audience → Test users** добавить свой Gmail.
+3. **Clients → Create client → Desktop app** → **Download JSON**.
+4. Сохранить файл как `~/.shortsstudio/client_secret.json`
+   (Windows: `C:\Users\<имя>\.shortsstudio\client_secret.json`) или указать путь в
+   `WIBECODE_YT_CLIENT_SECRET`. **Не кладите его в репозиторий.**
+
+При первой публикации откроется браузер: войдите и разрешите доступ. Google предупредит,
+что приложение не проверено: «Дополнительно» → «Перейти». Токен сохраняется в
+`~/.shortsstudio/youtube_token.json`. В режиме Testing он живёт 7 дней, потом вход повторяется.
+
+Ограничения, пока проект не прошёл аудит YouTube API:
+- все загруженные через API ролики **приватные**, открыть их можно вручную в YouTube Studio;
+- квота около 10 000 единиц в день, это примерно **6 загрузок**.
+
+Из кода: `from src.publish import upload; upload("outputs/video.mp4", "Заголовок")`.
 
 ## Формат сценария
 
@@ -142,7 +170,7 @@ python scripts/build.py           # PyInstaller → dist/ShortsStudio/
 Сборка делается на целевой ОС (не кросс-компиляция). Передавайте всю папку
 `dist/ShortsStudio`. FFmpeg и Blender в неё не входят и должны быть установлены на машине.
 Ключи и `.env` в сборку не попадают.
-Размер на Linux (PySide6 6.12, 25.10.2026): 284 994 085 байт ≈ 271.8 MiB.
+Размер на Linux (PySide6 6.12, с публикацией на YouTube, 25.10.2026): 302 891 904 байт ≈ 288.9 MiB.
 Размер на Windows: замерить так:
 
 ```powershell
@@ -159,6 +187,7 @@ $b = (Get-ChildItem dist/ShortsStudio -File -Recurse | Measure-Object Length -Su
 | `src/core/render3d/` | 3D: сцена для Blender, субтитры, сборка видео | A |
 | `src/api/` | публичный API: `parse_spec`, `render_video`, исключения, `SAY_WHO`/`SAY_SHOTS` | A |
 | `src/ui/` | окно PySide6, фоновый рендер в QThread, заглушки для работы без сети | B |
+| `src/publish/` | публикация на YouTube: OAuth, загрузка с прогрессом, понятные ошибки | A |
 | `src/llm/` | prompt, клиент Claude, повтор запроса при ошибке, `FakeLLMClient` | C |
 | `tests/`, `scripts/`, `docs/`, CI | тесты, демо, сборка, документация | D |
 
