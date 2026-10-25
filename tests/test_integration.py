@@ -46,5 +46,5 @@ def test_fake_llm_to_mp4(api, fake_llm, payload, tmp_path, duration):
     assert float(metadata["format"]["duration"]) == pytest.approx(duration, abs=0.1)
     stream = metadata["streams"][0]
     assert (stream["width"], stream["height"]) == (1080, 1920)
-    assert Fraction(stream["r_frame_rate"]) == 30
-    assert Fraction(stream["avg_frame_rate"]) == 30
+    assert Fraction(stream["r_frame_rate"]) == 60
+    assert Fraction(stream["avg_frame_rate"]) == 60
