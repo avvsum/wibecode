@@ -33,6 +33,10 @@ class RenderError(RuntimeError):
     """Spec is valid but the video could not be produced (missing file, FFmpeg failure)."""
 
 
+class ToolNotFoundError(RenderError, FileNotFoundError):
+    """A required external program (FFmpeg, Blender) is not installed or not in PATH."""
+
+
 class Renderer(Protocol):
     def render(self, spec: Spec, out_path: str) -> str:
         """Write spec as a video to out_path and return the path."""
@@ -160,7 +164,7 @@ def _segments(spec: Spec) -> list[tuple[Image.Image, int, bool]]:
 def _ffmpeg() -> str:
     exe = shutil.which("ffmpeg")
     if exe is None:
-        raise RenderError("FFmpeg не найден: установите его и добавьте в PATH")
+        raise ToolNotFoundError("FFmpeg не найден: установите его и добавьте в PATH")
     return exe
 
 

@@ -3,10 +3,19 @@
 from __future__ import annotations
 
 from src.core import renderer, schema
-from src.core.renderer import RenderError
-from src.core.schema import Spec, SpecError
+from src.core.renderer import RenderError, ToolNotFoundError
+from src.core.schema import SAY_SHOTS, SAY_WHO, Spec, SpecError
 
-__all__ = ["RenderError", "Spec", "SpecError", "parse_spec", "render_video"]
+__all__ = [
+    "SAY_SHOTS",
+    "SAY_WHO",
+    "RenderError",
+    "Spec",
+    "SpecError",
+    "ToolNotFoundError",
+    "parse_spec",
+    "render_video",
+]
 
 
 def parse_spec(raw: str) -> Spec:
@@ -17,7 +26,8 @@ def parse_spec(raw: str) -> Spec:
 def render_video(spec: Spec, out_path: str) -> str:
     """Render spec to an MP4 at out_path and return its absolute path.
 
-    Raises RenderError if the video cannot be produced and
+    Raises RenderError if the video cannot be produced (ToolNotFoundError,
+    also a FileNotFoundError, when FFmpeg is missing) and
     NotImplementedError for render_mode "3d" (not implemented yet).
     """
     return renderer.render(spec, out_path)
