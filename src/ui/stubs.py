@@ -168,7 +168,7 @@ api = SimpleNamespace(
     add_voiceover=add_voiceover,
 )
 # Заглушка озвучки не ходит в ElevenLabs и не создаёт реплик.
-tts = SimpleNamespace(TTSError=TTSError, synthesize_spec=lambda spec, out_dir: [])
+tts = SimpleNamespace(TTSError=TTSError, synthesize_spec=lambda spec, out_dir, client=None: [])
 llm = SimpleNamespace(
     generate_spec=generate_spec, LLMError=LLMError, SpecGenerationError=SpecGenerationError, tts=tts,
 )

@@ -1,4 +1,8 @@
-"""Voice-over: scene text -> speech files via ElevenLabs. Tests use FakeTTSClient."""
+"""Voice-over: scene text -> speech files.
+
+Providers: ElevenLabs (cloud, needs a key) and Chatterbox (local model, free,
+optional install). Tests use FakeTTSClient.
+"""
 
 from __future__ import annotations
 
@@ -11,7 +15,7 @@ import urllib.request
 import wave
 from array import array
 from dataclasses import dataclass
-from typing import Optional, Protocol
+from typing import Optional, Protocol, Union
 
 API_KEY_ENV = "ELEVENLABS_API_KEY"
 API_URL = "https://api.elevenlabs.io/v1/text-to-speech/{voice_id}?output_format=mp3_44100_128"
@@ -24,8 +28,14 @@ DEFAULT_VOICES = {
 }
 
 
+CHATTERBOX_INSTALL = "pip install -r requirements-chatterbox.txt"
+# Chatterbox speaks with its built-in voice unless CHATTERBOX_VOICE_<ROLE> points
+# to a 5-10 s reference .wav to clone; emotion strength differs per role.
+CHATTERBOX_EXAGGERATION = {"narrator": 0.5, "robot": 0.3, "girl": 0.7}
+
+
 class TTSError(Exception):
-    """Speech could not be generated: missing key, network, API error."""
+    """Speech could not be generated: missing key or package, network, API error."""
 
 
 @dataclass(frozen=True)
@@ -40,8 +50,8 @@ class VoiceClip:
 class TTSClient(Protocol):
     suffix: str  # audio file extension, e.g. ".mp3"
 
-    def synthesize(self, text: str, voice_id: str) -> bytes:
-        """Return encoded audio of text spoken by voice_id."""
+    def synthesize(self, text: str, role: str) -> bytes:
+        """Return encoded audio of text spoken by role: "narrator" or a say who."""
         ...
 
 
@@ -56,9 +66,9 @@ class ElevenLabsClient:
             raise TTSError(f"Не задан ключ ElevenLabs: установите переменную окружения {API_KEY_ENV}.")
         self._timeout = timeout
 
-    def synthesize(self, text: str, voice_id: str) -> bytes:
+    def synthesize(self, text: str, role: str) -> bytes:
         request = urllib.request.Request(
-            API_URL.format(voice_id=voice_id),
+            API_URL.format(voice_id=voice_id(role)),
             data=json.dumps({"text": text, "model_id": MODEL_ID}).encode("utf-8"),
             headers={
                 "xi-api-key": self._key,
@@ -81,6 +91,49 @@ class ElevenLabsClient:
             raise TTSError("Нет соединения с ElevenLabs, проверьте интернет.") from e
 
 
+class ChatterboxClient:
+    """Resemble AI Chatterbox (multilingual) on this computer: no key, no per-use cost.
+
+    The first run downloads the model (several GB) from Hugging Face; without a
+    GPU speech is generated slower than real time.
+    """
+
+    suffix = ".wav"
+
+    def __init__(self, device: Optional[str] = None):
+        try:
+            from chatterbox.mtl_tts import ChatterboxMultilingualTTS
+        except ImportError as e:
+            raise TTSError(f"Chatterbox не установлен: {CHATTERBOX_INSTALL}") from e
+        if device is None:
+            import torch
+
+            device = "cuda" if torch.cuda.is_available() else "mps" if torch.backends.mps.is_available() else "cpu"
+        try:
+            self._model = ChatterboxMultilingualTTS.from_pretrained(device=device)
+        except Exception as e:  # download or checkpoint errors from torch/huggingface
+            raise TTSError(f"Не удалось загрузить модель Chatterbox: {e}") from e
+        self._builtin = self._model.conds  # a reference voice replaces conds in generate
+
+    def synthesize(self, text: str, role: str) -> bytes:
+        prompt = os.environ.get(f"CHATTERBOX_VOICE_{role.upper()}")
+        if prompt and not os.path.isfile(prompt):
+            raise TTSError(f"Файл голоса Chatterbox не найден: {prompt}")
+        if not prompt:
+            self._model.conds = self._builtin
+        try:
+            wav = self._model.generate(
+                text,
+                language_id=os.environ.get("CHATTERBOX_LANGUAGE") or language_of(text),
+                audio_prompt_path=prompt or None,
+                exaggeration=CHATTERBOX_EXAGGERATION[role],
+            )
+        except Exception as e:  # model errors surface as many torch exception types
+            raise TTSError(f"Chatterbox не смог озвучить реплику: {e}") from e
+        samples = array("h", (round(max(-1.0, min(1.0, x)) * 32767) for x in wav.squeeze(0).tolist()))
+        return wav_bytes(samples, self._model.sr)
+
+
 class FakeTTSClient:
     """Offline client for tests: a quiet tone of fixed length instead of speech."""
 
@@ -90,17 +143,38 @@ class FakeTTSClient:
         self.seconds, self.rate = seconds, rate
         self.calls: list[tuple[str, str]] = []
 
-    def synthesize(self, text: str, voice_id: str) -> bytes:
-        self.calls.append((text, voice_id))
+    def synthesize(self, text: str, role: str) -> bytes:
+        self.calls.append((text, role))
         n = round(self.seconds * self.rate)
         samples = array("h", (int(3000 * math.sin(2 * math.pi * 440 * i / self.rate)) for i in range(n)))
-        buf = io.BytesIO()
-        with wave.open(buf, "wb") as w:
-            w.setnchannels(1)
-            w.setsampwidth(2)
-            w.setframerate(self.rate)
-            w.writeframes(samples.tobytes())
-        return buf.getvalue()
+        return wav_bytes(samples, self.rate)
+
+
+PROVIDERS = {"elevenlabs": ElevenLabsClient, "chatterbox": ChatterboxClient}
+
+
+def make_client(provider: str) -> TTSClient:
+    """Client by name: "elevenlabs" or "chatterbox"."""
+    try:
+        return PROVIDERS[provider]()
+    except KeyError:
+        raise TTSError(f"Неизвестный провайдер озвучки {provider!r}: {', '.join(PROVIDERS)}") from None
+
+
+def wav_bytes(samples: array, rate: int) -> bytes:
+    """16-bit mono WAV file contents."""
+    buf = io.BytesIO()
+    with wave.open(buf, "wb") as w:
+        w.setnchannels(1)
+        w.setsampwidth(2)
+        w.setframerate(rate)
+        w.writeframes(samples.tobytes())
+    return buf.getvalue()
+
+
+def language_of(text: str) -> str:
+    """Chatterbox language id: Russian if the text has Cyrillic, else English."""
+    return "ru" if any("а" <= ch.lower() <= "я" or ch in "ёЁ" for ch in text) else "en"
 
 
 def voice_id(role: str) -> str:
@@ -119,14 +193,20 @@ def voice_lines(spec) -> list[tuple[str, str, float, float]]:
     return lines
 
 
-def synthesize_spec(spec, out_dir: str, client: Optional[TTSClient] = None) -> list[VoiceClip]:
-    """Generate one audio file per spoken scene of a parsed Spec into out_dir."""
-    client = client if client is not None else ElevenLabsClient()
+def synthesize_spec(
+    spec, out_dir: str, client: Union[TTSClient, str, None] = None
+) -> list[VoiceClip]:
+    """Generate one audio file per spoken scene of a parsed Spec into out_dir.
+
+    client is a TTSClient or a provider name (default "elevenlabs").
+    """
+    if client is None or isinstance(client, str):
+        client = make_client(client or "elevenlabs")
     os.makedirs(out_dir, exist_ok=True)
     clips = []
     for i, (text, role, start, end) in enumerate(voice_lines(spec)):
         path = os.path.join(out_dir, f"voice_{i:03d}{client.suffix}")
         with open(path, "wb") as f:
-            f.write(client.synthesize(text, voice_id(role)))
+            f.write(client.synthesize(text, role))
         clips.append(VoiceClip(path, start, end))
     return clips

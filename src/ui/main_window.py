@@ -6,7 +6,7 @@ from PySide6.QtCore import QThread, QUrl, Slot
 from PySide6.QtMultimedia import QAudioOutput, QMediaPlayer
 from PySide6.QtMultimediaWidgets import QVideoWidget
 from PySide6.QtWidgets import (
-    QCheckBox, QComboBox, QHBoxLayout, QLabel, QMainWindow, QPlainTextEdit, QProgressBar, QPushButton,
+    QComboBox, QHBoxLayout, QLabel, QMainWindow, QPlainTextEdit, QProgressBar, QPushButton,
     QVBoxLayout, QWidget,
 )
 
@@ -27,8 +27,14 @@ class MainWindow(QMainWindow):
         self.mode_box = QComboBox()
         self.mode_box.addItem("2D", "2d")
         self.mode_box.addItem("3D", "3d")
-        self.voice_box = QCheckBox("Озвучка (ElevenLabs)")
-        self.voice_box.setToolTip("Нужен ключ в переменной окружения ELEVENLABS_API_KEY")
+        self.voice_box = QComboBox()
+        self.voice_box.addItem("Без озвучки", None)
+        self.voice_box.addItem("ElevenLabs", "elevenlabs")
+        self.voice_box.addItem("Chatterbox (локально)", "chatterbox")
+        self.voice_box.setToolTip(
+            "ElevenLabs: ключ в ELEVENLABS_API_KEY. "
+            "Chatterbox: бесплатно на этом компьютере, pip install -r requirements-chatterbox.txt"
+        )
         self.render_button = QPushButton("Рендер")
         self.render_button.clicked.connect(self.start_render)
         self.cancel_button = QPushButton("Отмена")
@@ -51,6 +57,7 @@ class MainWindow(QMainWindow):
         mode_row = QHBoxLayout()
         mode_row.addWidget(QLabel("Render mode:"))
         mode_row.addWidget(self.mode_box)
+        mode_row.addWidget(QLabel("Озвучка:"))
         mode_row.addWidget(self.voice_box)
         mode_row.addStretch()
         buttons = QHBoxLayout()
@@ -101,7 +108,7 @@ class MainWindow(QMainWindow):
         self.cancel_button.setVisible(True)
         self._thread = QThread(self)
         self._worker = RenderWorker(
-            text, out_path, self.mode_box.currentData(), self.voice_box.isChecked()
+            text, out_path, self.mode_box.currentData(), self.voice_box.currentData()
         )
         self._worker.moveToThread(self._thread)
         self._thread.started.connect(self._worker.run)
