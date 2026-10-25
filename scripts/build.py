@@ -38,6 +38,9 @@ def main(argv=None):
                "--add-data", f"{ROOT / 'assets'}:assets",
                # Blender runs this script itself, so PyInstaller cannot see it as an import.
                "--add-data", f"{ROOT / 'src/core/render3d/blender_scene.py'}:src/core/render3d",
+               # Optional local voice (requirements-chatterbox.txt) is several GB of PyTorch:
+               # keep it out of the bundle; Chatterbox works when running from source.
+               "--exclude-module", "chatterbox", "--exclude-module", "torch",
                str(ROOT / "src" / "ui" / "main.py")]
     return subprocess.run(command, cwd=ROOT, check=False).returncode
 

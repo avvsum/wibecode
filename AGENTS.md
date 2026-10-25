@@ -73,10 +73,22 @@ Python 3.11, FFmpeg (external binary), PySide6, pydantic, pytest, PyInstaller.
   user_text до generate_spec, не подменяя режим готового JSON.
 Decided: JSON, а не свободный код от LLM. Open: цвета, шрифты, анимации (выбирай сам).
 
+### Озвучка (ElevenLabs, Chatterbox)
+- Контракт JSON не меняется. Озвучиваются text (голос диктора) и say (голос по who).
+- C: src/llm/tts.py — synthesize_spec(spec, out_dir, client) -> list[VoiceClip(path, start, end)];
+  client: "elevenlabs" (ключ ELEVENLABS_API_KEY), "chatterbox" (локальная модель,
+  необязательный requirements-chatterbox.txt) или TTSClient; FakeTTSClient для тестов, TTSError.
+- A: api.add_voiceover(video_path, clips, out_path=None) -> str — FFmpeg добавляет
+  AAC-дорожку, речь режется на end своей сцены, видео копируется без изменений.
+- B: список «Озвучка» (нет / ElevenLabs / Chatterbox); ошибка озвучки не теряет готовое видео.
+- Тесты не ходят в ElevenLabs: conftest удаляет ELEVENLABS_API_KEY.
+
 ## Public API (сигнатуры зафиксированы)
 - api.parse_spec(raw: str) -> Spec            # raises SpecError
 - api.render_video(spec: Spec, out_path: str, *, on_progress=None) -> str
 - llm.generate_spec(user_text: str) -> str    # raw JSON
+- llm.tts.synthesize_spec(spec: Spec, out_dir: str, client="elevenlabs") -> list[VoiceClip]
+- api.add_voiceover(video_path: str, clips, out_path: str | None = None) -> str
 
 ### Прогресс и отмена (согласовано Львом 25.10.2026)
 - on_progress необязателен; старые вызовы с двумя аргументами работают как прежде.

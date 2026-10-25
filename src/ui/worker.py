@@ -1,4 +1,6 @@
 """Фоновый пайплайн: описание -> JSON -> Spec -> MP4. Запускается в отдельном QThread."""
+import tempfile
+
 from PySide6.QtCore import QObject, Signal, Slot
 
 from src.ui.backend import api, llm
@@ -19,11 +21,12 @@ class RenderWorker(QObject):
     failed = Signal(str)
     cancelled = Signal()
 
-    def __init__(self, user_text: str, out_path: str, render_mode: str = "2d"):
+    def __init__(self, user_text: str, out_path: str, render_mode: str = "2d", voice: str | None = None):
         super().__init__()
         self._user_text = user_text
         self._out_path = out_path
         self._render_mode = render_mode
+        self._voice = voice  # провайдер озвучки: "elevenlabs", "chatterbox" или None
         self._cancel_requested = False
 
     def cancel(self) -> None:
@@ -51,6 +54,14 @@ class RenderWorker(QObject):
                 raise api.RenderCancelled("отменено до рендера")
             self.progress.emit("Рендер видео…")
             path = api.render_video(spec, self._out_path, on_progress=self._on_progress)
+            if self._voice:
+                self.progress.emit("Озвучка…")
+                try:
+                    with tempfile.TemporaryDirectory(prefix="shorts-voice-") as tmp:
+                        api.add_voiceover(path, llm.tts.synthesize_spec(spec, tmp, self._voice))
+                except (llm.tts.TTSError, api.RenderError) as e:
+                    self.failed.emit(f"Видео готово без озвучки ({path}). Озвучка не удалась: {e}")
+                    return
         except api.RenderCancelled:
             self.cancelled.emit()
         except api.ToolNotFoundError as e:  # раньше RenderError и любых OSError

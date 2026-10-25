@@ -2,7 +2,7 @@
 
 from __future__ import annotations
 
-from src.core import renderer, schema
+from src.core import renderer, schema, voiceover
 from src.core.renderer import ProgressCallback, RenderCancelled, RenderError, ToolNotFoundError
 from src.core.schema import SAY_SHOTS, SAY_WHO, Spec, SpecError
 
@@ -15,6 +15,7 @@ __all__ = [
     "Spec",
     "SpecError",
     "ToolNotFoundError",
+    "add_voiceover",
     "parse_spec",
     "render_video",
 ]
@@ -41,3 +42,13 @@ def render_video(
     cancel). render_mode "3d" needs Blender (ToolNotFoundError without it).
     """
     return renderer.render(spec, out_path, on_progress)
+
+
+def add_voiceover(video_path: str, clips, out_path: str | None = None) -> str:
+    """Mix voice clips (objects with path, start, end in seconds) into a rendered MP4.
+
+    Writes out_path (default: video_path in place) atomically and returns it.
+    Each clip is cut at its end; video frames are copied unchanged.
+    Raises RenderError (ToolNotFoundError without FFmpeg).
+    """
+    return voiceover.add_voiceover(video_path, clips, out_path)

@@ -1,4 +1,9 @@
-"""LLM layer: user text -> raw JSON spec. Public entry point: generate_spec."""
+"""LLM layer: user text -> raw JSON spec. Public entry point: generate_spec.
+
+Voice-over (ElevenLabs text-to-speech) lives in src.llm.tts.
+"""
+
+from src.llm import tts
 
 from src.llm.client import (
     AnthropicClient,
@@ -16,4 +21,5 @@ __all__ = [
     "LLMError",
     "SpecGenerationError",
     "generate_spec",
+    "tts",
 ]

@@ -153,8 +153,22 @@ def render_video(spec: Spec, out_path: str, *, on_progress=None) -> str:
     return out_path
 
 
+class TTSError(Exception):
+    """Озвучка не удалась."""
+
+
+def add_voiceover(video_path, clips, out_path=None):
+    """Заглушка: без реплик видео не меняется."""
+    return out_path or video_path
+
+
 api = SimpleNamespace(
     Spec=Spec, SpecError=SpecError, RenderError=RenderError, ToolNotFoundError=ToolNotFoundError,
     RenderCancelled=RenderCancelled, parse_spec=parse_spec, render_video=render_video,
+    add_voiceover=add_voiceover,
 )
-llm = SimpleNamespace(generate_spec=generate_spec, LLMError=LLMError, SpecGenerationError=SpecGenerationError)
+# Заглушка озвучки не ходит в ElevenLabs и не создаёт реплик.
+tts = SimpleNamespace(TTSError=TTSError, synthesize_spec=lambda spec, out_dir, client=None: [])
+llm = SimpleNamespace(
+    generate_spec=generate_spec, LLMError=LLMError, SpecGenerationError=SpecGenerationError, tts=tts,
+)

@@ -1,0 +1,4 @@
+# Optional local voice-over (Chatterbox by Resemble AI): pulls PyTorch, several GB.
+# Not needed for the app, tests or CI; install only if you want free offline voices.
+-r requirements.txt
+chatterbox-tts==0.1.7

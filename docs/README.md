@@ -36,6 +36,10 @@ Linux/macOS: `python3.11 -m venv .venv` и `.venv/bin/python` вместо Windo
 |---|---|
 | `ANTHROPIC_API_KEY` | ключ Claude для генерации сценария. Не храните его в файлах проекта |
 | `WIBECODE_BLENDER` | путь к `blender`, если его нет в PATH |
+| `ELEVENLABS_API_KEY` | ключ ElevenLabs, если выбрана озвучка ElevenLabs |
+| `ELEVENLABS_VOICE_NARRATOR`, `_ROBOT`, `_GIRL` | необязательно: свои voice ID вместо стандартных |
+| `CHATTERBOX_VOICE_NARRATOR`, `_ROBOT`, `_GIRL` | необязательно: путь к .wav 5–10 с, чей голос клонирует Chatterbox |
+| `CHATTERBOX_LANGUAGE` | необязательно: язык Chatterbox (`ru`, `en`, …); по умолчанию по тексту |
 
 На Linux без видеокарты для Blender нужны `libegl1` и Mesa (`libgl1-mesa-dri`).
 
@@ -49,6 +53,18 @@ python scripts/demo.py --duration 3                 # короткое демо 
 
 В окне: описание → выбор 2D/3D → «Рендер». Есть прогресс, «Отмена» и превью готового видео.
 Ошибки (нет ключа, нет FFmpeg/Blender, неверный сценарий) показываются в статус-баре.
+Список «Озвучка» после рендера добавляет голос: сцены `text` читает диктор,
+реплики `say` — голоса robot/girl. Речь режется на конце своей сцены.
+Если озвучка не удалась, видео остаётся без звука, а причина видна в статус-баре.
+
+- **ElevenLabs** — облако, нужен `ELEVENLABS_API_KEY`, тратит символы аккаунта.
+- **Chatterbox (локально)** — бесплатная модель Resemble AI на вашем компьютере, без ключа.
+  Ставится отдельно: `pip install -r requirements-chatterbox.txt` (PyTorch, несколько ГБ).
+  Первый запуск скачивает модель с Hugging Face; без видеокарты озвучка медленная
+  (минуты на ролик). Голос у всех ролей встроенный, пока не задан `CHATTERBOX_VOICE_*`.
+  В собранный `ShortsStudio` Chatterbox не входит — только запуск из исходников.
+
+Тесты не ходят ни в ElevenLabs, ни в Chatterbox: используются заглушки.
 3D рендерится заметно дольше: около 0,6 с на кадр на 4 ядрах CPU без GPU,
 то есть примерно 10 минут на 30 секунд видео.
 
@@ -61,6 +77,8 @@ raw = llm.generate_spec("Ролик про рост продаж: заголов
 spec = api.parse_spec(raw)                    # SpecError, если JSON неверный
 api.render_video(spec, "outputs/video.mp4",
                  on_progress=lambda done, total: True)   # False отменяет рендер
+clips = llm.tts.synthesize_spec(spec, "outputs/voice", "chatterbox")  # или "elevenlabs"
+api.add_voiceover("outputs/video.mp4", clips)             # AAC-дорожка в тот же MP4
 ```
 
 ## Формат сценария
