@@ -86,3 +86,25 @@ def test_scene_requires_its_content(api, payload, index, field):
     del payload["scenes"][index][field]
     with pytest.raises(api.SpecError):
         api.parse_spec(json.dumps(payload))
+
+
+@pytest.mark.parametrize("value", [float("nan"), float("inf"), -float("inf")],
+                         ids=["nan", "positive-infinity", "negative-infinity"])
+@pytest.mark.parametrize("field", ["duration", "start", "end", "chart-x", "chart-y"])
+def test_nonfinite_numbers_raise_spec_error(api, payload, field, value):
+    if field == "duration":
+        payload["duration"] = value
+    elif field in ("start", "end"):
+        payload["scenes"][0][field] = value
+    else:
+        payload["scenes"][2]["data"][0][0 if field == "chart-x" else 1] = value
+    with pytest.raises(api.SpecError) as caught:
+        api.parse_spec(json.dumps(payload))
+    assert str(caught.value).strip()
+
+
+def test_overflowing_json_number_raises_spec_error(api):
+    # 1e999 is a JSON number, but cannot represent a finite video duration.
+    raw = '{"duration":1e999,"scenes":[{"type":"text","text":"x","start":0,"end":1}]}'
+    with pytest.raises(api.SpecError):
+        api.parse_spec(raw)
