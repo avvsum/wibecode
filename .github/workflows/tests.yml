@@ -34,4 +34,3 @@ jobs:
       - run: python -m pytest
         env:
           QT_QPA_PLATFORM: offscreen
-          MPLBACKEND: Agg
