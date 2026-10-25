@@ -3,7 +3,7 @@ import time
 from pathlib import Path
 
 from PySide6.QtCore import QThread, QUrl, Slot
-from PySide6.QtGui import QGuiApplication
+from PySide6.QtGui import QDesktopServices, QGuiApplication
 from PySide6.QtMultimedia import QAudioOutput, QMediaPlayer
 from PySide6.QtMultimediaWidgets import QVideoWidget
 from PySide6.QtWidgets import (
@@ -12,7 +12,7 @@ from PySide6.QtWidgets import (
 )
 
 from src.ui.backend import api
-from src.ui.worker import RenderWorker
+from src.ui.worker import PublishWorker, RenderWorker
 
 OUTPUT_DIR = Path(tempfile.gettempdir()) / "shorts-maker"
 
@@ -23,6 +23,8 @@ class MainWindow(QMainWindow):
         self.setWindowTitle("Shorts Maker")
         self.resize(900, 640)
         self._thread = None
+        self._video_path = None  # последний готовый ролик, его можно опубликовать
+        self._metadata = None  # название, описание и теги от LLM для публикации
 
         self.input = QPlainTextEdit()
         self.input.setPlaceholderText("Опишите ролик: о чём он, какие кадры и цифры показать…")
@@ -69,6 +71,14 @@ class MainWindow(QMainWindow):
         self.play_button = QPushButton("▶ / ❚❚")
         self.play_button.setEnabled(False)
         self.play_button.clicked.connect(self._toggle_play)
+        self.publish_button = QPushButton("Опубликовать на YouTube")
+        self.publish_button.setEnabled(False)
+        self.publish_button.setToolTip(
+            "Нужен OAuth-клиент Desktop app из Google Cloud: ~/.shortsstudio/client_secret.json "
+            "или путь в WIBECODE_YT_CLIENT_SECRET. Пока проект не прошёл аудит Google, "
+            "YouTube публикует ролик как приватный."
+        )
+        self.publish_button.clicked.connect(self.start_publish)
 
         mode_row = QHBoxLayout()
         mode_row.addWidget(QLabel("Render mode:"))
@@ -95,6 +105,7 @@ class MainWindow(QMainWindow):
         right = QVBoxLayout()
         right.addWidget(self.video, 1)
         right.addWidget(self.play_button)
+        right.addWidget(self.publish_button)
         root = QHBoxLayout()
         root.addLayout(left, 1)
         root.addLayout(right)
@@ -138,6 +149,8 @@ class MainWindow(QMainWindow):
         self.play_button.setEnabled(False)
         self.metadata_box.clear()
         self.copy_button.setEnabled(False)
+        self._video_path = None
+        self._metadata = None
         OUTPUT_DIR.mkdir(parents=True, exist_ok=True)
         out_path = str(OUTPUT_DIR / f"render_{time.strftime('%Y%m%d_%H%M%S')}.mp4")
 
@@ -160,6 +173,7 @@ class MainWindow(QMainWindow):
         self._worker.progress.connect(self._set_status)
         self._worker.frames.connect(self._on_frames)
         self._worker.metadata.connect(self._on_metadata)
+        self._worker.metadata_ready.connect(self._on_metadata_ready)
         self._worker.finished.connect(self._on_rendered)
         self._worker.failed.connect(self._on_failed)
         self._worker.cancelled.connect(self._on_cancelled)
@@ -171,10 +185,55 @@ class MainWindow(QMainWindow):
 
     @Slot(str)
     def _on_rendered(self, path: str) -> None:
+        self._video_path = path
         self.player.setSource(QUrl.fromLocalFile(path))
         self.play_button.setEnabled(True)
         self.player.play()
         self._set_status(f"Готово: {path}")
+
+    @Slot()
+    def start_publish(self) -> None:
+        if self._thread is not None or self._video_path is None:
+            return
+        text = self.input.toPlainText().strip()
+        self.render_button.setEnabled(False)
+        self.publish_button.setEnabled(False)
+        self.mode_box.setEnabled(False)
+        self.voice_box.setEnabled(False)
+        self.music_box.setEnabled(False)
+        self.add_music_button.setEnabled(False)
+        self.progress_bar.setRange(0, 0)  # до начала загрузки идёт вход в Google
+        self.progress_bar.setVisible(True)
+        self._set_status("Публикация на YouTube… При первом запуске откроется браузер для входа.")
+        self._thread = QThread(self)
+        meta = self._metadata  # без метаданных LLM: первая строка описания и весь текст
+        self._worker = PublishWorker(
+            self._video_path,
+            title=meta.title if meta else text,
+            description=meta.description if meta else text,
+            tags=meta.tags if meta else (),
+        )
+        self._worker.moveToThread(self._thread)
+        self._thread.started.connect(self._worker.run)
+        self._worker.uploaded.connect(self._on_uploaded)
+        self._worker.finished.connect(self._on_published)
+        self._worker.failed.connect(self._on_failed)
+        for done_signal in (self._worker.finished, self._worker.failed):
+            done_signal.connect(self._thread.quit)
+        self._thread.finished.connect(self._worker.deleteLater)
+        self._thread.finished.connect(self._on_thread_finished)
+        self._thread.start()
+
+    @Slot(int, int)
+    def _on_uploaded(self, sent: int, total: int) -> None:
+        self.progress_bar.setRange(0, max(total, 1))
+        self.progress_bar.setValue(sent)
+        self.progress_bar.setFormat("Загрузка на YouTube  %p%")
+
+    @Slot(str)
+    def _on_published(self, url: str) -> None:
+        self._set_status(f"Опубликовано на YouTube: {url}")
+        QDesktopServices.openUrl(QUrl(url))
 
     @Slot(str)
     def _on_failed(self, message: str) -> None:
@@ -184,6 +243,10 @@ class MainWindow(QMainWindow):
     def _on_metadata(self, text: str, ok: bool) -> None:
         self.metadata_box.setPlainText(text)
         self.copy_button.setEnabled(ok)
+
+    @Slot(object)
+    def _on_metadata_ready(self, meta) -> None:
+        self._metadata = meta
 
     @Slot()
     def _copy_metadata(self) -> None:
@@ -221,7 +284,9 @@ class MainWindow(QMainWindow):
         self.voice_box.setEnabled(True)
         self.music_box.setEnabled(True)
         self.add_music_button.setEnabled(True)
+        self.publish_button.setEnabled(self._video_path is not None)
         self.progress_bar.setVisible(False)
+        self.progress_bar.resetFormat()
         self.cancel_button.setVisible(False)
 
     @Slot()
@@ -237,8 +302,10 @@ class MainWindow(QMainWindow):
 
     def closeEvent(self, event) -> None:
         if self._thread is not None:
-            # Рендер прерывается на ближайшем on_progress; запрос к LLM придётся дождаться.
-            self._worker.cancel()
+            # Рендер прерывается на ближайшем on_progress; запрос к LLM и загрузку
+            # на YouTube (у неё нет отмены) придётся дождаться.
+            if hasattr(self._worker, "cancel"):
+                self._worker.cancel()
             self._thread.quit()
             self._thread.wait()
         super().closeEvent(event)
