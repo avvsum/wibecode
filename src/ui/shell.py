@@ -5,6 +5,7 @@
     window.render_requested(text, mode, options)  # «Создать ролик»; options — выбор из features.CHOICES
     window.cancel_requested()             # нажали «Отмена» или Esc
     window.reveal_requested(path)         # нажали «Показать в папке»
+    window.publish_requested(path)        # нажали «Опубликовать на YouTube»
     window.about_to_close()               # окно закрывается: остановить рендер
 
     window.set_generating()                       # LLM пишет сценарий
@@ -13,6 +14,7 @@
     window.set_cancelled() / window.set_error(text) / window.set_idle()
     window.set_warning(text)                      # видео есть, но что-то не удалось (озвучка)
     window.show_extra(title, text, ok)            # карточка доп. результата (features.EXTRAS)
+    window.set_publishing(sent, total) / set_published(url) / set_publish_failed(text)
 """
 import os
 
@@ -89,6 +91,7 @@ class ShellWindow(QMainWindow):
     render_requested = Signal(str, str, dict)
     cancel_requested = Signal()
     reveal_requested = Signal(str)
+    publish_requested = Signal(str)  # путь к готовому MP4
     about_to_close = Signal()
 
     def __init__(self):
@@ -189,6 +192,7 @@ class ShellWindow(QMainWindow):
 
         self.notice = QLabel()
         self.notice.setWordWrap(True)
+        self.notice.setOpenExternalLinks(True)  # ссылка на опубликованный ролик
         self.notice.setContentsMargins(0, 0, 0, 12)
         col.addWidget(self.notice)
 
@@ -224,6 +228,13 @@ class ShellWindow(QMainWindow):
         self.reveal_button = QPushButton("Показать в папке", objectName="Quiet")
         self.reveal_button.clicked.connect(lambda: self.reveal_requested.emit(self._video_path or ""))
         header.addWidget(self.reveal_button)
+        self.publish_button = QPushButton("Опубликовать на YouTube", objectName="Quiet")
+        self.publish_button.setToolTip(
+            "Нужен OAuth-клиент Desktop app из Google Cloud: ~/.shortsstudio/client_secret.json "
+            "или путь в WIBECODE_YT_CLIENT_SECRET. Пока проект не прошёл аудит Google, "
+            "YouTube публикует ролик как приватный.")
+        self.publish_button.clicked.connect(lambda: self.publish_requested.emit(self._video_path or ""))
+        header.addWidget(self.publish_button)
         col.addWidget(header_box)
         col.addSpacing(16)
 
@@ -332,6 +343,7 @@ class ShellWindow(QMainWindow):
         self._set_scenes(scenes, duration)
         self._video_path = video_path if video_path and os.path.exists(video_path) else None
         self.reveal_button.setVisible(self._video_path is not None)
+        self.publish_button.setVisible(self._video_path is not None)
         self.play_button.setEnabled(True)
         if self._video_path:
             self.preview.show_video()
@@ -355,6 +367,35 @@ class ShellWindow(QMainWindow):
 
     def set_warning(self, message: str) -> None:
         """После set_done: видео готово, но часть работы не удалась (например, озвучка)."""
+        self._show_notice(message, "error")
+
+    def set_publishing(self, sent: int = 0, total: int = 0) -> None:
+        """Загрузка на YouTube: видео остаётся в превью, отмены у загрузки нет."""
+        self._set_busy(True)
+        self.cancel_button.setVisible(False)
+        self.publish_button.setEnabled(False)
+        self._show_notice("")
+        self.pill.set_state("working", "Публикация")
+        if total > 0:
+            self.progress.setRange(0, total)
+            self.progress.setValue(sent)
+            self.stage.setText("Загрузка на YouTube")
+            self.stage_detail.setText(f"{round(100 * sent / total)}%")
+        else:
+            self.progress.setRange(0, 0)
+            self.stage.setText("Вход в Google")
+            self.stage_detail.setText("при первом запуске откроется браузер")
+
+    def set_published(self, url: str) -> None:
+        self._set_busy(False)
+        self.publish_button.setEnabled(True)
+        self.pill.set_state("positive", "Опубликовано")
+        self._show_notice(f'Ролик на YouTube: <a href="{url}">{url}</a>', "muted")
+
+    def set_publish_failed(self, message: str) -> None:
+        self._set_busy(False)
+        self.publish_button.setEnabled(True)
+        self.pill.set_state("positive", "Готово")
         self._show_notice(message, "error")
 
     def show_extra(self, title: str, text: str, ok: bool = True) -> None:
@@ -391,6 +432,8 @@ class ShellWindow(QMainWindow):
         self.player.setSource(QUrl())
         self._video_path = None
         self.reveal_button.setVisible(False)
+        self.publish_button.setVisible(False)
+        self.publish_button.setEnabled(True)
         self.play_button.setEnabled(False)
         self._set_scenes([], 0)
         self.preview.show_empty()

@@ -5,12 +5,12 @@ import time
 from types import SimpleNamespace
 
 import pytest
-from PySide6.QtCore import Signal
+from PySide6.QtCore import QObject, Signal
 from PySide6.QtWidgets import QApplication
 
 from src.ui import app as app_module
 from src.ui import stubs, worker
-from src.ui.features import CHOICES
+from src.ui.features import CHOICES, Extra
 from src.ui.shell import ShellWindow
 
 
@@ -67,6 +67,36 @@ def test_full_run_shows_script_and_video(qapp, window):
     assert w.pill.text() == "Готово"
     assert len(w._scenes) == 3 and w._duration == 15.0
     assert w._video_path and os.path.exists(w._video_path)
+    assert "Для YouTube" in w._extras, "метаданные воркера сами стали карточкой"
+    assert controller._metadata is not None, "метаданные сохранены для публикации"
+
+
+def test_publish_uses_llm_metadata_and_keeps_video(qapp, window, monkeypatch):
+    w, controller = window
+    sent = {}
+
+    class FakePublish(QObject):
+        uploaded = Signal(int, int)
+        finished = Signal(str)
+        failed = Signal(str)
+
+        def __init__(self, video_path, title, description, tags=()):
+            super().__init__()
+            sent.update(path=video_path, title=title, tags=tuple(tags))
+
+        def run(self):
+            self.uploaded.emit(50, 100)
+            self.finished.emit("https://youtu.be/demo")
+
+    monkeypatch.setattr(app_module, "PublishWorker", FakePublish)
+    monkeypatch.setattr(app_module.QDesktopServices, "openUrl", lambda url: True)
+    controller.start("Ролик про кофе", "2d", {"voice": None})
+    wait_idle(qapp, controller)
+    w.publish_button.click()
+    wait_idle(qapp, controller)
+    assert sent["path"] == w._video_path and sent["title"] == controller._metadata.title
+    assert w.pill.text() == "Опубликовано" and "youtu.be/demo" in w.notice.text()
+    assert w._video_path is not None, "видео остаётся в превью"
 
 
 def test_voiceover_failure_keeps_the_video(qapp, window, monkeypatch):
@@ -84,18 +114,20 @@ def test_voiceover_failure_keeps_the_video(qapp, window, monkeypatch):
     assert "озвучка не удалась" in w.notice.text().lower()
 
 
-def test_extra_signal_appears_as_card_by_itself(qapp, window, monkeypatch):
+def test_new_extra_signal_appears_as_card_by_itself(qapp, window, monkeypatch):
+    """Новый результат: сигнал (text, ok) в воркере + Extra в features.EXTRAS — и окно его покажет."""
     w, controller = window
 
-    class WorkerWithMetadata(worker.RenderWorker):
-        metadata = Signal(str, bool)
+    class WorkerWithHashtags(worker.RenderWorker):
+        hashtags = Signal(str, bool)
 
         def run(self):
-            self.metadata.emit("Название:\nКофе и сон", True)
+            self.hashtags.emit("#кофе #сон", True)
             super().run()
 
-    monkeypatch.setattr(app_module, "RenderWorker", WorkerWithMetadata)
+    monkeypatch.setattr(app_module, "RenderWorker", WorkerWithHashtags)
+    monkeypatch.setattr(app_module, "EXTRAS", app_module.EXTRAS + (Extra("hashtags", "Хештеги"),))
     controller.start("Ролик про кофе", "2d", {"voice": None})
     wait_idle(qapp, controller)
-    card = w._extras.get("Для YouTube")
-    assert card is not None and "Кофе и сон" in card.text.text() and card.copy_button.isVisibleTo(w)
+    card = w._extras.get("Хештеги")
+    assert card is not None and card.text.text() == "#кофе #сон" and card.copy_button.isVisibleTo(w)
