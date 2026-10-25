@@ -190,3 +190,15 @@ def test_auto_mode_sends_only_the_description(qapp, window, monkeypatch):
     assert prompts == ["Диалог робота и девушки в 3D"], "без подсказок render_mode/environment/cast"
     assert w.pill.text() == "Готово"
     assert "30 кадров/с" in w.format_label.text(), "кадры/с — по режиму, который выбрала модель"
+
+
+def test_scene_summary_hides_highlight_marks_and_counts_points():
+    from src.ui.widgets import scene_summary
+
+    say = {"type": "say", "who": "robot", "text": "Почему *так быстро*?", "start": 0, "end": 1}
+    assert scene_summary(say).endswith("«Почему так быстро?»")
+    assert "*" in scene_summary({**say, "text": "звёздочка * одна"})
+    chart = {"type": "chart", "start": 0, "end": 1}
+    assert [scene_summary({**chart, "data": [[0, 0]] * n}) for n in (1, 2, 5, 11, 21)] == [
+        "1 точка на графике", "2 точки на графике", "5 точек на графике",
+        "11 точек на графике", "21 точка на графике"]
