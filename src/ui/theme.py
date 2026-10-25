@@ -86,6 +86,12 @@ QComboBox QAbstractItemView {{
     background: {T['sheet']}; border: 1px solid {T['border']}; padding: 4px; outline: 0;
     selection-background-color: {T['accent_tint']}; selection-color: {T['text']};
 }}
+QLineEdit {{
+    min-height: 36px; padding: 0 12px; border: 1px solid {T['control']}; border-radius: 8px;
+    background: {T['sheet']}; selection-background-color: {T['accent_tint']}; selection-color: {T['text']};
+}}
+QLineEdit:focus {{ border: 1px solid {T['text']}; }}
+QLineEdit:disabled {{ background: {T['raised']}; color: {T['muted']}; border-color: {T['border']}; }}
 #ExtraCard {{ background: {T['raised']}; border-radius: 8px; }}
 
 QProgressBar {{ background: {T['active']}; border: none; border-radius: 3px; max-height: 6px; }}

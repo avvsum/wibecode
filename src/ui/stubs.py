@@ -3,8 +3,9 @@
 Повторяют публичный API из AGENTS.md:
     api.parse_spec(raw: str) -> Spec            # raises SpecError
     api.render_video(spec: Spec, out_path: str, *, on_progress=None) -> str
-    llm.generate_spec(user_text: str) -> str    # raw JSON
-    llm.generate_metadata(user_text: str, spec_json: str) -> VideoMetadata
+    llm.connect(base_url, api_key) -> client    # здесь None
+    llm.generate_spec(user_text: str, client=None) -> str    # raw JSON
+    llm.generate_metadata(user_text: str, spec_json: str, client=None) -> VideoMetadata
 """
 import json
 import os
@@ -53,7 +54,11 @@ class Spec:
     render_mode: str = "2d"
 
 
-def generate_spec(user_text: str) -> str:
+def connect(base_url: str = "", api_key: str = ""):
+    return None  # заглушкам адрес и ключ API не нужны
+
+
+def generate_spec(user_text: str, client=None) -> str:
     # Как и prompt C: явная подсказка render_mode в конце запроса задаёт режим.
     hint = MODE_HINT.search(user_text)
     text = user_text[:hint.start()] if hint else user_text
@@ -88,7 +93,7 @@ class VideoMetadata:
         )
 
 
-def generate_metadata(user_text: str, spec_json: str) -> VideoMetadata:
+def generate_metadata(user_text: str, spec_json: str, client=None) -> VideoMetadata:
     hint = MODE_HINT.search(user_text)
     text = (user_text[:hint.start()] if hint else user_text).strip()
     title = (text.splitlines() or ["Ролик"])[0][:70]
@@ -198,6 +203,6 @@ api = SimpleNamespace(
 # Заглушка озвучки не ходит в ElevenLabs и не создаёт реплик.
 tts = SimpleNamespace(TTSError=TTSError, synthesize_spec=lambda spec, out_dir, client=None: [])
 llm = SimpleNamespace(
-    generate_spec=generate_spec, generate_metadata=generate_metadata, VideoMetadata=VideoMetadata,
+    connect=connect, generate_spec=generate_spec, generate_metadata=generate_metadata, VideoMetadata=VideoMetadata,
     LLMError=LLMError, SpecGenerationError=SpecGenerationError, tts=tts,
 )

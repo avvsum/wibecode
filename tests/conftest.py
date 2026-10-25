@@ -41,7 +41,7 @@ def fake_llm(monkeypatch):
 
     def install(responses):
         fake = client.FakeLLMClient(responses)
-        monkeypatch.setattr(client, "AnthropicClient", lambda: fake)
+        monkeypatch.setattr(client, "OpenAICompatibleClient", lambda: fake)
         generate_spec = importlib.import_module("src.llm").generate_spec
         return generate_spec, fake.calls
 

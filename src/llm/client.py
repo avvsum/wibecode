@@ -2,15 +2,18 @@
 
 from __future__ import annotations
 
+import json
 import os
 import re
+import urllib.error
+import urllib.request
 from typing import Callable, Optional, Protocol
 
 from src.llm.metadata import VideoMetadata, check_metadata, parse_metadata
 from src.llm.prompt import METADATA_PROMPT, SYSTEM_PROMPT, fix_message, metadata_request
 
-API_KEY_ENV = "ANTHROPIC_API_KEY"
-DEFAULT_MODEL = "claude-opus-5-5"
+BASE_URL_ENV = "WIBECODE_LLM_BASE_URL"
+API_KEY_ENV = "WIBECODE_LLM_API_KEY"
 MAX_RETRIES = 2
 
 Message = dict  # {"role": "user" | "assistant", "content": str}
@@ -41,43 +44,144 @@ class LLMClient(Protocol):
         ...
 
 
-class AnthropicClient:
-    """Claude via the official SDK. The key is read from ANTHROPIC_API_KEY."""
+# Model ids that are not chat models: embeddings, speech, images, moderation.
+_NOT_CHAT = re.compile(
+    r"embed|whisper|tts|transcri|speech|audio|realtime|dall-e|image|moderation|rerank|guard",
+    re.IGNORECASE,
+)
+_SMALL = re.compile(r"mini|nano|small|lite|tiny|haiku", re.IGNORECASE)
+_PARAMS = re.compile(r"(\d+(?:\.\d+)?)b(?![a-z])", re.IGNORECASE)
 
-    def __init__(self, model: str = DEFAULT_MODEL, timeout: float = 120.0):
-        api_key = os.environ.get(API_KEY_ENV)
-        if not api_key:
-            raise LLMError(f"Не задан ключ API: установите переменную окружения {API_KEY_ENV}.")
+
+def rank_models(models: list[dict]) -> list[str]:
+    """Chat model ids from GET /models, most capable first.
+
+    No list of known names to go stale: full-size models before mini/lite ones,
+    then by parameter count in the id (70b > 8b), then the newest by "created".
+    """
+
+    def score(model: dict) -> tuple:
+        name = str(model["id"]).rsplit("/", 1)[-1]
+        sizes = [float(n) for n in _PARAMS.findall(name)]
+        return (not _SMALL.search(name), max(sizes, default=0), model.get("created") or 0)
+
+    chat = [m for m in models if m.get("id") and not _NOT_CHAT.search(str(m["id"]))]
+    return [str(m["id"]) for m in sorted(chat, key=score, reverse=True)]
+
+
+class OpenAICompatibleClient:
+    """Any OpenAI-compatible API (POST /chat/completions) at the user's base URL.
+
+    The model is chosen automatically from GET /models on the first request; if
+    the provider rejects it, the next one in rank_models order is tried.
+    Base URL and key come from the window or WIBECODE_LLM_BASE_URL / WIBECODE_LLM_API_KEY.
+    """
+
+    def __init__(self, base_url: str = "", api_key: str = "", timeout: float = 180.0):
+        base_url = (base_url or os.environ.get(BASE_URL_ENV, "")).strip()
+        self._key = (api_key or os.environ.get(API_KEY_ENV, "")).strip()
+        if not base_url:
+            raise LLMError(
+                "Не указан адрес API нейросети: впишите его в «Дополнительно» "
+                f"или в переменную окружения {BASE_URL_ENV}."
+            )
+        if not self._key:
+            raise LLMError(
+                "Не указан ключ API нейросети: впишите его в «Дополнительно» "
+                f"или в переменную окружения {API_KEY_ENV}."
+            )
+        if not re.match(r"https?://", base_url):
+            base_url = "https://" + base_url
+        self._base = base_url.rstrip("/").removesuffix("/chat/completions").removesuffix("/models")
+        self._timeout = timeout
+        self._models: Optional[list[str]] = None
+
+    @property
+    def model(self) -> Optional[str]:
+        """The chosen model id, once a request has been made."""
+        return self._models[0] if self._models else None
+
+    def _request(self, path: str, body: Optional[dict] = None) -> dict:
+        data = None if body is None else json.dumps(body, ensure_ascii=False).encode()
+        request = urllib.request.Request(
+            self._base + path, data=data, method="GET" if body is None else "POST",
+            headers={"Authorization": f"Bearer {self._key}", "Content-Type": "application/json"},
+        )
         try:
-            import anthropic
-        except ImportError as e:
-            raise LLMError("Пакет anthropic не установлен: pip install -r requirements.txt") from e
-        self._anthropic = anthropic
-        self._client = anthropic.Anthropic(api_key=api_key, timeout=timeout)
-        self._model = model
+            with urllib.request.urlopen(request, timeout=self._timeout) as response:
+                return json.loads(response.read().decode("utf-8"))
+        except urllib.error.HTTPError as e:
+            raise _http_error(e.code, e.read().decode("utf-8", "replace")) from e
+        except (urllib.error.URLError, OSError) as e:
+            raise LLMError(f"Нет соединения с {self._base}: проверьте адрес API и интернет.") from e
+        except ValueError as e:  # not JSON: usually a web page instead of an API
+            raise LLMError(f"По адресу {self._base} отвечает не API нейросети, проверьте адрес.") from e
+
+    def _list_models(self) -> list[str]:
+        try:
+            listing = self._request("/models")
+        except _HTTPError as e:
+            if e.status != 404 or self._base.endswith("/v1"):
+                raise
+            self._base += "/v1"  # «https://api.example.com» без /v1
+            listing = self._request("/models")
+        entries = listing.get("data", listing.get("models", [])) if isinstance(listing, dict) else []
+        models = rank_models([m for m in entries if isinstance(m, dict)])
+        if not models:
+            raise LLMError(f"API {self._base} не вернул ни одной текстовой модели.")
+        return models
 
     def complete(self, system: str, messages: list[Message]) -> str:
-        anthropic = self._anthropic
+        if self._models is None:
+            self._models = self._list_models()
+        while True:
+            body = {"model": self._models[0], "messages": [{"role": "system", "content": system}, *messages]}
+            try:
+                response = self._request("/chat/completions", body)
+            except _HTTPError as e:
+                # Not a chat model or not available on this key: try the next one.
+                if e.status in (400, 403, 404, 422) and "model" in e.detail.lower() and len(self._models) > 1:
+                    self._models.pop(0)
+                    continue
+                raise
+            break
         try:
-            response = self._client.messages.create(
-                model=self._model,
-                max_tokens=16000,
-                output_config={"effort": "medium"},
-                system=system,
-                messages=messages,
-            )
-        except anthropic.AuthenticationError as e:
-            raise LLMError(f"Неверный ключ API ({API_KEY_ENV}).") from e
-        except anthropic.RateLimitError as e:
-            raise LLMError("Превышен лимит запросов к API, попробуйте позже.") from e
-        except anthropic.APIStatusError as e:
-            raise LLMError(f"Ошибка API ({e.status_code}): {e.message}") from e
-        except anthropic.APIConnectionError as e:
-            raise LLMError("Нет соединения с API, проверьте интернет.") from e
-
-        if response.stop_reason == "refusal":
+            choice = response["choices"][0]
+            content = choice["message"].get("content") or ""
+        except (KeyError, IndexError, TypeError, AttributeError) as e:
+            raise LLMError("API вернул ответ без текста модели.") from e
+        if choice.get("finish_reason") == "content_filter":
             raise LLMError("Модель отказалась отвечать на этот запрос, переформулируйте описание.")
-        return "".join(b.text for b in response.content if b.type == "text")
+        if isinstance(content, list):  # [{"type": "text", "text": ...}]
+            content = "".join(part.get("text", "") for part in content if isinstance(part, dict))
+        return content
+
+
+class _HTTPError(LLMError):
+    def __init__(self, status: int, message: str, detail: str):
+        super().__init__(message)
+        self.status, self.detail = status, detail
+
+
+def _http_error(status: int, text: str) -> _HTTPError:
+    try:
+        error = json.loads(text).get("error", {})
+        detail = error.get("message", "") if isinstance(error, dict) else str(error)
+    except (ValueError, AttributeError):
+        detail = ""
+    detail = detail or text.strip()[:300]
+    if status in (401, 403) and "model" not in detail.lower():
+        message = "Неверный ключ API нейросети или нет доступа."
+    elif status == 429:
+        message = "Превышен лимит запросов к API нейросети, попробуйте позже."
+    else:
+        message = f"Ошибка API нейросети ({status}): {detail}"
+    return _HTTPError(status, message, detail)
+
+
+def connect(base_url: str = "", api_key: str = "") -> OpenAICompatibleClient:
+    """Client for the user's API; the model is picked on the first request."""
+    return OpenAICompatibleClient(base_url, api_key)
 
 
 class FakeLLMClient:
@@ -125,7 +229,7 @@ def generate_spec(
     Raises SpecGenerationError after MAX_RETRIES failed fix-up attempts,
     LLMError if the provider is unavailable.
     """
-    client = client if client is not None else AnthropicClient()
+    client = client if client is not None else OpenAICompatibleClient()
     check = check if check is not None else check_with_api
     return _complete_checked(client, SYSTEM_PROMPT, user_text, check)
 
@@ -141,7 +245,7 @@ def generate_metadata(
     Raises SpecGenerationError after MAX_RETRIES failed fix-up attempts,
     LLMError if the provider is unavailable.
     """
-    client = client if client is not None else AnthropicClient()
+    client = client if client is not None else OpenAICompatibleClient()
     raw = _complete_checked(
         client, METADATA_PROMPT, metadata_request(user_text, spec_json), check_metadata
     )

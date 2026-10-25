@@ -11,7 +11,7 @@ from PySide6.QtWidgets import QApplication
 
 from src.ui import app as app_module
 from src.ui import stubs, worker
-from src.ui.features import CHOICES, Extra
+from src.ui.features import CHOICES, FIELDS, Extra
 from src.ui.shell import ShellWindow
 
 
@@ -50,8 +50,25 @@ def wait_idle(qapp, controller, timeout=10):
 
 def test_every_choice_is_a_worker_parameter():
     params = inspect.signature(worker.RenderWorker.__init__).parameters
-    for choice in CHOICES:
+    for choice in (*CHOICES, *FIELDS):
         assert choice.key in params, f"настройка {choice.key!r} не передаётся в RenderWorker"
+
+
+def test_api_fields_open_on_first_run_and_are_remembered(qapp):
+    """Без адреса и ключа API поля сразу видны; введённое уходит в воркер и сохраняется."""
+    w = ShellWindow()
+    assert w.advanced.isVisibleTo(w), "первый запуск: адрес и ключ API на виду"
+    w._fields["llm_base_url"].setText(" https://api.example.com/v1 ")
+    w._fields["llm_api_key"].setText("sk-test")
+    w.input.setPlainText("Ролик про кофе")
+    sent = []
+    w.render_requested.connect(lambda text, mode, options: sent.append(options))
+    w._request_render()
+    assert sent[0]["llm_base_url"] == "https://api.example.com/v1" and sent[0]["llm_api_key"] == "sk-test"
+
+    again = ShellWindow()
+    assert again.options()["llm_api_key"] == "sk-test"
+    assert not again.advanced.isVisibleTo(again), "поля заполнены: «Дополнительно» свёрнуто"
 
 
 def test_choice_with_computed_options_and_own_file(qapp, monkeypatch):
@@ -157,9 +174,15 @@ def test_new_extra_signal_appears_as_card_by_itself(qapp, window, monkeypatch):
 
 def test_window_opens_prompt_only(qapp):
     """По умолчанию — только описание: режим «Авто», остальные настройки свёрнуты."""
+    from src.ui.shell import settings
+    stored = settings()
+    for field in FIELDS:
+        stored.setValue(field.key, "задано")
+    stored.sync()
     w = ShellWindow()
     assert w.mode.value() == "auto"
-    assert w.options() == {choice.key: choice.resolve()[0][0] for choice in CHOICES}
+    assert w.options() == {choice.key: choice.resolve()[0][0] for choice in CHOICES} | {
+        field.key: "задано" for field in FIELDS}
     assert not w.advanced.isVisibleTo(w) and w.advanced_button.text() == "Дополнительно  ▸"
 
     w.advanced_button.setChecked(True)
@@ -179,7 +202,7 @@ def test_auto_mode_sends_only_the_description(qapp, window, monkeypatch):
     spec_3d = json.dumps({"duration": 4, "render_mode": "3d",
                           "scenes": [{"type": "text", "text": "Привет", "start": 0, "end": 4}]})
 
-    def generate_spec(user_text):
+    def generate_spec(user_text, client=None):
         prompts.append(user_text)
         return spec_3d
 
