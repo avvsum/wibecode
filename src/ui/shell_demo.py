@@ -43,7 +43,7 @@ class DemoDriver(QObject):
         run = self._run
         QTimer.singleShot(ms, self, lambda: callback() if run == self._run else None)
 
-    def start(self, text: str, mode: str) -> None:
+    def start(self, text: str, mode: str, options: dict) -> None:
         self._run += 1
         self._text, self._mode = text, mode
         self.w.set_generating()
@@ -57,6 +57,9 @@ class DemoDriver(QObject):
         self._scenes, self._duration = sample_scenes(self._text, self._mode)
         self._total = int(self._duration * (30 if self._mode == "3d" else 60))
         self._done = 0
+        title = self._scenes[0]["text"]
+        self.w.show_extra("Для YouTube", f"Название:\n{title}\n\nОписание:\n{self._text[:160]}\n\n"
+                                         f"Теги:\nshorts, факты, наука", True)
         self.w.set_rendering(0, self._total, self._scenes, self._duration)
         self._timer.start()
 

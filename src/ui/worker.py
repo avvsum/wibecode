@@ -16,6 +16,7 @@ def with_mode_hint(user_text: str, render_mode: str) -> str:
 
 class RenderWorker(QObject):
     progress = Signal(str)
+    spec_ready = Signal(object)  # проверенный Spec: окно показывает сценарий и ленту ещё до рендера
     frames = Signal(int, int)  # done, total из on_progress; total == 0 — неизвестно
     metadata = Signal(str, bool)  # текст для YouTube (или причина неудачи), удалось ли
     metadata_ready = Signal(object)  # VideoMetadata для кнопки публикации
@@ -55,6 +56,7 @@ class RenderWorker(QObject):
             self.progress.emit("Генерация сцен…")
             raw = llm.generate_spec(with_mode_hint(self._user_text, self._render_mode))
             spec = api.parse_spec(raw)
+            self.spec_ready.emit(spec)
             if spec.render_mode != self._render_mode:  # JSON не переписываем, только отказ
                 self.failed.emit(
                     f"Модель вернула сценарий для режима {spec.render_mode.upper()}, "

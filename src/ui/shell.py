@@ -1,30 +1,30 @@
-"""Окно Shorts Studio: дизайн и «коробка» без backend.
+"""Окно Shorts Studio: дизайн и «коробка». С программой его связывает src/ui/app.py.
 
 Окно ничего не генерирует само. Наружу оно отдаёт сигналы, внутрь принимает состояния:
 
-    window.render_requested(text, mode)   # нажали «Создать ролик» (mode: "2d" | "3d")
+    window.render_requested(text, mode, options)  # «Создать ролик»; options — выбор из features.CHOICES
     window.cancel_requested()             # нажали «Отмена» или Esc
     window.reveal_requested(path)         # нажали «Показать в папке»
+    window.about_to_close()               # окно закрывается: остановить рендер
 
     window.set_generating()                       # LLM пишет сценарий
     window.set_rendering(done, total, scenes=..., duration=...)  # кадры из on_progress
     window.set_done(video_path, scenes, duration)  # готово; video_path=None — постер из сцен
     window.set_cancelled() / window.set_error(text) / window.set_idle()
-
-Подключение настоящей программы: render_requested -> запуск RenderWorker в QThread,
-worker.frames -> set_rendering, worker.finished -> set_done, worker.failed -> set_error,
-worker.cancelled -> set_cancelled, cancel_requested -> worker.cancel().
+    window.set_warning(text)                      # видео есть, но что-то не удалось (озвучка)
+    window.show_extra(title, text, ok)            # карточка доп. результата (features.EXTRAS)
 """
 import os
 
 from PySide6.QtCore import Qt, QTimer, QUrl, Signal, Slot
-from PySide6.QtGui import QKeySequence, QShortcut
+from PySide6.QtGui import QGuiApplication, QKeySequence, QShortcut
 from PySide6.QtMultimedia import QAudioOutput, QMediaPlayer
 from PySide6.QtWidgets import (
-    QFrame, QHBoxLayout, QLabel, QMainWindow, QPlainTextEdit, QProgressBar, QPushButton, QScrollArea,
-    QVBoxLayout, QWidget,
+    QComboBox, QFrame, QHBoxLayout, QLabel, QMainWindow, QPlainTextEdit, QProgressBar, QPushButton,
+    QScrollArea, QVBoxLayout, QWidget,
 )
 
+from src.ui.features import CHOICES
 from src.ui.widgets import (
     ModeSwitch, PreviewFrame, SceneTimeline, ScriptList, StatusPill, fmt_time, mark_icon, media_icon, scene_at,
 )
@@ -53,10 +53,43 @@ class _Body(QWidget):
         super().resizeEvent(event)
 
 
+class ExtraCard(QFrame):
+    """Дополнительный результат под сценарием: заголовок, текст и «Копировать»."""
+
+    def __init__(self, title: str, parent=None):
+        super().__init__(parent)
+        self.setObjectName("ExtraCard")
+        col = QVBoxLayout(self)
+        col.setContentsMargins(14, 10, 10, 14)
+        col.setSpacing(6)
+        head = QHBoxLayout()
+        head.addWidget(_label(title, "label"), 1)
+        self.copy_button = QPushButton("Копировать", objectName="Quiet")
+        self.copy_button.clicked.connect(self._copy)
+        head.addWidget(self.copy_button)
+        col.addLayout(head)
+        self.text = QLabel()
+        self.text.setWordWrap(True)
+        self.text.setTextInteractionFlags(Qt.TextInteractionFlag.TextSelectableByMouse)
+        col.addWidget(self.text)
+
+    def set_content(self, text: str, ok: bool) -> None:
+        self.text.setText(text)
+        self.text.setProperty("role", "" if ok else "muted")
+        self.text.style().polish(self.text)
+        self.copy_button.setVisible(ok)
+        self.copy_button.setText("Копировать")
+
+    def _copy(self) -> None:
+        QGuiApplication.clipboard().setText(self.text.text())
+        self.copy_button.setText("Скопировано")
+
+
 class ShellWindow(QMainWindow):
-    render_requested = Signal(str, str)
+    render_requested = Signal(str, str, dict)
     cancel_requested = Signal()
     reveal_requested = Signal(str)
+    about_to_close = Signal()
 
     def __init__(self):
         super().__init__()
@@ -124,6 +157,19 @@ class ShellWindow(QMainWindow):
         col.addSpacing(8)
         self.mode_note = _label(MODE_NOTES["2d"], "muted")
         col.addWidget(self.mode_note)
+
+        self._choices = {}  # настройки из features.CHOICES рисуются сами
+        for choice in CHOICES:
+            col.addSpacing(20)
+            col.addWidget(_label(choice.label, "label"))
+            col.addSpacing(8)
+            box = QComboBox()
+            box.setAccessibleName(choice.label)
+            box.setToolTip(choice.hint)
+            for value, text in choice.options:
+                box.addItem(text, value)
+            col.addWidget(box)
+            self._choices[choice.key] = box
         col.addSpacing(24)
 
         self.progress_box = QWidget()
@@ -166,7 +212,10 @@ class ShellWindow(QMainWindow):
         col.setContentsMargins(24, 20, 24, 20)
         col.setSpacing(0)
 
-        header = QHBoxLayout()
+        header_box = QWidget()
+        header_box.setFixedHeight(32)  # «Показать в папке» появляется, не сдвигая превью
+        header = QHBoxLayout(header_box)
+        header.setContentsMargins(0, 0, 0, 0)
         header.setSpacing(10)
         header.addWidget(_label("Превью", "section"))
         self.pill = StatusPill()
@@ -175,7 +224,7 @@ class ShellWindow(QMainWindow):
         self.reveal_button = QPushButton("Показать в папке", objectName="Quiet")
         self.reveal_button.clicked.connect(lambda: self.reveal_requested.emit(self._video_path or ""))
         header.addWidget(self.reveal_button)
-        col.addLayout(header)
+        col.addWidget(header_box)
         col.addSpacing(16)
 
         body_box = _Body()
@@ -195,10 +244,21 @@ class ShellWindow(QMainWindow):
         script_col.addLayout(script_head)
         script_col.addSpacing(6)
         self.script = ScriptList()
+        self._extras = {}  # заголовок -> ExtraCard
+        self.extras_box = QVBoxLayout()
+        self.extras_box.setContentsMargins(0, 16, 0, 0)
+        self.extras_box.setSpacing(12)
+        script_area = QWidget()
+        area_col = QVBoxLayout(script_area)
+        area_col.setContentsMargins(0, 0, 0, 0)
+        area_col.setSpacing(0)
+        area_col.addWidget(self.script)
+        area_col.addLayout(self.extras_box)
+        area_col.addStretch(1)
         scroll = QScrollArea()
         scroll.setWidgetResizable(True)
         scroll.setHorizontalScrollBarPolicy(Qt.ScrollBarPolicy.ScrollBarAlwaysOff)
-        scroll.setWidget(self.script)
+        scroll.setWidget(script_area)
         script_col.addWidget(scroll, 1)
         script_box = QWidget()
         script_box.setLayout(script_col)
@@ -293,11 +353,27 @@ class ShellWindow(QMainWindow):
         self._show_notice(message, "error")
         self._clear_result()
 
+    def set_warning(self, message: str) -> None:
+        """После set_done: видео готово, но часть работы не удалась (например, озвучка)."""
+        self._show_notice(message, "error")
+
+    def show_extra(self, title: str, text: str, ok: bool = True) -> None:
+        card = self._extras.get(title)
+        if card is None:
+            card = self._extras[title] = ExtraCard(title)
+            self.extras_box.addWidget(card)
+        card.set_content(text, ok)
+
+    def options(self) -> dict:
+        return {key: box.currentData() for key, box in self._choices.items()}
+
     # ---------- внутреннее ----------
 
     def _set_busy(self, busy: bool) -> None:
         self.input.setReadOnly(busy)
         self.mode.setEnabled(not busy)
+        for box in self._choices.values():
+            box.setEnabled(not busy)
         self.create_button.setEnabled(not busy and bool(self.input.toPlainText().strip()))
         self.cancel_button.setVisible(busy)
         self.cancel_button.setEnabled(busy)
@@ -318,6 +394,11 @@ class ShellWindow(QMainWindow):
         self.play_button.setEnabled(False)
         self._set_scenes([], 0)
         self.preview.show_empty()
+        for card in self._extras.values():
+            card.hide()
+            card.setParent(None)
+            card.deleteLater()
+        self._extras.clear()
 
     def _set_scenes(self, scenes: list, duration) -> None:
         self.timeline.set_progress(None)
@@ -397,10 +478,15 @@ class ShellWindow(QMainWindow):
     def _request_render(self) -> None:
         text = self.input.toPlainText().strip()
         if text and self.create_button.isEnabled():
-            self.render_requested.emit(text, self.mode.value())
+            self.render_requested.emit(text, self.mode.value(), self.options())
 
     def _request_cancel(self) -> None:
         if self.cancel_button.isVisible() and self.cancel_button.isEnabled():
             self.cancel_button.setEnabled(False)
             self.stage.setText("Отменяем…")
             self.cancel_requested.emit()
+
+    def closeEvent(self, event) -> None:
+        self._stop_playback()
+        self.about_to_close.emit()  # связка успевает остановить рендер, пока окно ещё живо
+        super().closeEvent(event)
