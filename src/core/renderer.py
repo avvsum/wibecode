@@ -168,6 +168,10 @@ class FFmpegRenderer:
     """2D renderer: still frames per scene, fades, H.264 MP4 1080x1920 @ 30 fps."""
 
     def render(self, spec: Spec, out_path: str) -> str:
+        if round(spec.duration * FPS) < 1:
+            raise RenderError(
+                f"видео короче одного кадра: duration {spec.duration:g} с при {FPS} fps"
+            )
         ffmpeg = _ffmpeg()
         segments = _segments(spec)
         out = os.path.abspath(out_path)

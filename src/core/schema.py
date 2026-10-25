@@ -4,7 +4,7 @@ from __future__ import annotations
 
 from typing import Annotated, Literal, Union
 
-from pydantic import BaseModel, ConfigDict, Field, ValidationError, model_validator
+from pydantic import BaseModel, ConfigDict, Field, FiniteFloat, ValidationError, model_validator
 
 RenderMode = Literal["2d", "3d"]
 
@@ -16,8 +16,8 @@ class SpecError(ValueError):
 class _Scene(BaseModel):
     model_config = ConfigDict(extra="forbid")
 
-    start: float = Field(ge=0)
-    end: float
+    start: FiniteFloat = Field(ge=0)
+    end: FiniteFloat
 
     @model_validator(mode="after")
     def _check_times(self):
@@ -38,7 +38,7 @@ class ImageScene(_Scene):
 
 class ChartScene(_Scene):
     type: Literal["chart"]
-    data: list[tuple[float, float]] = Field(min_length=2)
+    data: list[tuple[FiniteFloat, FiniteFloat]] = Field(min_length=2)
 
 
 Scene = Annotated[Union[TextScene, ImageScene, ChartScene], Field(discriminator="type")]
@@ -47,7 +47,7 @@ Scene = Annotated[Union[TextScene, ImageScene, ChartScene], Field(discriminator=
 class Spec(BaseModel):
     model_config = ConfigDict(extra="forbid")
 
-    duration: float = Field(gt=0)
+    duration: FiniteFloat = Field(gt=0)
     render_mode: RenderMode = "2d"
     scenes: list[Scene] = Field(min_length=1)
 
