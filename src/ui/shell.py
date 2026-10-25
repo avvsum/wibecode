@@ -22,8 +22,8 @@ from PySide6.QtCore import Qt, QTimer, QUrl, Signal, Slot
 from PySide6.QtGui import QGuiApplication, QKeySequence, QShortcut
 from PySide6.QtMultimedia import QAudioOutput, QMediaPlayer
 from PySide6.QtWidgets import (
-    QComboBox, QFrame, QHBoxLayout, QLabel, QMainWindow, QPlainTextEdit, QProgressBar, QPushButton,
-    QScrollArea, QVBoxLayout, QWidget,
+    QComboBox, QFileDialog, QFrame, QHBoxLayout, QLabel, QMainWindow, QPlainTextEdit, QProgressBar,
+    QPushButton, QScrollArea, QVBoxLayout, QWidget,
 )
 
 from src.ui.features import CHOICES
@@ -32,6 +32,7 @@ from src.ui.widgets import (
 )
 
 MAX_CHARS = 2000
+_BROWSE = "__browse__"  # служебное значение пункта «Свой файл…»
 MODE_NOTES = {
     "2d": "1080 × 1920, 60 кадров/с. Готово за секунды.",
     "3d": "1080 × 1920, 30 кадров/с. Рендер занимает несколько минут.",
@@ -169,8 +170,11 @@ class ShellWindow(QMainWindow):
             box = QComboBox()
             box.setAccessibleName(choice.label)
             box.setToolTip(choice.hint)
-            for value, text in choice.options:
+            for value, text in choice.resolve():
                 box.addItem(text, value)
+            if choice.browse:
+                box.addItem("Свой файл…", _BROWSE)
+                box.activated.connect(lambda index, b=box, c=choice: self._browse(b, c, index))
             col.addWidget(box)
             self._choices[choice.key] = box
         col.addSpacing(24)
@@ -407,6 +411,19 @@ class ShellWindow(QMainWindow):
 
     def options(self) -> dict:
         return {key: box.currentData() for key, box in self._choices.items()}
+
+    def _browse(self, box: QComboBox, choice, index: int) -> None:
+        """Пункт «Свой файл…»: выбранный файл становится вариантом списка, отмена — откат."""
+        if box.itemData(index) != _BROWSE:
+            box.setProperty("last_index", index)
+            return
+        path, _ = QFileDialog.getOpenFileName(self, choice.label, "", choice.browse)
+        if path:
+            box.insertItem(index, os.path.basename(path), path)
+            box.setCurrentIndex(index)
+            box.setProperty("last_index", index)
+        else:
+            box.setCurrentIndex(box.property("last_index") or 0)
 
     # ---------- внутреннее ----------
 

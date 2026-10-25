@@ -53,6 +53,27 @@ def test_every_choice_is_a_worker_parameter():
         assert choice.key in params, f"настройка {choice.key!r} не передаётся в RenderWorker"
 
 
+def test_choice_with_computed_options_and_own_file(qapp, monkeypatch):
+    """Динамический список + «Свой файл…»: выбранный путь уходит в воркер, отмена — откат."""
+    from src.ui import shell as shell_module
+    from src.ui.features import Choice
+    music = Choice("music", "Музыка", lambda: [("auto", "Авто"), (None, "Без музыки")], browse="Аудио (*.mp3)")
+    monkeypatch.setattr(shell_module, "CHOICES", shell_module.CHOICES + (music,))
+    w = ShellWindow()
+    box = w._choices["music"]
+    assert [box.itemText(i) for i in range(box.count())] == ["Авто", "Без музыки", "Свой файл…"]
+    assert w.options()["music"] == "auto"
+    monkeypatch.setattr(shell_module.QFileDialog, "getOpenFileName", lambda *a: ("C:/music/track.mp3", ""))
+    box.setCurrentIndex(2)
+    box.activated.emit(2)
+    assert w.options()["music"] == "C:/music/track.mp3" and box.currentText() == "track.mp3"
+    monkeypatch.setattr(shell_module.QFileDialog, "getOpenFileName", lambda *a: ("", ""))
+    box.setCurrentIndex(box.count() - 1)
+    box.activated.emit(box.count() - 1)
+    assert w.options()["music"] == "C:/music/track.mp3", "отмена диалога возвращает прежний выбор"
+    w.close()
+
+
 def test_scene_dicts_from_real_spec():
     from src.api import parse_spec
     spec = parse_spec('{"duration": 4, "scenes": [{"type": "text", "text": "Привет", "start": 0, "end": 4}]}')
