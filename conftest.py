@@ -14,7 +14,8 @@ def offline(monkeypatch, tmp_path):
     monkeypatch.setattr(socket.socket, "connect_ex", blocked)
     monkeypatch.setattr(socket, "create_connection", blocked)
     for variable in (
-        "OPENAI_API_KEY", "ANTHROPIC_API_KEY", "DEEPSEEK_API_KEY", "ELEVENLABS_API_KEY",
+        "OPENAI_API_KEY", "ANTHROPIC_API_KEY", "DEEPSEEK_API_KEY", "DEEPSEEK_BASE_URL",
+        "DEEPSEEK_MODEL", "ELEVENLABS_API_KEY",
         "WIBECODE_LLM_BASE_URL", "WIBECODE_LLM_API_KEY",
     ):
         monkeypatch.delenv(variable, raising=False)

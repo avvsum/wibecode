@@ -35,7 +35,9 @@ Linux/macOS: `python3.11 -m venv .venv` и `.venv/bin/python` вместо Windo
 | Переменная | Зачем |
 |---|---|
 | `WIBECODE_LLM_BASE_URL`, `WIBECODE_LLM_API_KEY` | адрес OpenAI-совместимого API и ключ, если они не введены в окне. Модель выбирается автоматически по `GET /models` |
-| `DEEPSEEK_API_KEY` | ключ DeepSeek: если адрес и ключ не заданы ни в окне, ни выше, используется `https://api.deepseek.com` |
+| `DEEPSEEK_API_KEY` | ключ DeepSeek для совместимости прежних настроек: используется, если адрес и ключ не заданы ни в окне, ни через `WIBECODE_LLM_*` |
+| `DEEPSEEK_BASE_URL` | необязательный базовый адрес для `DEEPSEEK_API_KEY`, например `https://api.tokenwave.ru/v1`; пустое значение — `https://api.deepseek.com` |
+| `DEEPSEEK_MODEL` | необязательная модель для прежних настроек DeepSeek; при заданном имени запрос идёт сразу к ней, иначе модель выбирается по `GET /models`. Не переопределяет настройки API из окна или `WIBECODE_LLM_*` |
 | `WIBECODE_BLENDER` | путь к `blender`, если его нет в PATH |
 | `ELEVENLABS_API_KEY` | ключ ElevenLabs, если выбрана озвучка ElevenLabs |
 | `WIBECODE_YT_CLIENT_SECRET` | путь к OAuth-клиенту YouTube, если он не в `~/.shortsstudio/client_secret.json` |
