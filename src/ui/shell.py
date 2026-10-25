@@ -25,7 +25,7 @@ from PySide6.QtGui import QGuiApplication, QKeySequence, QShortcut
 from PySide6.QtMultimedia import QAudioOutput, QMediaPlayer
 from PySide6.QtWidgets import (
     QComboBox, QFileDialog, QFrame, QHBoxLayout, QLabel, QMainWindow, QPlainTextEdit, QProgressBar,
-    QPushButton, QScrollArea, QVBoxLayout, QWidget,
+    QPushButton, QScrollArea, QStyle, QStyleOptionButton, QStylePainter, QVBoxLayout, QWidget,
 )
 
 from src.ui.features import CHOICES
@@ -46,6 +46,26 @@ def advanced_label(choices: list, expanded: bool) -> str:
     """Текст кнопки «Дополнительно»: выбранное видно, даже когда блок свёрнут."""
     text = "Дополнительно" + (f": {', '.join(choices)}" if choices else "")
     return f"{text}  {'▾' if expanded else '▸'}"
+
+
+class _AdvancedButton(QPushButton):
+    def display_text(self) -> str:
+        """Сокращает видимую подпись, сохраняя стрелку и полный доступный текст кнопки."""
+        option = QStyleOptionButton()
+        self.initStyleOption(option)
+        rect = self.style().subElementRect(QStyle.SubElement.SE_PushButtonContents, option, self)
+        label, _, arrow = self.text().rpartition("  ")
+        suffix = f"  {arrow}"
+        metrics = self.fontMetrics()
+        width = max(0, rect.width() - metrics.horizontalAdvance(suffix))
+        return metrics.elidedText(label, Qt.TextElideMode.ElideRight, width) + suffix
+
+    def paintEvent(self, event) -> None:
+        option = QStyleOptionButton()
+        self.initStyleOption(option)
+        option.text = self.display_text()
+        painter = QStylePainter(self)
+        painter.drawControl(QStyle.ControlElement.CE_PushButton, option)
 
 
 def _label(text: str, role: str) -> QLabel:
@@ -165,7 +185,7 @@ class ShellWindow(QMainWindow):
 
         # Ролик делается по одному описанию. Режим и настройки из features.CHOICES лежат
         # в свёрнутом блоке «Дополнительно»; выбранное там видно на самой кнопке.
-        self.advanced_button = QPushButton(objectName="Quiet")
+        self.advanced_button = _AdvancedButton(objectName="Quiet")
         self.advanced_button.setCheckable(True)
         self.advanced_button.setStyleSheet("text-align: left; padding-left: 0;")
         self.advanced_button.setCursor(Qt.CursorShape.PointingHandCursor)
@@ -597,7 +617,10 @@ class ShellWindow(QMainWindow):
         active = self.options()
         chosen += [box.currentText() for key, box in self._choices.items()
                    if key in active and box.currentIndex() > 0]
-        self.advanced_button.setText(advanced_label(chosen, expanded))
+        summary = advanced_label(chosen, expanded)
+        self.advanced_button.setText(summary)
+        self.advanced_button.setToolTip(summary)
+        self.advanced_button.setAccessibleName(summary)
 
     def _request_render(self) -> None:
         text = self.input.toPlainText().strip()

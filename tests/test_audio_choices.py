@@ -91,6 +91,22 @@ def test_voice_music_and_kaykit_reach_the_same_request(window):
     })]
 
 
+def test_long_advanced_summary_keeps_arrow_and_full_accessible_selection(window):
+    window.mode.set_value("3d")
+    for key, value in (("voice", "chatterbox"), ("environment", "forest"), ("cast", "ranger_knight")):
+        box = window._choices[key]
+        box.setCurrentIndex(box.findData(value))
+    button = window.advanced_button
+    button.resize(220, 40)
+    for expanded, arrow in ((False, "▸"), (True, "▾")):
+        button.setChecked(expanded)
+        displayed = button.display_text()
+        assert "…" in displayed and displayed.endswith(f"  {arrow}")
+        assert button.fontMetrics().horizontalAdvance(displayed) <= button.width()
+        assert button.toolTip() == button.accessibleName() == button.text()
+        assert "Chatterbox, локально, Лесная поляна, Лучник и рыцарь" in button.toolTip()
+
+
 def test_own_music_path_and_dialog_cancel_preserve_choice(window, monkeypatch):
     monkeypatch.setattr(shell.QFileDialog, "getOpenFileName", lambda *args: ("C:/music/own.wav", ""))
     box = window._choices["music"]
