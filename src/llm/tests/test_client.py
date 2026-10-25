@@ -102,6 +102,12 @@ def test_settings_fall_back_to_environment(monkeypatch):
     assert OpenAICompatibleClient()._base == "https://api.example.com/v1"
 
 
+def test_deepseek_key_alone_still_works(monkeypatch):
+    monkeypatch.setenv("DEEPSEEK_API_KEY", "ds-key")
+    client = OpenAICompatibleClient()
+    assert client._base == "https://api.deepseek.com" and client._key == "ds-key"
+
+
 def test_rank_models_prefers_full_size_then_params_then_newest():
     models = [
         {"id": "text-embedding-3-large", "created": 9},
@@ -197,7 +203,7 @@ def test_base_url_without_v1_and_rejected_model_fall_back(monkeypatch):
     assert len(seen) == 4
 
 
-@pytest.mark.parametrize("status, words", [(401, "Неверный ключ"), (429, "лимит"), (500, r"\(500\): упало")])
+@pytest.mark.parametrize("status, words", [(401, "Неверный ключ"), (402, "балансе"), (429, "лимит"), (500, r"\(500\): упало")])
 def test_api_errors_are_readable(monkeypatch, status, words):
     def routes(method, url, body):
         if url.endswith("/models"):

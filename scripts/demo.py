@@ -47,7 +47,7 @@ def main(argv=None):
                  "end": args.duration},
             ]}
             fake = client.FakeLLMClient([json.dumps(payload, ensure_ascii=False)])
-            with patch.object(client, "OpenAICompatibleClient", return_value=fake):
+            with patch.object(client, "default_client", return_value=fake):
                 raw = client.generate_spec(args.text)
             result = render_video(parse_spec(raw), str(output))
         if not output.is_file() or not output.stat().st_size:

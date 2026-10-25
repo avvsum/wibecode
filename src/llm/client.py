@@ -14,6 +14,9 @@ from src.llm.prompt import METADATA_PROMPT, SYSTEM_PROMPT, fix_message, metadata
 
 BASE_URL_ENV = "WIBECODE_LLM_BASE_URL"
 API_KEY_ENV = "WIBECODE_LLM_API_KEY"
+# Ключ DeepSeek без адреса и общего ключа — как раньше, через api.deepseek.com.
+DEEPSEEK_KEY_ENV = "DEEPSEEK_API_KEY"
+DEEPSEEK_URL = "https://api.deepseek.com"
 MAX_RETRIES = 2
 
 Message = dict  # {"role": "user" | "assistant", "content": str}
@@ -80,6 +83,8 @@ class OpenAICompatibleClient:
     def __init__(self, base_url: str = "", api_key: str = "", timeout: float = 180.0):
         base_url = (base_url or os.environ.get(BASE_URL_ENV, "")).strip()
         self._key = (api_key or os.environ.get(API_KEY_ENV, "")).strip()
+        if not base_url and not self._key and os.environ.get(DEEPSEEK_KEY_ENV):
+            base_url, self._key = DEEPSEEK_URL, os.environ[DEEPSEEK_KEY_ENV].strip()
         if not base_url:
             raise LLMError(
                 "Не указан адрес API нейросети: впишите его в «Дополнительно» "
@@ -172,6 +177,8 @@ def _http_error(status: int, text: str) -> _HTTPError:
     detail = detail or text.strip()[:300]
     if status in (401, 403) and "model" not in detail.lower():
         message = "Неверный ключ API нейросети или нет доступа."
+    elif status == 402:
+        message = "На балансе API нейросети закончились средства, пополните счёт."
     elif status == 429:
         message = "Превышен лимит запросов к API нейросети, попробуйте позже."
     else:
@@ -182,6 +189,11 @@ def _http_error(status: int, text: str) -> _HTTPError:
 def connect(base_url: str = "", api_key: str = "") -> OpenAICompatibleClient:
     """Client for the user's API; the model is picked on the first request."""
     return OpenAICompatibleClient(base_url, api_key)
+
+
+def default_client() -> LLMClient:
+    """Client from environment variables, for generate_spec without client= (scripts, tests)."""
+    return OpenAICompatibleClient()
 
 
 class FakeLLMClient:
@@ -229,7 +241,7 @@ def generate_spec(
     Raises SpecGenerationError after MAX_RETRIES failed fix-up attempts,
     LLMError if the provider is unavailable.
     """
-    client = client if client is not None else OpenAICompatibleClient()
+    client = client if client is not None else default_client()
     check = check if check is not None else check_with_api
     return _complete_checked(client, SYSTEM_PROMPT, user_text, check)
 
@@ -245,7 +257,7 @@ def generate_metadata(
     Raises SpecGenerationError after MAX_RETRIES failed fix-up attempts,
     LLMError if the provider is unavailable.
     """
-    client = client if client is not None else OpenAICompatibleClient()
+    client = client if client is not None else default_client()
     raw = _complete_checked(
         client, METADATA_PROMPT, metadata_request(user_text, spec_json), check_metadata
     )

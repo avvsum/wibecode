@@ -76,6 +76,7 @@ class AppController(QObject):
         worker.spec_ready.connect(self._on_spec)
         if hasattr(worker, "metadata_ready"):
             worker.metadata_ready.connect(self._on_metadata_ready)
+        worker.progress.connect(self._on_stage)
         worker.frames.connect(self._on_frames)
         worker.finished.connect(self._on_finished)
         worker.failed.connect(self._on_failed)
@@ -154,6 +155,10 @@ class AppController(QObject):
     @Slot(int, int)
     def _on_frames(self, done: int, total: int) -> None:
         self.w.set_rendering(done, total, self._scenes, self._duration)
+
+    @Slot(str)
+    def _on_stage(self, text: str) -> None:
+        self.w.set_stage(text)
 
     @Slot(str)
     def _on_finished(self, path: str) -> None:

@@ -27,7 +27,7 @@ from PySide6.QtGui import QGuiApplication, QKeySequence, QShortcut
 from PySide6.QtMultimedia import QAudioOutput, QMediaPlayer
 from PySide6.QtWidgets import (
     QComboBox, QFileDialog, QFrame, QHBoxLayout, QLabel, QLineEdit, QMainWindow, QPlainTextEdit, QProgressBar,
-    QPushButton, QScrollArea, QVBoxLayout, QWidget,
+    QPushButton, QScrollArea, QStyle, QStyleOptionButton, QStylePainter, QVBoxLayout, QWidget,
 )
 
 from src.ui.features import CHOICES, FIELDS
@@ -55,6 +55,24 @@ def settings() -> QSettings:
     """Поля features.FIELDS между запусками: ~/.shortsstudio/settings.ini."""
     path = os.environ.get(SETTINGS_ENV) or str(Path.home() / ".shortsstudio" / "settings.ini")
     return QSettings(path, QSettings.Format.IniFormat)
+class _AdvancedButton(QPushButton):
+    def display_text(self) -> str:
+        """Сокращает видимую подпись, сохраняя стрелку и полный доступный текст кнопки."""
+        option = QStyleOptionButton()
+        self.initStyleOption(option)
+        rect = self.style().subElementRect(QStyle.SubElement.SE_PushButtonContents, option, self)
+        label, _, arrow = self.text().rpartition("  ")
+        suffix = f"  {arrow}"
+        metrics = self.fontMetrics()
+        width = max(0, rect.width() - metrics.horizontalAdvance(suffix))
+        return metrics.elidedText(label, Qt.TextElideMode.ElideRight, width) + suffix
+
+    def paintEvent(self, event) -> None:
+        option = QStyleOptionButton()
+        self.initStyleOption(option)
+        option.text = self.display_text()
+        painter = QStylePainter(self)
+        painter.drawControl(QStyle.ControlElement.CE_PushButton, option)
 
 
 def _label(text: str, role: str) -> QLabel:
@@ -174,7 +192,7 @@ class ShellWindow(QMainWindow):
 
         # Ролик делается по одному описанию. Режим и настройки из features.CHOICES лежат
         # в свёрнутом блоке «Дополнительно»; выбранное там видно на самой кнопке.
-        self.advanced_button = QPushButton(objectName="Quiet")
+        self.advanced_button = _AdvancedButton(objectName="Quiet")
         self.advanced_button.setCheckable(True)
         self.advanced_button.setStyleSheet("text-align: left; padding-left: 0;")
         self.advanced_button.setCursor(Qt.CursorShape.PointingHandCursor)
@@ -210,10 +228,14 @@ class ShellWindow(QMainWindow):
         adv.addWidget(self.mode_note)
 
         self._choices = {}  # настройки из features.CHOICES рисуются сами
+        self._choice_rows, self._choice_modes = {}, {}
         for choice in CHOICES:
-            adv.addSpacing(20)
-            adv.addWidget(_label(choice.label, "label"))
-            adv.addSpacing(8)
+            row = QWidget()
+            row_layout = QHBoxLayout(row)
+            row_layout.setContentsMargins(0, 12, 0, 0)
+            label = _label(choice.label, "label")
+            label.setFixedWidth(90)
+            row_layout.addWidget(label)
             box = QComboBox()
             box.setAccessibleName(choice.label)
             box.setToolTip(choice.hint)
@@ -223,8 +245,12 @@ class ShellWindow(QMainWindow):
                 box.addItem("Свой файл…", _BROWSE)
                 box.activated.connect(lambda index, b=box, c=choice: self._browse(b, c, index))
             box.currentIndexChanged.connect(self._update_advanced)
-            adv.addWidget(box)
+            row_layout.addWidget(box, 1)
+            adv.addWidget(row)
             self._choices[choice.key] = box
+            self._choice_rows[choice.key] = row
+            self._choice_modes[choice.key] = choice.mode
+        self._sync_choices()
         col.addWidget(self.advanced)
         self.advanced_button.toggled.connect(self._update_advanced)
         # Без адреса или ключа API ролик не создать: при первом запуске поля сразу на виду.
@@ -374,6 +400,12 @@ class ShellWindow(QMainWindow):
         self.progress.setRange(0, 0)
         self.preview.show_working("Пишем сценарий…")
 
+    @Slot(str)
+    def set_stage(self, text: str) -> None:
+        """Текст текущего этапа; кадры и блокировка настроек остаются у своих обработчиков."""
+        self.stage.setText(text)
+        self.preview.show_working(text)
+
     def set_rendering(self, done: int, total: int, scenes=None, duration=None) -> None:
         self._set_busy(True)
         if scenes is not None and scenes != self._scenes:
@@ -464,14 +496,22 @@ class ShellWindow(QMainWindow):
         card.set_content(text, ok)
 
     def options(self) -> dict:
-        values = {key: box.currentData() for key, box in self._choices.items()}
-        return values | {key: edit.text().strip() for key, edit in self._fields.items()}
+        return {key: box.currentData() for key, box in self._choices.items()
+                if not self._choice_modes[key] or self._choice_modes[key] == self.mode.value()}
+
+    def field_values(self) -> dict:
+        """Поля features.FIELDS (адрес и ключ API): уходят в воркер вместе с options()."""
+        return {key: edit.text().strip() for key, edit in self._fields.items()}
 
     def _save_fields(self) -> None:
         stored = settings()
         for key, edit in self._fields.items():
             stored.setValue(key, edit.text().strip())
         stored.sync()
+
+    def _sync_choices(self) -> None:
+        for key, row in self._choice_rows.items():
+            row.setVisible(not self._choice_modes[key] or self._choice_modes[key] == self.mode.value())
 
     def _browse(self, box: QComboBox, choice, index: int) -> None:
         """Пункт «Свой файл…»: выбранный файл становится вариантом списка, отмена — откат."""
@@ -600,6 +640,7 @@ class ShellWindow(QMainWindow):
 
     def _on_mode_changed(self, mode: str) -> None:
         self.mode_note.setText(MODE_NOTES[mode])
+        self._sync_choices()
         self._update_advanced()
 
     def _update_advanced(self, *_) -> None:
@@ -607,14 +648,19 @@ class ShellWindow(QMainWindow):
         self.advanced.setVisible(expanded)
         mode = self.mode.value()
         chosen = [title for value, title, _ in ModeSwitch.MODES if value == mode and value != "auto"]
-        chosen += [box.currentText() for box in self._choices.values() if box.currentIndex() > 0]
-        self.advanced_button.setText(advanced_label(chosen, expanded))
+        active = self.options()
+        chosen += [box.currentText() for key, box in self._choices.items()
+                   if key in active and box.currentIndex() > 0]
+        summary = advanced_label(chosen, expanded)
+        self.advanced_button.setText(summary)
+        self.advanced_button.setToolTip(summary)
+        self.advanced_button.setAccessibleName(summary)
 
     def _request_render(self) -> None:
         text = self.input.toPlainText().strip()
         if text and self.create_button.isEnabled():
             self._save_fields()
-            self.render_requested.emit(text, self.mode.value(), self.options())
+            self.render_requested.emit(text, self.mode.value(), self.options() | self.field_values())
 
     def _request_cancel(self) -> None:
         if self.cancel_button.isVisible() and self.cancel_button.isEnabled():

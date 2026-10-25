@@ -42,9 +42,9 @@ class RenderWorker(QObject):
         self._out_path = out_path
         self._render_mode = render_mode  # "2d", "3d" или None — режим выбирает модель
         self._voice = voice  # провайдер озвучки: "elevenlabs", "chatterbox" или None
-        self._music = music  # "auto" (настроение от модели), путь к своему треку или None
         self._environment = environment
         self._cast = cast
+        self._music = music  # "auto" (настроение от модели), путь к своему треку или None
         self._llm_base_url = llm_base_url  # адрес OpenAI-совместимого API; пусто — из переменной окружения
         self._llm_api_key = llm_api_key
         self._client = None  # один клиент на запуск: модель выбирается один раз
@@ -77,7 +77,6 @@ class RenderWorker(QObject):
                 self._user_text, self._render_mode, self._environment, self._cast
             ), client=self._client)
             spec = api.parse_spec(raw)
-            self.spec_ready.emit(spec)
             if self._render_mode and spec.render_mode != self._render_mode:  # JSON не переписываем
                 self.failed.emit(
                     f"Модель вернула сценарий для режима {spec.render_mode.upper()}, "
@@ -93,6 +92,7 @@ class RenderWorker(QObject):
                     "Попробуйте ещё раз: выбранные настройки должны совпадать со сценарием."
                 )
                 return
+            self.spec_ready.emit(spec)
             if not self._cancel_requested:
                 self.progress.emit("Название, описание и теги…")
                 self._emit_metadata(raw)
@@ -101,14 +101,23 @@ class RenderWorker(QObject):
             style = getattr(spec, "style", "none")  # стиль выбирает модель, заглушки его не знают
             self.progress.emit("Рендер видео…" if style == "none" else f"Рендер видео, стиль {style}…")
             path = api.render_video(spec, self._out_path, on_progress=self._on_progress)
+            if self._cancel_requested:
+                raise api.RenderCancelled("отменено после рендера")
             if self._voice:
                 self.progress.emit("Озвучка…")
                 try:
                     with tempfile.TemporaryDirectory(prefix="shorts-voice-") as tmp:
-                        api.add_voiceover(path, llm.tts.synthesize_spec(spec, tmp, self._voice))
+                        clips = llm.tts.synthesize_spec(spec, tmp, self._voice)
+                        if self._cancel_requested:
+                            raise api.RenderCancelled("отменено во время озвучки")
+                        api.add_voiceover(path, clips)
+                except api.RenderCancelled:
+                    raise
                 except (llm.tts.TTSError, api.RenderError) as e:
                     self.failed.emit(f"Видео готово без озвучки ({path}). Озвучка не удалась: {e}")
                     return
+            if self._cancel_requested:
+                raise api.RenderCancelled("отменено до добавления музыки")
             mood = getattr(spec, "music", "none")  # настроение выбирает модель, заглушки его не знают
             track = api.pick_music(mood) if self._music == "auto" else self._music
             if track:
@@ -120,6 +129,8 @@ class RenderWorker(QObject):
                 except api.RenderError as e:
                     self.failed.emit(f"Видео готово без музыки ({path}). Музыка не добавилась: {e}")
                     return
+            if self._cancel_requested:
+                raise api.RenderCancelled("отменено во время добавления музыки")
         except api.RenderCancelled:
             self.cancelled.emit()
         except api.ToolNotFoundError as e:  # раньше RenderError и любых OSError

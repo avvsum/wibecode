@@ -1,6 +1,7 @@
 """LLM layer: user text -> raw JSON spec and YouTube metadata.
 
 Public entry points: generate_spec, generate_metadata.
+Provider: DeepSeek (DEEPSEEK_API_KEY) by default, Anthropic optionally; see default_client.
 Voice-over (ElevenLabs text-to-speech) lives in src.llm.tts.
 """
 
@@ -12,6 +13,7 @@ from src.llm.client import (
     OpenAICompatibleClient,
     SpecGenerationError,
     connect,
+    default_client,
     generate_metadata,
     generate_spec,
 )
@@ -26,6 +28,7 @@ __all__ = [
     "SpecGenerationError",
     "VideoMetadata",
     "connect",
+    "default_client",
     "generate_metadata",
     "generate_spec",
     "tts",
