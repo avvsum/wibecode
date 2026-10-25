@@ -1,0 +1,39 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="430" viewBox="0 0 1200 430" role="img" aria-labelledby="title desc">
+  <title id="title">ShortsStudio</title>
+  <desc id="desc">Опиши идею. Получи готовый Shorts. Текст, графики и 3D-диалоги в вертикальном MP4.</desc>
+  <defs>
+    <linearGradient id="bg" x2="1" y2="1"><stop stop-color="#11152b"/><stop offset="1" stop-color="#242044"/></linearGradient>
+    <linearGradient id="accent" x2="1" y2="1"><stop stop-color="#a99bff"/><stop offset="1" stop-color="#69e8c2"/></linearGradient>
+    <pattern id="grid" width="32" height="32" patternUnits="userSpaceOnUse"><path d="M32 0H0V32" fill="none" stroke="#b2a3ff" stroke-opacity=".055"/></pattern>
+  </defs>
+  <rect width="1200" height="430" rx="24" fill="url(#bg)"/>
+  <rect width="1200" height="430" rx="24" fill="url(#grid)"/>
+  <circle cx="1050" cy="30" r="230" fill="#a18aff" opacity=".055"/>
+  <g font-family="Arial, Helvetica, sans-serif">
+    <rect x="58" y="46" width="34" height="34" rx="10" fill="url(#accent)"/>
+    <path d="m72 55 11 8-11 8z" fill="#14172a"/>
+    <text x="105" y="71" fill="#f7f6ff" font-size="24" font-weight="700">ShortsStudio</text>
+    <text x="58" y="126" fill="#9cabbf" font-size="13" letter-spacing="3">TEXT TO VIDEO · DESKTOP</text>
+    <text x="55" y="192" fill="#fff" font-size="51" font-weight="700">Опиши идею.</text>
+    <text x="55" y="254" fill="#a7f3d0" font-size="51" font-weight="700">Получи готовый Shorts.</text>
+    <text x="58" y="299" fill="#b7bfd4" font-size="19">Текст. Графики. Диалоги в 3D.</text>
+    <rect x="58" y="340" width="123" height="34" rx="17" fill="#ffffff" fill-opacity=".07" stroke="#ffffff" stroke-opacity=".12"/>
+    <text x="78" y="362" fill="#dbe1f4" font-size="13">1080 × 1920</text>
+    <rect x="193" y="340" width="125" height="34" rx="17" fill="#ffffff" fill-opacity=".07" stroke="#ffffff" stroke-opacity=".12"/>
+    <text x="213" y="362" fill="#dbe1f4" font-size="13">2D + 3D</text>
+    <rect x="330" y="340" width="100" height="34" rx="17" fill="#ffffff" fill-opacity=".07" stroke="#ffffff" stroke-opacity=".12"/>
+    <text x="352" y="362" fill="#dbe1f4" font-size="13">MP4</text>
+    <rect x="877" y="29" width="224" height="374" rx="32" fill="#070b16" stroke="#53617e" stroke-width="2"/>
+    <rect x="888" y="40" width="202" height="352" rx="23" fill="#171b2d"/>
+    <rect x="954" y="49" width="70" height="6" rx="3" fill="#35415b"/>
+    <text x="989" y="100" text-anchor="middle" fill="#b9c4db" font-size="11" letter-spacing="2">YOUR NEXT SHORT</text>
+    <text x="989" y="133" text-anchor="middle" fill="#f4f6ff" font-size="20" font-weight="700">Идея набирает рост</text>
+    <path d="M914 170V296H1061" fill="none" stroke="#44516e" stroke-width="1.5"/>
+    <path d="M914 253H1061M914 211H1061M963 170V296M1012 170V296" fill="none" stroke="#44516e" stroke-opacity=".35"/>
+    <path d="m921 283 30-10 30-23 31-33 39-46" fill="none" stroke="#83eac8" stroke-width="5" stroke-linecap="round" stroke-linejoin="round"/>
+    <g fill="#83eac8"><circle cx="921" cy="283" r="4"/><circle cx="951" cy="273" r="4"/><circle cx="981" cy="250" r="4"/><circle cx="1012" cy="217" r="4"/><circle cx="1051" cy="171" r="4"/></g>
+    <rect x="914" y="323" width="147" height="32" rx="8" fill="#333054"/>
+    <text x="989" y="344" text-anchor="middle" fill="#e4dcff" font-size="12">История → кадры → видео</text>
+    <path d="M750 215h82m-12-12 12 12-12 12" fill="none" stroke="#8d91b4" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+  </g>
+</svg>
