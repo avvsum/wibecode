@@ -16,6 +16,9 @@
 #ifndef SetupDefaultDir
   #define SetupDefaultDir "{localappdata}\Programs\ShortsStudio"
 #endif
+#ifndef SetupDiskSliceSize
+  #define SetupDiskSliceSize 1800000000
+#endif
 
 [Setup]
 AppId={#SetupAppId}
@@ -34,7 +37,7 @@ OutputBaseFilename={#SetupOutputName}
 Compression=lzma2/fast
 SolidCompression=yes
 DiskSpanning=yes
-DiskSliceSize=max
+DiskSliceSize={#SetupDiskSliceSize}
 CloseApplications=yes
 RestartApplications=no
 UninstallDisplayIcon={app}\ShortsStudio.exe
