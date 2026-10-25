@@ -2,6 +2,7 @@
 
 import argparse
 import importlib.util
+import os
 import subprocess
 import sys
 from pathlib import Path
@@ -43,7 +44,15 @@ def main(argv=None):
                # keep it out of the bundle; Chatterbox works when running from source.
                "--exclude-module", "chatterbox", "--exclude-module", "torch",
                str(ROOT / "src" / "ui" / "main.py")]
-    code = subprocess.run(command, cwd=ROOT, check=False).returncode
+    build_env = os.environ.copy()
+    if sys.platform == "win32":
+        # Foreign tools on PATH may provide DLLs (for example Poppler's ICU) that
+        # shadow Windows APIs in the frozen app. Resolve system DLLs from Windows.
+        windows = Path(build_env.get("SystemRoot", r"C:\Windows"))
+        build_env["PATH"] = os.pathsep.join(map(str, (
+            Path(sys.executable).parent, Path(sys.base_prefix), windows / "System32", windows,
+        )))
+    code = subprocess.run(command, cwd=ROOT, check=False, env=build_env).returncode
     if code == 0:
         # The googleapiclient hook bundles ~600 API descriptions (~120 MB); the app needs
         # only YouTube for publishing.
