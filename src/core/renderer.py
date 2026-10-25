@@ -273,19 +273,15 @@ def _run_ffmpeg(
             raise RenderError(f"FFmpeg завершился с ошибкой: {err.read().strip()[-500:]}")
 
 
-class Stub3DRenderer:
-    """Placeholder until the Blender (Workbench) backend is implemented."""
-
-    def render(
-        self, spec: Spec, out_path: str, on_progress: Optional[ProgressCallback] = None
-    ) -> str:
-        raise NotImplementedError("3D not implemented yet")
-
-
-RENDERERS: dict[str, Renderer] = {"2d": FFmpegRenderer(), "3d": Stub3DRenderer()}
+RENDERERS: dict[str, Renderer] = {"2d": FFmpegRenderer()}
 
 
 def get_renderer(mode: str) -> Renderer:
+    if mode == "3d" and "3d" not in RENDERERS:
+        # Imported lazily: the 3D backend reuses helpers from this module.
+        from src.core.render3d import BlenderRenderer
+
+        RENDERERS["3d"] = BlenderRenderer()
     try:
         return RENDERERS[mode]
     except KeyError:

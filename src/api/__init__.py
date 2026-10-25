@@ -38,6 +38,6 @@ def render_video(
 
     Raises RenderError if the video cannot be produced (ToolNotFoundError,
     also a FileNotFoundError, when FFmpeg is missing; RenderCancelled on
-    cancel) and NotImplementedError for render_mode "3d" (not implemented yet).
+    cancel). render_mode "3d" needs Blender (ToolNotFoundError without it).
     """
     return renderer.render(spec, out_path, on_progress)
