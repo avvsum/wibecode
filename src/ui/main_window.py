@@ -3,6 +3,7 @@ import time
 from pathlib import Path
 
 from PySide6.QtCore import QThread, QUrl, Slot
+from PySide6.QtGui import QGuiApplication
 from PySide6.QtMultimedia import QAudioOutput, QMediaPlayer
 from PySide6.QtMultimediaWidgets import QVideoWidget
 from PySide6.QtWidgets import (
@@ -42,6 +43,12 @@ class MainWindow(QMainWindow):
         self.cancel_button.clicked.connect(self._on_cancel_clicked)
         self.progress_bar = QProgressBar()
         self.progress_bar.setVisible(False)
+        self.metadata_box = QPlainTextEdit()
+        self.metadata_box.setReadOnly(True)
+        self.metadata_box.setPlaceholderText("Здесь появятся название, описание и теги для YouTube")
+        self.copy_button = QPushButton("Копировать для YouTube")
+        self.copy_button.setEnabled(False)
+        self.copy_button.clicked.connect(self._copy_metadata)
 
         self.video = QVideoWidget()
         self.video.setMinimumSize(270, 480)
@@ -64,10 +71,13 @@ class MainWindow(QMainWindow):
         buttons.addWidget(self.render_button, 1)
         buttons.addWidget(self.cancel_button)
         left = QVBoxLayout()
-        left.addWidget(self.input)
+        left.addWidget(self.input, 2)
         left.addLayout(mode_row)
         left.addWidget(self.progress_bar)
         left.addLayout(buttons)
+        left.addWidget(QLabel("YouTube: название, описание, теги"))
+        left.addWidget(self.metadata_box, 1)
+        left.addWidget(self.copy_button)
         right = QVBoxLayout()
         right.addWidget(self.video, 1)
         right.addWidget(self.play_button)
@@ -96,6 +106,8 @@ class MainWindow(QMainWindow):
         self.player.stop()
         self.player.setSource(QUrl())
         self.play_button.setEnabled(False)
+        self.metadata_box.clear()
+        self.copy_button.setEnabled(False)
         OUTPUT_DIR.mkdir(parents=True, exist_ok=True)
         out_path = str(OUTPUT_DIR / f"render_{time.strftime('%Y%m%d_%H%M%S')}.mp4")
 
@@ -114,6 +126,7 @@ class MainWindow(QMainWindow):
         self._thread.started.connect(self._worker.run)
         self._worker.progress.connect(self._set_status)
         self._worker.frames.connect(self._on_frames)
+        self._worker.metadata.connect(self._on_metadata)
         self._worker.finished.connect(self._on_rendered)
         self._worker.failed.connect(self._on_failed)
         self._worker.cancelled.connect(self._on_cancelled)
@@ -133,6 +146,16 @@ class MainWindow(QMainWindow):
     @Slot(str)
     def _on_failed(self, message: str) -> None:
         self._set_status(message, error=True)
+
+    @Slot(str, bool)
+    def _on_metadata(self, text: str, ok: bool) -> None:
+        self.metadata_box.setPlainText(text)
+        self.copy_button.setEnabled(ok)
+
+    @Slot()
+    def _copy_metadata(self) -> None:
+        QGuiApplication.clipboard().setText(self.metadata_box.toPlainText())
+        self._set_status("Название, описание и теги скопированы")
 
     @Slot(int, int)
     def _on_frames(self, done: int, total: int) -> None:

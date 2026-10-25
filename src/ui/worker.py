@@ -17,6 +17,7 @@ def with_mode_hint(user_text: str, render_mode: str) -> str:
 class RenderWorker(QObject):
     progress = Signal(str)
     frames = Signal(int, int)  # done, total из on_progress; total == 0 — неизвестно
+    metadata = Signal(str, bool)  # текст для YouTube (или причина неудачи), удалось ли
     finished = Signal(str)  # путь к готовому MP4
     failed = Signal(str)
     cancelled = Signal()
@@ -37,6 +38,15 @@ class RenderWorker(QObject):
         self.frames.emit(done, total)
         return not self._cancel_requested
 
+    def _emit_metadata(self, raw: str) -> None:
+        """Название, описание и теги для YouTube; без них видео всё равно рендерится."""
+        try:
+            meta = llm.generate_metadata(self._user_text, raw)
+        except (llm.LLMError, llm.SpecGenerationError) as e:
+            self.metadata.emit(f"Не удалось подготовить название, описание и теги: {e}", False)
+        else:
+            self.metadata.emit(meta.as_text(), True)
+
     @Slot()
     def run(self) -> None:
         try:
@@ -50,6 +60,9 @@ class RenderWorker(QObject):
                     f"явно укажите в описании, что нужно {self._render_mode.upper()}-видео."
                 )
                 return
+            if not self._cancel_requested:
+                self.progress.emit("Название, описание и теги…")
+                self._emit_metadata(raw)
             if self._cancel_requested:  # запрос к LLM не прервать, но рендер уже не начинаем
                 raise api.RenderCancelled("отменено до рендера")
             style = getattr(spec, "style", "none")  # стиль выбирает модель, заглушки его не знают

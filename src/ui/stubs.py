@@ -4,6 +4,7 @@
     api.parse_spec(raw: str) -> Spec            # raises SpecError
     api.render_video(spec: Spec, out_path: str, *, on_progress=None) -> str
     llm.generate_spec(user_text: str) -> str    # raw JSON
+    llm.generate_metadata(user_text: str, spec_json: str) -> VideoMetadata
 """
 import json
 import os
@@ -71,6 +72,27 @@ def generate_spec(user_text: str) -> str:
     if hint:
         spec["render_mode"] = hint.group(1)
     return json.dumps(spec, ensure_ascii=False)
+
+
+@dataclass(frozen=True)
+class VideoMetadata:
+    title: str
+    description: str
+    tags: tuple
+
+    def as_text(self) -> str:
+        return (
+            f"Название:\n{self.title}\n\n"
+            f"Описание:\n{self.description}\n\n"
+            f"Теги:\n{', '.join(self.tags)}"
+        )
+
+
+def generate_metadata(user_text: str, spec_json: str) -> VideoMetadata:
+    hint = MODE_HINT.search(user_text)
+    text = (user_text[:hint.start()] if hint else user_text).strip()
+    title = (text.splitlines() or ["Ролик"])[0][:70]
+    return VideoMetadata(title, f"{text[:200]}\n\n#Shorts", ("shorts", "заглушка"))
 
 
 def parse_spec(raw: str) -> Spec:
@@ -170,5 +192,6 @@ api = SimpleNamespace(
 # Заглушка озвучки не ходит в ElevenLabs и не создаёт реплик.
 tts = SimpleNamespace(TTSError=TTSError, synthesize_spec=lambda spec, out_dir, client=None: [])
 llm = SimpleNamespace(
-    generate_spec=generate_spec, LLMError=LLMError, SpecGenerationError=SpecGenerationError, tts=tts,
+    generate_spec=generate_spec, generate_metadata=generate_metadata, VideoMetadata=VideoMetadata,
+    LLMError=LLMError, SpecGenerationError=SpecGenerationError, tts=tts,
 )

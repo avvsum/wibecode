@@ -52,6 +52,8 @@ python scripts/demo.py --duration 3                 # короткое демо 
 ```
 
 В окне: описание → выбор 2D/3D → «Рендер». Есть прогресс, «Отмена» и превью готового видео.
+До рендера Claude готовит название, описание с хэштегами (#Shorts) и теги для YouTube;
+кнопка «Копировать для YouTube» кладёт их в буфер обмена.
 Ошибки (нет ключа, нет FFmpeg/Blender, неверный сценарий) показываются в статус-баре.
 Список «Озвучка» после рендера добавляет голос: сцены `text` читает диктор,
 реплики `say` — голоса robot/girl. Речь режется на конце своей сцены.
@@ -79,6 +81,8 @@ api.render_video(spec, "outputs/video.mp4",
                  on_progress=lambda done, total: True)   # False отменяет рендер
 clips = llm.tts.synthesize_spec(spec, "outputs/voice", "chatterbox")  # или "elevenlabs"
 api.add_voiceover("outputs/video.mp4", clips)             # AAC-дорожка в тот же MP4
+meta = llm.generate_metadata("Ролик про рост продаж", raw)  # title, description, tags
+print(meta.as_text())
 ```
 
 ## Формат сценария

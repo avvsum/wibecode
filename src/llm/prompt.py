@@ -1,6 +1,9 @@
 """Prompts for turning a user description into a scene spec (JSON contract)."""
 
+import re
+
 from src.api import SAY_SHOTS, SAY_WHO, STYLES
+from src.llm.metadata import DESCRIPTION_MAX, TITLE_MAX
 
 
 def _quoted(values) -> str:
@@ -82,4 +85,45 @@ def fix_message(error: str) -> str:
         "Твой JSON не прошёл проверку. Ошибка:\n"
         f"{error}\n\n"
         "Исправь и верни ТОЛЬКО исправленный JSON-объект целиком, без пояснений."
+    )
+
+
+EXAMPLE_METADATA = """{
+  "title": "Продажи выросли втрое: итоги года за 15 секунд",
+  "description": "Короткий разбор итогов года: как росли продажи по кварталам и что стало главным драйвером.\\n\\n#Shorts #бизнес #продажи #аналитика",
+  "tags": ["рост продаж", "итоги года", "продажи по кварталам", "бизнес аналитика", "отчёт о продажах", "shorts"]
+}"""
+
+METADATA_PROMPT = f"""Ты редактор YouTube Shorts. По описанию ролика и его сценарию (JSON сцен)
+подготовь метаданные для публикации.
+
+Ответ: ТОЛЬКО один JSON-объект. Без markdown, без ```, без пояснений до или после.
+
+Формат (строго, других полей не добавляй):
+- "title": название, лучше до 70 символов (максимум {TITLE_MAX}); суть ролика в первых словах,
+  без кликбейта и без кавычек вокруг всего названия;
+- "description": 2–4 коротких предложения о том, что зритель увидит, затем пустая строка
+  и строка из 3–5 хэштегов, первый — #Shorts; всего не больше {DESCRIPTION_MAX} символов;
+- "tags": список из 5–15 тегов — ключевые слова и короткие фразы, по которым ищут такой
+  ролик; без символа #, без повторов; все теги вместе не длиннее 450 символов.
+
+Правила:
+- пиши на языке описания пользователя;
+- опирайся только на содержание ролика, не обещай того, чего в нём нет;
+- не используй символы < и >.
+
+Пример:
+{EXAMPLE_METADATA}
+"""
+
+# The UI appends this hint for generate_spec; it says nothing about the video's topic.
+_MODE_HINT_RE = re.compile(r'\s*render_mode:\s*"(?:2d|3d)"\s*$')
+
+
+def metadata_request(user_text: str, spec_json: str) -> str:
+    """User message asking for YouTube metadata of a generated spec."""
+    description = _MODE_HINT_RE.sub("", user_text).strip()
+    return (
+        f"Описание ролика от пользователя:\n{description}\n\n"
+        f"Сценарий ролика (JSON):\n{spec_json}"
     )

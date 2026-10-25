@@ -98,6 +98,9 @@ Decided: JSON, а не свободный код от LLM. Open: цвета, ш�
 - llm.generate_spec(user_text: str) -> str    # raw JSON
 - llm.tts.synthesize_spec(spec: Spec, out_dir: str, client="elevenlabs") -> list[VoiceClip]
 - api.add_voiceover(video_path: str, clips, out_path: str | None = None) -> str
+- llm.generate_metadata(user_text: str, spec_json: str) -> VideoMetadata
+  # title/description/tags для YouTube; .as_text() — текст для YouTube Studio;
+  # ошибки — LLMError и SpecGenerationError, как у generate_spec
 
 ### Прогресс и отмена (согласовано Львом 25.10.2026)
 - on_progress необязателен; старые вызовы с двумя аргументами работают как прежде.
