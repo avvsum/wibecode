@@ -4,14 +4,15 @@
 Затем выполняй ТОЛЬКО task block своей роли. Блоки других ролей читай как контекст (чтобы знать их интерфейсы), но их код не пиши.
 
 ## Project
-Desktop-приложение на Python 3.11: текстовое описание -> MP4 (1080x1920, 30 fps) для YouTube Shorts.
+Desktop-приложение на Python 3.11: текстовое описание -> MP4 (1080x1920;
+2D — 60 fps, 3D — 30 fps) для YouTube Shorts.
 LLM НЕ рисует кадры и НЕ пишет код рендера. Она возвращает только JSON-спецификацию сцен. Движок валидирует JSON и рендерит видео через FFmpeg.
 
 ## Stack (не менять)
 Python 3.11, FFmpeg (external binary), PySide6, pydantic, pytest, PyInstaller.
 
 ## MVP
-- 3 типа сцен: text, image, chart
+- 2D: text, image, chart; 3D: те же типы и согласованный ниже say
 - Output: MP4, UI: поле ввода, кнопка "Рендер", превью
 - Out of scope: нейро-генерация видео, облако, аккаунты, timeline editor. Только рабочий минимум.
 
@@ -38,18 +39,57 @@ Python 3.11, FFmpeg (external binary), PySide6, pydantic, pytest, PyInstaller.
 - "3d" успешно проходит parse_spec; правила валидации сцен остаются теми же.
 - Пока 3D-движок не реализован, api.render_video для "3d" бросает
   NotImplementedError. Подменять 3D рендером 2D нельзя.
-- Для "2d" и старых JSON сохраняется MP4 1080x1920, 30 fps.
+- Для "2d" и старых JSON: MP4 1080x1920, 60 fps (уточнение Льва 25.10.2026).
+  Переход с прежних 30 fps выполняется согласованными PR A и D вместе.
 - A реализует поле, валидацию и отказ рендера 3D; B показывает ошибку в UI;
   C учитывает поле в prompt; D поддерживает контракт и проверяет совместимость.
-- Blender/moderngl ещё не выбраны. После выбора D записывает необходимые пакеты
-  в requirements.txt (внешние бинарники — в docs), проверяет PyInstaller-сборку
-  и сообщает размер всей папки dist/ShortsStudio в байтах и MiB.
+- Выбран Blender как внешний бинарник, движок Workbench (согласовано Львом
+  25.10.2026). Blender устанавливается отдельно; Python-пакет bpy не требуется.
+- D документирует внешние бинарники в docs; новые Python-зависимости, если
+  понадобятся, записывает в requirements.txt. После готовности движка и UI D
+  проверяет PyInstaller-сборку и сообщает размер всей папки dist/ShortsStudio
+  в байтах и MiB. Итоговый MP4: 1080x1920; "2d" — 60 fps, "3d" — 30 fps.
+
+### Расширение 3D (согласовано Львом 25.10.2026)
+Реализация расширения идёт отдельными PR A/C/D; согласование не означает,
+что 3D-движок уже готов. Пока он не реализован, действует NotImplementedError.
+
+```json
+{"duration": 4, "render_mode": "3d", "scenes": [
+  {"type": "say", "who": "robot", "text": "Привет!", "shot": "close", "start": 0, "end": 4}
+]}
+```
+
+- say разрешён только при render_mode == "3d"; в "2d" и без render_mode -> SpecError.
+- Обязательны who, shot, text, start, end; text — непустая строка.
+- who: только "robot" или "girl"; shot: только "wide", "medium" или "close".
+  Значения регистрозависимы; другие значения и отсутствие поля -> SpecError.
+- Правила времени те же: конечные числа, 0 <= start < end <= duration,
+  без пересечений; смежные сцены допустимы.
+- text/image/chart остаются валидными в обоих режимах. В готовом 3D-движке
+  они отображаются как плоские вставки; смешивание с say допускается.
+- A реализует схему и экспортирует SAY_WHO/SAY_SHOTS из src.api; C использует
+  эти списки в prompt; D проверяет контракт, B передаёт выбранный режим в
+  user_text до generate_spec, не подменяя режим готового JSON.
 Decided: JSON, а не свободный код от LLM. Open: цвета, шрифты, анимации (выбирай сам).
 
 ## Public API (сигнатуры зафиксированы)
 - api.parse_spec(raw: str) -> Spec            # raises SpecError
-- api.render_video(spec: Spec, out_path: str) -> str
+- api.render_video(spec: Spec, out_path: str, *, on_progress=None) -> str
 - llm.generate_spec(user_text: str) -> str    # raw JSON
+
+### Прогресс и отмена (согласовано Львом 25.10.2026)
+- on_progress необязателен; старые вызовы с двумя аргументами работают как прежде.
+- В обоих режимах callback получает (done_frames, total_frames) в потоке рендера.
+  total фиксирован; 0 означает неизвестное количество кадров. При известном total
+  done не убывает и лежит в 0..total; последний вызов при успехе: done == total.
+- Ровно False из callback отменяет рендер; None и True продолжают.
+- При отмене выбрасывается RenderCancelled(RenderError), временные файлы убираются.
+- Рендер пишет во временный файл и публикует out_path атомарно только при успехе.
+  При ошибке/отмене новый out_path не остаётся недописанным, существующий сохраняется.
+- SpecError, RenderError, ToolNotFoundError и RenderCancelled экспортируются из src.api.
+  ToolNotFoundError наследуется от RenderError и FileNotFoundError.
+- Реализация A/B и проверки D идут отдельными PR; согласование не означает готовность.
 
 ## Zones
 A: src/core, src/api | B: src/ui, assets | C: src/llm | D: tests, scripts, docs, корень репо (integrator)
