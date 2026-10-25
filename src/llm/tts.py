@@ -10,11 +10,14 @@ import io
 import json
 import math
 import os
+import subprocess
+import sys
 import urllib.error
 import urllib.request
 import wave
 from array import array
 from dataclasses import dataclass
+from pathlib import Path
 from typing import Optional, Protocol, Union
 
 API_KEY_ENV = "ELEVENLABS_API_KEY"
@@ -104,7 +107,9 @@ class ChatterboxClient:
         try:
             from chatterbox.mtl_tts import ChatterboxMultilingualTTS
         except ImportError as e:
-            raise TTSError(f"Chatterbox не установлен: {CHATTERBOX_INSTALL}") from e
+            help_text = ("запустите ShortsStudio Setup и установите локальную озвучку"
+                         if getattr(sys, "frozen", False) else CHATTERBOX_INSTALL)
+            raise TTSError(f"Chatterbox не установлен: {help_text}") from e
         if device is None:
             import torch
 
@@ -200,6 +205,12 @@ def synthesize_spec(
 
     client is a TTSClient or a provider name (default "elevenlabs").
     """
+    if client == "chatterbox":
+        root = (Path(sys.executable).parent if getattr(sys, "frozen", False)
+                else Path(__file__).resolve().parents[2] / "build")
+        python = root / "voice-runtime" / "python.exe"
+        if python.is_file():
+            return _external_chatterbox(spec, out_dir, root, python)
     if client is None or isinstance(client, str):
         client = make_client(client or "elevenlabs")
     os.makedirs(out_dir, exist_ok=True)
@@ -210,3 +221,32 @@ def synthesize_spec(
             f.write(client.synthesize(text, role))
         clips.append(VoiceClip(path, start, end))
     return clips
+
+
+def _external_chatterbox(spec, out_dir, root, python):
+    lines = [{"text": text, "role": role, "start": start, "end": end}
+             for text, role, start, end in voice_lines(spec)]
+    if not lines:
+        return []
+    request = {"model_dir": str(root / "voice-models"),
+               "out_dir": str(Path(out_dir).resolve()), "lines": lines,
+               "voices": {role: os.environ.get(f"CHATTERBOX_VOICE_{role.upper()}")
+                          for role in CHATTERBOX_EXAGGERATION},
+               "language": os.environ.get("CHATTERBOX_LANGUAGE")}
+    environment = os.environ.copy()
+    environment.update(HF_HUB_OFFLINE="1", TRANSFORMERS_OFFLINE="1")
+    for name in ("PYTHONHOME", "PYTHONPATH", "DEEPSEEK_API_KEY", "WIBECODE_LLM_API_KEY",
+                 "ANTHROPIC_API_KEY", "ELEVENLABS_API_KEY"):
+        environment.pop(name, None)
+    try:
+        result = subprocess.run(
+            [str(python), "-X", "utf8", str(Path(__file__).with_name("chatterbox_worker.py"))],
+            input=json.dumps(request, ensure_ascii=False), capture_output=True, text=True,
+            encoding="utf-8", env=environment, timeout=1800,
+            creationflags=getattr(subprocess, "CREATE_NO_WINDOW", 0),
+        )
+        if result.returncode:
+            raise TTSError(f"Локальная озвучка Chatterbox не удалась: {result.stderr[-800:].strip()}")
+        return [VoiceClip(**clip) for clip in json.loads(result.stdout)]
+    except (OSError, subprocess.SubprocessError, ValueError, TypeError) as error:
+        raise TTSError(f"Не удалось запустить локальную озвучку Chatterbox: {error}") from error

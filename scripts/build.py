@@ -3,6 +3,7 @@
 import argparse
 import importlib.util
 import os
+import shutil
 import subprocess
 import sys
 from pathlib import Path
@@ -35,13 +36,14 @@ def main(argv=None):
         return 0
 
     command = [sys.executable, "-m", "PyInstaller", "--name", "ShortsStudio", "--onedir",
-               "--windowed", "--paths", str(ROOT), "--distpath", str(ROOT / "dist"),
+               "--windowed", "--noconfirm", "--paths", str(ROOT), "--distpath", str(ROOT / "dist"),
                "--workpath", str(ROOT / "build" / "work"), "--specpath", str(ROOT / "build"),
                "--add-data", f"{ROOT / 'assets'}:assets",
                # Blender runs this script itself, so PyInstaller cannot see it as an import.
                "--add-data", f"{ROOT / 'src/core/render3d'}:src/core/render3d",
+               "--add-data", f"{ROOT / 'src/llm/chatterbox_worker.py'}:src/llm",
                # Optional local voice (requirements-chatterbox.txt) is several GB of PyTorch:
-               # keep it out of the bundle; Chatterbox works when running from source.
+               # the Setup installs a separate Python runtime for local speech.
                "--exclude-module", "chatterbox", "--exclude-module", "torch",
                str(ROOT / "src" / "ui" / "main.py")]
     build_env = os.environ.copy()
@@ -54,6 +56,19 @@ def main(argv=None):
         )))
     code = subprocess.run(command, cwd=ROOT, check=False, env=build_env).returncode
     if code == 0:
+        if sys.platform == "win32":
+            for name in ("ffmpeg", "ffprobe"):
+                binary = shutil.which(name)
+                if not binary:
+                    print(f"Для Setup не найден {name}", file=sys.stderr)
+                    return 1
+                shutil.copy2(binary, ROOT / "dist" / "ShortsStudio" / f"{name}.exe")
+            distribution = Path(shutil.which("ffmpeg")).parent.parent
+            licenses = ROOT / "dist" / "ShortsStudio" / "licenses" / "ffmpeg"
+            licenses.mkdir(parents=True, exist_ok=True)
+            for name in ("LICENSE", "README.txt"):
+                if (distribution / name).is_file():
+                    shutil.copy2(distribution / name, licenses / name)
         # The googleapiclient hook bundles ~600 API descriptions (~120 MB); the app needs
         # only YouTube for publishing.
         docs = ROOT / "dist" / "ShortsStudio" / "_internal" / "googleapiclient" / "discovery_cache" / "documents"
