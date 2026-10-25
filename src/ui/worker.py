@@ -40,6 +40,13 @@ class RenderWorker(QObject):
             self.progress.emit("Генерация сцен…")
             raw = llm.generate_spec(with_mode_hint(self._user_text, self._render_mode))
             spec = api.parse_spec(raw)
+            if spec.render_mode != self._render_mode:  # JSON не переписываем, только отказ
+                self.failed.emit(
+                    f"Модель вернула сценарий для режима {spec.render_mode.upper()}, "
+                    f"а выбран {self._render_mode.upper()}. Попробуйте ещё раз или "
+                    f"явно укажите в описании, что нужно {self._render_mode.upper()}-видео."
+                )
+                return
             if self._cancel_requested:  # запрос к LLM не прервать, но рендер уже не начинаем
                 raise api.RenderCancelled("отменено до рендера")
             self.progress.emit("Рендер видео…")
