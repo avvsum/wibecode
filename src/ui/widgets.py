@@ -23,11 +23,19 @@ def scene_summary(scene: dict) -> str:
     if kind == "image":
         return scene.get("path", "")
     if kind == "chart":
-        return f"{len(scene.get('data', []))} точки на графике"
+        count = len(scene.get("data", []))
+        noun = "точка" if count % 10 == 1 and count % 100 != 11 else (
+            "точки" if 2 <= count % 10 <= 4 and not 12 <= count % 100 <= 14 else "точек")
+        return f"{count} {noun} на графике"
     if kind == "say":
         who = WHO_NAMES.get(scene.get("who"), scene.get("who", ""))
-        return f"{who}: «{scene.get('text', '')}»"
+        return f"{who}: «{plain_text(scene.get('text', ''))}»"
     return ""
+
+
+def plain_text(text: str) -> str:
+    """Реплика без разметки подсветки *слово*, как её читает зритель (непарные * остаются)."""
+    return text if text.count("*") % 2 else text.replace("*", "")
 
 
 def scene_at(scenes: list, position: float):
