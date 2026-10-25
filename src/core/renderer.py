@@ -14,7 +14,8 @@ from PIL import Image, ImageDraw, ImageFont, ImageOps
 
 from src.core.schema import ChartScene, ImageScene, Spec, TextScene
 
-WIDTH, HEIGHT, FPS = 1080, 1920, 30
+WIDTH, HEIGHT = 1080, 1920
+FPS = 60  # 2D output; the 3D backend renders at 30 fps
 BG = (18, 18, 28)
 FG = (240, 240, 245)
 ACCENT = (255, 196, 0)
