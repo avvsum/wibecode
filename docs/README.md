@@ -34,6 +34,8 @@ Linux/macOS: `python3.11 -m venv .venv` и `.venv/bin/python` вместо Windo
 |---|---|
 | `ANTHROPIC_API_KEY` | ключ Claude для генерации сценария. Не храните его в файлах проекта |
 | `WIBECODE_BLENDER` | путь к `blender`, если его нет в PATH |
+| `ELEVENLABS_API_KEY` | ключ ElevenLabs для озвучки (нужен только с галочкой «Озвучка») |
+| `ELEVENLABS_VOICE_NARRATOR`, `_ROBOT`, `_GIRL` | необязательно: свои voice ID вместо стандартных |
 
 На Linux без видеокарты для Blender нужны `libegl1` и Mesa (`libgl1-mesa-dri`).
 
@@ -47,6 +49,10 @@ python scripts/demo.py --duration 3                 # короткое демо 
 
 В окне: описание → выбор 2D/3D → «Рендер». Есть прогресс, «Отмена» и превью готового видео.
 Ошибки (нет ключа, нет FFmpeg/Blender, неверный сценарий) показываются в статус-баре.
+Галочка «Озвучка (ElevenLabs)» после рендера добавляет голос: сцены `text` читает
+диктор, реплики `say` — голоса robot/girl. Речь режется на конце своей сцены.
+Если озвучка не удалась, видео остаётся без звука, а причина видна в статус-баре.
+ElevenLabs тратит символы с вашего аккаунта; тесты в него не ходят.
 3D рендерится заметно дольше: около 0,6 с на кадр на 4 ядрах CPU без GPU,
 то есть примерно 10 минут на 30 секунд видео.
 
@@ -59,6 +65,8 @@ raw = llm.generate_spec("Ролик про рост продаж: заголов
 spec = api.parse_spec(raw)                    # SpecError, если JSON неверный
 api.render_video(spec, "outputs/video.mp4",
                  on_progress=lambda done, total: True)   # False отменяет рендер
+clips = llm.tts.synthesize_spec(spec, "outputs/voice")    # ElevenLabs, по файлу на сцену
+api.add_voiceover("outputs/video.mp4", clips)             # AAC-дорожка в тот же MP4
 ```
 
 ## Формат сценария

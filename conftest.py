@@ -13,5 +13,5 @@ def offline(monkeypatch):
     monkeypatch.setattr(socket.socket, "connect", blocked)
     monkeypatch.setattr(socket.socket, "connect_ex", blocked)
     monkeypatch.setattr(socket, "create_connection", blocked)
-    for variable in ("OPENAI_API_KEY", "ANTHROPIC_API_KEY"):
+    for variable in ("OPENAI_API_KEY", "ANTHROPIC_API_KEY", "ELEVENLABS_API_KEY"):
         monkeypatch.delenv(variable, raising=False)

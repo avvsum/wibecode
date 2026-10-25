@@ -6,7 +6,7 @@ from PySide6.QtCore import QThread, QUrl, Slot
 from PySide6.QtMultimedia import QAudioOutput, QMediaPlayer
 from PySide6.QtMultimediaWidgets import QVideoWidget
 from PySide6.QtWidgets import (
-    QComboBox, QHBoxLayout, QLabel, QMainWindow, QPlainTextEdit, QProgressBar, QPushButton,
+    QCheckBox, QComboBox, QHBoxLayout, QLabel, QMainWindow, QPlainTextEdit, QProgressBar, QPushButton,
     QVBoxLayout, QWidget,
 )
 
@@ -27,6 +27,8 @@ class MainWindow(QMainWindow):
         self.mode_box = QComboBox()
         self.mode_box.addItem("2D", "2d")
         self.mode_box.addItem("3D", "3d")
+        self.voice_box = QCheckBox("Озвучка (ElevenLabs)")
+        self.voice_box.setToolTip("Нужен ключ в переменной окружения ELEVENLABS_API_KEY")
         self.render_button = QPushButton("Рендер")
         self.render_button.clicked.connect(self.start_render)
         self.cancel_button = QPushButton("Отмена")
@@ -49,6 +51,7 @@ class MainWindow(QMainWindow):
         mode_row = QHBoxLayout()
         mode_row.addWidget(QLabel("Render mode:"))
         mode_row.addWidget(self.mode_box)
+        mode_row.addWidget(self.voice_box)
         mode_row.addStretch()
         buttons = QHBoxLayout()
         buttons.addWidget(self.render_button, 1)
@@ -91,12 +94,15 @@ class MainWindow(QMainWindow):
 
         self.render_button.setEnabled(False)
         self.mode_box.setEnabled(False)
+        self.voice_box.setEnabled(False)
         self.progress_bar.setRange(0, 0)  # пока LLM пишет сценарий, число кадров неизвестно
         self.progress_bar.setVisible(True)
         self.cancel_button.setEnabled(True)
         self.cancel_button.setVisible(True)
         self._thread = QThread(self)
-        self._worker = RenderWorker(text, out_path, self.mode_box.currentData())
+        self._worker = RenderWorker(
+            text, out_path, self.mode_box.currentData(), self.voice_box.isChecked()
+        )
         self._worker.moveToThread(self._thread)
         self._thread.started.connect(self._worker.run)
         self._worker.progress.connect(self._set_status)
@@ -149,6 +155,7 @@ class MainWindow(QMainWindow):
         self._thread = None
         self.render_button.setEnabled(True)
         self.mode_box.setEnabled(True)
+        self.voice_box.setEnabled(True)
         self.progress_bar.setVisible(False)
         self.cancel_button.setVisible(False)
 
