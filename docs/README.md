@@ -1,147 +1,137 @@
-# wibecode: описание → YouTube Shorts
+# ShortsStudio (wibecode)
 
-Python 3.11, PySide6, pydantic, внешний FFmpeg. Целевой MP4: 1080×1920;
-2D — 60 fps, 3D — 30 fps (согласовано Львом 25.10.2026).
-LLM возвращает JSON; кадры строит движок. Сетевой провайдер реализуется участником C.
+Настольное приложение: текстовое описание → вертикальное видео MP4 для YouTube Shorts.
 
-## Состояние интеграции
+LLM (Claude) превращает описание в JSON-сценарий, движок проверяет его и рендерит видео.
+Модель не рисует кадры и не пишет код, она возвращает только JSON.
 
-В `main` включены backend A (PR #6), LLM C с render_mode (PR #7) и каркас D.
-Проверка 25.10.2026 на Python 3.11.16: main `b12c1864` + head PR #7 `5094e1df`
-+ tests/scripts D `3dbe3486`: **60 passed**, включая старые JSON без render_mode
-и реальные MP4 на 3/30 секунд. Сеть в тестах блокируется.
-Merge PR #7: `784ee16e`; отдельное демо PR #6: 1080x1920, 30/1 fps, 30.000000 с.
-Эта проверка предшествует переходу 2D на 60 fps; FPS-патч A и тесты D идут вместе.
+| Режим | Как рендерится | Видео |
+|---|---|---|
+| `2d` (по умолчанию) | Pillow + FFmpeg: текст, картинки, графики | 1080×1920, 60 fps |
+| `3d` | Blender (Workbench): студия, робот и девушка говорят реплики; text/image/chart — плоские вставки | 1080×1920, 30 fps |
 
-Тесты D опубликованы отдельно: PR #3 (схема/режимы) и #4 (LLM/MP4/скрипты).
-После включения A они могут пройти проверку и выйти из draft; skip/xfail
-не используются. UI B ещё не опубликован, поэтому сборка не проверена.
-В CODEOWNERS для зоны D указан `w5sk`; реальные логины A/B/C ещё нужно заполнить.
+## Установка
 
-## Подготовка (PowerShell, из корня репозитория)
+Нужны **Python 3.11**, **FFmpeg** (с ffprobe) и, для 3D, **Blender 4.2+**
+(проверено на 5.0.1). FFmpeg и Blender — внешние программы, pip их не ставит.
+Python-пакет `bpy` не нужен.
 
-Установите Python 3.11 и FFmpeg с ffprobe, добавьте исполняемые файлы в PATH.
-FFmpeg — внешний бинарник, pip его не устанавливает.
+Windows (PowerShell, из корня репозитория):
 
 ```powershell
 py -3.11 -m venv .venv
 .\.venv\Scripts\python.exe -m pip install -r requirements.txt
 ffmpeg -version
-ffprobe -version
+blender --version   # только для 3D
 ```
 
-Если установлен uv: `uv venv --python 3.11 .venv`, затем та же установка зависимостей.
-Linux/macOS: используйте `python3.11` и `.venv/bin/python` вместо Windows-путей.
+Linux/macOS: `python3.11 -m venv .venv` и `.venv/bin/python` вместо Windows-путей.
+С uv: `uv venv --python 3.11 .venv`.
 
-## Контракт для A/B/C
+Переменные окружения:
 
-`render_mode` — необязательное поле верхнего уровня: только `"2d"` или `"3d"`.
-Без поля используется `"2d"`; старые JSON работают в прежнем формате. `"3d"`
-валидируется, но `render_video` пока бросает `NotImplementedError`. Иные значения,
-включая `"4d"` и `null`, приводят к `SpecError`. Точный контракт — в AGENTS.md.
-Сообщение для командного чата: [TEAM_UPDATE_RENDER_MODE.md](TEAM_UPDATE_RENDER_MODE.md).
+| Переменная | Зачем |
+|---|---|
+| `ANTHROPIC_API_KEY` | ключ Claude для генерации сценария. Не храните его в файлах проекта |
+| `WIBECODE_BLENDER` | путь к `blender`, если его нет в PATH |
 
-Лев согласовал расширение `say` только для `"3d"`: обязательны `who`
-(`"robot"`/`"girl"`), `shot` (`"wide"`/`"medium"`/`"close"`), непустой `text`,
-`start`, `end`. Обычные text/image/chart сохраняются в обоих режимах и могут
-чередоваться с say. A экспортирует списки `SAY_WHO`/`SAY_SHOTS` для prompt C.
-Это целевой контракт; в main после PR #7 say и 3D-движок ещё не реализованы.
-Режим UI передаётся в user_text до generate_spec; готовый JSON не переписывается.
+На Linux без видеокарты для Blender нужны `libegl1` и Mesa (`libgl1-mesa-dri`).
 
-- A экспортирует `SpecError`, `parse_spec(raw: str) -> Spec`,
-  `render_video(spec: Spec, out_path: str, *, on_progress=None) -> str` из `src.api`.
-- C реализует `generate_spec(user_text: str) -> str` в `src.llm.client`
-  и экспортирует его из `src.llm`. На невалидный ответ допускаются две повторные
-  попытки: максимум три запроса. Исправляющий запрос содержит текст `SpecError`;
-  итоговая ошибка после исчерпания попыток также содержит причину валидации.
-- B предоставляет `src/ui/main.py`, запускаемый как `python -m src.ui.main`.
-
-Согласованное расширение прогресса/отмены ещё требует реализации A/B:
-`on_progress(done_frames, total_frames)` вызывается в потоке рендера в обоих режимах.
-total фиксирован (0 — неизвестен), done не убывает; при известном total он в пределах
-0..total, при успехе последний вызов done == total. Только возврат False отменяет
-рендер и вызывает `RenderCancelled(RenderError)`; None продолжает. UI передаёт
-обновления через Qt-сигнал. Старые вызовы с двумя аргументами остаются рабочими.
-При ошибке/отмене прежний out_path сохраняется; новый результат публикуется атомарно
-только при успехе. Исключения, включая `ToolNotFoundError`, импортируются из `src.api`.
-
-Существующий тестовый интерфейс C в `feature/llm-client`:
-
-```python
-FakeLLMClient(responses: list[str])
-client.complete(system: str, messages: list[dict]) -> str
-fake.calls  # снимки истории сообщений для каждого запроса
-```
-
-Фейк выдаёт ответы последовательно. Тесты и офлайн-демо подменяют фабрику
-`src.llm.client.AnthropicClient` фейком через monkeypatch/patch и вызывают
-обычный `generate_spec(user_text)`. Сетевой ключ при этом не нужен; фактический
-`parse_spec` участника A используется для проверки каждого ответа и retry.
-Для сетевого запуска C читает `ANTHROPIC_API_KEY` из окружения; SDK включён
-в requirements.txt. Ключи не сохраняйте в файлах проекта.
-
-Тесты D требуют отклонять пустой список сцен и пересечения интервалов; смежные
-интервалы допустимы. Эти случаи взяты из task block D. Остальные правила:
-`start < end`, `end <= duration`, известный `type`, содержимое по типу сцены.
-В примере общего контракта остаётся незаполненный хвост, поэтому равенство последнего
-`end` и `duration` не требуется. Для такого хвоста A должен сохранить общую длину видео.
-
-## Проверки и запуск
+## Запуск
 
 ```powershell
-.\.venv\Scripts\python.exe -m pytest
-.\.venv\Scripts\python.exe scripts/demo.py --out outputs/demo.mp4
-.\.venv\Scripts\python.exe -m src.ui.main
+python -m src.ui.main                               # окно приложения
+python scripts/demo.py --out outputs/demo.mp4       # весь пайплайн без сети (LLM подменён)
+python scripts/demo.py --duration 3                 # короткое демо для быстрой проверки
 ```
 
-Демо по умолчанию создаёт 30 секунд с text/image/chart и временной картинкой;
-`--duration 3` ускоряет ручную проверку. Вызов LLM в демо подменён фейком.
-Тесты блокируют сетевые соединения. Integration реально рендерит 3 и 30 секунд,
-проверяет существование файла, MP4-контейнер, длительность (±0,1 с), разрешение и fps
-через ffprobe; включает кириллицу и пробелы в путях. Совместный прогон с A прошёл.
-`-m "not integration"` подходит для быстрой разработки, но не заменяет полный прогон.
-CI на Python 3.11 устанавливает FFmpeg и выполняет полный pytest, включая
-существующие тесты из `src/llm/tests`.
+В окне: описание → выбор 2D/3D → «Рендер». Есть прогресс, «Отмена» и превью готового видео.
+Ошибки (нет ключа, нет FFmpeg/Blender, неверный сценарий) показываются в статус-баре.
+3D рендерится заметно дольше: около 0,6 с на кадр на 4 ядрах CPU без GPU,
+то есть примерно 10 минут на 30 секунд видео.
+
+Из кода:
+
+```python
+from src import api, llm
+
+raw = llm.generate_spec("Ролик про рост продаж: заголовок, потом график")
+spec = api.parse_spec(raw)                    # SpecError, если JSON неверный
+api.render_video(spec, "outputs/video.mp4",
+                 on_progress=lambda done, total: True)   # False отменяет рендер
+```
+
+## Формат сценария
+
+```json
+{
+  "duration": 12,
+  "render_mode": "3d",
+  "scenes": [
+    {"type": "text",  "text": "Заголовок", "start": 0, "end": 2},
+    {"type": "say",   "who": "girl", "shot": "medium", "text": "Как это *сделано*?", "start": 2, "end": 5},
+    {"type": "image", "path": "a.png", "start": 5, "end": 8},
+    {"type": "chart", "data": [[1, 2], [2, 4], [3, 3]], "start": 8, "end": 12}
+  ]
+}
+```
+
+- `render_mode`: `"2d"` (по умолчанию) или `"3d"`.
+- Сцены: `text`, `image`, `chart` — в обоих режимах; `say` — только в `"3d"`.
+- `say`: `who` = `robot` | `girl`, `shot` = `wide` | `medium` | `close`. `*слово*` в тексте подсвечивается в субтитрах.
+- Время: конечные числа, `0 ≤ start < end ≤ duration`, сцены не пересекаются, смежные допустимы.
+  Промежутки заполняются фоном, длина видео всегда равна `duration`.
+- `chart.data`: минимум две пары `[x, y]`.
+
+Полный контракт, публичный API и правила команды — в [AGENTS.md](../AGENTS.md).
+
+## Тесты
+
+```powershell
+python -m pytest                       # всё, нужны FFmpeg и Blender
+python -m pytest -m "not blender"      # без Blender
+python -m pytest -m "not integration"  # быстро, без реального рендера
+```
+
+Тесты не ходят в сеть: LLM подменяется `FakeLLMClient`, сетевые вызовы блокируются.
+Маркеры: `integration` рендерит настоящие MP4 и проверяет их ffprobe, `blender` — настоящий 3D-рендер.
+skip/xfail не используются. CI (GitHub Actions, Python 3.11) ставит FFmpeg и Blender
+и прогоняет всё на каждый PR и push в main.
 
 ## Сборка
 
 ```powershell
-.\.venv\Scripts\python.exe scripts/build.py --check
-.\.venv\Scripts\python.exe scripts/build.py
+python scripts/build.py --check   # проверить файлы и зависимости
+python scripts/build.py           # PyInstaller → dist/ShortsStudio/
 ```
 
-PyInstaller создаёт `dist/ShortsStudio/ShortsStudio.exe` на Windows. Передавайте всю
-папку `dist/ShortsStudio`; FFmpeg/ffprobe должны быть в PATH на целевой машине.
-Сборка выполняется на целевой ОС, не является кросс-компиляцией.
-Ключи и .env в сборку не добавляются. Запуск собранного UI проверяется после реализации B.
-Для 3D выбран внешний Blender с движком Workbench. Blender устанавливается
-отдельно от requirements.txt и папки приложения; пакет bpy через pip не нужен.
-Добавьте Blender в PATH и проверьте `blender --version`. Backend A запускает
-его в фоне через `blender -b -P <script>`; параметры описаны в
-[Blender Manual](https://docs.blender.org/manual/en/4.2/advanced/command_line/arguments.html).
-Проверенная версия: Blender 5.0.1 (подойдёт 4.2+). Если Blender не в PATH, укажите
-путь в переменной окружения `WIBECODE_BLENDER`; без Blender 3D-рендер даёт
-`ToolNotFoundError`. На Linux без GPU нужны `libegl1` и Mesa (`libgl1-mesa-dri`).
-Тест реального 3D-рендера помечен `blender`; без Blender его можно исключить:
-`python -m pytest -m "not blender"`. CI ставит Blender сам.
-
-После готовности A/B D запускает сборку, проверяет запуск приложения и измеряет
-именно всю папку dist/ShortsStudio, отдельно от внешних Blender/FFmpeg:
+Сборка делается на целевой ОС (не кросс-компиляция). Передавайте всю папку
+`dist/ShortsStudio`. FFmpeg и Blender в неё не входят и должны быть установлены на машине.
+Ключи и `.env` в сборку не попадают.
+Размер на Linux (PySide6 6.12, 25.10.2026): 284 994 085 байт ≈ 271.8 MiB.
+Размер на Windows: замерить так:
 
 ```powershell
-$bundleBytes = (Get-ChildItem -LiteralPath dist/ShortsStudio -File -Recurse |
-    Measure-Object -Property Length -Sum).Sum
-[pscustomobject]@{ Bytes = $bundleBytes; MiB = $bundleBytes / 1MB }
+$b = (Get-ChildItem dist/ShortsStudio -File -Recurse | Measure-Object Length -Sum).Sum
+"{0} bytes = {1:N1} MiB" -f $b, ($b / 1MB)
 ```
 
-В отчёте указываются байты и MiB (1 MiB = 1048576 байт). Сейчас сборка и её размер
-не проверены: UI B и 3D-backend A ещё не интегрированы.
+## Структура
+
+| Путь | Что | Зона |
+|---|---|---|
+| `src/core/schema.py` | модели сценария и валидация (pydantic) | A |
+| `src/core/renderer.py` | 2D-рендер, прогресс и отмена, выбор движка по `render_mode` | A |
+| `src/core/render3d/` | 3D: сцена для Blender, субтитры, сборка видео | A |
+| `src/api/` | публичный API: `parse_spec`, `render_video`, исключения, `SAY_WHO`/`SAY_SHOTS` | A |
+| `src/ui/` | окно PySide6, фоновый рендер в QThread, заглушки для работы без сети | B |
+| `src/llm/` | prompt, клиент Claude, повтор запроса при ошибке, `FakeLLMClient` | C |
+| `tests/`, `scripts/`, `docs/`, CI | тесты, демо, сборка, документация | D |
 
 ## Работа с Git
 
-Зоны и правила находятся в AGENTS.md. Работайте в `feature/<name>` или `fix/<name>`.
-Перед PR: сохраните свою работу коммитом, выполните `git pull --rebase origin main`,
-затем полный `python -m pytest`. Красные проверки блокируют готовность и merge.
-Разделяйте изменения на небольшие PR до ~200 строк. Прямой push в main запрещён.
-Владельцы репозитория должны включить обязательную проверку `pytest` в правилах main;
-сам workflow не запрещает ручной merge без branch protection.
+Правила в [AGENTS.md](../AGENTS.md):
+- ветки `feature/<name>` или `fix/<name>`, в main напрямую не пушить;
+- небольшие PR (~200 строк);
+- перед PR: `git pull --rebase origin main` и полный `pytest`;
+- красный CI не мержится.
