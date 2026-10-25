@@ -1,5 +1,6 @@
 """Связка окна с программой (src/ui/app.py): без сети, на заглушках и быстром «рендере»."""
 import inspect
+import json
 import os
 import time
 from types import SimpleNamespace
@@ -152,3 +153,40 @@ def test_new_extra_signal_appears_as_card_by_itself(qapp, window, monkeypatch):
     wait_idle(qapp, controller)
     card = w._extras.get("Хештеги")
     assert card is not None and card.text.text() == "#кофе #сон" and card.copy_button.isVisibleTo(w)
+
+
+def test_window_opens_prompt_only(qapp):
+    """По умолчанию — только описание: режим «Авто», остальные настройки свёрнуты."""
+    w = ShellWindow()
+    assert w.mode.value() == "auto"
+    assert w.options() == {choice.key: choice.resolve()[0][0] for choice in CHOICES}
+    assert not w.advanced.isVisibleTo(w) and w.advanced_button.text() == "Дополнительно  ▸"
+
+    w.advanced_button.setChecked(True)
+    assert w.advanced.isVisibleTo(w) and w.advanced_button.text() == "Дополнительно  ▾"
+    w.mode.set_value("3d")
+    w._choices["voice"].setCurrentIndex(1)
+    w.advanced_button.setChecked(False)
+    assert not w.advanced.isVisibleTo(w)
+    assert w.advanced_button.text() == "Дополнительно: 3D, ElevenLabs  ▸", "скрытый выбор виден на кнопке"
+    w.close()
+
+
+def test_auto_mode_sends_only_the_description(qapp, window, monkeypatch):
+    """«Авто»: в LLM уходит одно описание, режим из сценария модели принимается как есть."""
+    w, controller = window
+    prompts = []
+    spec_3d = json.dumps({"duration": 4, "render_mode": "3d",
+                          "scenes": [{"type": "text", "text": "Привет", "start": 0, "end": 4}]})
+
+    def generate_spec(user_text):
+        prompts.append(user_text)
+        return spec_3d
+
+    monkeypatch.setattr(worker, "llm", SimpleNamespace(**{**vars(stubs.llm), "generate_spec": generate_spec}))
+    w.input.setPlainText("Диалог робота и девушки в 3D")
+    w._request_render()
+    wait_idle(qapp, controller)
+    assert prompts == ["Диалог робота и девушки в 3D"], "без подсказок render_mode/environment/cast"
+    assert w.pill.text() == "Готово"
+    assert "30 кадров/с" in w.format_label.text(), "кадры/с — по режиму, который выбрала модель"

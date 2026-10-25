@@ -69,7 +69,8 @@ class AppController(QObject):
         self.w.set_generating()
 
         thread = QThread(self)
-        worker = RenderWorker(text, self._out_path, mode, **options)
+        # «Авто»: режим без подсказки, его выберет модель по описанию.
+        worker = RenderWorker(text, self._out_path, None if mode == "auto" else mode, **options)
         worker.moveToThread(thread)
         thread.started.connect(worker.run)
         worker.spec_ready.connect(self._on_spec)
@@ -131,6 +132,7 @@ class AppController(QObject):
     @Slot(object)
     def _on_spec(self, spec) -> None:
         self._scenes, self._duration = scene_dicts(spec)
+        self.w.set_render_mode(spec.render_mode)
 
     @Slot(object)
     def _on_metadata_ready(self, meta) -> None:
