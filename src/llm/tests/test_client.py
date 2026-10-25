@@ -104,6 +104,8 @@ def test_system_prompt_describes_optional_render_mode():
     for value in ('"render_mode"', '"2d"', '"3d"'):
         assert value in SYSTEM_PROMPT
     assert "необязательное" in SYSTEM_PROMPT
+    # UI (B) appends this hint to user_text when the 3D toggle is on.
+    assert 'render_mode: "3d"' in SYSTEM_PROMPT
     # The example stays in the old format: no render_mode means 2D.
     assert "render_mode" not in json.loads(EXAMPLE_SPEC)
 
