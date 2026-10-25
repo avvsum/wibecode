@@ -1,11 +1,28 @@
 """Prompts for turning a user description into a scene spec (JSON contract)."""
 
+from src.api import SAY_SHOTS, SAY_WHO
+
+
+def _quoted(values) -> str:
+    return ", ".join(f'"{v}"' for v in values)
+
+
 EXAMPLE_SPEC = """{
   "duration": 15,
   "scenes": [
     {"type": "text", "text": "Заголовок", "start": 0, "end": 5},
     {"type": "image", "path": "a.png", "start": 5, "end": 10},
     {"type": "chart", "data": [[1, 2], [2, 4], [3, 3]], "start": 10, "end": 15}
+  ]
+}"""
+
+EXAMPLE_3D_SPEC = """{
+  "duration": 10,
+  "render_mode": "3d",
+  "scenes": [
+    {"type": "text", "text": "Как работает Wi-Fi", "start": 0, "end": 3},
+    {"type": "say", "who": "robot", "text": "Wi-Fi — это радиоволны.", "shot": "close", "start": 3, "end": 7},
+    {"type": "say", "who": "girl", "text": "А роутер их раздаёт?", "shot": "medium", "start": 7, "end": 10}
   ]
 }"""
 
@@ -25,16 +42,26 @@ SYSTEM_PROMPT = f"""Ты сценарист коротких вертикаль�
   - {{"type": "text", "text": <строка>, "start": <число>, "end": <число>}}
   - {{"type": "image", "path": <путь к файлу>, "start": <число>, "end": <число>}}
   - {{"type": "chart", "data": [[x, y], ...], "start": <число>, "end": <число>}}
+  - {{"type": "say", "who": <персонаж>, "text": <реплика>, "shot": <план>, "start": <число>, "end": <число>}}
+    — только при "render_mode": "3d".
 
 Правила:
 - для каждой сцены start < end и end <= duration;
 - сцены идут по порядку и не пересекаются;
 - text: короткая фраза, до ~60 символов, чтобы читалась на экране телефона;
 - image: только если пользователь сам назвал файл картинки, иначе используй text;
-- chart: data — список пар чисел [x, y], минимум 2 точки.
+- chart: data — список пар чисел [x, y], минимум 2 точки;
+- say: реплика персонажа, только при "render_mode": "3d" (в 2D и без render_mode
+  запрещена); who — одно из {_quoted(SAY_WHO)}; shot — план камеры, одно из
+  {_quoted(SAY_SHOTS)}; все поля обязательны; text — короткая реплика обычным
+  текстом, без разметки;
+- в 3D-ролике основа — реплики say; text, image и chart там тоже допустимы.
 
-Пример:
+Пример 2D:
 {EXAMPLE_SPEC}
+
+Пример 3D:
+{EXAMPLE_3D_SPEC}
 """
 
 
