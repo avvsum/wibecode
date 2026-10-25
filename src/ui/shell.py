@@ -18,17 +18,15 @@ worker.cancelled -> set_cancelled, cancel_requested -> worker.cancel().
 import os
 
 from PySide6.QtCore import Qt, QTimer, QUrl, Signal, Slot
-from PySide6.QtGui import QFont, QKeySequence, QShortcut
+from PySide6.QtGui import QKeySequence, QShortcut
 from PySide6.QtMultimedia import QAudioOutput, QMediaPlayer
 from PySide6.QtWidgets import (
     QFrame, QHBoxLayout, QLabel, QMainWindow, QPlainTextEdit, QProgressBar, QPushButton, QScrollArea,
     QVBoxLayout, QWidget,
 )
 
-from src.ui.theme import T, font
 from src.ui.widgets import (
-    Mark, ModeSwitch, PreviewFrame, SceneTimeline, ScriptList, StatusPill, fmt_time, mark_icon, media_icon,
-    scene_at,
+    ModeSwitch, PreviewFrame, SceneTimeline, ScriptList, StatusPill, fmt_time, mark_icon, media_icon, scene_at,
 )
 
 MAX_CHARS = 2000
@@ -96,22 +94,8 @@ class ShellWindow(QMainWindow):
         panel = QWidget()
         panel.setFixedWidth(392)
         col = QVBoxLayout(panel)
-        col.setContentsMargins(24, 16, 24, 16)
+        col.setContentsMargins(24, 22, 24, 16)  # заголовок на одной высоте с «Превью» на листе
         col.setSpacing(0)
-
-        brand = QHBoxLayout()
-        brand.setSpacing(10)
-        brand.addWidget(Mark(28))
-        name_col = QVBoxLayout()
-        name_col.setSpacing(0)
-        name = QLabel("Shorts Studio")
-        name.setFont(font("body", QFont.Weight.DemiBold))
-        name_col.addWidget(name)
-        name_col.addWidget(_label("Текст → вертикальное видео", "muted"))
-        brand.addLayout(name_col)
-        brand.addStretch(1)
-        col.addLayout(brand)
-        col.addSpacing(32)
 
         col.addWidget(_label("Новый ролик", "title"))
         col.addSpacing(20)
