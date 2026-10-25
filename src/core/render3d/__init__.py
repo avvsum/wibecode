@@ -28,6 +28,7 @@ from src.core.renderer import (
     _run_ffmpeg,
 )
 from src.core.schema import SayScene, Spec
+from src.core.styles import style_chain
 
 FPS = 30
 RENDER_WIDTH, RENDER_HEIGHT = 810, 1440
@@ -174,6 +175,10 @@ class BlenderRenderer:
             )
             current = f"o{i}"
             index += 1
+        styled = style_chain(spec.style, current, "styled")
+        if styled:
+            filters.append(styled)
+            current = "styled"
         cmd += [
             "-filter_complex", ";".join(filters), "-map", f"[{current}]",
             "-r", str(FPS), "-c:v", "libx264", "-preset", "veryfast", "-pix_fmt", "yuv420p",

@@ -87,6 +87,7 @@ api.add_voiceover("outputs/video.mp4", clips)             # AAC-дорожка �
 {
   "duration": 12,
   "render_mode": "3d",
+  "style": "retro",
   "scenes": [
     {"type": "text",  "text": "Заголовок", "start": 0, "end": 2},
     {"type": "say",   "who": "girl", "shot": "medium", "text": "Как это *сделано*?", "start": 2, "end": 5},
@@ -97,6 +98,7 @@ api.add_voiceover("outputs/video.mp4", clips)             # AAC-дорожка �
 ```
 
 - `render_mode`: `"2d"` (по умолчанию) или `"3d"`.
+- `style`: обработка видео, по умолчанию `"none"`; значения — в разделе «Стиль видео» ниже.
 - Сцены: `text`, `image`, `chart` — в обоих режимах; `say` — только в `"3d"`.
 - `say`: `who` = `robot` | `girl`, `shot` = `wide` | `medium` | `close`. `*слово*` в тексте подсвечивается в субтитрах.
 - Время: конечные числа, `0 ≤ start < end ≤ duration`, сцены не пересекаются, смежные допустимы.
@@ -104,6 +106,14 @@ api.add_voiceover("outputs/video.mp4", clips)             # AAC-дорожка �
 - `chart.data`: минимум две пары `[x, y]`.
 
 Полный контракт, публичный API и правила команды — в [AGENTS.md](../AGENTS.md).
+
+## Стиль видео
+
+Модель сама выбирает обработку всего ролика и пишет её в поле `style` сценария:
+`cinematic`, `vivid`, `bw`, `sepia`, `pixel` (пиксель-арт), `retro` (VHS), `warm`, `cold`,
+`dreamy` или `none`. Попросите в описании («в стиле пиксель-арт», «как старая VHS») —
+она возьмёт этот стиль; не попросите — подберёт под тему. Выбранный стиль виден
+в статус-баре во время рендера. Озвучка выравнивается по громкости до −14 LUFS.
 
 ## Тесты
 

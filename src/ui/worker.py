@@ -52,7 +52,8 @@ class RenderWorker(QObject):
                 return
             if self._cancel_requested:  # запрос к LLM не прервать, но рендер уже не начинаем
                 raise api.RenderCancelled("отменено до рендера")
-            self.progress.emit("Рендер видео…")
+            style = getattr(spec, "style", "none")  # стиль выбирает модель, заглушки его не знают
+            self.progress.emit("Рендер видео…" if style == "none" else f"Рендер видео, стиль {style}…")
             path = api.render_video(spec, self._out_path, on_progress=self._on_progress)
             if self._voice:
                 self.progress.emit("Озвучка…")

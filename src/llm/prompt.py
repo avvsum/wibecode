@@ -1,6 +1,6 @@
 """Prompts for turning a user description into a scene spec (JSON contract)."""
 
-from src.api import SAY_SHOTS, SAY_WHO
+from src.api import SAY_SHOTS, SAY_WHO, STYLES
 
 
 def _quoted(values) -> str:
@@ -9,6 +9,7 @@ def _quoted(values) -> str:
 
 EXAMPLE_SPEC = """{
   "duration": 15,
+  "style": "vivid",
   "scenes": [
     {"type": "text", "text": "Заголовок", "start": 0, "end": 5},
     {"type": "image", "path": "a.png", "start": 5, "end": 10},
@@ -19,6 +20,7 @@ EXAMPLE_SPEC = """{
 EXAMPLE_3D_SPEC = """{
   "duration": 10,
   "render_mode": "3d",
+  "style": "cinematic",
   "scenes": [
     {"type": "text", "text": "Как работает Wi-Fi", "start": 0, "end": 3},
     {"type": "say", "who": "robot", "text": "Wi-Fi — это радиоволны.", "shot": "close", "start": 3, "end": 7},
@@ -38,6 +40,13 @@ SYSTEM_PROMPT = f"""Ты сценарист коротких вертикаль�
   3D-видео; если 3D лишь тема ролика (например, 3D-печать), это 2D. Если в запросе
   явно указано render_mode: "3d" или render_mode: "2d", используй именно это значение.
   Только эти две строки, в нижнем регистре; null и другие значения запрещены.
+- "style": обработка всего видео, одно из {_quoted(STYLES)}.
+  Если пользователь назвал стиль или настроение (пиксели, ретро, VHS, чёрно-белое,
+  кино, тёплое…), возьми подходящий. Иначе придумай сам под тему и настроение:
+  cinematic — драма, истории; vivid — цифры, графики, реклама; bw — серьёзное,
+  история; sepia — старина, воспоминания; pixel — игры, техника, мемы; retro — 80-е,
+  90-е, ностальгия; warm — уют, еда, лето; cold — зима, наука, космос; dreamy —
+  мечты, романтика; none — только если обработка явно не нужна.
 - "scenes": непустой список сцен. Каждая сцена ровно одного из типов:
   - {{"type": "text", "text": <строка>, "start": <число>, "end": <число>}}
   - {{"type": "image", "path": <путь к файлу>, "start": <число>, "end": <число>}}

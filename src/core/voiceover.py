@@ -9,6 +9,8 @@ from typing import Optional, Protocol, Sequence
 from src.core.renderer import RenderError, _ffmpeg
 
 FADE_OUT = 0.15  # seconds; softens speech cut at the end of its scene
+# YouTube plays at -14 LUFS: level speech there so it is neither quiet nor clipped.
+LOUDNORM = "loudnorm=I=-14:TP=-1.5:LRA=11,aresample=44100"
 
 
 class Clip(Protocol):
@@ -21,7 +23,8 @@ def add_voiceover(video_path: str, clips: Sequence[Clip], out_path: Optional[str
     """Write video_path with clips mixed in to out_path (default: in place) atomically.
 
     Each clip starts at its start and is cut at its end, so speech never spills
-    into the next scene. Video frames and duration stay unchanged.
+    into the next scene; the mix is levelled to -14 LUFS. Video frames and
+    duration stay unchanged.
     """
     video = os.path.abspath(video_path)
     out = os.path.abspath(out_path or video_path)
@@ -44,7 +47,7 @@ def add_voiceover(video_path: str, clips: Sequence[Clip], out_path: Optional[str
         filters.append(chain)
         cmd += ["-i", clip.path]
     inputs = "".join(f"[a{i}]" for i in range(len(clips)))
-    filters.append(f"{inputs}amix=inputs={len(clips)}:normalize=0,apad[aout]")
+    filters.append(f"{inputs}amix=inputs={len(clips)}:normalize=0,{LOUDNORM},apad[aout]")
     part = f"{out}.{os.getpid()}.part"
     cmd += [
         "-filter_complex", ";".join(filters), "-map", "0:v", "-map", "[aout]",

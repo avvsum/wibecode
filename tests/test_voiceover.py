@@ -29,6 +29,16 @@ def loudness(path, start, length):
     return float(line.split("max_volume:")[1].split()[0])
 
 
+def integrated_loudness(path):
+    """EBU R128 integrated loudness of the whole audio track in LUFS."""
+    result = subprocess.run(
+        ["ffmpeg", "-v", "info", "-i", str(path), "-vn", "-af", "ebur128", "-f", "null", "-"],
+        capture_output=True, text=True, encoding="utf-8", timeout=30,
+    )
+    line = [x for x in result.stderr.splitlines() if x.strip().startswith("I:")][-1]
+    return float(line.split()[1])
+
+
 @pytest.mark.integration
 def test_voiceover_adds_audio_cut_at_scene_end(api, tmp_path):
     for executable in ("ffmpeg", "ffprobe"):
@@ -53,6 +63,8 @@ def test_voiceover_adds_audio_cut_at_scene_end(api, tmp_path):
     assert float(metadata["format"]["duration"]) == pytest.approx(3, abs=0.1)
     assert loudness(video, 0.2, 0.6) > -40  # first line is heard
     assert loudness(video, 1.2, 0.6) < -60  # chart scene is silent
+    # The quiet fake tone (about -24 LUFS) is levelled towards YouTube's -14 LUFS.
+    assert -17 < integrated_loudness(video) < -11
 
 
 def test_missing_voice_file_keeps_video(api, tmp_path):
