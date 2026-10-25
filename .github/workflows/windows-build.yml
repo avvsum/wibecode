@@ -1,0 +1,75 @@
+name: windows-build
+
+# Shorts Studio для Windows: PyInstaller собирает только под ту ОС, где запущен,
+# поэтому exe собирается здесь. Каждый push в main обновляет релиз «latest»
+# (ShortsStudio-windows.zip); в PR сборка только проверяется.
+on:
+  push:
+    branches: [main]
+  pull_request:
+    paths: [scripts/build.py, .github/workflows/windows-build.yml, requirements.txt]
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+concurrency:
+  group: windows-build-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  build:
+    runs-on: windows-latest
+    timeout-minutes: 40
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+          cache: pip
+      - run: python -m pip install -r requirements.txt
+      - run: python scripts/build.py
+
+      - name: Smoke test — exe starts and keeps running
+        shell: pwsh
+        run: |
+          $env:QT_QPA_PLATFORM = "offscreen"
+          $app = Start-Process dist/ShortsStudio/ShortsStudio.exe -PassThru
+          Start-Sleep -Seconds 20
+          if ($app.HasExited) { throw "ShortsStudio.exe завершился сам, код $($app.ExitCode)" }
+          Stop-Process -Id $app.Id
+          $bytes = (Get-ChildItem dist/ShortsStudio -File -Recurse | Measure-Object Length -Sum).Sum
+          "Размер: {0} байт = {1:N1} MiB" -f $bytes, ($bytes / 1MB)
+
+      - name: Zip
+        shell: pwsh
+        run: Compress-Archive -Path dist/ShortsStudio -DestinationPath ShortsStudio-windows.zip
+
+      - uses: actions/upload-artifact@v4
+        with:
+          name: ShortsStudio-windows
+          path: ShortsStudio-windows.zip
+
+      - name: Release «latest»
+        if: github.event_name != 'pull_request' && github.ref == 'refs/heads/main'
+        shell: pwsh
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          git tag -f latest $env:GITHUB_SHA
+          git push -f origin refs/tags/latest
+          $notes = @"
+          Сборка из main ($env:GITHUB_SHA).
+
+          1. Распакуйте архив и запустите ShortsStudio\ShortsStudio.exe.
+          2. Нужен FFmpeg в PATH: winget install Gyan.FFmpeg
+          3. Для 3D нужен Blender: winget install BlenderFoundation.Blender
+          4. В окне, в «Дополнительно», укажите адрес API нейросети и ключ.
+          "@
+          gh release view latest *> $null
+          if ($LASTEXITCODE -ne 0) {
+            gh release create latest --title "Shorts Studio для Windows" --notes $notes --prerelease
+          } else {
+            gh release edit latest --notes $notes
+          }
+          gh release upload latest ShortsStudio-windows.zip --clobber
