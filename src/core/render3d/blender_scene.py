@@ -116,6 +116,12 @@ CHARACTERS["girl"]["mouth_z"] = girl_mouth.scale.z
 robot.rotation_euler.z = math.radians(12)
 girl.rotation_euler.z = math.radians(-12)
 
+use_kaykit = job.get("environment", "studio") != "studio" or job.get("cast", "classic") != "classic"
+if use_kaykit:
+    sys.path.insert(0, os.path.dirname(__file__))
+    from kaykit_scene import build_scene
+    CHARACTERS = build_scene(job, CHARACTERS)
+
 bpy.ops.object.camera_add()
 camera = bpy.context.object
 scene.camera = camera
@@ -127,7 +133,7 @@ scene.world = world
 scene.render.engine = "BLENDER_WORKBENCH"
 shading = scene.display.shading
 shading.light = "STUDIO"
-shading.color_type = "MATERIAL"
+shading.color_type = "TEXTURE" if use_kaykit else "MATERIAL"
 shading.show_shadows = True
 shading.shadow_intensity = 0.35
 shading.show_specular_highlight = False
@@ -153,6 +159,9 @@ def point_camera(shot, who):
         head = CHARACTERS[who]["head"]
         target = head if shot == "close" else Vector((head.x, head.y, head.z - 0.35))
     offset, lens = SHOTS[shot]
+    if use_kaykit and shot == "wide":
+        target = Vector((0, 1.4, 1.0))
+        offset, lens = Vector((0, -9, 4.2)), 32
     camera.location = target + offset
     camera.rotation_euler = (target - camera.location).to_track_quat("-Z", "Y").to_euler()
     camera.data.lens = lens
@@ -169,8 +178,13 @@ def pose(frame):
             bob += 0.03 * abs(math.sin(2 * math.pi * 1.6 * t))
         parts["root"].location.z = bob
         opening = 3 * abs(math.sin(2 * math.pi * 3.5 * t)) if talking else 0
-        parts["mouth"].scale.z = parts["mouth_z"] * (1 + opening)
+        if parts["mouth"] is not None:
+            parts["mouth"].scale.z = parts["mouth_z"] * (1 + opening)
+        for track in parts.get("tracks", []):
+            track.mute = (track.strips[0].action.name == "Interact") != talking
     point_camera(line["shot"] if line else "wide", speaker)
+    if use_kaykit:
+        bpy.context.view_layer.update()
 
 
 frames_dir = job["frames_dir"]

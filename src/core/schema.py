@@ -14,11 +14,15 @@ SayShot = Literal["wide", "medium", "close"]
 Style = Literal[
     "none", "cinematic", "vivid", "bw", "sepia", "pixel", "retro", "warm", "cold", "dreamy"
 ]
+Environment = Literal["studio", "room", "forest", "dungeon", "space", "city"]
+Cast = Literal["classic", "knight_mage", "rogue_duo", "barbarian_mage", "ranger_knight"]
 
 SCENE_TYPES: tuple[str, ...] = SceneType.__args__
 SAY_WHO: tuple[str, ...] = SayWho.__args__
 SAY_SHOTS: tuple[str, ...] = SayShot.__args__
 STYLES: tuple[str, ...] = Style.__args__
+ENVIRONMENTS: tuple[str, ...] = Environment.__args__
+CASTS: tuple[str, ...] = Cast.__args__
 
 
 class SpecError(ValueError):
@@ -73,6 +77,8 @@ class Spec(BaseModel):
     duration: FiniteFloat = Field(gt=0)
     render_mode: RenderMode = "2d"
     style: Style = "none"
+    environment: Environment = "studio"
+    cast: Cast = "classic"
     scenes: list[Scene] = Field(min_length=1)
 
     @model_validator(mode="after")
@@ -116,7 +122,10 @@ _MESSAGES = {
     "union_tag_not_found": lambda ctx: f"не указан type ({_choices(SCENE_TYPES)})",
 }
 
-_LITERAL_FIELDS = {"render_mode": RenderMode, "who": SayWho, "shot": SayShot, "style": Style}
+_LITERAL_FIELDS = {
+    "render_mode": RenderMode, "who": SayWho, "shot": SayShot,
+    "style": Style, "environment": Environment, "cast": Cast,
+}
 
 
 def _location(loc: tuple) -> str:
