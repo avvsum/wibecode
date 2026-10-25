@@ -41,7 +41,8 @@ def fake_llm(monkeypatch):
 
     def install(responses):
         fake = client.FakeLLMClient(responses)
-        monkeypatch.setattr(client, "AnthropicClient", lambda: fake)
+        # Клиент по умолчанию (DeepSeek или Anthropic) создаёт default_client — подменяем его.
+        monkeypatch.setattr(client, "default_client", lambda: fake)
         generate_spec = importlib.import_module("src.llm").generate_spec
         return generate_spec, fake.calls
 

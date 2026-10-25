@@ -69,7 +69,7 @@ py -3.11 -m venv .venv
 .\.venv\Scripts\python.exe -m pip install -r requirements.txt
 ffmpeg -version
 ffprobe -version
-$env:ANTHROPIC_API_KEY = "<твой API-ключ>"
+$env:DEEPSEEK_API_KEY = "<твой API-ключ DeepSeek>"
 .\.venv\Scripts\python.exe -m src.ui.main
 ```
 

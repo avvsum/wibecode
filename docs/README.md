@@ -34,7 +34,10 @@ Linux/macOS: `python3.11 -m venv .venv` и `.venv/bin/python` вместо Windo
 
 | Переменная | Зачем |
 |---|---|
-| `ANTHROPIC_API_KEY` | ключ Claude для генерации сценария. Не храните его в файлах проекта |
+| `DEEPSEEK_API_KEY` | ключ DeepSeek для генерации сценария и метаданных YouTube. Не храните его в файлах проекта |
+| `DEEPSEEK_MODEL` | модель DeepSeek, по умолчанию `deepseek-chat` |
+| `ANTHROPIC_API_KEY` | ключ Claude, если генерировать через Anthropic вместо DeepSeek |
+| `WIBECODE_LLM` | `deepseek` или `anthropic`; без неё — DeepSeek, а Anthropic, только если задан один его ключ |
 | `WIBECODE_BLENDER` | путь к `blender`, если его нет в PATH |
 | `ELEVENLABS_API_KEY` | ключ ElevenLabs, если выбрана озвучка ElevenLabs |
 | `WIBECODE_YT_CLIENT_SECRET` | путь к OAuth-клиенту YouTube, если он не в `~/.shortsstudio/client_secret.json` |
