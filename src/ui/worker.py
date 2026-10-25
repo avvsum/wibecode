@@ -6,16 +6,22 @@ from PySide6.QtCore import QObject, Signal, Slot
 from src.ui.backend import api, llm
 
 
-def with_mode_hint(user_text: str, render_mode: str) -> str:
+def with_mode_hint(
+    user_text: str, render_mode: str, environment: str = "studio", cast: str = "classic"
+) -> str:
     """Дописывает выбранный в окне режим подсказкой для LLM.
 
     По AGENTS.md режим передаётся в user_text до generate_spec; в готовом JSON его не подменяем.
     """
-    return f'{user_text}\n\nrender_mode: "{render_mode}"'
+    hint = f'{user_text}\n\nrender_mode: "{render_mode}"'
+    if render_mode == "3d":
+        hint += f'\nenvironment: "{environment}"\ncast: "{cast}"'
+    return hint
 
 
 class RenderWorker(QObject):
     progress = Signal(str)
+    spec_ready = Signal(object)  # проверенный Spec: окно показывает сценарий и ленту ещё до рендера
     frames = Signal(int, int)  # done, total из on_progress; total == 0 — неизвестно
     metadata = Signal(str, bool)  # текст для YouTube (или причина неудачи), удалось ли
     metadata_ready = Signal(object)  # VideoMetadata для кнопки публикации
@@ -25,7 +31,7 @@ class RenderWorker(QObject):
 
     def __init__(
         self, user_text: str, out_path: str, render_mode: str = "2d", voice: str | None = None,
-        music: str | None = None,
+        music: str | None = None, *, environment: str = "studio", cast: str = "classic",
     ):
         super().__init__()
         self._user_text = user_text
@@ -33,6 +39,8 @@ class RenderWorker(QObject):
         self._render_mode = render_mode
         self._voice = voice  # провайдер озвучки: "elevenlabs", "chatterbox" или None
         self._music = music  # "auto" (настроение от модели), путь к своему треку или None
+        self._environment = environment
+        self._cast = cast
         self._cancel_requested = False
 
     def cancel(self) -> None:
@@ -57,13 +65,24 @@ class RenderWorker(QObject):
     def run(self) -> None:
         try:
             self.progress.emit("Генерация сцен…")
-            raw = llm.generate_spec(with_mode_hint(self._user_text, self._render_mode))
+            raw = llm.generate_spec(with_mode_hint(
+                self._user_text, self._render_mode, self._environment, self._cast
+            ))
             spec = api.parse_spec(raw)
+            self.spec_ready.emit(spec)
             if spec.render_mode != self._render_mode:  # JSON не переписываем, только отказ
                 self.failed.emit(
                     f"Модель вернула сценарий для режима {spec.render_mode.upper()}, "
                     f"а выбран {self._render_mode.upper()}. Попробуйте ещё раз или "
                     f"явно укажите в описании, что нужно {self._render_mode.upper()}-видео."
+                )
+                return
+            if self._render_mode == "3d" and (
+                spec.environment != self._environment or spec.cast != self._cast
+            ):
+                self.failed.emit(
+                    "Модель вернула другое окружение или персонажей. "
+                    "Попробуйте ещё раз: выбранные настройки должны совпадать со сценарием."
                 )
                 return
             if not self._cancel_requested:
@@ -87,6 +106,8 @@ class RenderWorker(QObject):
             if track:
                 self.progress.emit("Музыка…" if self._music != "auto" else f"Музыка: {mood}…")
                 try:
+                    if self._music != "auto" and track not in api.user_music():
+                        track = api.import_music(track)  # «Свой файл…» остаётся в списке треков
                     api.add_music(path, track)
                 except api.RenderError as e:
                     self.failed.emit(f"Видео готово без музыки ({path}). Музыка не добавилась: {e}")

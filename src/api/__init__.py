@@ -4,9 +4,13 @@ from __future__ import annotations
 
 from src.core import music, renderer, schema, voiceover
 from src.core.renderer import ProgressCallback, RenderCancelled, RenderError, ToolNotFoundError
-from src.core.schema import MUSIC_MOODS, SAY_SHOTS, SAY_WHO, STYLES, Spec, SpecError
+from src.core.schema import (
+    CASTS, ENVIRONMENTS, MUSIC_MOODS, SAY_SHOTS, SAY_WHO, STYLES, Spec, SpecError,
+)
 
 __all__ = [
+    "CASTS",
+    "ENVIRONMENTS",
     "MUSIC_MOODS",
     "SAY_SHOTS",
     "SAY_WHO",

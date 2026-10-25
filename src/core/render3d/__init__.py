@@ -102,6 +102,8 @@ class BlenderRenderer:
             job = {
                 "fps": FPS, "width": RENDER_WIDTH, "height": RENDER_HEIGHT,
                 "frames_dir": frames_dir, "frames": studio,
+                "environment": spec.environment, "cast": spec.cast,
+                "assets_dir": str(Path(__file__).resolve().parents[3] / "assets" / "kaykit"),
                 "lines": [{"who": s.who, "shot": s.shot, "first": a, "last": b} for s, a, b in lines],
             }  # fmt: skip
             job_path = os.path.join(tmp, "job.json")

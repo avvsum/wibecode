@@ -31,6 +31,22 @@ class MainWindow(QMainWindow):
         self.mode_box = QComboBox()
         self.mode_box.addItem("2D", "2d")
         self.mode_box.addItem("3D", "3d")
+        self.environment_box = QComboBox()
+        for label, key in (
+            ("Студия (исходная)", "studio"), ("Уютная комната", "room"),
+            ("Лесная поляна", "forest"), ("Подземелье", "dungeon"),
+            ("Космическая база", "space"), ("Городская площадь", "city"),
+        ):
+            self.environment_box.addItem(label, key)
+        self.environment_box.setCurrentIndex(1)
+        self.cast_box = QComboBox()
+        for label, key in (
+            ("Робот и девушка", "classic"), ("Рыцарь и маг", "knight_mage"),
+            ("Два разбойника", "rogue_duo"), ("Варвар и маг", "barbarian_mage"),
+            ("Лучник и рыцарь", "ranger_knight"),
+        ):
+            self.cast_box.addItem(label, key)
+        self.cast_box.setCurrentIndex(1)
         self.voice_box = QComboBox()
         self.voice_box.addItem("Без озвучки", None)
         self.voice_box.addItem("ElevenLabs", "elevenlabs")
@@ -90,6 +106,15 @@ class MainWindow(QMainWindow):
         music_row.addWidget(QLabel("Музыка:"))
         music_row.addWidget(self.music_box, 1)
         music_row.addWidget(self.add_music_button)
+        self.scene_options = QWidget()
+        scene_row = QHBoxLayout(self.scene_options)
+        scene_row.setContentsMargins(0, 0, 0, 0)
+        scene_row.addWidget(QLabel("Окружение:"))
+        scene_row.addWidget(self.environment_box, 1)
+        scene_row.addWidget(QLabel("Персонажи:"))
+        scene_row.addWidget(self.cast_box, 1)
+        self.scene_options.setVisible(False)
+        self.mode_box.currentIndexChanged.connect(self._sync_scene_options)
         buttons = QHBoxLayout()
         buttons.addWidget(self.render_button, 1)
         buttons.addWidget(self.cancel_button)
@@ -97,6 +122,7 @@ class MainWindow(QMainWindow):
         left.addWidget(self.input, 2)
         left.addLayout(mode_row)
         left.addLayout(music_row)
+        left.addWidget(self.scene_options)
         left.addWidget(self.progress_bar)
         left.addLayout(buttons)
         left.addWidget(QLabel("YouTube: название, описание, теги"))
@@ -134,6 +160,9 @@ class MainWindow(QMainWindow):
         self.statusBar().setStyleSheet("color: #c62828;" if error else "")
         self.statusBar().showMessage(text)
 
+    def _sync_scene_options(self) -> None:
+        self.scene_options.setVisible(self.mode_box.currentData() == "3d")
+
     @Slot()
     def start_render(self) -> None:
         text = self.input.toPlainText().strip()
@@ -159,6 +188,7 @@ class MainWindow(QMainWindow):
         self.voice_box.setEnabled(False)
         self.music_box.setEnabled(False)
         self.add_music_button.setEnabled(False)
+        self.scene_options.setEnabled(False)
         self.progress_bar.setRange(0, 0)  # пока LLM пишет сценарий, число кадров неизвестно
         self.progress_bar.setVisible(True)
         self.cancel_button.setEnabled(True)
@@ -167,6 +197,7 @@ class MainWindow(QMainWindow):
         self._worker = RenderWorker(
             text, out_path, self.mode_box.currentData(), self.voice_box.currentData(),
             self.music_box.currentData(),
+            environment=self.environment_box.currentData(), cast=self.cast_box.currentData(),
         )
         self._worker.moveToThread(self._thread)
         self._thread.started.connect(self._worker.run)
@@ -285,6 +316,7 @@ class MainWindow(QMainWindow):
         self.music_box.setEnabled(True)
         self.add_music_button.setEnabled(True)
         self.publish_button.setEnabled(self._video_path is not None)
+        self.scene_options.setEnabled(True)
         self.progress_bar.setVisible(False)
         self.progress_bar.resetFormat()
         self.cancel_button.setVisible(False)

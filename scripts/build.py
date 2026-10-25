@@ -20,6 +20,7 @@ def main(argv=None):
         parser.error("Сборка требует Python 3.11")
     required = ("src/ui/main.py", "src/api/__init__.py", "src/core/schema.py",
                 "src/core/renderer.py", "src/core/render3d/blender_scene.py",
+                "src/core/render3d/kaykit_scene.py",
                 "src/llm/client.py", "src/llm/prompt.py")
     missing = [name for name in required if not (ROOT / name).is_file()]
     for module in ("PyInstaller", "PySide6", "pydantic", "PIL", "googleapiclient", "google_auth_oauthlib"):
@@ -37,7 +38,7 @@ def main(argv=None):
                "--workpath", str(ROOT / "build" / "work"), "--specpath", str(ROOT / "build"),
                "--add-data", f"{ROOT / 'assets'}:assets",
                # Blender runs this script itself, so PyInstaller cannot see it as an import.
-               "--add-data", f"{ROOT / 'src/core/render3d/blender_scene.py'}:src/core/render3d",
+               "--add-data", f"{ROOT / 'src/core/render3d'}:src/core/render3d",
                # Optional local voice (requirements-chatterbox.txt) is several GB of PyTorch:
                # keep it out of the bundle; Chatterbox works when running from source.
                "--exclude-module", "chatterbox", "--exclude-module", "torch",

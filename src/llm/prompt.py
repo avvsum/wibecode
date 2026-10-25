@@ -2,7 +2,7 @@
 
 import re
 
-from src.api import MUSIC_MOODS, SAY_SHOTS, SAY_WHO, STYLES
+from src.api import CASTS, ENVIRONMENTS, MUSIC_MOODS, SAY_SHOTS, SAY_WHO, STYLES
 from src.llm.metadata import DESCRIPTION_MAX, TITLE_MAX
 
 
@@ -26,6 +26,8 @@ EXAMPLE_3D_SPEC = """{
   "render_mode": "3d",
   "style": "cinematic",
   "music": "calm",
+  "environment": "room",
+  "cast": "knight_mage",
   "scenes": [
     {"type": "text", "text": "Как работает Wi-Fi", "start": 0, "end": 3},
     {"type": "say", "who": "robot", "text": "Wi-Fi — это радиоволны.", "shot": "close", "start": 3, "end": 7},
@@ -58,6 +60,17 @@ SYSTEM_PROMPT = f"""Ты сценарист коротких вертикаль�
   upbeat — бодрые советы, реклама; epic — масштаб, рекорды; lofi — учёба, уют;
   retro — игры, 8-бит; tense — тайны, расследования; happy — праздники, дети;
   none — только если пользователь просит без музыки.
+- "environment": необязательное окружение 3D, одно из {_quoted(ENVIRONMENTS)}.
+  studio — исходная студия; room — уютная комната; forest — лесная поляна;
+  dungeon — подземелье; space — космическая база; city — городская площадь.
+  Без поля используется studio.
+- "cast": необязательная пара персонажей 3D, одно из {_quoted(CASTS)}.
+  classic — робот и девушка; knight_mage — рыцарь и маг; rogue_duo — два разбойника
+  (один в капюшоне); barbarian_mage — варвар и маг; ranger_knight — лучник
+  и рыцарь. Без поля используется classic.
+  Поле who всегда robot или girl: это первый и второй участник выбранной пары.
+  Явные подсказки environment: "..." и cast: "..." из интерфейса имеют приоритет
+  над описанием; обязательно верни выбранные значения в JSON. В 2D поля не нужны.
 - "scenes": непустой список сцен. Каждая сцена ровно одного из типов:
   - {{"type": "text", "text": <строка>, "start": <число>, "end": <число>}}
   - {{"type": "image", "path": <путь к файлу>, "start": <число>, "end": <число>}}
@@ -125,7 +138,9 @@ METADATA_PROMPT = f"""Ты редактор YouTube Shorts. По описани�
 """
 
 # The UI appends this hint for generate_spec; it says nothing about the video's topic.
-_MODE_HINT_RE = re.compile(r'\s*render_mode:\s*"(?:2d|3d)"\s*$')
+_MODE_HINT_RE = re.compile(
+    r'(?:\s*(?:render_mode|environment|cast):\s*"[a-z0-9_]+")+\s*$'
+)
 
 
 def metadata_request(user_text: str, spec_json: str) -> str:

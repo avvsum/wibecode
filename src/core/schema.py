@@ -14,6 +14,8 @@ SayShot = Literal["wide", "medium", "close"]
 Style = Literal[
     "none", "cinematic", "vivid", "bw", "sepia", "pixel", "retro", "warm", "cold", "dreamy"
 ]
+Environment = Literal["studio", "room", "forest", "dungeon", "space", "city"]
+Cast = Literal["classic", "knight_mage", "rogue_duo", "barbarian_mage", "ranger_knight"]
 
 SCENE_TYPES: tuple[str, ...] = SceneType.__args__
 SAY_WHO: tuple[str, ...] = SayWho.__args__
@@ -22,6 +24,8 @@ STYLES: tuple[str, ...] = Style.__args__
 # Background music mood, picked by the LLM (see core/music.py).
 Music = Literal["none", "calm", "upbeat", "epic", "lofi", "retro", "tense", "happy"]
 MUSIC_MOODS: tuple[str, ...] = Music.__args__
+ENVIRONMENTS: tuple[str, ...] = Environment.__args__
+CASTS: tuple[str, ...] = Cast.__args__
 
 
 class SpecError(ValueError):
@@ -77,6 +81,8 @@ class Spec(BaseModel):
     render_mode: RenderMode = "2d"
     style: Style = "none"
     music: Music = "none"
+    environment: Environment = "studio"
+    cast: Cast = "classic"
     scenes: list[Scene] = Field(min_length=1)
 
     @model_validator(mode="after")
@@ -121,7 +127,8 @@ _MESSAGES = {
 }
 
 _LITERAL_FIELDS = {
-    "render_mode": RenderMode, "who": SayWho, "shot": SayShot, "style": Style, "music": Music,
+    "render_mode": RenderMode, "who": SayWho, "shot": SayShot,
+    "style": Style, "music": Music, "environment": Environment, "cast": Cast,
 }
 
 
