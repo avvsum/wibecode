@@ -4,9 +4,10 @@ import json
 
 import pytest
 
+from src import api
 from src.llm import FakeLLMClient, LLMError, SpecGenerationError, generate_spec
 from src.llm.client import AnthropicClient, strip_fences
-from src.llm.prompt import EXAMPLE_SPEC, SYSTEM_PROMPT
+from src.llm.prompt import EXAMPLE_3D_SPEC, EXAMPLE_SPEC, SYSTEM_PROMPT
 
 USER_TEXT = (
     "Сделай ролик про рост продаж. "
@@ -129,3 +130,39 @@ def test_wrong_render_mode_triggers_fix_up():
     assert json.loads(raw)["render_mode"] == "3d"
     assert len(fake.calls) == 2
     assert "render_mode" in fake.calls[1][-1]["content"]
+
+
+def test_system_prompt_lists_say_choices_from_api():
+    assert '"say"' in SYSTEM_PROMPT
+    for value in (*api.SAY_WHO, *api.SAY_SHOTS):
+        assert f'"{value}"' in SYSTEM_PROMPT
+
+
+def test_examples_pass_real_parser():
+    assert api.parse_spec(EXAMPLE_SPEC).render_mode == "2d"
+    spec = api.parse_spec(EXAMPLE_3D_SPEC)
+    assert spec.render_mode == "3d"
+    assert {scene.type for scene in spec.scenes} == {"text", "say"}
+
+
+def test_say_spec_passes_real_parser():
+    fake = FakeLLMClient([EXAMPLE_3D_SPEC])
+    raw = generate_spec('Диалог робота и девушки. render_mode: "3d"', client=fake)
+
+    assert raw == EXAMPLE_3D_SPEC.strip()
+    assert len(fake.calls) == 1
+
+
+def test_say_without_3d_triggers_fix_up():
+    payload = json.loads(EXAMPLE_3D_SPEC)
+    del payload["render_mode"]
+    in_2d = json.dumps(payload, ensure_ascii=False)
+    with pytest.raises(api.SpecError) as rejected:
+        api.parse_spec(in_2d)
+
+    fake = FakeLLMClient([in_2d, EXAMPLE_3D_SPEC])
+    raw = generate_spec('Диалог робота и девушки. render_mode: "3d"', client=fake)
+
+    assert api.parse_spec(raw).render_mode == "3d"
+    assert len(fake.calls) == 2
+    assert str(rejected.value) in fake.calls[1][-1]["content"]
