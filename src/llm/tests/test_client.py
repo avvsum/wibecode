@@ -163,6 +163,68 @@ def reply(text, finish="stop"):
     return {"choices": [{"message": {"role": "assistant", "content": text}, "finish_reason": finish}]}
 
 
+@pytest.mark.parametrize("base, expected", [
+    ("https://api.tokenwave.ru/v1", "https://api.tokenwave.ru/v1"),
+    (" https://api.tokenwave.ru/v1/ ", "https://api.tokenwave.ru/v1"),
+    (" ", "https://api.deepseek.com"),
+])
+def test_legacy_deepseek_proxy_and_pinned_model_skip_discovery(monkeypatch, base, expected):
+    monkeypatch.setenv("DEEPSEEK_API_KEY", "legacy-key")
+    monkeypatch.setenv("DEEPSEEK_BASE_URL", base)
+    monkeypatch.setenv("DEEPSEEK_MODEL", " deepseek-v4-flash ")
+    seen = fake_api(monkeypatch, lambda method, url, body: reply("ответ"))
+
+    client = OpenAICompatibleClient()
+    assert client.complete("sys", []) == "ответ"
+    assert len(seen) == 1
+    method, url, body, authorization = seen[0]
+    assert (method, url) == ("POST", expected + "/chat/completions")
+    assert body["model"] == client.model == "deepseek-v4-flash"
+    assert authorization == "Bearer legacy-key"
+
+
+@pytest.mark.parametrize("model", ["", "  "])
+def test_legacy_deepseek_blank_model_still_discovers_models(monkeypatch, model):
+    monkeypatch.setenv("DEEPSEEK_API_KEY", "legacy-key")
+    monkeypatch.setenv("DEEPSEEK_BASE_URL", "https://api.tokenwave.ru/v1")
+    monkeypatch.setenv("DEEPSEEK_MODEL", model)
+
+    def routes(method, url, body):
+        return {"data": [{"id": "discovered-chat"}]} if method == "GET" else reply("ответ")
+
+    seen = fake_api(monkeypatch, routes)
+    client = OpenAICompatibleClient()
+    assert client.complete("sys", []) == "ответ"
+    assert [(method, url) for method, url, _, _ in seen] == [
+        ("GET", "https://api.tokenwave.ru/v1/models"),
+        ("POST", "https://api.tokenwave.ru/v1/chat/completions"),
+    ]
+    assert seen[1][2]["model"] == client.model == "discovered-chat"
+
+
+@pytest.mark.parametrize("source", ["ui", "environment"])
+def test_generic_settings_take_priority_over_legacy_deepseek(monkeypatch, source):
+    monkeypatch.setenv("DEEPSEEK_API_KEY", "legacy-key")
+    monkeypatch.setenv("DEEPSEEK_BASE_URL", "https://legacy.test/v1")
+    monkeypatch.setenv("DEEPSEEK_MODEL", "legacy-model")
+    monkeypatch.setenv("WIBECODE_LLM_BASE_URL", "https://environment.test/v1")
+    monkeypatch.setenv("WIBECODE_LLM_API_KEY", "environment-key")
+
+    def routes(method, url, body):
+        return {"data": [{"id": "generic-chat"}]} if method == "GET" else reply("ответ")
+
+    seen = fake_api(monkeypatch, routes)
+    client = (OpenAICompatibleClient("https://ui.test/v1", "ui-key")
+              if source == "ui" else OpenAICompatibleClient())
+    assert client.complete("sys", []) == "ответ"
+    assert [(method, url) for method, url, _, _ in seen] == [
+        ("GET", f"https://{source}.test/v1/models"),
+        ("POST", f"https://{source}.test/v1/chat/completions"),
+    ]
+    assert seen[1][2]["model"] == client.model == "generic-chat"
+    assert all(authorization == f"Bearer {source}-key" for _, _, _, authorization in seen)
+
+
 def test_client_picks_model_once_and_sends_system_prompt(monkeypatch):
     def routes(method, url, body):
         if url.endswith("/models"):

@@ -14,8 +14,10 @@ from src.llm.prompt import METADATA_PROMPT, SYSTEM_PROMPT, fix_message, metadata
 
 BASE_URL_ENV = "WIBECODE_LLM_BASE_URL"
 API_KEY_ENV = "WIBECODE_LLM_API_KEY"
-# Ключ DeepSeek без адреса и общего ключа — как раньше, через api.deepseek.com.
+# Старые настройки DeepSeek используются, когда общий адрес и ключ не заданы.
 DEEPSEEK_KEY_ENV = "DEEPSEEK_API_KEY"
+DEEPSEEK_BASE_URL_ENV = "DEEPSEEK_BASE_URL"
+DEEPSEEK_MODEL_ENV = "DEEPSEEK_MODEL"
 DEEPSEEK_URL = "https://api.deepseek.com"
 MAX_RETRIES = 2
 
@@ -77,14 +79,18 @@ class OpenAICompatibleClient:
 
     The model is chosen automatically from GET /models on the first request; if
     the provider rejects it, the next one in rank_models order is tried.
+    Legacy DeepSeek settings may pin a model with DEEPSEEK_MODEL.
     Base URL and key come from the window or WIBECODE_LLM_BASE_URL / WIBECODE_LLM_API_KEY.
     """
 
     def __init__(self, base_url: str = "", api_key: str = "", timeout: float = 180.0):
         base_url = (base_url or os.environ.get(BASE_URL_ENV, "")).strip()
         self._key = (api_key or os.environ.get(API_KEY_ENV, "")).strip()
+        deepseek_model = ""
         if not base_url and not self._key and os.environ.get(DEEPSEEK_KEY_ENV):
-            base_url, self._key = DEEPSEEK_URL, os.environ[DEEPSEEK_KEY_ENV].strip()
+            base_url = os.environ.get(DEEPSEEK_BASE_URL_ENV, "").strip() or DEEPSEEK_URL
+            self._key = os.environ[DEEPSEEK_KEY_ENV].strip()
+            deepseek_model = os.environ.get(DEEPSEEK_MODEL_ENV, "").strip()
         if not base_url:
             raise LLMError(
                 "Не указан адрес API нейросети: впишите его в «Дополнительно» "
@@ -99,11 +105,11 @@ class OpenAICompatibleClient:
             base_url = "https://" + base_url
         self._base = base_url.rstrip("/").removesuffix("/chat/completions").removesuffix("/models")
         self._timeout = timeout
-        self._models: Optional[list[str]] = None
+        self._models: Optional[list[str]] = [deepseek_model] if deepseek_model else None
 
     @property
     def model(self) -> Optional[str]:
-        """The chosen model id, once a request has been made."""
+        """The selected model id, or None before automatic discovery."""
         return self._models[0] if self._models else None
 
     def _request(self, path: str, body: Optional[dict] = None) -> dict:
