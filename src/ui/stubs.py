@@ -1,4 +1,4 @@
-"""Заглушки backend (src.api) и LLM (src.llm), пока A и C не смержили свои модули.
+"""Заглушки backend (src.api) и LLM (src.llm) для разработки UI без сети и ключа API.
 
 Повторяют публичный API из AGENTS.md:
     api.parse_spec(raw: str) -> Spec            # raises SpecError
@@ -6,16 +6,18 @@
     llm.generate_spec(user_text: str) -> str    # raw JSON
 """
 import json
+import re
 import shutil
 import subprocess
 import sys
 from dataclasses import dataclass
 from types import SimpleNamespace
 
-WIDTH, HEIGHT, FPS = 1080, 1920, 30
+WIDTH, HEIGHT, FPS = 1080, 1920, 60
 SCENE_COLORS = {"text": "0x1e3a8a", "image": "0x065f46", "chart": "0x7c2d12"}
 REQUIRED_FIELDS = {"text": "text", "image": "path", "chart": "data"}
 RENDER_MODES = ("2d", "3d")
+MODE_HINT = re.compile(r'\s*render_mode: "(\w+)"\s*$')
 
 
 class SpecError(ValueError):
@@ -30,18 +32,24 @@ class Spec:
 
 
 def generate_spec(user_text: str) -> str:
+    # Как и prompt C: явная подсказка render_mode в конце запроса задаёт режим.
+    hint = MODE_HINT.search(user_text)
+    text = user_text[:hint.start()] if hint else user_text
     # Если ввели JSON руками, отдаём как есть: удобно проверять ошибки SpecError из UI.
-    if user_text.lstrip().startswith("{"):
-        return user_text
-    title = (user_text.strip().splitlines() or [""])[0][:60]
-    return json.dumps({
+    if text.lstrip().startswith("{"):
+        return text
+    title = (text.strip().splitlines() or [""])[0][:60]
+    spec = {
         "duration": 15,
         "scenes": [
             {"type": "text", "text": title, "start": 0, "end": 5},
-            {"type": "image", "path": "a.png", "start": 5, "end": 10},
-            {"type": "chart", "data": [[1, 2], [2, 4], [3, 3]], "start": 10, "end": 15},
+            {"type": "chart", "data": [[1, 2], [2, 4], [3, 3]], "start": 5, "end": 10},
+            {"type": "text", "text": "Конец", "start": 10, "end": 15},
         ],
-    }, ensure_ascii=False)
+    }
+    if hint:
+        spec["render_mode"] = hint.group(1)
+    return json.dumps(spec, ensure_ascii=False)
 
 
 def parse_spec(raw: str) -> Spec:

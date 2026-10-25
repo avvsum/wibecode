@@ -1,24 +1,15 @@
 """Фоновый пайплайн: описание -> JSON -> Spec -> MP4. Запускается в отдельном QThread."""
-import json
-
 from PySide6.QtCore import QObject, Signal, Slot
 
 from src.ui.backend import api, llm
 
 
-def with_render_mode(raw: str, render_mode: str) -> str:
-    """Подставляет выбранный в окне render_mode в JSON от LLM, до валидации.
+def with_mode_hint(user_text: str, render_mode: str) -> str:
+    """Дописывает выбранный в окне режим подсказкой для LLM.
 
-    Битый JSON не трогаем: его отклонит parse_spec с понятной SpecError.
+    По AGENTS.md режим передаётся в user_text до generate_spec; в готовом JSON его не подменяем.
     """
-    try:
-        data = json.loads(raw)
-    except json.JSONDecodeError:
-        return raw
-    if not isinstance(data, dict):
-        return raw
-    data["render_mode"] = render_mode
-    return json.dumps(data, ensure_ascii=False)
+    return f'{user_text}\n\nrender_mode: "{render_mode}"'
 
 
 class RenderWorker(QObject):
@@ -36,8 +27,8 @@ class RenderWorker(QObject):
     def run(self) -> None:
         try:
             self.progress.emit("Генерация сцен…")
-            raw = llm.generate_spec(self._user_text)
-            spec = api.parse_spec(with_render_mode(raw, self._render_mode))
+            raw = llm.generate_spec(with_mode_hint(self._user_text, self._render_mode))
+            spec = api.parse_spec(raw)
             self.progress.emit("Рендер видео…")
             path = api.render_video(spec, self._out_path)
         except api.SpecError as e:
