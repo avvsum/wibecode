@@ -6,7 +6,7 @@ import time
 from types import SimpleNamespace
 
 import pytest
-from PySide6.QtCore import QObject, Signal
+from PySide6.QtCore import QObject, Signal, Slot
 from PySide6.QtWidgets import QApplication
 
 from src.ui import app as app_module
@@ -136,6 +136,45 @@ def test_voiceover_failure_keeps_the_video(qapp, window, monkeypatch):
     assert "озвучка не удалась" in w.notice.text().lower()
 
 
+def test_audio_stages_reach_window_without_resetting_frames_or_busy_state(qapp, monkeypatch, tmp_path):
+    class RecordingWindow(ShellWindow):
+        def __init__(self):
+            super().__init__()
+            self.stages = []
+
+        @Slot(str)
+        def set_stage(self, text):
+            super().set_stage(text)
+            self.stages.append((
+                self.stage.text(), self.progress.maximum(), self.progress.value(),
+                self.create_button.isEnabled(), self.cancel_button.isEnabled(),
+                any(box.isEnabled() for box in self._choices.values()),
+            ))
+
+    def render_video(spec, path, *, on_progress=None):
+        on_progress(60, 60)
+        with open(path, "wb") as output:
+            output.write(b"mp4")
+        return path
+
+    monkeypatch.setattr(app_module, "OUTPUT_DIR", tmp_path)
+    monkeypatch.setattr(worker, "api", SimpleNamespace(**{
+        **vars(stubs.api), "render_video": render_video, "pick_music": lambda mood: "music.wav",
+    }))
+    monkeypatch.setattr(worker, "llm", stubs.llm)
+    w = RecordingWindow()
+    controller = app_module.AppController(w)
+    try:
+        controller.start("Короткий ролик", "2d", {"voice": "elevenlabs", "music": "auto"})
+        wait_idle(qapp, controller)
+        audio = [state for state in w.stages if state[0].startswith(("Озвучка", "Музыка"))]
+        assert [state[0] for state in audio] == ["Озвучка…", "Музыка: none…"]
+        assert all(state[1:] == (60, 60, False, True, False) for state in audio), audio
+        assert w.pill.text() == "Готово"
+    finally:
+        w.close()
+
+
 def test_new_extra_signal_appears_as_card_by_itself(qapp, window, monkeypatch):
     """Новый результат: сигнал (text, ok) в воркере + Extra в features.EXTRAS — и окно его покажет."""
     w, controller = window
@@ -159,7 +198,8 @@ def test_window_opens_prompt_only(qapp):
     """По умолчанию — только описание: режим «Авто», остальные настройки свёрнуты."""
     w = ShellWindow()
     assert w.mode.value() == "auto"
-    assert w.options() == {choice.key: choice.resolve()[0][0] for choice in CHOICES}
+    assert w.options() == {"voice": None, "music": "auto"}
+    assert w._choice_rows["environment"].isHidden() and w._choice_rows["cast"].isHidden()
     assert not w.advanced.isVisibleTo(w) and w.advanced_button.text() == "Дополнительно  ▸"
 
     w.advanced_button.setChecked(True)
