@@ -242,11 +242,13 @@ class FFmpegRenderer:
             ]  # fmt: skip
             try:
                 _run_ffmpeg(cmd, os.path.join(tmp, "stderr.txt"), on_progress, total)
+                # Last report while the video is still a temp file: a cancel or an
+                # error here must leave out_path untouched.
+                _report(on_progress, total, total)
                 os.replace(part, out)
             finally:
                 if os.path.exists(part):
                     os.remove(part)
-        _report(on_progress, total, total)
         return out
 
 
@@ -273,19 +275,15 @@ def _run_ffmpeg(
             raise RenderError(f"FFmpeg завершился с ошибкой: {err.read().strip()[-500:]}")
 
 
-class Stub3DRenderer:
-    """Placeholder until the Blender (Workbench) backend is implemented."""
-
-    def render(
-        self, spec: Spec, out_path: str, on_progress: Optional[ProgressCallback] = None
-    ) -> str:
-        raise NotImplementedError("3D not implemented yet")
-
-
-RENDERERS: dict[str, Renderer] = {"2d": FFmpegRenderer(), "3d": Stub3DRenderer()}
+RENDERERS: dict[str, Renderer] = {"2d": FFmpegRenderer()}
 
 
 def get_renderer(mode: str) -> Renderer:
+    if mode == "3d" and "3d" not in RENDERERS:
+        # Imported lazily: the 3D backend reuses helpers from this module.
+        from src.core.render3d import BlenderRenderer
+
+        RENDERERS["3d"] = BlenderRenderer()
     try:
         return RENDERERS[mode]
     except KeyError:

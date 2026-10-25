@@ -119,8 +119,11 @@ PyInstaller создаёт `dist/ShortsStudio/ShortsStudio.exe` на Windows. П
 Добавьте Blender в PATH и проверьте `blender --version`. Backend A запускает
 его в фоне через `blender -b -P <script>`; параметры описаны в
 [Blender Manual](https://docs.blender.org/manual/en/4.2/advanced/command_line/arguments.html).
-Версия Blender и проверенные системные зависимости будут зафиксированы вместе
-с backend A; наличие бинарника само по себе не подтверждает готовность 3D.
+Проверенная версия: Blender 5.0.1 (подойдёт 4.2+). Если Blender не в PATH, укажите
+путь в переменной окружения `WIBECODE_BLENDER`; без Blender 3D-рендер даёт
+`ToolNotFoundError`. На Linux без GPU нужны `libegl1` и Mesa (`libgl1-mesa-dri`).
+Тест реального 3D-рендера помечен `blender`; без Blender его можно исключить:
+`python -m pytest -m "not blender"`. CI ставит Blender сам.
 
 После готовности A/B D запускает сборку, проверяет запуск приложения и измеряет
 именно всю папку dist/ShortsStudio, отдельно от внешних Blender/FFmpeg:
