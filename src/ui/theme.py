@@ -3,7 +3,11 @@
 Цвет живёт на данных: акцент только на ленте сцен, бегунке и прогрессе. Хром нейтральный,
 главная кнопка почти чёрная. Три радиуса: лист 16, поля и кнопки 8, сегменты 6.
 """
-from PySide6.QtGui import QColor, QFont, QPalette
+import tempfile
+from pathlib import Path
+
+from PySide6.QtCore import QPointF, Qt
+from PySide6.QtGui import QColor, QFont, QPainter, QPalette, QPen, QPixmap
 from PySide6.QtWidgets import QApplication
 
 T = {
@@ -70,6 +74,20 @@ QPushButton#Quiet {{ min-height: 32px; border: none; background: transparent; co
 QPushButton#Quiet:hover {{ background: {T['raised']}; }}
 QPushButton#Icon {{ min-height: 32px; min-width: 32px; max-width: 32px; padding: 0; border-radius: 16px; }}
 
+QComboBox {{
+    min-height: 36px; padding: 0 12px; border: 1px solid {T['control']}; border-radius: 8px;
+    background: {T['sheet']};
+}}
+QComboBox:focus {{ border: 1px solid {T['text']}; }}
+QComboBox:disabled {{ background: {T['raised']}; color: {T['muted']}; border-color: {T['border']}; }}
+QComboBox::drop-down {{ border: none; width: 32px; }}
+QComboBox::down-arrow {{ image: url("{{chevron}}"); width: 12px; height: 12px; }}
+QComboBox QAbstractItemView {{
+    background: {T['sheet']}; border: 1px solid {T['border']}; padding: 4px; outline: 0;
+    selection-background-color: {T['accent_tint']}; selection-color: {T['text']};
+}}
+#ExtraCard {{ background: {T['raised']}; border-radius: 8px; }}
+
 QProgressBar {{ background: {T['active']}; border: none; border-radius: 3px; max-height: 6px; }}
 QProgressBar::chunk {{ background: {T['accent']}; border-radius: 3px; }}
 
@@ -79,6 +97,20 @@ QScrollBar::handle:vertical {{ background: {T['control']}; border-radius: 4px; m
 QScrollBar::add-line:vertical, QScrollBar::sub-line:vertical {{ height: 0; }}
 QToolTip {{ background: {T['primary']}; color: #ffffff; border: none; padding: 6px 8px; border-radius: 6px; }}
 """
+
+
+def _chevron_path() -> str:
+    """Стрелка выпадающего списка рисуется кодом в temp: не нужен файл в assets и в сборке."""
+    path = Path(tempfile.gettempdir()) / "shorts-studio-chevron.png"
+    pix = QPixmap(24, 24)
+    pix.fill(Qt.GlobalColor.transparent)
+    p = QPainter(pix)
+    p.setRenderHint(QPainter.RenderHint.Antialiasing)
+    p.setPen(QPen(QColor(T["muted"]), 2.5, Qt.PenStyle.SolidLine, Qt.PenCapStyle.RoundCap, Qt.PenJoinStyle.RoundJoin))
+    p.drawPolyline([QPointF(6, 9), QPointF(12, 15), QPointF(18, 9)])
+    p.end()
+    pix.save(str(path))
+    return path.as_posix()
 
 
 def apply_theme(app: QApplication) -> None:
@@ -91,4 +123,4 @@ def apply_theme(app: QApplication) -> None:
     palette.setColor(QPalette.ColorRole.Highlight, QColor(T["accent"]))
     app.setPalette(palette)
     app.setFont(font())
-    app.setStyleSheet(QSS)
+    app.setStyleSheet(QSS.replace("{chevron}", _chevron_path()))
