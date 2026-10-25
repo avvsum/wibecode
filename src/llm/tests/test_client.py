@@ -26,6 +26,7 @@ VALID = json.dumps(
 )
 
 KNOWN_TYPES = {"text", "image", "chart"}
+RENDER_MODES = ("2d", "3d")
 
 
 def contract_check(raw):
@@ -36,6 +37,8 @@ def contract_check(raw):
         return f"невалидный JSON: {e}"
     if not isinstance(spec, dict) or not spec.get("scenes"):
         return "нужен объект с непустым списком scenes"
+    if spec.get("render_mode", "2d") not in RENDER_MODES:
+        return f"render_mode: неизвестный render_mode {spec['render_mode']!r}, допустимы: 2d, 3d"
     for i, scene in enumerate(spec["scenes"]):
         if scene.get("type") not in KNOWN_TYPES:
             return f"scenes[{i}]: неизвестный type {scene.get('type')!r}"
@@ -95,3 +98,32 @@ def test_system_prompt_demands_json_and_shows_contract():
     for field in ('"duration"', '"scenes"', '"text"', '"image"', '"chart"', '"start"', '"end"'):
         assert field in SYSTEM_PROMPT
     assert contract_check(EXAMPLE_SPEC) is None
+
+
+def test_system_prompt_describes_optional_render_mode():
+    for value in ('"render_mode"', '"2d"', '"3d"'):
+        assert value in SYSTEM_PROMPT
+    assert "необязательное" in SYSTEM_PROMPT
+    # The example stays in the old format: no render_mode means 2D.
+    assert "render_mode" not in json.loads(EXAMPLE_SPEC)
+
+
+def with_mode(mode):
+    return json.dumps({**json.loads(VALID), "render_mode": mode}, ensure_ascii=False)
+
+
+def test_3d_spec_is_returned_unchanged():
+    fake = FakeLLMClient([with_mode("3d")])
+    raw = generate_spec("Сделай 3D-ролик про рост продаж.", client=fake, check=contract_check)
+
+    assert json.loads(raw)["render_mode"] == "3d"
+    assert len(fake.calls) == 1
+
+
+def test_wrong_render_mode_triggers_fix_up():
+    fake = FakeLLMClient([with_mode("3D"), with_mode("3d")])
+    raw = generate_spec("Сделай 3D-ролик про рост продаж.", client=fake, check=contract_check)
+
+    assert json.loads(raw)["render_mode"] == "3d"
+    assert len(fake.calls) == 2
+    assert "render_mode" in fake.calls[1][-1]["content"]
