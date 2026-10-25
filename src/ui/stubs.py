@@ -1,45 +1,76 @@
-"""Заглушки backend (src.api) и LLM (src.llm), пока A и C не смержили свои модули.
+"""Заглушки backend (src.api) и LLM (src.llm) для разработки UI без сети и ключа API.
 
 Повторяют публичный API из AGENTS.md:
     api.parse_spec(raw: str) -> Spec            # raises SpecError
-    api.render_video(spec: Spec, out_path: str) -> str
+    api.render_video(spec: Spec, out_path: str, *, on_progress=None) -> str
     llm.generate_spec(user_text: str) -> str    # raw JSON
 """
 import json
+import os
+import re
 import shutil
 import subprocess
 import sys
 from dataclasses import dataclass
 from types import SimpleNamespace
 
-WIDTH, HEIGHT, FPS = 1080, 1920, 30
+WIDTH, HEIGHT, FPS = 1080, 1920, 60
 SCENE_COLORS = {"text": "0x1e3a8a", "image": "0x065f46", "chart": "0x7c2d12"}
 REQUIRED_FIELDS = {"text": "text", "image": "path", "chart": "data"}
+RENDER_MODES = ("2d", "3d")
+MODE_HINT = re.compile(r'\s*render_mode: "(\w+)"\s*$')
 
 
 class SpecError(ValueError):
     """Спецификация не прошла валидацию."""
 
 
+class RenderError(RuntimeError):
+    """Видео не удалось собрать."""
+
+
+class ToolNotFoundError(RenderError, FileNotFoundError):
+    """Нет внешнего инструмента (FFmpeg)."""
+
+
+class RenderCancelled(RenderError):
+    """on_progress вернул False."""
+
+
+class LLMError(Exception):
+    """Провайдер LLM недоступен (нет ключа, сети и т. п.)."""
+
+
+class SpecGenerationError(Exception):
+    """Модель не дала валидный JSON за все попытки."""
+
+
 @dataclass(frozen=True)
 class Spec:
     duration: float
     scenes: list
+    render_mode: str = "2d"
 
 
 def generate_spec(user_text: str) -> str:
+    # Как и prompt C: явная подсказка render_mode в конце запроса задаёт режим.
+    hint = MODE_HINT.search(user_text)
+    text = user_text[:hint.start()] if hint else user_text
     # Если ввели JSON руками, отдаём как есть: удобно проверять ошибки SpecError из UI.
-    if user_text.lstrip().startswith("{"):
-        return user_text
-    title = (user_text.strip().splitlines() or [""])[0][:60]
-    return json.dumps({
+    if text.lstrip().startswith("{"):
+        return text
+    title = (text.strip().splitlines() or [""])[0][:60]
+    spec = {
         "duration": 15,
         "scenes": [
             {"type": "text", "text": title, "start": 0, "end": 5},
-            {"type": "image", "path": "a.png", "start": 5, "end": 10},
-            {"type": "chart", "data": [[1, 2], [2, 4], [3, 3]], "start": 10, "end": 15},
+            {"type": "chart", "data": [[1, 2], [2, 4], [3, 3]], "start": 5, "end": 10},
+            {"type": "text", "text": "Конец", "start": 10, "end": 15},
         ],
-    }, ensure_ascii=False)
+    }
+    if hint:
+        spec["render_mode"] = hint.group(1)
+    return json.dumps(spec, ensure_ascii=False)
 
 
 def parse_spec(raw: str) -> Spec:
@@ -55,6 +86,9 @@ def parse_spec(raw: str) -> Spec:
     scenes = data.get("scenes")
     if not isinstance(scenes, list) or not scenes:
         raise SpecError("scenes должен быть непустым списком")
+    render_mode = data.get("render_mode", "2d")
+    if render_mode not in RENDER_MODES:
+        raise SpecError(f"render_mode должен быть \"2d\" или \"3d\", получено {render_mode!r}")
 
     for i, scene in enumerate(scenes):
         if not isinstance(scene, dict):
@@ -76,14 +110,19 @@ def parse_spec(raw: str) -> Spec:
     for prev, cur in zip(ordered, ordered[1:]):
         if cur["start"] < prev["end"]:
             raise SpecError(f"сцены {prev['start']}..{prev['end']} и {cur['start']}..{cur['end']} пересекаются")
-    return Spec(duration=duration, scenes=ordered)
+    return Spec(duration=duration, scenes=ordered, render_mode=render_mode)
 
 
-def render_video(spec: Spec, out_path: str) -> str:
+def render_video(spec: Spec, out_path: str, *, on_progress=None) -> str:
     """Каждая сцена рисуется цветным отрезком своего типа, пустые промежутки чёрным."""
+    if spec.render_mode == "3d":
+        raise NotImplementedError("3D-рендер пока не реализован")
     ffmpeg = shutil.which("ffmpeg")
     if not ffmpeg:
-        raise RuntimeError("FFmpeg не найден в PATH")
+        raise ToolNotFoundError("FFmpeg не найден: установите его и добавьте в PATH")
+    total = round(spec.duration * FPS)
+    if on_progress is not None and on_progress(0, total) is False:
+        raise RenderCancelled("рендер отменён")
 
     segments, cursor = [], 0
     for scene in spec.scenes:
@@ -98,15 +137,24 @@ def render_video(spec: Spec, out_path: str) -> str:
     for color, length in segments:
         cmd += ["-f", "lavfi", "-i", f"color=c={color}:s={WIDTH}x{HEIGHT}:r={FPS}:d={length}"]
     concat = "".join(f"[{i}:v]" for i in range(len(segments))) + f"concat=n={len(segments)}:v=1:a=0[v]"
+    tmp_path = f"{out_path}.part.mp4"  # как у A: out_path появляется только при успехе
     cmd += ["-filter_complex", concat, "-map", "[v]",
-            "-c:v", "libx264", "-preset", "ultrafast", "-pix_fmt", "yuv420p", "-r", str(FPS), out_path]
+            "-c:v", "libx264", "-preset", "ultrafast", "-pix_fmt", "yuv420p", "-r", str(FPS), tmp_path]
 
     flags = subprocess.CREATE_NO_WINDOW if sys.platform == "win32" else 0
     result = subprocess.run(cmd, capture_output=True, text=True, creationflags=flags)
     if result.returncode != 0:
-        raise RuntimeError(f"FFmpeg завершился с ошибкой: {result.stderr.strip()[-300:]}")
+        if os.path.exists(tmp_path):
+            os.remove(tmp_path)
+        raise RenderError(f"FFmpeg завершился с ошибкой: {result.stderr.strip()[-300:]}")
+    os.replace(tmp_path, out_path)
+    if on_progress is not None:
+        on_progress(total, total)
     return out_path
 
 
-api = SimpleNamespace(Spec=Spec, SpecError=SpecError, parse_spec=parse_spec, render_video=render_video)
-llm = SimpleNamespace(generate_spec=generate_spec)
+api = SimpleNamespace(
+    Spec=Spec, SpecError=SpecError, RenderError=RenderError, ToolNotFoundError=ToolNotFoundError,
+    RenderCancelled=RenderCancelled, parse_spec=parse_spec, render_video=render_video,
+)
+llm = SimpleNamespace(generate_spec=generate_spec, LLMError=LLMError, SpecGenerationError=SpecGenerationError)
