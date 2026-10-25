@@ -198,7 +198,8 @@ def test_window_opens_prompt_only(qapp):
     """По умолчанию — только описание: режим «Авто», остальные настройки свёрнуты."""
     w = ShellWindow()
     assert w.mode.value() == "auto"
-    assert w.options() == {choice.key: choice.resolve()[0][0] for choice in CHOICES}
+    assert w.options() == {"voice": None, "music": "auto"}
+    assert w._choice_rows["environment"].isHidden() and w._choice_rows["cast"].isHidden()
     assert not w.advanced.isVisibleTo(w) and w.advanced_button.text() == "Дополнительно  ▸"
 
     w.advanced_button.setChecked(True)

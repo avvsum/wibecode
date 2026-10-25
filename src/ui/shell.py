@@ -186,10 +186,14 @@ class ShellWindow(QMainWindow):
         adv.addWidget(self.mode_note)
 
         self._choices = {}  # настройки из features.CHOICES рисуются сами
+        self._choice_rows, self._choice_modes = {}, {}
         for choice in CHOICES:
-            adv.addSpacing(20)
-            adv.addWidget(_label(choice.label, "label"))
-            adv.addSpacing(8)
+            row = QWidget()
+            row_layout = QHBoxLayout(row)
+            row_layout.setContentsMargins(0, 12, 0, 0)
+            label = _label(choice.label, "label")
+            label.setFixedWidth(90)
+            row_layout.addWidget(label)
             box = QComboBox()
             box.setAccessibleName(choice.label)
             box.setToolTip(choice.hint)
@@ -199,8 +203,12 @@ class ShellWindow(QMainWindow):
                 box.addItem("Свой файл…", _BROWSE)
                 box.activated.connect(lambda index, b=box, c=choice: self._browse(b, c, index))
             box.currentIndexChanged.connect(self._update_advanced)
-            adv.addWidget(box)
+            row_layout.addWidget(box, 1)
+            adv.addWidget(row)
             self._choices[choice.key] = box
+            self._choice_rows[choice.key] = row
+            self._choice_modes[choice.key] = choice.mode
+        self._sync_choices()
         col.addWidget(self.advanced)
         self.advanced_button.toggled.connect(self._update_advanced)
         self._update_advanced()
@@ -444,7 +452,12 @@ class ShellWindow(QMainWindow):
         card.set_content(text, ok)
 
     def options(self) -> dict:
-        return {key: box.currentData() for key, box in self._choices.items()}
+        return {key: box.currentData() for key, box in self._choices.items()
+                if not self._choice_modes[key] or self._choice_modes[key] == self.mode.value()}
+
+    def _sync_choices(self) -> None:
+        for key, row in self._choice_rows.items():
+            row.setVisible(not self._choice_modes[key] or self._choice_modes[key] == self.mode.value())
 
     def _browse(self, box: QComboBox, choice, index: int) -> None:
         """Пункт «Свой файл…»: выбранный файл становится вариантом списка, отмена — откат."""
@@ -573,6 +586,7 @@ class ShellWindow(QMainWindow):
 
     def _on_mode_changed(self, mode: str) -> None:
         self.mode_note.setText(MODE_NOTES[mode])
+        self._sync_choices()
         self._update_advanced()
 
     def _update_advanced(self, *_) -> None:
@@ -580,7 +594,9 @@ class ShellWindow(QMainWindow):
         self.advanced.setVisible(expanded)
         mode = self.mode.value()
         chosen = [title for value, title, _ in ModeSwitch.MODES if value == mode and value != "auto"]
-        chosen += [box.currentText() for box in self._choices.values() if box.currentIndex() > 0]
+        active = self.options()
+        chosen += [box.currentText() for key, box in self._choices.items()
+                   if key in active and box.currentIndex() > 0]
         self.advanced_button.setText(advanced_label(chosen, expanded))
 
     def _request_render(self) -> None:

@@ -26,6 +26,7 @@ class Choice:
     options: Union[tuple, Callable[[], list]]  # пары (значение, подпись); первое — по умолчанию
     hint: str = ""
     browse: str = ""  # фильтр файлов для пункта «Свой файл…», например "Аудио (*.mp3 *.wav)"
+    mode: str = ""  # пусто — оба режима; "3d" — только настройки сцены Blender
 
     def resolve(self) -> list:
         return list(self.options() if callable(self.options) else self.options)
@@ -37,6 +38,12 @@ class Extra:
     title: str
 
 
+def music_options() -> list:
+    return [("auto", "Авто, по настроению"), (None, "Без музыки")] + [
+        (track, f"♪ {Path(track).stem}") for track in api.user_music()
+    ]
+
+
 CHOICES = (
     Choice(
         "voice", "Озвучка",
@@ -44,11 +51,22 @@ CHOICES = (
         hint="ElevenLabs: ключ в ELEVENLABS_API_KEY. Chatterbox: pip install -r requirements-chatterbox.txt",
     ),
     Choice(
-        "music", "Музыка",
-        lambda: [("auto", "Авто, по настроению"), (None, "Без музыки")]
-        + [(track, Path(track).stem) for track in api.user_music()],
-        hint="Авто: настроение выбирает модель. «Свой файл…» сохраняется в ваших треках",
-        browse="Аудио (*.mp3 *.wav *.ogg *.m4a *.flac *.aac)",
+        "music", "Музыка", music_options,
+        hint="Авто берёт встроенный трек по настроению. Если трека нет, видео будет без музыки; выберите свой файл.",
+        browse="Аудио (*.mp3 *.wav *.m4a *.ogg *.flac *.aac)",
+    ),
+    Choice(
+        "environment", "Окружение",
+        (("room", "Уютная комната"), ("forest", "Лесная поляна"), ("dungeon", "Подземелье"),
+         ("space", "Космическая база"), ("city", "Городская площадь"), ("studio", "Исходная студия")),
+        mode="3d",
+    ),
+    Choice(
+        "cast", "Персонажи",
+        (("knight_mage", "Рыцарь и маг"), ("rogue_duo", "Два разбойника"),
+         ("barbarian_mage", "Варвар и маг"), ("ranger_knight", "Лучник и рыцарь"),
+         ("classic", "Робот и девушка")),
+        mode="3d",
     ),
 )
 
