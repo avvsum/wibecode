@@ -2,6 +2,7 @@
 
 from __future__ import annotations
 
+import math
 import os
 import shutil
 import subprocess
@@ -124,18 +125,35 @@ def _image_frame(scene: ImageScene) -> Image.Image:
     return img
 
 
+def _nice_step(span: float, ticks: int = 4) -> float:
+    """Round step (1, 2, 2.5 or 5 times a power of ten) covering span in ~ticks steps."""
+    raw = span / ticks
+    power = 10 ** math.floor(math.log10(raw))
+    return next(m * power for m in (1, 2, 2.5, 5, 10) if m * power >= raw)
+
+
+def _number(value: float) -> str:
+    text = f"{value:,.10g}".replace(",", "\u202f")  # narrow no-break space: 23 817
+    return "0" if text == "-0" else text
+
+
 def _chart_frame(scene: ChartScene) -> Image.Image:
     img = _blank()
     draw = ImageDraw.Draw(img)
-    left, right, top, bottom = 140, WIDTH - 80, 460, HEIGHT - 460
     xs = [x for x, _ in scene.data]
     ys = [y for _, y in scene.data]
     x0, x1 = min(xs), max(xs)
-    y0, y1 = min(min(ys), 0), max(ys)
     if x1 == x0:
         x0, x1 = x0 - 1, x1 + 1
-    if y1 == y0:
-        y1 = y0 + 1
+    lo, hi = min(min(ys), 0), max(max(ys), 0)
+    step = _nice_step(hi - lo or 1)
+    y0, y1 = math.floor(lo / step) * step, math.ceil(hi / step) * step
+    y1 = y1 if y1 > y0 else y0 + step
+    ticks = [y0 + k * step for k in range(round((y1 - y0) / step) + 1)]
+
+    label = _font(40)
+    left = 40 + max(draw.textlength(_number(t), font=label) for t in ticks) + 20
+    right, top, bottom = WIDTH - 80, 460, HEIGHT - 460
 
     def px(x: float, y: float) -> tuple[float, float]:
         return (
@@ -143,14 +161,13 @@ def _chart_frame(scene: ChartScene) -> Image.Image:
             bottom - (y - y0) / (y1 - y0) * (bottom - top),
         )
 
-    label = _font(40)
-    for k in range(5):
-        y = y0 + (y1 - y0) * k / 4
+    for y in ticks:
         _, py = px(x0, y)
         draw.line([(left, py), (right, py)], fill=GRID, width=2)
-        draw.text((left - 20, py), f"{y:g}", font=label, fill=FG, anchor="rm")
-    for x, _ in scene.data:
-        draw.text((px(x, y0)[0], bottom + 30), f"{x:g}", font=label, fill=FG, anchor="mt")
+        draw.text((left - 20, py), _number(y), font=label, fill=FG, anchor="rm")
+    every = max(1, math.ceil(len(xs) / 8))  # at most ~8 x labels
+    for x in sorted(set(xs))[::every]:
+        draw.text((px(x, y0)[0], bottom + 30), _number(x), font=label, fill=FG, anchor="mt")
     points = [px(x, y) for x, y in sorted(scene.data)]
     draw.line(points, fill=ACCENT, width=10, joint="curve")
     for cx, cy in points:
