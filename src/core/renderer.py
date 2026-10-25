@@ -8,7 +8,7 @@ import subprocess
 import tempfile
 import textwrap
 from pathlib import Path
-from typing import Protocol
+from typing import Callable, Optional, Protocol
 
 from PIL import Image, ImageDraw, ImageFont, ImageOps
 
@@ -38,10 +38,26 @@ class ToolNotFoundError(RenderError, FileNotFoundError):
     """A required external program (FFmpeg, Blender) is not installed or not in PATH."""
 
 
+class RenderCancelled(RenderError):
+    """on_progress returned False; out_path was left untouched."""
+
+
+# on_progress(done_frames, total_frames) -> bool. total is fixed for one render
+# (0 if unknown), done grows from 0 to total; returning False cancels.
+ProgressCallback = Callable[[int, int], Optional[bool]]
+
+
 class Renderer(Protocol):
-    def render(self, spec: Spec, out_path: str) -> str:
+    def render(
+        self, spec: Spec, out_path: str, on_progress: Optional[ProgressCallback] = None
+    ) -> str:
         """Write spec as a video to out_path and return the path."""
         ...
+
+
+def _report(on_progress: Optional[ProgressCallback], done: int, total: int) -> None:
+    if on_progress is not None and on_progress(done, total) is False:
+        raise RenderCancelled("рендер отменён")
 
 
 def _font(size: int) -> ImageFont.FreeTypeFont:
@@ -172,12 +188,16 @@ def _ffmpeg() -> str:
 class FFmpegRenderer:
     """2D renderer: still frames per scene, fades, H.264 MP4 1080x1920."""
 
-    def render(self, spec: Spec, out_path: str) -> str:
-        if round(spec.duration * FPS) < 1:
+    def render(
+        self, spec: Spec, out_path: str, on_progress: Optional[ProgressCallback] = None
+    ) -> str:
+        total = round(spec.duration * FPS)
+        if total < 1:
             raise RenderError(
                 f"видео короче одного кадра: duration {spec.duration:g} с при {FPS} fps"
             )
         ffmpeg = _ffmpeg()
+        _report(on_progress, 0, total)
         segments = _segments(spec)
         out = os.path.abspath(out_path)
         os.makedirs(os.path.dirname(out), exist_ok=True)
@@ -185,7 +205,7 @@ class FFmpegRenderer:
         # finished video or untouched, never a half-written file.
         part = f"{out}.{os.getpid()}.part"
         with tempfile.TemporaryDirectory(prefix="wibecode_") as tmp:
-            cmd = [ffmpeg, "-y", "-v", "error"]
+            cmd = [ffmpeg, "-y", "-v", "error", "-nostats", "-progress", "pipe:1"]
             filters = []
             for i, (frame, frames, fade) in enumerate(segments):
                 png = os.path.join(tmp, f"{i:03d}.png")
@@ -204,20 +224,44 @@ class FFmpegRenderer:
                 "-movflags", "+faststart", "-f", "mp4", part,
             ]  # fmt: skip
             try:
-                proc = subprocess.run(cmd, capture_output=True, text=True)
-                if proc.returncode != 0:
-                    raise RenderError(f"FFmpeg завершился с ошибкой: {proc.stderr.strip()[-500:]}")
+                _run_ffmpeg(cmd, os.path.join(tmp, "stderr.txt"), on_progress, total)
                 os.replace(part, out)
             finally:
                 if os.path.exists(part):
                     os.remove(part)
+        _report(on_progress, total, total)
         return out
 
 
-class Stub3DRenderer:
-    """Placeholder until the 3D backend (Blender / moderngl / Manim) is chosen."""
+def _run_ffmpeg(
+    cmd: list[str], stderr_path: str, on_progress: Optional[ProgressCallback], total: int
+) -> None:
+    """Run FFmpeg, forwarding its "-progress" frame counter to on_progress."""
+    with open(stderr_path, "w+", encoding="utf-8", errors="replace") as err:
+        proc = subprocess.Popen(cmd, stdout=subprocess.PIPE, stderr=err, text=True)
+        try:
+            for line in proc.stdout:
+                key, _, value = line.strip().partition("=")
+                if key == "frame" and value.isdigit():
+                    # The last frame is reported once the file is final (below).
+                    _report(on_progress, min(int(value), total - 1), total)
+            proc.wait()
+        finally:
+            if proc.poll() is None:  # cancelled or callback raised
+                proc.kill()
+                proc.wait()
+            proc.stdout.close()
+        if proc.returncode != 0:
+            err.seek(0)
+            raise RenderError(f"FFmpeg завершился с ошибкой: {err.read().strip()[-500:]}")
 
-    def render(self, spec: Spec, out_path: str) -> str:
+
+class Stub3DRenderer:
+    """Placeholder until the Blender (Workbench) backend is implemented."""
+
+    def render(
+        self, spec: Spec, out_path: str, on_progress: Optional[ProgressCallback] = None
+    ) -> str:
         raise NotImplementedError("3D not implemented yet")
 
 
@@ -231,6 +275,6 @@ def get_renderer(mode: str) -> Renderer:
         raise RenderError(f"нет рендерера для render_mode {mode!r}") from None
 
 
-def render(spec: Spec, out_path: str) -> str:
+def render(spec: Spec, out_path: str, on_progress: Optional[ProgressCallback] = None) -> str:
     """Render spec with the backend for its render_mode."""
-    return get_renderer(spec.render_mode).render(spec, out_path)
+    return get_renderer(spec.render_mode).render(spec, out_path, on_progress)
