@@ -1,4 +1,4 @@
-"""User text -> raw JSON spec via an LLM, with validation and fix-up retries."""
+"""User text -> raw JSON spec (and YouTube metadata) via an LLM, with fix-up retries."""
 
 from __future__ import annotations
 
@@ -6,7 +6,8 @@ import os
 import re
 from typing import Callable, Optional, Protocol
 
-from src.llm.prompt import SYSTEM_PROMPT, fix_message
+from src.llm.metadata import VideoMetadata, check_metadata, parse_metadata
+from src.llm.prompt import METADATA_PROMPT, SYSTEM_PROMPT, fix_message, metadata_request
 
 API_KEY_ENV = "ANTHROPIC_API_KEY"
 DEFAULT_MODEL = "claude-opus-5-5"
@@ -126,11 +127,33 @@ def generate_spec(
     """
     client = client if client is not None else AnthropicClient()
     check = check if check is not None else check_with_api
+    return _complete_checked(client, SYSTEM_PROMPT, user_text, check)
 
-    messages: list[Message] = [{"role": "user", "content": user_text}]
+
+def generate_metadata(
+    user_text: str,
+    spec_json: str,
+    *,
+    client: Optional[LLMClient] = None,
+) -> VideoMetadata:
+    """Return a YouTube title, description and tags for a generated spec.
+
+    Raises SpecGenerationError after MAX_RETRIES failed fix-up attempts,
+    LLMError if the provider is unavailable.
+    """
+    client = client if client is not None else AnthropicClient()
+    raw = _complete_checked(
+        client, METADATA_PROMPT, metadata_request(user_text, spec_json), check_metadata
+    )
+    return parse_metadata(raw)
+
+
+def _complete_checked(client: LLMClient, system: str, content: str, check: SpecCheck) -> str:
+    """Ask until check() accepts the reply; each fix-up request carries its error."""
+    messages: list[Message] = [{"role": "user", "content": content}]
     attempts = 1 + MAX_RETRIES
     for attempt in range(1, attempts + 1):
-        reply = client.complete(SYSTEM_PROMPT, messages)
+        reply = client.complete(system, messages)
         raw = strip_fences(reply)
         error = check(raw)
         if error is None:
