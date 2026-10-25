@@ -6,7 +6,7 @@ import pytest
 
 
 @pytest.fixture(autouse=True)
-def offline(monkeypatch):
+def offline(monkeypatch, tmp_path):
     def blocked(*args, **kwargs):
         pytest.fail("Тесты не должны обращаться в сеть", pytrace=False)
 
@@ -15,3 +15,5 @@ def offline(monkeypatch):
     monkeypatch.setattr(socket, "create_connection", blocked)
     for variable in ("OPENAI_API_KEY", "ANTHROPIC_API_KEY", "ELEVENLABS_API_KEY"):
         monkeypatch.delenv(variable, raising=False)
+    # Tracks imported in tests must not land in the developer's real music folder.
+    monkeypatch.setenv("WIBECODE_MUSIC_DIR", str(tmp_path / "user-music"))

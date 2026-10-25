@@ -174,3 +174,11 @@ def test_system_prompt_lets_model_pick_style():
         assert f'"{style}"' in SYSTEM_PROMPT or f"{style} —" in SYSTEM_PROMPT
     assert api.parse_spec(EXAMPLE_SPEC).style == "vivid"
     assert api.parse_spec(EXAMPLE_3D_SPEC).style == "cinematic"
+
+
+def test_system_prompt_lets_model_pick_music():
+    assert '"music"' in SYSTEM_PROMPT
+    for mood in api.MUSIC_MOODS:
+        assert f'"{mood}"' in SYSTEM_PROMPT
+    assert api.parse_spec(EXAMPLE_SPEC).music == "upbeat"
+    assert api.parse_spec(EXAMPLE_3D_SPEC).music == "calm"

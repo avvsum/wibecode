@@ -2,7 +2,7 @@
 
 import re
 
-from src.api import CASTS, ENVIRONMENTS, SAY_SHOTS, SAY_WHO, STYLES
+from src.api import CASTS, ENVIRONMENTS, MUSIC_MOODS, SAY_SHOTS, SAY_WHO, STYLES
 from src.llm.metadata import DESCRIPTION_MAX, TITLE_MAX
 
 
@@ -13,6 +13,7 @@ def _quoted(values) -> str:
 EXAMPLE_SPEC = """{
   "duration": 15,
   "style": "vivid",
+  "music": "upbeat",
   "scenes": [
     {"type": "text", "text": "Заголовок", "start": 0, "end": 5},
     {"type": "image", "path": "a.png", "start": 5, "end": 10},
@@ -24,6 +25,7 @@ EXAMPLE_3D_SPEC = """{
   "duration": 10,
   "render_mode": "3d",
   "style": "cinematic",
+  "music": "calm",
   "environment": "room",
   "cast": "knight_mage",
   "scenes": [
@@ -52,6 +54,12 @@ SYSTEM_PROMPT = f"""Ты сценарист коротких вертикаль�
   история; sepia — старина, воспоминания; pixel — игры, техника, мемы; retro — 80-е,
   90-е, ностальгия; warm — уют, еда, лето; cold — зима, наука, космос; dreamy —
   мечты, романтика; none — только если обработка явно не нужна.
+- "music": настроение фоновой музыки, одно из {_quoted(MUSIC_MOODS)}.
+  Если пользователь описал музыку (спокойная, лоу-фай, эпичная, 8-бит…), возьми
+  подходящее. Иначе выбери сам под тему: calm — спокойные объяснения, природа;
+  upbeat — бодрые советы, реклама; epic — масштаб, рекорды; lofi — учёба, уют;
+  retro — игры, 8-бит; tense — тайны, расследования; happy — праздники, дети;
+  none — только если пользователь просит без музыки.
 - "environment": необязательное окружение 3D, одно из {_quoted(ENVIRONMENTS)}.
   studio — исходная студия; room — уютная комната; forest — лесная поляна;
   dungeon — подземелье; space — космическая база; city — городская площадь.

@@ -2,13 +2,16 @@
 
 from __future__ import annotations
 
-from src.core import renderer, schema, voiceover
+from src.core import music, renderer, schema, voiceover
 from src.core.renderer import ProgressCallback, RenderCancelled, RenderError, ToolNotFoundError
-from src.core.schema import CASTS, ENVIRONMENTS, SAY_SHOTS, SAY_WHO, STYLES, Spec, SpecError
+from src.core.schema import (
+    CASTS, ENVIRONMENTS, MUSIC_MOODS, SAY_SHOTS, SAY_WHO, STYLES, Spec, SpecError,
+)
 
 __all__ = [
     "CASTS",
     "ENVIRONMENTS",
+    "MUSIC_MOODS",
     "SAY_SHOTS",
     "SAY_WHO",
     "STYLES",
@@ -18,9 +21,13 @@ __all__ = [
     "Spec",
     "SpecError",
     "ToolNotFoundError",
+    "add_music",
     "add_voiceover",
+    "import_music",
+    "pick_music",
     "parse_spec",
     "render_video",
+    "user_music",
 ]
 
 
@@ -55,3 +62,29 @@ def add_voiceover(video_path: str, clips, out_path: str | None = None) -> str:
     Raises RenderError (ToolNotFoundError without FFmpeg).
     """
     return voiceover.add_voiceover(video_path, clips, out_path)
+
+
+def pick_music(mood: str) -> str | None:
+    """A bundled track for spec.music (assets/music/<mood>/); None if "none" or no track."""
+    return music.pick_track(mood)
+
+
+def user_music() -> list[str]:
+    """Tracks the user added with import_music, sorted by file name."""
+    return music.user_tracks()
+
+
+def import_music(path: str) -> str:
+    """Copy the user's audio file (mp3, wav, ogg, m4a, flac, aac) into their music
+    folder and return the copy's path. Raises RenderError for a non-audio file."""
+    return music.import_track(path)
+
+
+def add_music(video_path: str, track_path: str, out_path: str | None = None) -> str:
+    """Mix a music track under the rendered MP4's audio; returns out_path (default: in place).
+
+    The track loops to the video length, fades in/out, sits at -26 LUFS and ducks
+    under speech added by add_voiceover, so call it after add_voiceover.
+    Raises RenderError (ToolNotFoundError without FFmpeg/ffprobe).
+    """
+    return music.add_music(video_path, track_path, out_path)

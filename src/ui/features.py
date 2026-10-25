@@ -13,7 +13,10 @@ Signal(str, bool) — текст и «удалось ли» — и добавь�
 покажет карточку под сценарием, с кнопкой «Копировать», если удалось.
 """
 from dataclasses import dataclass
+from pathlib import Path
 from typing import Callable, Union
+
+from src.ui.backend import api
 
 
 @dataclass(frozen=True)
@@ -39,6 +42,13 @@ CHOICES = (
         "voice", "Озвучка",
         ((None, "Без озвучки"), ("elevenlabs", "ElevenLabs"), ("chatterbox", "Chatterbox, локально")),
         hint="ElevenLabs: ключ в ELEVENLABS_API_KEY. Chatterbox: pip install -r requirements-chatterbox.txt",
+    ),
+    Choice(
+        "music", "Музыка",
+        lambda: [("auto", "Авто, по настроению"), (None, "Без музыки")]
+        + [(track, Path(track).stem) for track in api.user_music()],
+        hint="Авто: настроение выбирает модель. «Свой файл…» сохраняется в ваших треках",
+        browse="Аудио (*.mp3 *.wav *.ogg *.m4a *.flac *.aac)",
     ),
 )
 
