@@ -6,7 +6,7 @@ from PySide6.QtCore import QThread, QUrl, Slot
 from PySide6.QtMultimedia import QAudioOutput, QMediaPlayer
 from PySide6.QtMultimediaWidgets import QVideoWidget
 from PySide6.QtWidgets import (
-    QHBoxLayout, QMainWindow, QPlainTextEdit, QPushButton, QVBoxLayout, QWidget,
+    QComboBox, QHBoxLayout, QLabel, QMainWindow, QPlainTextEdit, QPushButton, QVBoxLayout, QWidget,
 )
 
 from src.ui.worker import RenderWorker
@@ -23,6 +23,9 @@ class MainWindow(QMainWindow):
 
         self.input = QPlainTextEdit()
         self.input.setPlaceholderText("Опишите ролик: о чём он, какие кадры и цифры показать…")
+        self.mode_box = QComboBox()
+        self.mode_box.addItem("2D", "2d")
+        self.mode_box.addItem("3D", "3d")
         self.render_button = QPushButton("Рендер")
         self.render_button.clicked.connect(self.start_render)
 
@@ -37,8 +40,13 @@ class MainWindow(QMainWindow):
         self.play_button.setEnabled(False)
         self.play_button.clicked.connect(self._toggle_play)
 
+        mode_row = QHBoxLayout()
+        mode_row.addWidget(QLabel("Render mode:"))
+        mode_row.addWidget(self.mode_box)
+        mode_row.addStretch()
         left = QVBoxLayout()
         left.addWidget(self.input)
+        left.addLayout(mode_row)
         left.addWidget(self.render_button)
         right = QVBoxLayout()
         right.addWidget(self.video, 1)
@@ -72,8 +80,9 @@ class MainWindow(QMainWindow):
         out_path = str(OUTPUT_DIR / f"render_{time.strftime('%Y%m%d_%H%M%S')}.mp4")
 
         self.render_button.setEnabled(False)
+        self.mode_box.setEnabled(False)
         self._thread = QThread(self)
-        self._worker = RenderWorker(text, out_path)
+        self._worker = RenderWorker(text, out_path, self.mode_box.currentData())
         self._worker.moveToThread(self._thread)
         self._thread.started.connect(self._worker.run)
         self._worker.progress.connect(self._set_status)
@@ -101,6 +110,7 @@ class MainWindow(QMainWindow):
         self._thread.deleteLater()
         self._thread = None
         self.render_button.setEnabled(True)
+        self.mode_box.setEnabled(True)
 
     @Slot()
     def _toggle_play(self) -> None:

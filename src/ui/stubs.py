@@ -15,6 +15,7 @@ from types import SimpleNamespace
 WIDTH, HEIGHT, FPS = 1080, 1920, 30
 SCENE_COLORS = {"text": "0x1e3a8a", "image": "0x065f46", "chart": "0x7c2d12"}
 REQUIRED_FIELDS = {"text": "text", "image": "path", "chart": "data"}
+RENDER_MODES = ("2d", "3d")
 
 
 class SpecError(ValueError):
@@ -25,6 +26,7 @@ class SpecError(ValueError):
 class Spec:
     duration: float
     scenes: list
+    render_mode: str = "2d"
 
 
 def generate_spec(user_text: str) -> str:
@@ -55,6 +57,9 @@ def parse_spec(raw: str) -> Spec:
     scenes = data.get("scenes")
     if not isinstance(scenes, list) or not scenes:
         raise SpecError("scenes должен быть непустым списком")
+    render_mode = data.get("render_mode", "2d")
+    if render_mode not in RENDER_MODES:
+        raise SpecError(f"render_mode должен быть \"2d\" или \"3d\", получено {render_mode!r}")
 
     for i, scene in enumerate(scenes):
         if not isinstance(scene, dict):
@@ -76,11 +81,13 @@ def parse_spec(raw: str) -> Spec:
     for prev, cur in zip(ordered, ordered[1:]):
         if cur["start"] < prev["end"]:
             raise SpecError(f"сцены {prev['start']}..{prev['end']} и {cur['start']}..{cur['end']} пересекаются")
-    return Spec(duration=duration, scenes=ordered)
+    return Spec(duration=duration, scenes=ordered, render_mode=render_mode)
 
 
 def render_video(spec: Spec, out_path: str) -> str:
     """Каждая сцена рисуется цветным отрезком своего типа, пустые промежутки чёрным."""
+    if spec.render_mode == "3d":
+        raise NotImplementedError("3D-рендер пока не реализован")
     ffmpeg = shutil.which("ffmpeg")
     if not ffmpeg:
         raise RuntimeError("FFmpeg не найден в PATH")
