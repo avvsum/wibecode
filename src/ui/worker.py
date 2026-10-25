@@ -22,12 +22,16 @@ class RenderWorker(QObject):
     failed = Signal(str)
     cancelled = Signal()
 
-    def __init__(self, user_text: str, out_path: str, render_mode: str = "2d", voice: str | None = None):
+    def __init__(
+        self, user_text: str, out_path: str, render_mode: str = "2d", voice: str | None = None,
+        music: str | None = None,
+    ):
         super().__init__()
         self._user_text = user_text
         self._out_path = out_path
         self._render_mode = render_mode
         self._voice = voice  # провайдер озвучки: "elevenlabs", "chatterbox" или None
+        self._music = music  # "auto" (настроение от модели), путь к своему треку или None
         self._cancel_requested = False
 
     def cancel(self) -> None:
@@ -75,6 +79,15 @@ class RenderWorker(QObject):
                         api.add_voiceover(path, llm.tts.synthesize_spec(spec, tmp, self._voice))
                 except (llm.tts.TTSError, api.RenderError) as e:
                     self.failed.emit(f"Видео готово без озвучки ({path}). Озвучка не удалась: {e}")
+                    return
+            mood = getattr(spec, "music", "none")  # настроение выбирает модель, заглушки его не знают
+            track = api.pick_music(mood) if self._music == "auto" else self._music
+            if track:
+                self.progress.emit("Музыка…" if self._music != "auto" else f"Музыка: {mood}…")
+                try:
+                    api.add_music(path, track)
+                except api.RenderError as e:
+                    self.failed.emit(f"Видео готово без музыки ({path}). Музыка не добавилась: {e}")
                     return
         except api.RenderCancelled:
             self.cancelled.emit()

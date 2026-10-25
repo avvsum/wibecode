@@ -7,10 +7,11 @@ from PySide6.QtGui import QGuiApplication
 from PySide6.QtMultimedia import QAudioOutput, QMediaPlayer
 from PySide6.QtMultimediaWidgets import QVideoWidget
 from PySide6.QtWidgets import (
-    QComboBox, QHBoxLayout, QLabel, QMainWindow, QPlainTextEdit, QProgressBar, QPushButton,
+    QComboBox, QFileDialog, QHBoxLayout, QLabel, QMainWindow, QPlainTextEdit, QProgressBar, QPushButton,
     QVBoxLayout, QWidget,
 )
 
+from src.ui.backend import api
 from src.ui.worker import RenderWorker
 
 OUTPUT_DIR = Path(tempfile.gettempdir()) / "shorts-maker"
@@ -36,6 +37,14 @@ class MainWindow(QMainWindow):
             "ElevenLabs: ключ в ELEVENLABS_API_KEY. "
             "Chatterbox: бесплатно на этом компьютере, pip install -r requirements-chatterbox.txt"
         )
+        self.music_box = QComboBox()
+        self.music_box.addItem("Авто (по настроению)", "auto")
+        self.music_box.addItem("Без музыки", None)
+        for track in api.user_music():
+            self.music_box.addItem(f"♪ {Path(track).stem}", track)
+        self.music_box.setToolTip("Авто: модель выбирает настроение, трек берётся из встроенных")
+        self.add_music_button = QPushButton("Своя музыка…")
+        self.add_music_button.clicked.connect(self._add_music)
         self.render_button = QPushButton("Рендер")
         self.render_button.clicked.connect(self.start_render)
         self.cancel_button = QPushButton("Отмена")
@@ -67,12 +76,17 @@ class MainWindow(QMainWindow):
         mode_row.addWidget(QLabel("Озвучка:"))
         mode_row.addWidget(self.voice_box)
         mode_row.addStretch()
+        music_row = QHBoxLayout()
+        music_row.addWidget(QLabel("Музыка:"))
+        music_row.addWidget(self.music_box, 1)
+        music_row.addWidget(self.add_music_button)
         buttons = QHBoxLayout()
         buttons.addWidget(self.render_button, 1)
         buttons.addWidget(self.cancel_button)
         left = QVBoxLayout()
         left.addWidget(self.input, 2)
         left.addLayout(mode_row)
+        left.addLayout(music_row)
         left.addWidget(self.progress_bar)
         left.addLayout(buttons)
         left.addWidget(QLabel("YouTube: название, описание, теги"))
@@ -88,6 +102,22 @@ class MainWindow(QMainWindow):
         central.setLayout(root)
         self.setCentralWidget(central)
         self._set_status("Готов к работе")
+
+    @Slot()
+    def _add_music(self) -> None:
+        path, _ = QFileDialog.getOpenFileName(
+            self, "Своя музыка", "", "Аудио (*.mp3 *.wav *.ogg *.m4a *.flac *.aac)"
+        )
+        if not path:
+            return
+        try:
+            track = api.import_music(path)  # копия в папку музыки пользователя
+        except api.RenderError as e:
+            self._set_status(f"Не удалось добавить музыку: {e}", error=True)
+            return
+        self.music_box.addItem(f"♪ {Path(track).stem}", track)
+        self.music_box.setCurrentIndex(self.music_box.count() - 1)
+        self._set_status(f"Музыка добавлена: {Path(track).name}")
 
     def _set_status(self, text: str, error: bool = False) -> None:
         self.statusBar().setStyleSheet("color: #c62828;" if error else "")
@@ -114,13 +144,16 @@ class MainWindow(QMainWindow):
         self.render_button.setEnabled(False)
         self.mode_box.setEnabled(False)
         self.voice_box.setEnabled(False)
+        self.music_box.setEnabled(False)
+        self.add_music_button.setEnabled(False)
         self.progress_bar.setRange(0, 0)  # пока LLM пишет сценарий, число кадров неизвестно
         self.progress_bar.setVisible(True)
         self.cancel_button.setEnabled(True)
         self.cancel_button.setVisible(True)
         self._thread = QThread(self)
         self._worker = RenderWorker(
-            text, out_path, self.mode_box.currentData(), self.voice_box.currentData()
+            text, out_path, self.mode_box.currentData(), self.voice_box.currentData(),
+            self.music_box.currentData(),
         )
         self._worker.moveToThread(self._thread)
         self._thread.started.connect(self._worker.run)
@@ -186,6 +219,8 @@ class MainWindow(QMainWindow):
         self.render_button.setEnabled(True)
         self.mode_box.setEnabled(True)
         self.voice_box.setEnabled(True)
+        self.music_box.setEnabled(True)
+        self.add_music_button.setEnabled(True)
         self.progress_bar.setVisible(False)
         self.cancel_button.setVisible(False)
 

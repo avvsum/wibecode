@@ -19,6 +19,9 @@ SCENE_TYPES: tuple[str, ...] = SceneType.__args__
 SAY_WHO: tuple[str, ...] = SayWho.__args__
 SAY_SHOTS: tuple[str, ...] = SayShot.__args__
 STYLES: tuple[str, ...] = Style.__args__
+# Background music mood, picked by the LLM (see core/music.py).
+Music = Literal["none", "calm", "upbeat", "epic", "lofi", "retro", "tense", "happy"]
+MUSIC_MOODS: tuple[str, ...] = Music.__args__
 
 
 class SpecError(ValueError):
@@ -73,6 +76,7 @@ class Spec(BaseModel):
     duration: FiniteFloat = Field(gt=0)
     render_mode: RenderMode = "2d"
     style: Style = "none"
+    music: Music = "none"
     scenes: list[Scene] = Field(min_length=1)
 
     @model_validator(mode="after")
@@ -116,7 +120,9 @@ _MESSAGES = {
     "union_tag_not_found": lambda ctx: f"не указан type ({_choices(SCENE_TYPES)})",
 }
 
-_LITERAL_FIELDS = {"render_mode": RenderMode, "who": SayWho, "shot": SayShot, "style": Style}
+_LITERAL_FIELDS = {
+    "render_mode": RenderMode, "who": SayWho, "shot": SayShot, "style": Style, "music": Music,
+}
 
 
 def _location(loc: tuple) -> str:

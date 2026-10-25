@@ -82,6 +82,17 @@ Decided: JSON, а не свободный код от LLM. Open: цвета, ш�
   сборки, размер 1080x1920, fps и длительность не меняются.
 - Озвучка выравнивается по громкости до -14 LUFS (уровень YouTube).
 
+### music: фоновая музыка (согласовано владельцем репозитория)
+- Необязательное поле верхнего уровня Spec: "none" (по умолчанию), "calm", "upbeat",
+  "epic", "lofi", "retro", "tense", "happy". Другое значение -> SpecError. Выбирает LLM
+  по запросу или теме; список экспортируется как api.MUSIC_MOODS.
+- Треки: assets/music/<mood>/ (только CC0 или лицензия, разрешающая распространение,
+  с записью в assets/music/CREDITS.md) и папка пользователя (api.import_music, user_music).
+- A: api.add_music(video_path, track_path, out_path=None) — цикл до длины видео, fade,
+  -26 LUFS, приглушение под речью; вызывается после add_voiceover. api.pick_music(mood).
+- B: «Музыка»: Авто (трек по настроению модели) / Без музыки / свои треки; кнопка
+  «Своя музыка…» копирует файл в папку пользователя.
+
 ### Озвучка (ElevenLabs, Chatterbox)
 - Контракт JSON не меняется. Озвучиваются text (голос диктора) и say (голос по who).
 - C: src/llm/tts.py — synthesize_spec(spec, out_dir, client) -> list[VoiceClip(path, start, end)];
@@ -98,6 +109,7 @@ Decided: JSON, а не свободный код от LLM. Open: цвета, ш�
 - llm.generate_spec(user_text: str) -> str    # raw JSON
 - llm.tts.synthesize_spec(spec: Spec, out_dir: str, client="elevenlabs") -> list[VoiceClip]
 - api.add_voiceover(video_path: str, clips, out_path: str | None = None) -> str
+- api.add_music(video_path: str, track_path: str, out_path: str | None = None) -> str
 - llm.generate_metadata(user_text: str, spec_json: str) -> VideoMetadata
   # title/description/tags для YouTube; .as_text() — текст для YouTube Studio;
   # ошибки — LLMError и SpecGenerationError, как у generate_spec

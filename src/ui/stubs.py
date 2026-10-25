@@ -184,10 +184,16 @@ def add_voiceover(video_path, clips, out_path=None):
     return out_path or video_path
 
 
+def add_music(video_path, track_path, out_path=None):
+    """Заглушка: видео не меняется."""
+    return out_path or video_path
+
+
 api = SimpleNamespace(
     Spec=Spec, SpecError=SpecError, RenderError=RenderError, ToolNotFoundError=ToolNotFoundError,
     RenderCancelled=RenderCancelled, parse_spec=parse_spec, render_video=render_video,
-    add_voiceover=add_voiceover,
+    add_voiceover=add_voiceover, add_music=add_music, pick_music=lambda mood: None,
+    user_music=lambda: [], import_music=lambda path: path,
 )
 # Заглушка озвучки не ходит в ElevenLabs и не создаёт реплик.
 tts = SimpleNamespace(TTSError=TTSError, synthesize_spec=lambda spec, out_dir, client=None: [])
